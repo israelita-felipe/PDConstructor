@@ -20,245 +20,234 @@ import java.util.List;
  */
 public abstract class AbstractController<T extends InterfaceEntity> implements InterfaceController<T>, Serializable {
 
-    private final InterfaceFacade<T> ejbFacade;
-    private T current;
-    private List<T> items = null;
-    private AbstractPaginator pagination;
-    private int selectedItemIndex;
+	private final InterfaceFacade<T> ejbFacade;
+	private T current;
+	private List<T> items = null;
+	private AbstractPaginator pagination;
+	private int selectedItemIndex;
 
-    public AbstractController(Class<T> clazz) {
-        this.ejbFacade = new Facade<>(clazz);
-    }
+	public AbstractController(Class<T> clazz) {
+		this.ejbFacade = new Facade<>(clazz);
+	}
 
-    @Override
-    public InterfaceFacade<T> getFacade() {
-        return ejbFacade;
-    }
+	@Override
+	public InterfaceFacade<T> getFacade() {
+		return ejbFacade;
+	}
 
-    @Override
-    public AbstractPaginator getPagination() {
-        if (pagination == null) {
-            pagination = new AbstractPaginator(10) {
+	@Override
+	public AbstractPaginator getPagination() {
+		if (pagination == null) {
+			pagination = new AbstractPaginator(9) {
 
-                @Override
-                public int getItemsCount() {
-                    return getFacade().count();
-                }
+				@Override
+				public int getItemsCount() {
+					return getFacade().count();
+				}
 
-                @Override
-                public List<T> createPageDataModel() {
-                    return getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()});
-                }
-            };
-        }
-        return pagination;
-    }
-    
-    
+				@Override
+				public List<T> createPageDataModel() {
+					return getFacade().findRange(new int[] { getPageFirstItem(), getPageFirstItem() + getPageSize() });
+				}
+			};
+		}
+		return pagination;
+	}
 
-    @Override
-    public List<T> prepareList() {
-        FacesContextUtil.begin();
-        recreateModel();
+	@Override
+	public List<T> prepareList() {
 
-        FacesContextUtil.end();
-        return getItems();
-    }
+		recreateModel();
 
-    @Override
-    public T prepareView(int index) {
-        selectedItemIndex = index;
-        FacesContextUtil.begin();
-        current = (T) getItems().get(selectedItemIndex);
+		return getItems();
+	}
 
-        FacesContextUtil.end();
-        return current;
-    }
+	@Override
+	public T prepareView(int index) {
+		selectedItemIndex = index;
 
-    @Override
-    public T create() {
+		current = getItems().get(selectedItemIndex);
 
-        getFacade().create(current);
+		return current;
+	}
 
-        FacesContextUtil.end();
-        return current;
-    }
+	@Override
+	public T create() {
 
-    @Override
-    public T prepareEdit(int index) {
-        selectedItemIndex = index;
-        FacesContextUtil.begin();
-        current = (T) getItems().get(selectedItemIndex);
-        return current;
-    }
+		getFacade().create(current);
 
-    @Override
-    public T update() {
+		return current;
+	}
 
-        getFacade().edit(current);
-        FacesContextUtil.end();
+	@Override
+	public T prepareEdit(int index) {
+		selectedItemIndex = index;
 
-        return current;
+		current = getItems().get(selectedItemIndex);
+		return current;
+	}
 
-    }
+	@Override
+	public T update() {
 
-    /**
-     *
-     * @param index
-     * @return
-     */
-    @Override
-    public T destroy(int index) {
-        selectedItemIndex = index;
+		getFacade().edit(current);
 
-        FacesContextUtil.begin();
+		return current;
 
-        current = (T) getItems().get(selectedItemIndex);
+	}
 
-        performDestroy();
-        recreatePagination();
-        recreateModel();
+	/**
+	 *
+	 * @param index
+	 * @return
+	 */
+	@Override
+	public T destroy(int index) {
+		selectedItemIndex = index;
 
-        return current;
-    }
+		current = getItems().get(selectedItemIndex);
 
-    @Override
-    public T destroyAndView(int index) {
-        selectedItemIndex = index;
+		performDestroy();
+		recreatePagination();
+		recreateModel();
 
-        FacesContextUtil.begin();
+		return current;
+	}
 
-        current = (T) getItems().get(selectedItemIndex);
+	@Override
+	public T destroyAndView(int index) {
+		selectedItemIndex = index;
 
-        performDestroy();
-        recreateModel();
-        updateCurrentItem();
+		current = getItems().get(selectedItemIndex);
 
-        FacesContextUtil.end();
-        return current;
-    }
+		performDestroy();
+		recreateModel();
+		updateCurrentItem();
 
-    /**
-     *
-     */
-    @Override
-    public void performDestroy() {
-        getFacade().remove(current);
-        FacesContextUtil.end();
-    }
+		return current;
+	}
 
-    @Override
-    public void updateCurrentItem() {
-        int count = getFacade().count();
-        if (selectedItemIndex >= count) {
-            // selected index cannot be bigger than number of items:
-            selectedItemIndex = count - 1;
-            // go to previous page if last page disappeared:
-            if (pagination.getPageFirstItem() >= count) {
-                pagination.previousPage();
-            }
-        }
-        if (selectedItemIndex >= 0) {
-            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
-        }
-    }
+	/**
+	 *
+	 */
+	@Override
+	public void performDestroy() {
+		getFacade().remove(current);
 
-    @Override
-    public List<T> getItems() {
-        if (items == null) {
-            items = (List<T>) getPagination().createPageDataModel();
-        }
-        return items;
-    }
+	}
 
-    @Override
-    public void recreateModel() {
-        items = null;
-    }
+	@Override
+	public void updateCurrentItem() {
+		int count = getFacade().count();
+		if (selectedItemIndex >= count) {
+			// selected index cannot be bigger than number of items:
+			selectedItemIndex = count - 1;
+			// go to previous page if last page disappeared:
+			if (pagination.getPageFirstItem() >= count) {
+				pagination.previousPage();
+			}
+		}
+		if (selectedItemIndex >= 0) {
+			current = getFacade().findRange(new int[] { selectedItemIndex, selectedItemIndex + 1 }).get(0);
+		}
+	}
 
-    @Override
-    public void recreatePagination() {
-        pagination = null;
-    }
+	@Override
+	public List<T> getItems() {
+		if (items == null) {
+			items = (List<T>) getPagination().createPageDataModel();
+		}
+		return items;
+	}
 
-    @Override
-    public List<T> first() {
-        getPagination().firstPage();
-        recreateModel();
-        return getItems();
-    }
+	@Override
+	public void recreateModel() {
+		items = null;
+	}
 
-    @Override
-    public List<T> last() {
-        getPagination().lastPage();
-        recreateModel();
-        return getItems();
-    }
+	@Override
+	public void recreatePagination() {
+		pagination = null;
+	}
 
-    @Override
-    public List<T> next() {
-        getPagination().nextPage();
-        recreateModel();
-        return getItems();
-    }
+	@Override
+	public List<T> first() {
+		getPagination().firstPage();
+		recreateModel();
+		return getItems();
+	}
 
-    @Override
-    public List<T> previous() {
-        getPagination().previousPage();
-        recreateModel();
-        return getItems();
-    }
+	@Override
+	public List<T> last() {
+		getPagination().lastPage();
+		recreateModel();
+		return getItems();
+	}
 
-    @Override
-    public List<T> getItemsAvailableSelectMany() {
-    	FacesContextUtil.begin();
-    	List<T> list = ejbFacade.findAll();
-    	FacesContextUtil.end();
-        return list;
-    }
+	@Override
+	public List<T> next() {
+		getPagination().nextPage();
+		recreateModel();
+		return getItems();
+	}
 
-    @Override
-    public List<T> getItemsAvailableSelectOne() {
-    	FacesContextUtil.begin();
-    	List<T> list = ejbFacade.findAll();
-    	FacesContextUtil.end();
-    	return list;
-    }
+	@Override
+	public List<T> previous() {
+		getPagination().previousPage();
+		recreateModel();
+		return getItems();
+	}
 
-    @Override
-    public T get(Serializable id) {
-    	FacesContextUtil.begin();
-    	T object =ejbFacade.find(id);
-    	FacesContextUtil.end();
-        return object;
-    }
+	@Override
+	public List<T> getItemsAvailableSelectMany() {
 
-    public int getSelectedItemIndex() {
-        return selectedItemIndex;
-    }
+		List<T> list = ejbFacade.findAll();
 
-    public void setSelectedItemIndex(int selectedItemIndex) {
-        this.selectedItemIndex = selectedItemIndex;
-    }
+		return list;
+	}
 
-    public T getCurrent() {
-        return current;
-    }
+	@Override
+	public List<T> getItemsAvailableSelectOne() {
 
-    public void setCurrent(T current) {
-        this.current = current;
-    }
+		List<T> list = ejbFacade.findAll();
 
-    public void setSelected(T current) {
-        this.current = current;
-    }
+		return list;
+	}
 
-    public void setPagination(AbstractPaginator pagination) {
-        this.pagination = pagination;
-    }
+	@Override
+	public T get(Serializable id) {
 
-    public void setItems(List<T> items) {
-        this.items = items;
-    }
+		T object = ejbFacade.find(id);
+
+		return object;
+	}
+
+	public int getSelectedItemIndex() {
+		return selectedItemIndex;
+	}
+
+	public void setSelectedItemIndex(int selectedItemIndex) {
+		this.selectedItemIndex = selectedItemIndex;
+	}
+
+	public T getCurrent() {
+		return current;
+	}
+
+	public void setCurrent(T current) {
+		this.current = current;
+	}
+
+	public void setSelected(T current) {
+		this.current = current;
+	}
+
+	public void setPagination(AbstractPaginator pagination) {
+		this.pagination = pagination;
+	}
+
+	public void setItems(List<T> items) {
+		this.items = items;
+	}
 
 }

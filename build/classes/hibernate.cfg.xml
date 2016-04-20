@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-  <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/projetao</property>
-    <property name="hibernate.connection.username">postgres</property>
-    <property name="hibernate.connection.password">si1056la</property>
-        
-  </session-factory>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/pdconstructor</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">si1056la</property>
+    
+        <!-- MAPEAMENTO DE CLASSES -->
+        <mapping class="br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTextoId"/>
+        <mapping class="br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto"/>
+        <mapping class="br.edu.ufrpe.uag.projetao.model.AlocacaoTexto"/>
+        <mapping class="br.edu.ufrpe.uag.projetao.model.BaseTexto"/>
+        <mapping class="br.edu.ufrpe.uag.projetao.model.ClassificacaoTextoId"/>
+        <mapping class="br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto"/>
+        <mapping class="br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto"/>
+        <mapping class="br.edu.ufrpe.uag.projetao.model.Usuario"/>
+        <mapping class="br.edu.ufrpe.uag.projetao.model.Perfil"/>
+    </session-factory>
 </hibernate-configuration>

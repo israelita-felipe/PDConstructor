@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.8.1" last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<database name="novo_banco_de_dados">
+</database>
+
+<schema name="public" protected="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="PERFIL">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="39" y="403"/>
+	<column name="NOME" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="DESCRICAO" not-null="true">
+		<type name="text"/>
+	</column>
+	<constraint name="PERFIL_PK" type="pk-constr" table="public.&quot;PERFIL&quot;">
+		<columns names="NOME" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="USUARIO">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="405" y="215"/>
+	<column name="NOME">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="EMAIL" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="SENHA" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="ID" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="PERFIL" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<constraint name="USUARIO_PK" type="pk-constr" table="public.&quot;USUARIO&quot;">
+		<columns names="ID" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="BASE_TEXTO">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="39" y="19"/>
+	<column name="ID" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="TITULO" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="DESCRICAO" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="SUPERVISOR" not-null="true">
+		<type name="integer" length="100"/>
+	</column>
+	<constraint name="BASE_TEXTO_PK" type="pk-constr" table="public.&quot;BASE_TEXTO&quot;">
+		<columns names="ID" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="ALOCACAO_TEXTO">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1006" y="230"/>
+	<column name="BASE_TEXTO">
+		<type name="integer"/>
+	</column>
+	<column name="TEXTO">
+		<type name="text"/>
+	</column>
+	<column name="SUPERVISOR">
+		<type name="integer"/>
+	</column>
+	<column name="ID" not-null="true">
+		<type name="serial"/>
+	</column>
+	<constraint name="ALOCACAO_TEXTO_PK" type="pk-constr" table="public.&quot;ALOCACAO_TEXTO&quot;">
+		<columns names="ID" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="ESCOLHA_CLASSE_TEXTO">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="926" y="522"/>
+	<column name="ID" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="DESCRICAO" not-null="true">
+		<type name="varchar" length="200"/>
+	</column>
+	<column name="ALOCACAO_TEXTO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<constraint name="ESCOLHA_TEXTO" type="pk-constr" table="public.&quot;ESCOLHA_CLASSE_TEXTO&quot;">
+		<columns names="ID" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="CLASSIFICACAO_TEXTO">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="366" y="492"/>
+	<column name="ESCRAVO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="ALOCACAO_TEXTO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="ESCOLHA_TEXTO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<constraint name="CLASSIFICACAO_TEXTO_PK" type="pk-constr" table="public.&quot;CLASSIFICACAO_TEXTO&quot;">
+		<columns names="ESCRAVO,ALOCACAO_TEXTO,ESCOLHA_TEXTO" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="LIBARACAO_BASE_TEXTO">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="984" y="19"/>
+	<column name="BASE_TEXTO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="SUPERVISOR" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="ESCRAVO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="STATUS" not-null="true">
+		<type name="char"/>
+	</column>
+	<constraint name="LIBERACAO_BASE_TEXTO_PK" type="pk-constr" table="public.&quot;LIBARACAO_BASE_TEXTO&quot;">
+		<columns names="BASE_TEXTO,SUPERVISOR,ESCRAVO" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="USUARIO_PERFIL_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;PERFIL&quot;" table="public.&quot;USUARIO&quot;">
+	<columns names="PERFIL" ref-type="src-columns"/>
+	<columns names="NOME" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="BASE_TEXTO_SUPERVISOR_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;BASE_TEXTO&quot;">
+	<columns names="SUPERVISOR" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="ALOCACAO_TEXTO_SUPERVISOR_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;ALOCACAO_TEXTO&quot;">
+	<columns names="SUPERVISOR" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="ALOCACAO_TEXTO_BASE_TEXTO_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;BASE_TEXTO&quot;" table="public.&quot;ALOCACAO_TEXTO&quot;">
+	<columns names="BASE_TEXTO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="ESCOLHA_TEXTO_ALOCACAO_TEXTO_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;ALOCACAO_TEXTO&quot;" table="public.&quot;ESCOLHA_CLASSE_TEXTO&quot;">
+	<columns names="ALOCACAO_TEXTO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="CLASSIFICACAO_TEXTO_ESCRAVO_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;CLASSIFICACAO_TEXTO&quot;">
+	<columns names="ESCRAVO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="CLASSIFICACAO_TEXTO_ALOCACAO_TEXTO_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;ALOCACAO_TEXTO&quot;" table="public.&quot;CLASSIFICACAO_TEXTO&quot;">
+	<columns names="ALOCACAO_TEXTO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="CLASSIFICACAO_TEXTO_ESCOLHA_TEXTO_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;ESCOLHA_CLASSE_TEXTO&quot;" table="public.&quot;CLASSIFICACAO_TEXTO&quot;">
+	<columns names="ESCOLHA_TEXTO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="LIBERACAO_BASE_TEXTO_SUPERVISOR_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;LIBARACAO_BASE_TEXTO&quot;">
+	<columns names="SUPERVISOR" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="LIBERACAO_BASE_TEXTO_ESCRAVO_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;LIBARACAO_BASE_TEXTO&quot;">
+	<columns names="ESCRAVO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="LIBERACAO_BASE_TEXTO_BASE_TEXTO_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;BASE_TEXTO&quot;" table="public.&quot;LIBARACAO_BASE_TEXTO&quot;">
+	<columns names="BASE_TEXTO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_USUARIO_PERFIL" type="relfk"
+	 src-table="public.&quot;USUARIO&quot;"
+	 dst-table="public.&quot;PERFIL&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="src-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="&quot;rel_BASE_TEXTO_USUARIO&quot;" type="relfk"
+	 src-table="public.&quot;BASE_TEXTO&quot;"
+	 dst-table="public.&quot;USUARIO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_ALOCACAO_TEXTO_USUARIO&quot;" type="relfk"
+	 src-table="public.&quot;ALOCACAO_TEXTO&quot;"
+	 dst-table="public.&quot;USUARIO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_ALOCACAO_TEXTO_BASE_TEXTO&quot;" type="relfk"
+	 src-table="public.&quot;ALOCACAO_TEXTO&quot;"
+	 dst-table="public.&quot;BASE_TEXTO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_ESCOLHA_CLASSE_TEXTO_ALOCACAO_TEXTO&quot;" type="relfk"
+	 src-table="public.&quot;ESCOLHA_CLASSE_TEXTO&quot;"
+	 dst-table="public.&quot;ALOCACAO_TEXTO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_CLASSIFICACAO_TEXTO_USUARIO&quot;" type="relfk"
+	 src-table="public.&quot;CLASSIFICACAO_TEXTO&quot;"
+	 dst-table="public.&quot;USUARIO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_CLASSIFICACAO_TEXTO_ALOCACAO_TEXTO" type="relfk"
+	 src-table="public.&quot;CLASSIFICACAO_TEXTO&quot;"
+	 dst-table="public.&quot;ALOCACAO_TEXTO&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="129.337" y="-24.4485"/>
+	</label>
+</relationship>
+
+<relationship name="&quot;rel_CLASSIFICACAO_TEXTO_ESCOLHA_CLASSE_TEXTO&quot;" type="relfk"
+	 src-table="public.&quot;CLASSIFICACAO_TEXTO&quot;"
+	 dst-table="public.&quot;ESCOLHA_CLASSE_TEXTO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_LIBARACAO_BASE_TEXTO_USUARIO&quot;" type="relfk"
+	 src-table="public.&quot;LIBARACAO_BASE_TEXTO&quot;"
+	 dst-table="public.&quot;USUARIO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_LIBARACAO_BASE_TEXTO_BASE_TEXTO&quot;" type="relfk"
+	 src-table="public.&quot;LIBARACAO_BASE_TEXTO&quot;"
+	 dst-table="public.&quot;BASE_TEXTO&quot;"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
