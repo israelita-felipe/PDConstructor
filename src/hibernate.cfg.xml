@@ -7,7 +7,6 @@
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/pdconstructor</property>
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">si1056la</property>
-    
         <!-- MAPEAMENTO DE CLASSES -->
         <mapping class="br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTextoId"/>
         <mapping class="br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto"/>
@@ -18,5 +17,6 @@
         <mapping class="br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto"/>
         <mapping class="br.edu.ufrpe.uag.projetao.model.Usuario"/>
         <mapping class="br.edu.ufrpe.uag.projetao.model.Perfil"/>
+        <mapping class="br.edu.ufrpe.uag.projetao.model.RespostaTexto"/>
     </session-factory>
 </hibernate-configuration>

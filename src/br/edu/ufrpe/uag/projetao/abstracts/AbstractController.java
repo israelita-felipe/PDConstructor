@@ -20,234 +20,234 @@ import java.util.List;
  */
 public abstract class AbstractController<T extends InterfaceEntity> implements InterfaceController<T>, Serializable {
 
-	private final InterfaceFacade<T> ejbFacade;
-	private T current;
-	private List<T> items = null;
-	private AbstractPaginator pagination;
-	private int selectedItemIndex;
+    private final InterfaceFacade<T> ejbFacade;
+    private T current;
+    private List<T> items = null;
+    private AbstractPaginator pagination;
+    private int selectedItemIndex;
 
-	public AbstractController(Class<T> clazz) {
-		this.ejbFacade = new Facade<>(clazz);
-	}
+    public AbstractController(Class<T> clazz) {
+	this.ejbFacade = new Facade<>(clazz);
+    }
 
-	@Override
-	public InterfaceFacade<T> getFacade() {
-		return ejbFacade;
-	}
+    @Override
+    public InterfaceFacade<T> getFacade() {
+	return ejbFacade;
+    }
 
-	@Override
-	public AbstractPaginator getPagination() {
-		if (pagination == null) {
-			pagination = new AbstractPaginator(9) {
+    @Override
+    public AbstractPaginator getPagination() {
+	if (pagination == null) {
+	    pagination = new AbstractPaginator(9) {
 
-				@Override
-				public int getItemsCount() {
-					return getFacade().count();
-				}
-
-				@Override
-				public List<T> createPageDataModel() {
-					return getFacade().findRange(new int[] { getPageFirstItem(), getPageFirstItem() + getPageSize() });
-				}
-			};
+		@Override
+		public int getItemsCount() {
+		    return getFacade().count();
 		}
-		return pagination;
-	}
 
-	@Override
-	public List<T> prepareList() {
-
-		recreateModel();
-
-		return getItems();
-	}
-
-	@Override
-	public T prepareView(int index) {
-		selectedItemIndex = index;
-
-		current = getItems().get(selectedItemIndex);
-
-		return current;
-	}
-
-	@Override
-	public T create() {
-
-		getFacade().create(current);
-
-		return current;
-	}
-
-	@Override
-	public T prepareEdit(int index) {
-		selectedItemIndex = index;
-
-		current = getItems().get(selectedItemIndex);
-		return current;
-	}
-
-	@Override
-	public T update() {
-
-		getFacade().edit(current);
-
-		return current;
-
-	}
-
-	/**
-	 *
-	 * @param index
-	 * @return
-	 */
-	@Override
-	public T destroy(int index) {
-		selectedItemIndex = index;
-
-		current = getItems().get(selectedItemIndex);
-
-		performDestroy();
-		recreatePagination();
-		recreateModel();
-
-		return current;
-	}
-
-	@Override
-	public T destroyAndView(int index) {
-		selectedItemIndex = index;
-
-		current = getItems().get(selectedItemIndex);
-
-		performDestroy();
-		recreateModel();
-		updateCurrentItem();
-
-		return current;
-	}
-
-	/**
-	 *
-	 */
-	@Override
-	public void performDestroy() {
-		getFacade().remove(current);
-
-	}
-
-	@Override
-	public void updateCurrentItem() {
-		int count = getFacade().count();
-		if (selectedItemIndex >= count) {
-			// selected index cannot be bigger than number of items:
-			selectedItemIndex = count - 1;
-			// go to previous page if last page disappeared:
-			if (pagination.getPageFirstItem() >= count) {
-				pagination.previousPage();
-			}
+		@Override
+		public List<T> createPageDataModel() {
+		    return getFacade().findRange(new int[] { getPageFirstItem(), getPageFirstItem() + getPageSize() });
 		}
-		if (selectedItemIndex >= 0) {
-			current = getFacade().findRange(new int[] { selectedItemIndex, selectedItemIndex + 1 }).get(0);
-		}
+	    };
 	}
+	return pagination;
+    }
 
-	@Override
-	public List<T> getItems() {
-		if (items == null) {
-			items = (List<T>) getPagination().createPageDataModel();
-		}
-		return items;
+    @Override
+    public List<T> prepareList() {
+
+	recreateModel();
+
+	return getItems();
+    }
+
+    @Override
+    public T prepareView(int index) {
+	selectedItemIndex = index;
+
+	current = getItems().get(selectedItemIndex);
+
+	return current;
+    }
+
+    @Override
+    public T create() {
+
+	getFacade().create(current);
+
+	return current;
+    }
+
+    @Override
+    public T prepareEdit(int index) {
+	selectedItemIndex = index;
+
+	current = getItems().get(selectedItemIndex);
+	return current;
+    }
+
+    @Override
+    public T update() {
+
+	getFacade().edit(current);
+
+	return current;
+
+    }
+
+    /**
+     *
+     * @param index
+     * @return
+     */
+    @Override
+    public T destroy(int index) {
+	selectedItemIndex = index;
+
+	current = getItems().get(selectedItemIndex);
+
+	performDestroy();
+	recreatePagination();
+	recreateModel();
+
+	return current;
+    }
+
+    @Override
+    public T destroyAndView(int index) {
+	selectedItemIndex = index;
+
+	current = getItems().get(selectedItemIndex);
+
+	performDestroy();
+	recreateModel();
+	updateCurrentItem();
+
+	return current;
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void performDestroy() {
+	getFacade().remove(current);
+
+    }
+
+    @Override
+    public void updateCurrentItem() {
+	int count = getFacade().count();
+	if (selectedItemIndex >= count) {
+	    // selected index cannot be bigger than number of items:
+	    selectedItemIndex = count - 1;
+	    // go to previous page if last page disappeared:
+	    if (pagination.getPageFirstItem() >= count) {
+		pagination.previousPage();
+	    }
 	}
-
-	@Override
-	public void recreateModel() {
-		items = null;
+	if (selectedItemIndex >= 0) {
+	    current = getFacade().findRange(new int[] { selectedItemIndex, selectedItemIndex + 1 }).get(0);
 	}
+    }
 
-	@Override
-	public void recreatePagination() {
-		pagination = null;
+    @Override
+    public List<T> getItems() {
+	if (items == null) {
+	    items = (List<T>) getPagination().createPageDataModel();
 	}
+	return items;
+    }
 
-	@Override
-	public List<T> first() {
-		getPagination().firstPage();
-		recreateModel();
-		return getItems();
-	}
+    @Override
+    public void recreateModel() {
+	items = null;
+    }
 
-	@Override
-	public List<T> last() {
-		getPagination().lastPage();
-		recreateModel();
-		return getItems();
-	}
+    @Override
+    public void recreatePagination() {
+	pagination = null;
+    }
 
-	@Override
-	public List<T> next() {
-		getPagination().nextPage();
-		recreateModel();
-		return getItems();
-	}
+    @Override
+    public List<T> first() {
+	getPagination().firstPage();
+	recreateModel();
+	return getItems();
+    }
 
-	@Override
-	public List<T> previous() {
-		getPagination().previousPage();
-		recreateModel();
-		return getItems();
-	}
+    @Override
+    public List<T> last() {
+	getPagination().lastPage();
+	recreateModel();
+	return getItems();
+    }
 
-	@Override
-	public List<T> getItemsAvailableSelectMany() {
+    @Override
+    public List<T> next() {
+	getPagination().nextPage();
+	recreateModel();
+	return getItems();
+    }
 
-		List<T> list = ejbFacade.findAll();
+    @Override
+    public List<T> previous() {
+	getPagination().previousPage();
+	recreateModel();
+	return getItems();
+    }
 
-		return list;
-	}
+    @Override
+    public List<T> getItemsAvailableSelectMany() {
 
-	@Override
-	public List<T> getItemsAvailableSelectOne() {
+	List<T> list = ejbFacade.findAll();
 
-		List<T> list = ejbFacade.findAll();
+	return list;
+    }
 
-		return list;
-	}
+    @Override
+    public List<T> getItemsAvailableSelectOne() {
 
-	@Override
-	public T get(Serializable id) {
+	List<T> list = ejbFacade.findAll();
 
-		T object = ejbFacade.find(id);
+	return list;
+    }
 
-		return object;
-	}
+    @Override
+    public T get(Serializable id) {
 
-	public int getSelectedItemIndex() {
-		return selectedItemIndex;
-	}
+	T object = ejbFacade.find(id);
 
-	public void setSelectedItemIndex(int selectedItemIndex) {
-		this.selectedItemIndex = selectedItemIndex;
-	}
+	return object;
+    }
 
-	public T getCurrent() {
-		return current;
-	}
+    public int getSelectedItemIndex() {
+	return selectedItemIndex;
+    }
 
-	public void setCurrent(T current) {
-		this.current = current;
-	}
+    public void setSelectedItemIndex(int selectedItemIndex) {
+	this.selectedItemIndex = selectedItemIndex;
+    }
 
-	public void setSelected(T current) {
-		this.current = current;
-	}
+    public T getCurrent() {
+	return current;
+    }
 
-	public void setPagination(AbstractPaginator pagination) {
-		this.pagination = pagination;
-	}
+    public void setCurrent(T current) {
+	this.current = current;
+    }
 
-	public void setItems(List<T> items) {
-		this.items = items;
-	}
+    public void setSelected(T current) {
+	this.current = current;
+    }
+
+    public void setPagination(AbstractPaginator pagination) {
+	this.pagination = pagination;
+    }
+
+    public void setItems(List<T> items) {
+	this.items = items;
+    }
 
 }

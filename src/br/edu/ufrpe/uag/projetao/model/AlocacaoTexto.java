@@ -30,6 +30,7 @@ public class AlocacaoTexto implements java.io.Serializable, InterfaceEntity {
     private String texto;
     private Set<ClassificacaoTexto> classificacaoTextos = new HashSet<>(0);
     private Set<EscolhaClasseTexto> escolhaClasseTextos = new HashSet<>(0);
+    private Set<RespostaTexto> respostaTextos = new HashSet<>(0);
 
     public AlocacaoTexto() {
     }
@@ -103,6 +104,15 @@ public class AlocacaoTexto implements java.io.Serializable, InterfaceEntity {
 
     public void setEscolhaClasseTextos(Set<EscolhaClasseTexto> escolhaClasseTextos) {
         this.escolhaClasseTextos = escolhaClasseTextos;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "escolhaClasseTexto")
+    public Set<RespostaTexto> getRespostaTextos() {
+        return this.respostaTextos;
+    }
+
+    public void setRespostaTextos(Set<RespostaTexto> respostaTextos) {
+        this.respostaTextos = respostaTextos;
     }
 
     @Override

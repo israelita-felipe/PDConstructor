@@ -19,12 +19,12 @@ public abstract class AbstractViewController<T> implements InterfaceViewControll
     private final String namedQuery;
 
     public AbstractViewController(String namedQuery) {
-        this.namedQuery = namedQuery;
+	this.namedQuery = namedQuery;
     }
 
     @Override
     public List<T> getItems() {
-        return FacesContextUtil.getRequestSession().getNamedQuery(this.namedQuery).list();
+	return FacesContextUtil.getRequestSession().getNamedQuery(this.namedQuery).list();
     }
 
 }

@@ -17,7 +17,7 @@ public abstract class AbstractPaginator {
     private int page;
 
     public AbstractPaginator(int pageSize) {
-        this.pageSize = pageSize;
+	this.pageSize = pageSize;
     }
 
     public abstract int getItemsCount();
@@ -25,58 +25,58 @@ public abstract class AbstractPaginator {
     public abstract List<?> createPageDataModel();
 
     public int getPageFirstItem() {
-        return page * pageSize;
+	return page * pageSize;
     }
 
     public int getPageLastItem() {
-        int i = getPageFirstItem() + pageSize - 1;
-        int count = getItemsCount() - 1;
-        if (i > count) {
-            i = count;
-        }
-        if (i < 0) {
-            i = 0;
-        }
-        return i;
+	int i = getPageFirstItem() + pageSize - 1;
+	int count = getItemsCount() - 1;
+	if (i > count) {
+	    i = count;
+	}
+	if (i < 0) {
+	    i = 0;
+	}
+	return i;
     }
 
     public boolean isHasNextPage() {
-        return (page + 1) * pageSize + 1 <= getItemsCount();
+	return (page + 1) * pageSize + 1 <= getItemsCount();
     }
 
     public void nextPage() {
-        if (isHasNextPage()) {
-            page++;
-        }
+	if (isHasNextPage()) {
+	    page++;
+	}
     }
 
     public void firstPage() {
-        page = 0;
+	page = 0;
     }
 
     public void lastPage() {
-        page = getItemsCount() / pageSize;
-        if (page == 0) {
-            page = 1;
-        }
+	page = getItemsCount() / pageSize;
+	if (page == 0) {
+	    page = 1;
+	}
     }
 
     public boolean isHasPreviousPage() {
-        return page > 0;
+	return page > 0;
     }
 
     public void previousPage() {
-        if (isHasPreviousPage()) {
-            page--;
-        }
+	if (isHasPreviousPage()) {
+	    page--;
+	}
     }
 
     public int getPageSize() {
-        return pageSize;
+	return pageSize;
     }
 
     public int getPage() {
-        return page;
+	return page;
     }
 
 }

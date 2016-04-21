@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
  * @author israel
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE})
+@Target({ ElementType.TYPE })
 public @interface Tabela {
-    
+
 }

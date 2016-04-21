@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
  * @author israel
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD})
+@Target({ ElementType.FIELD })
 public @interface Coluna {
 
     int colunaPosicao() default -1;

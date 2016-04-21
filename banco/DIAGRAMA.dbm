@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.1" last-position="0,0" last-zoom="1"
+<dbmodel pgmodeler-ver="0.8.1" last-position="397,0" last-zoom="1"
 	 default-schema="public" default-owner="postgres">
 <database name="novo_banco_de_dados">
 </database>
@@ -128,7 +128,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="LIBARACAO_BASE_TEXTO">
+<table name="LIBERACAO_BASE_TEXTO">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="984" y="19"/>
@@ -144,8 +144,23 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="STATUS" not-null="true">
 		<type name="char"/>
 	</column>
-	<constraint name="LIBERACAO_BASE_TEXTO_PK" type="pk-constr" table="public.&quot;LIBARACAO_BASE_TEXTO&quot;">
+	<constraint name="LIBERACAO_BASE_TEXTO_PK" type="pk-constr" table="public.&quot;LIBERACAO_BASE_TEXTO&quot;">
 		<columns names="BASE_TEXTO,SUPERVISOR,ESCRAVO" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="RESPOSTA_TEXTO">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1333" y="31"/>
+	<column name="ALOCACAO_TEXTO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="ESCOLHA_TEXTO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<constraint name="RESPOSTA_TEXTO_PK" type="pk-constr" table="public.&quot;RESPOSTA_TEXTO&quot;">
+		<columns names="ESCOLHA_TEXTO,ALOCACAO_TEXTO" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -198,20 +213,32 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </constraint>
 
 <constraint name="LIBERACAO_BASE_TEXTO_SUPERVISOR_FK" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;LIBARACAO_BASE_TEXTO&quot;">
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;LIBERACAO_BASE_TEXTO&quot;">
 	<columns names="SUPERVISOR" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="LIBERACAO_BASE_TEXTO_ESCRAVO_FK" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;LIBARACAO_BASE_TEXTO&quot;">
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;LIBERACAO_BASE_TEXTO&quot;">
 	<columns names="ESCRAVO" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="LIBERACAO_BASE_TEXTO_BASE_TEXTO_FK" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;BASE_TEXTO&quot;" table="public.&quot;LIBARACAO_BASE_TEXTO&quot;">
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;BASE_TEXTO&quot;" table="public.&quot;LIBERACAO_BASE_TEXTO&quot;">
 	<columns names="BASE_TEXTO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="RESPOSTA_TEXTO_ALOCACAO_TEXTO_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;ALOCACAO_TEXTO&quot;" table="public.&quot;RESPOSTA_TEXTO&quot;">
+	<columns names="ALOCACAO_TEXTO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="RESPOSTA_TEXTO_ESCOLHA_CLASSE_TEXTO_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;ESCOLHA_CLASSE_TEXTO&quot;" table="public.&quot;RESPOSTA_TEXTO&quot;">
+	<columns names="ESCOLHA_TEXTO" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>
 
@@ -264,13 +291,23 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-required="false" dst-required="false"/>
 
 <relationship name="&quot;rel_LIBARACAO_BASE_TEXTO_USUARIO&quot;" type="relfk"
-	 src-table="public.&quot;LIBARACAO_BASE_TEXTO&quot;"
+	 src-table="public.&quot;LIBERACAO_BASE_TEXTO&quot;"
 	 dst-table="public.&quot;USUARIO&quot;"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="&quot;rel_LIBARACAO_BASE_TEXTO_BASE_TEXTO&quot;" type="relfk"
-	 src-table="public.&quot;LIBARACAO_BASE_TEXTO&quot;"
+	 src-table="public.&quot;LIBERACAO_BASE_TEXTO&quot;"
 	 dst-table="public.&quot;BASE_TEXTO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_RESPOSTA_TEXTO_ALOCACAO_TEXTO&quot;" type="relfk"
+	 src-table="public.&quot;RESPOSTA_TEXTO&quot;"
+	 dst-table="public.&quot;ALOCACAO_TEXTO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_RESPOSTA_TEXTO_ESCOLHA_CLASSE_TEXTO&quot;" type="relfk"
+	 src-table="public.&quot;RESPOSTA_TEXTO&quot;"
+	 dst-table="public.&quot;ESCOLHA_CLASSE_TEXTO&quot;"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>

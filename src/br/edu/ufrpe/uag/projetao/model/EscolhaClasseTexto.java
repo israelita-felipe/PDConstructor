@@ -27,6 +27,7 @@ public class EscolhaClasseTexto implements java.io.Serializable, InterfaceEntity
     private int id;
     private AlocacaoTexto alocacaoTexto;
     private String descricao;
+    private Set<RespostaTexto> respostaTextos = new HashSet<>(0);
     private Set<ClassificacaoTexto> classificacaoTextos = new HashSet<>(0);
 
     public EscolhaClasseTexto() {
@@ -83,6 +84,17 @@ public class EscolhaClasseTexto implements java.io.Serializable, InterfaceEntity
     public void setClassificacaoTextos(Set<ClassificacaoTexto> classificacaoTextos) {
         this.classificacaoTextos = classificacaoTextos;
     }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "escolhaClasseTexto")
+    public Set<RespostaTexto> getRespostaTextos() {
+        return respostaTextos;
+    }
+
+    public void setRespostaTextos(Set<RespostaTexto> respostaTextos) {
+        this.respostaTextos = respostaTextos;
+    }
+    
+    
 
     @Override
     public int hashCode() {
