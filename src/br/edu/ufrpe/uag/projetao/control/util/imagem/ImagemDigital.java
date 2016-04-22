@@ -1,4 +1,4 @@
-package br.edu.ufrpe.uag.projetao.control.util;
+package br.edu.ufrpe.uag.projetao.control.util.imagem;
 
 /*
  * GUI.java

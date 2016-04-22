@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import br.edu.ufrpe.uag.projetao.control.PerfilController;
 import br.edu.ufrpe.uag.projetao.control.UsuarioConstroller;
-import br.edu.ufrpe.uag.projetao.control.util.FacesContextUtil;
+import br.edu.ufrpe.uag.projetao.control.hibernate.FacesContextUtil;
 import br.edu.ufrpe.uag.projetao.model.Usuario;
 
 public class UsuarioControllerTest {

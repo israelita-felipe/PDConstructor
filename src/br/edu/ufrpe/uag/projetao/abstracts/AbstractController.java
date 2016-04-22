@@ -1,12 +1,7 @@
 package br.edu.ufrpe.uag.projetao.abstracts;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-import br.edu.ufrpe.uag.projetao.control.util.Facade;
-import br.edu.ufrpe.uag.projetao.control.util.FacesContextUtil;
+import br.edu.ufrpe.uag.projetao.control.hibernate.Facade;
+import br.edu.ufrpe.uag.projetao.control.hibernate.FacesContextUtil;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceFacade;
