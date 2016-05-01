@@ -1,12 +1,14 @@
 package br.edu.ufrpe.uag.projetao.abstracts;
 
+import java.io.Serializable;
+import java.util.List;
+
+import org.hibernate.criterion.DetachedCriteria;
+
 import br.edu.ufrpe.uag.projetao.control.hibernate.Facade;
-import br.edu.ufrpe.uag.projetao.control.hibernate.FacesContextUtil;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceFacade;
-import java.io.Serializable;
-import java.util.List;
 
 /**
  *
@@ -18,7 +20,6 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
     private final InterfaceFacade<T> ejbFacade;
     private T current;
     private List<T> items = null;
-    private AbstractPaginator pagination;
     private int selectedItemIndex;
 
     public AbstractController(Class<T> clazz) {
@@ -28,25 +29,6 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
     @Override
     public InterfaceFacade<T> getFacade() {
 	return ejbFacade;
-    }
-
-    @Override
-    public AbstractPaginator getPagination() {
-	if (pagination == null) {
-	    pagination = new AbstractPaginator(9) {
-
-		@Override
-		public int getItemsCount() {
-		    return getFacade().count();
-		}
-
-		@Override
-		public List<T> createPageDataModel() {
-		    return getFacade().findRange(new int[] { getPageFirstItem(), getPageFirstItem() + getPageSize() });
-		}
-	    };
-	}
-	return pagination;
     }
 
     @Override
@@ -77,7 +59,6 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
     @Override
     public T prepareEdit(int index) {
 	selectedItemIndex = index;
-
 	current = getItems().get(selectedItemIndex);
 	return current;
     }
@@ -117,7 +98,6 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
 
 	performDestroy();
 	recreateModel();
-	updateCurrentItem();
 
 	return current;
     }
@@ -132,25 +112,9 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
     }
 
     @Override
-    public void updateCurrentItem() {
-	int count = getFacade().count();
-	if (selectedItemIndex >= count) {
-	    // selected index cannot be bigger than number of items:
-	    selectedItemIndex = count - 1;
-	    // go to previous page if last page disappeared:
-	    if (pagination.getPageFirstItem() >= count) {
-		pagination.previousPage();
-	    }
-	}
-	if (selectedItemIndex >= 0) {
-	    current = getFacade().findRange(new int[] { selectedItemIndex, selectedItemIndex + 1 }).get(0);
-	}
-    }
-
-    @Override
     public List<T> getItems() {
 	if (items == null) {
-	    items = (List<T>) getPagination().createPageDataModel();
+	    items = getFacade().findAll();
 	}
 	return items;
     }
@@ -162,35 +126,7 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
 
     @Override
     public void recreatePagination() {
-	pagination = null;
-    }
-
-    @Override
-    public List<T> first() {
-	getPagination().firstPage();
-	recreateModel();
-	return getItems();
-    }
-
-    @Override
-    public List<T> last() {
-	getPagination().lastPage();
-	recreateModel();
-	return getItems();
-    }
-
-    @Override
-    public List<T> next() {
-	getPagination().nextPage();
-	recreateModel();
-	return getItems();
-    }
-
-    @Override
-    public List<T> previous() {
-	getPagination().previousPage();
-	recreateModel();
-	return getItems();
+	items = null;
     }
 
     @Override
@@ -206,6 +142,13 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
 
 	List<T> list = ejbFacade.findAll();
 
+	return list;
+    }
+
+    @Override
+    public List<T> getItemsFromCriteria(DetachedCriteria criteria) {
+	List<T> list = getFacade().getEntitiesByDetachedCriteria(criteria);
+	setItems(list);
 	return list;
     }
 
@@ -235,10 +178,6 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
 
     public void setSelected(T current) {
 	this.current = current;
-    }
-
-    public void setPagination(AbstractPaginator pagination) {
-	this.pagination = pagination;
     }
 
     public void setItems(List<T> items) {

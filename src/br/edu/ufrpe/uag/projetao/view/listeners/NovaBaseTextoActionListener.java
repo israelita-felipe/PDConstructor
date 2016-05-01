@@ -11,8 +11,11 @@ import javax.swing.JTable;
 
 import br.edu.ufrpe.uag.projetao.view.jdialog.SupervisorCriarEAtualizarBaseClassificacaoJDialog;
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
+import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
+import br.edu.ufrpe.uag.projetao.control.UsuarioController;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
+import br.edu.ufrpe.uag.projetao.view.GenericTable;
 import br.edu.ufrpe.uag.projetao.view.GenericTableModel;
 import br.edu.ufrpe.uag.projetao.view.jdialog.SupervisorCriarBaseClassificacaoTextoJDialog;
 
@@ -22,29 +25,32 @@ import br.edu.ufrpe.uag.projetao.view.jdialog.SupervisorCriarBaseClassificacaoTe
  */
 public class NovaBaseTextoActionListener implements ActionListener {
 
-    private JTable table;
-    private InterfaceController<BaseTexto> controller;
+    private GenericTable table;
 
     /**
-     * @param table 
+     * @param table
      * 
      */
-    public NovaBaseTextoActionListener(JTable table,InterfaceController<BaseTexto> controller) {
+    public NovaBaseTextoActionListener(GenericTable table) {
 	// TODO Auto-generated constructor stub
 	this.table = table;
-	this.controller = controller;
     }
 
-    /* (non-Javadoc)
-     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
      */
     @Override
     public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
-	SupervisorCriarEAtualizarBaseClassificacaoJDialog novaBaseClassificacaoTexto = new SupervisorCriarBaseClassificacaoTextoJDialog();
-	novaBaseClassificacaoTexto.setVisible(true);
-	table.setModel(new GenericTableModel<BaseTexto>(
-		new LinkedList<>(controller.getItems())));
+	new SupervisorCriarBaseClassificacaoTextoJDialog().setVisible(true);
+	table.clear();
+	table.addAll(new LinkedList<>(
+		((InterfaceController<BaseTexto>) ControllerFactory.getBaseTextoController()).getItemsFromCriteria(
+			DetachedCriteriaFactory.getBasesTextoDoUsuario(UsuarioController.currrentSupervisor))));
+	// table.setModel(new GenericTableModel<BaseTexto>()));
     }
 
 }

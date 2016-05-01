@@ -1,6 +1,6 @@
 package br.edu.ufrpe.uag.projetao.control.hibernate;
 
-
+import org.hibernate.Session;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -9,7 +9,6 @@ package br.edu.ufrpe.uag.projetao.control.hibernate;
  */
 import br.edu.ufrpe.uag.projetao.abstracts.AbstractFacade;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
-import org.hibernate.Session;
 
 /**
  *
@@ -20,11 +19,11 @@ public class Facade<T extends InterfaceEntity> extends AbstractFacade<T> {
 
     @Override
     public Session getSession() {
-        return FacesContextUtil.getRequestSession();
+	return FacesContextUtil.getRequestSession();
     }
 
     public Facade(Class<T> clazz) {
-        super(clazz);
-    }    
+	super(clazz);
+    }
 
 }

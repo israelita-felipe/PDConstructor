@@ -18,25 +18,25 @@ import com.thoughtworks.xstream.io.xml.StaxDriver;
  */
 public class XMLUtil {
 
-	/**
-	 *
-	 * @param object
-	 * @param path
-	 * @throws java.io.FileNotFoundException
-	 */
-	public static void toXML(Object object, String path) throws FileNotFoundException {
-		XStream stream = new XStream(new StaxDriver());		
-		stream.toXML(object, new FileOutputStream(path));
-	}
+    /**
+     *
+     * @param object
+     * @param path
+     * @throws java.io.FileNotFoundException
+     */
+    public static void toXML(Object object, String path) throws FileNotFoundException {
+	XStream stream = new XStream(new StaxDriver());
+	stream.toXML(object, new FileOutputStream(path));
+    }
 
-	/**
-	 *
-	 * @param path
-	 * @return
-	 * @throws java.io.FileNotFoundException
-	 */
-	public static Object fromXML(String path) throws FileNotFoundException {
-		XStream stream = new XStream(new StaxDriver());		
-		return stream.fromXML(new File(path));
-	}
+    /**
+     *
+     * @param path
+     * @return
+     * @throws java.io.FileNotFoundException
+     */
+    public static Object fromXML(String path) throws FileNotFoundException {
+	XStream stream = new XStream(new StaxDriver());
+	return stream.fromXML(new File(path));
+    }
 }

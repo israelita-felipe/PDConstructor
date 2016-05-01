@@ -6,47 +6,46 @@ import static org.junit.Assert.assertNotEquals;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.edu.ufrpe.uag.projetao.control.PerfilController;
-import br.edu.ufrpe.uag.projetao.control.UsuarioConstroller;
+import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.hibernate.FacesContextUtil;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
+import br.edu.ufrpe.uag.projetao.model.Perfil;
 import br.edu.ufrpe.uag.projetao.model.Usuario;
 
 public class UsuarioControllerTest {
 
-    UsuarioConstroller uc;
-    PerfilController pc;
+    InterfaceController<Usuario> uc;
+    InterfaceController<Perfil> pc;
     Usuario us;
 
     List<Usuario> toRemove = new LinkedList<>();
 
     @Before
     public void setUp() throws Exception {
-	uc = new UsuarioConstroller();
-	pc = new PerfilController();
+	uc = ControllerFactory.getUsuarioController();
+	pc = ControllerFactory.getPerfilController();
 	FacesContextUtil.begin();
 
 	// criando perfil caso não exista
 	if (pc.getItemsAvailableSelectOne().size() < 1) {
 	    pc.prepareCreate();
-	    pc.getCurrent().setNome("SUPERVISOR");
-	    pc.getCurrent().setDescricao("Supervisor do sistema");
+	    pc.getSelected().setNome("SUPERVISOR");
+	    pc.getSelected().setDescricao("Supervisor do sistema");
 	    pc.create();
 	}
 
 	// criando usuários de teste
 	for (int i = 0; i < 50; i++) {
-
-	    Usuario u = new Usuario();
-	    u.setEmail(i + "@mail.com");
-	    u.setNome("Nome(" + i + ")");
-	    u.setPerfil(pc.getItemsAvailableSelectOne().get(0));
-	    u.setSenha("senha" + i);
+	    
 	    uc.prepareCreate();
-	    uc.setCurrent(u);
+	    uc.getSelected().setEmail(i + "@mail.com");
+	    uc.getSelected().setNome("Nome(" + i + ")");
+	    uc.getSelected().setPerfil(pc.getItemsAvailableSelectOne().get(0));
+	    uc.getSelected().setSenha("senha" + i);	    
+	    
 	    us = uc.create();
 	    toRemove.add(us);
 	}
@@ -72,13 +71,13 @@ public class UsuarioControllerTest {
     public void testCreate() {
 	int i = -1;
 	FacesContextUtil.begin();
-	Usuario u = new Usuario();
-	u.setEmail(i + "@mail.com");
-	u.setNome("Nome(" + i + ")");
-	u.setPerfil(pc.getItemsAvailableSelectOne().get(0));
-	u.setSenha("senha" + i);
 	uc.prepareCreate();
-	uc.setCurrent(u);
+	Usuario u = new Usuario();
+	uc.getSelected().setEmail(i + "@mail.com");
+	uc.getSelected().setNome("Nome(" + i + ")");
+	uc.getSelected().setPerfil(pc.getItemsAvailableSelectOne().get(0));
+	uc.getSelected().setSenha("senha" + i);
+		
 	us = uc.create();
 	toRemove.add(us);
 	FacesContextUtil.end();
@@ -104,40 +103,5 @@ public class UsuarioControllerTest {
 	Usuario current = uc.prepareList().get(0);
 	FacesContextUtil.end();
 	assertNotEquals(us, current);
-    }
-
-    @Test
-    public void testFirst() {
-	List<Usuario> list = uc.prepareList();
-	assertEquals(list, uc.first());
-    }
-
-    @Test
-    public void testLast() {
-	List<Usuario> list = uc.prepareList();
-	assertNotEquals(list, uc.last());
-    }
-
-    @Test
-    public void testNext() {
-	List<Usuario> list = uc.prepareList();
-	assertNotEquals(list, uc.next());
-    }
-
-    @Test
-    public void testPrevious() {
-	uc.prepareList();
-	List<Usuario> list = uc.last();
-	assertNotEquals(list, uc.previous());
-    }
-
-    @After
-    public void removeAll() {
-	FacesContextUtil.begin();
-	for (Usuario u : toRemove) {
-	    uc.setCurrent(u);
-	    uc.performDestroy();
-	}
-	FacesContextUtil.end();
-    }
+    }    
 }

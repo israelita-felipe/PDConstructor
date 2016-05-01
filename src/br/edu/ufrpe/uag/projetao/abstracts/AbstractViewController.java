@@ -5,9 +5,10 @@
  */
 package br.edu.ufrpe.uag.projetao.abstracts;
 
+import java.util.List;
+
 import br.edu.ufrpe.uag.projetao.control.hibernate.FacesContextUtil;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceViewController;
-import java.util.List;
 
 /**
  *

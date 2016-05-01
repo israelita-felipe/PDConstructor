@@ -1,0 +1,90 @@
+package br.edu.ufrpe.uag.projetao.view.JFrame;
+
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JFrame;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+
+import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
+import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
+import br.edu.ufrpe.uag.projetao.control.UsuarioController;
+import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto;
+import br.edu.ufrpe.uag.projetao.view.GenericTable;
+import br.edu.ufrpe.uag.projetao.view.listeners.NovaClassificacaoTextoActionListener;
+import br.edu.ufrpe.uag.projetao.view.util.PopupManager;
+
+public class EscravoMainJFrame {
+
+    private JFrame frame;
+    private GenericTable<LiberacaoBaseTexto> tableBaseTexto;
+    private JMenuItem mntmClassificar;
+
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+	EventQueue.invokeLater(new Runnable() {
+	    public void run() {
+		try {
+		    EscravoMainJFrame window = new EscravoMainJFrame();
+		    window.frame.setVisible(true);
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+	    }
+	});
+    }
+
+    /**
+     * Create the application.
+     */
+    public EscravoMainJFrame() {
+	initialize();
+	addListeners();
+    }
+
+    /**
+     * Initialize the contents of the frame.
+     */
+    private void initialize() {
+	frame = new JFrame();
+	frame.setBounds(100, 100, 710, 300);
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+	frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
+
+	JPanel panel = new JPanel();
+	tabbedPane.addTab("Base de Texto", null, panel, null);
+	panel.setLayout(new BorderLayout(0, 0));
+
+	JScrollPane scrollPane = new JScrollPane();
+	panel.add(scrollPane, BorderLayout.CENTER);
+
+	tableBaseTexto = new GenericTable(ControllerFactory.getLiberacaoBaseTextoController().getItemsFromCriteria(
+		DetachedCriteriaFactory.getLiberacoesBaseTextoDoEscravo(UsuarioController.currentEscravo)));
+	scrollPane.setViewportView(tableBaseTexto);
+
+	JPopupMenu popupMenu = new JPopupMenu();
+	PopupManager.addPopup(tableBaseTexto, popupMenu);
+
+	mntmClassificar = new JMenuItem("Classificar");
+	popupMenu.add(mntmClassificar);
+    }
+
+    private void addListeners() {
+	getClassificarPopMenuItem().addActionListener(new NovaClassificacaoTextoActionListener(tableBaseTexto));
+    }
+
+    public JMenuItem getClassificarPopMenuItem() {
+	return mntmClassificar;
+    }
+}

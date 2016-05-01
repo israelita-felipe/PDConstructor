@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
-    <schema-selection match-catalog="pdconstructor" match-schema="public"/>
-    <table-filter match-name="alocacao_texto"/>
-    <table-filter match-name="classificacao_texto"/>
-    <table-filter match-name="perfil"/>
-    <table-filter match-name="liberacao_base_texto"/>
-    <table-filter match-name="escolha_classe_texto"/>
-    <table-filter match-name="usuario"/>
-    <table-filter match-name="base_texto"/>
+  <schema-selection match-catalog="pdconstructor" match-schema="public"/>
+  <table-filter match-name="escolha_imagem_classe"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="classificacao_texto"/>
+  <table-filter match-name="imagem_classe"/>
+  <table-filter match-name="alocacao_imagem_classe"/>
+  <table-filter match-name="base_imagem_classe"/>
+  <table-filter match-name="base_texto"/>
+  <table-filter match-name="liberacao_base_imagem_classe"/>
+  <table-filter match-name="escolha_classe_texto"/>
+  <table-filter match-name="classsificacao_imagem_classe"/>
+  <table-filter match-name="liberacao_base_texto"/>
+  <table-filter match-name="perfil"/>
+  <table-filter match-name="alocacao_texto"/>
 </hibernate-reverse-engineering>

@@ -13,29 +13,32 @@ public class FacesContextUtil {
 
     // METODOS
     public static void setRequestSession(Session session) {
-        FacesContextUtil.session = session;
-    }
+	FacesContextUtil.session = session;
+    }        
 
     public static Session getRequestSession() {
-        if (FacesContextUtil.session == null) {
-            FacesContextUtil.session = HibernateUtil.getSessionFactory().openSession();
-        }
-        return FacesContextUtil.session;
+	if (FacesContextUtil.session == null) {
+	    FacesContextUtil.session = HibernateUtil.getSessionFactory().openSession();
+	}
+	return FacesContextUtil.session;
     }
 
     public static void begin() {
-        FacesContextUtil.getRequestSession().beginTransaction();
+	FacesContextUtil.getRequestSession().beginTransaction();
     }
 
     public static void end() {
-        Session currentSession = FacesContextUtil.getRequestSession();
-        try {
-            currentSession.getTransaction().commit();
-        } catch (Exception e) {
-            if (currentSession.getTransaction().isActive()) {
-                currentSession.getTransaction().rollback();
-            }
-        }
+	Session currentSession = FacesContextUtil.getRequestSession();
+	try {
+	    currentSession.getTransaction().commit();
+	} catch (Exception e) {
+	    if (currentSession.getTransaction().isActive()) {
+		currentSession.getTransaction().rollback();
+	    }
+	}finally {
+	    currentSession.close();
+	    setRequestSession(null);
+	}
     }
 
 }

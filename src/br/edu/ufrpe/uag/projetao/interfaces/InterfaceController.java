@@ -1,30 +1,16 @@
 package br.edu.ufrpe.uag.projetao.interfaces;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-import br.edu.ufrpe.uag.projetao.abstracts.AbstractPaginator;
 import java.io.Serializable;
 import java.util.List;
+
+import org.hibernate.criterion.DetachedCriteria;
 
 /**
  *
  * @author Israel Araújo
  * @param <T>
  */
-public interface InterfaceController<T extends InterfaceEntity> {
-
-    /**
-     * Insere no item atual a chave composta
-     */
-    void setEmbeddableKeys();
-
-    /**
-     * Instancia uma nova chave composta e insere no item atual (getCurrent())
-     */
-    void initializeEmbeddableKey();
+public interface InterfaceController<T extends InterfaceEntity> {    
 
     /**
      *
@@ -39,13 +25,6 @@ public interface InterfaceController<T extends InterfaceEntity> {
     InterfaceFacade<T> getFacade();
 
     /**
-     *
-     * @return Paginador de elementos, usado para navegar com 'n' ítens por
-     * página
-     */
-    AbstractPaginator getPagination();
-
-    /**
      * Prepara um lista de itens paginada
      *
      * @return Lista de itens
@@ -55,7 +34,8 @@ public interface InterfaceController<T extends InterfaceEntity> {
     /**
      * Prepara um item para ser visto
      *
-     * @param index do item atual que se deseja retornar
+     * @param index
+     *            do item atual que se deseja retornar
      * @return Item listado no índice index
      */
     T prepareView(int index);
@@ -77,7 +57,8 @@ public interface InterfaceController<T extends InterfaceEntity> {
     /**
      * Prepara a edição do item indicado
      *
-     * @param index do item a ser editado
+     * @param index
+     *            do item a ser editado
      * @return item editado a ser persistido no banco
      */
     T prepareEdit(int index);
@@ -92,7 +73,8 @@ public interface InterfaceController<T extends InterfaceEntity> {
     /**
      * Destroi um item de índice index
      *
-     * @param index do item a ser destruido
+     * @param index
+     *            do item a ser destruido
      * @return Item destruido
      */
     T destroy(int index);
@@ -100,7 +82,8 @@ public interface InterfaceController<T extends InterfaceEntity> {
     /**
      * Destroi um item de índice index e visualiza o proximo item da lista
      *
-     * @param index do item a ser destruido
+     * @param index
+     *            do item a ser destruido
      * @return Item destruido
      */
     T destroyAndView(int index);
@@ -109,11 +92,6 @@ public interface InterfaceController<T extends InterfaceEntity> {
      * Efetiva no banco de dados a destruição de um item
      */
     void performDestroy();
-
-    /**
-     * Atualiza o item atual (getCurrent())
-     */
-    void updateCurrentItem();
 
     /**
      * Seleciona os item paginados
@@ -134,30 +112,6 @@ public interface InterfaceController<T extends InterfaceEntity> {
 
     /**
      *
-     * @return a próxima lista de 'n' itens
-     */
-    List next();
-
-    /**
-     *
-     * @return a lista de 'n' itens anteriores
-     */
-    List previous();
-
-    /**
-     *
-     * @return a primeira lista de 'n' itens
-     */
-    List first();
-
-    /**
-     *
-     * @return a última lista de 'n' itens
-     */
-    List last();
-
-    /**
-     *
      * @return lista todos os elementos selecionáveis do banco de dados
      */
     List<T> getItemsAvailableSelectMany();
@@ -169,11 +123,19 @@ public interface InterfaceController<T extends InterfaceEntity> {
     List<T> getItemsAvailableSelectOne();
 
     /**
+     * @param criteria
+     *            de consulta
+     * @return lista de elementos referentes a uma consulta
+     */
+    List<T> getItemsFromCriteria(DetachedCriteria criteria);
+
+    /**
      * Busca no banco de dados um item de determinado id
      *
-     * @param id do item a ser buscado
+     * @param id
+     *            do item a ser buscado
      * @return Item do banco de dados, caso não encontre retorna
-     * <code>null</code>
+     *         <code>null</code>
      */
     T get(Serializable id);
 

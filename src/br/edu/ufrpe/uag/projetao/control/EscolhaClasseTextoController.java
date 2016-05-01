@@ -18,22 +18,10 @@ public class EscolhaClasseTextoController extends AbstractController<EscolhaClas
     }
 
     @Override
-    public void setEmbeddableKeys() {
-	// TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void initializeEmbeddableKey() {
-	// TODO Auto-generated method stub
-
-    }
-
-    @Override
     public EscolhaClasseTexto getSelected() {
 	if (getCurrent() == null) {
 	    setCurrent(new EscolhaClasseTexto());
-	    initializeEmbeddableKey();
+
 	    setSelectedItemIndex(-1);
 	}
 	return getCurrent();
@@ -42,7 +30,7 @@ public class EscolhaClasseTextoController extends AbstractController<EscolhaClas
     @Override
     public EscolhaClasseTexto prepareCreate() {
 	setCurrent(new EscolhaClasseTexto());
-	initializeEmbeddableKey();
+
 	setSelectedItemIndex(-1);
 	return getCurrent();
     }

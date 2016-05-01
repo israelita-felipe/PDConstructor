@@ -57,7 +57,7 @@ public class CriarBaseTextoActionListener implements ActionListener {
 	base.prepareCreate();
 	base.getSelected().setTitulo(jdialog.getTituloBaseTextField().getText());
 	base.getSelected().setDescricao(jdialog.getDescricaoBaseTextArea().getText());
-	base.getSelected().setUsuario(UsuarioController.currrentUser);
+	base.getSelected().setUsuario(UsuarioController.currrentSupervisor);
 	base.create();
 
 	// criação dos textos
@@ -67,7 +67,7 @@ public class CriarBaseTextoActionListener implements ActionListener {
 		// aloca um texto para uma base
 		alocacaoTexto.prepareCreate();
 		alocacaoTexto.getSelected().setBaseTexto(base.getSelected());
-		alocacaoTexto.getSelected().setUsuario(UsuarioController.currrentUser);
+		alocacaoTexto.getSelected().setUsuario(UsuarioController.currrentSupervisor);
 		alocacaoTexto.getSelected().setTexto(
 			FileManager.lerArquivo(jdialog.getArquivosList().getModel().getElementAt(i).toString()));
 		alocacaoTexto.create();

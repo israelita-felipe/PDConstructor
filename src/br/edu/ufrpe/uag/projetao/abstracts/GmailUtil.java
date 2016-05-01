@@ -34,32 +34,48 @@ public abstract class GmailUtil implements InterfaceGmailUtil {
 	this.email.setSSLOnConnect(true);
     }
 
-    /* (non-Javadoc)
-     * @see br.edu.ufrpe.uag.projetao.control.util.InterfaceGmailUtil#setRemetente(java.lang.String)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * br.edu.ufrpe.uag.projetao.control.util.InterfaceGmailUtil#setRemetente(
+     * java.lang.String)
      */
     @Override
     public void setRemetente(String remetente) throws EmailException {
 	this.email.setFrom(remetente);
     }
 
-    /* (non-Javadoc)
-     * @see br.edu.ufrpe.uag.projetao.control.util.InterfaceGmailUtil#setAssunto(java.lang.String)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * br.edu.ufrpe.uag.projetao.control.util.InterfaceGmailUtil#setAssunto(java
+     * .lang.String)
      */
     @Override
     public void setAssunto(String assunto) {
 	this.email.setSubject(assunto);
     }
 
-    /* (non-Javadoc)
-     * @see br.edu.ufrpe.uag.projetao.control.util.InterfaceGmailUtil#setMensagem(java.lang.String)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * br.edu.ufrpe.uag.projetao.control.util.InterfaceGmailUtil#setMensagem(
+     * java.lang.String)
      */
     @Override
     public void setMensagem(String mensagem) throws EmailException {
 	this.email.setMsg(mensagem);
     }
 
-    /* (non-Javadoc)
-     * @see br.edu.ufrpe.uag.projetao.control.util.InterfaceGmailUtil#setDestinatario(java.util.List)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * br.edu.ufrpe.uag.projetao.control.util.InterfaceGmailUtil#setDestinatario
+     * (java.util.List)
      */
     @Override
     public void setDestinatario(List<String> destinatarios) throws EmailException {
@@ -68,7 +84,9 @@ public abstract class GmailUtil implements InterfaceGmailUtil {
 	}
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see br.edu.ufrpe.uag.projetao.control.util.InterfaceGmailUtil#enviar()
      */
     @Override

@@ -51,9 +51,9 @@ public interface InterfaceGmailUtil {
     /**
      * Retorna a autenticação do usuário remetente
      * 
-     * @return Um org.apache.commons.mail.DefaultAuthenticator que recebe como parâmetro 1: o usuário ou
-     *         email a ser autenticado; 2: a senha do usuário ou email a ser
-     *         autenticado
+     * @return Um org.apache.commons.mail.DefaultAuthenticator que recebe como
+     *         parâmetro 1: o usuário ou email a ser autenticado; 2: a senha do
+     *         usuário ou email a ser autenticado
      */
     DefaultAuthenticator autenticar();
 

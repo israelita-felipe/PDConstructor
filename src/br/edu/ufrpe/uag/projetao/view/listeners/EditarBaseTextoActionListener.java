@@ -10,6 +10,8 @@ import java.util.LinkedList;
 import javax.swing.JTable;
 
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
+import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
+import br.edu.ufrpe.uag.projetao.control.UsuarioController;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
 import br.edu.ufrpe.uag.projetao.view.GenericTableModel;
@@ -22,12 +24,10 @@ import br.edu.ufrpe.uag.projetao.view.jdialog.SupervisorEditarBaseClassificacaoT
 public class EditarBaseTextoActionListener implements ActionListener {
 
     private JTable table;
-    private InterfaceController<BaseTexto> controller;
 
-    public EditarBaseTextoActionListener(JTable table, InterfaceController<BaseTexto> controller) {
+    public EditarBaseTextoActionListener(JTable table) {
 	// TODO Auto-generated constructor stub
 	this.table = table;
-	this.controller = controller;
     }
 
     /*
@@ -39,10 +39,12 @@ public class EditarBaseTextoActionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
+	InterfaceController<BaseTexto> controller = ControllerFactory.getBaseTextoController();
 	if (table.getSelectedRow() != -1) {
 	    controller.prepareEdit(table.getSelectedRow());
 	    new SupervisorEditarBaseClassificacaoTextoJDialog(controller).setVisible(true);
-	    table.setModel(new GenericTableModel<BaseTexto>(new LinkedList<>(controller.getItems())));
+	    table.setModel(new GenericTableModel<BaseTexto>(new LinkedList<>(controller.getItemsFromCriteria(
+		    DetachedCriteriaFactory.getBasesTextoDoUsuario(UsuarioController.currrentSupervisor)))));
 	}
     }
 

@@ -1,17 +1,13 @@
 package br.edu.ufrpe.uag.projetao.abstracts;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-import br.edu.ufrpe.uag.projetao.abstracts.*;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceFacade;
 import java.io.Serializable;
 import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
+
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceFacade;
 
 /**
  *
@@ -55,7 +51,7 @@ public abstract class AbstractFacade<T extends InterfaceEntity> implements Seria
     @Override
     public List<T> findRange(int[] range) {
 	Criteria q = getSession().createCriteria(entityClass);
-	q.setMaxResults(range[1] - range[0] + 1);
+	q.setMaxResults(range[1] - range[0]);
 	q.setFirstResult(range[0]);
 	return q.list();
     }

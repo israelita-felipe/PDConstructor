@@ -1,9 +1,5 @@
 package br.edu.ufrpe.uag.projetao.control.hibernate;
 
-
-
-
-
 // IMPORTS
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -26,14 +22,14 @@ public class HibernateUtil {
      * construtor estático da fábrica de sessões
      */
     static {
-        try {
-            Configuration configuration = new Configuration().configure();
-            ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().
-                    applySettings(configuration.getProperties()).build();
-            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-        } catch (Exception ex) {
-            throw new ExceptionInInitializerError(ex);
-        }
+	try {
+	    Configuration configuration = new Configuration().configure();
+	    ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties())
+		    .build();
+	    sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+	} catch (Exception ex) {
+	    throw new ExceptionInInitializerError(ex);
+	}
 
     }
 
@@ -43,6 +39,6 @@ public class HibernateUtil {
      * @return
      */
     public static SessionFactory getSessionFactory() {
-        return sessionFactory;
+	return sessionFactory;
     }
 }

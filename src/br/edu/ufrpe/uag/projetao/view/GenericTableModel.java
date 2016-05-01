@@ -5,13 +5,17 @@
  */
 package br.edu.ufrpe.uag.projetao.view;
 
-import br.edu.ufrpe.uag.projetao.annotations.Coluna;
-import br.edu.ufrpe.uag.projetao.annotations.Tabela;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
+
+import br.edu.ufrpe.uag.projetao.annotations.Coluna;
+import br.edu.ufrpe.uag.projetao.annotations.Tabela;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 
 /**
  * Classe que gera tabela Dinamica apartir de Reflection e Annotation. Adaptada
@@ -22,24 +26,49 @@ import javax.swing.table.AbstractTableModel;
  * @version 1.01
  * @param <T>
  */
-public class GenericTableModel<T> extends AbstractTableModel {
+public class GenericTableModel<T extends InterfaceEntity> extends AbstractTableModel {
 
     private static final long serialVersionUID = 1L;
 
-    private final List<T> list;
-    private final Class<T> clazz;
+    private List<T> list;
+    private Class<T> clazz;
     private String fieldName;
 
-    public GenericTableModel(List<T> lista, Class<T> classe) {
-        this.list = lista;
-        this.clazz = classe;
+    public GenericTableModel(List<T> lista) {
+	if (lista != null) {
+	    this.list = lista;
+	    if (!list.isEmpty()) {
+		this.clazz = (Class<T>) list.get(0).getClass();
+	    }
+	} else {
+	    lista = new LinkedList<>();
+	}
+    }    
 
-        if (lista == null) {
-            throw new NullPointerException("GenericTableModel::Lista não pode ser null");
-        }
-        if (classe == null) {
-            throw new NullPointerException("GenericTableModel::Classe não pode ser null!");
-        }
+
+    public void clear() {
+	this.list.clear();
+    }
+
+    public void addAll(Collection<T> collection) {
+	for(T element:collection){
+	    addItem();
+	    this.list.add(element);
+	}	
+	if (clazz == null) {
+	    this.clazz = (Class<T>) this.list.get(0).getClass();
+	}
+    }
+
+    public void addElement(T element) {
+	if (this.list == null) {
+	    this.list = new LinkedList<T>();
+	}
+	if (clazz == null) {
+	    this.clazz = (Class<T>) element.getClass();
+	}
+	this.list.add(element);
+	addItem();
     }
 
     /**
@@ -50,14 +79,15 @@ public class GenericTableModel<T> extends AbstractTableModel {
      */
     @Override
     public int getColumnCount() {
-        int colunas = 0;
-
-        for (Field field : clazz.getDeclaredFields()) {
-            if (field.isAnnotationPresent(Coluna.class)) {
-                colunas++;
-            }
-        }
-        return colunas;
+	int colunas = 0;
+	if (clazz != null) {
+	    for (Field field : clazz.getDeclaredFields()) {
+		if (field.isAnnotationPresent(Coluna.class)) {
+		    colunas++;
+		}
+	    }
+	}
+	return colunas;
     }
 
     /**
@@ -69,42 +99,43 @@ public class GenericTableModel<T> extends AbstractTableModel {
      */
     @Override
     public int getRowCount() {
-        return list.size();
+	return list.size();
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        try {
-            int beforePosition = -1, nowPosition = -1, newPosition = -1;
-            Object object = list.get(rowIndex);
+	try {
+	    int beforePosition = -1, nowPosition = -1, newPosition = -1;
+	    Object object = list.get(rowIndex);
 
-            for (Field field : clazz.getDeclaredFields()) {
-                Coluna c = field.getAnnotation(Coluna.class);
+	    for (Field field : clazz.getDeclaredFields()) {
+		Coluna c = field.getAnnotation(Coluna.class);
 
-                field.setAccessible(true);
+		field.setAccessible(true);
 
-                if (field.isAnnotationPresent(Coluna.class)) {
-                    nowPosition = c.colunaPosicao();
+		if (field.isAnnotationPresent(Coluna.class)) {
+		    nowPosition = c.colunaPosicao();
 
-                    if (beforePosition == nowPosition) {
-                        newPosition++;
-                        nowPosition = newPosition;
-                    }
+		    if (beforePosition == nowPosition) {
+			newPosition++;
+			nowPosition = newPosition;
+		    }
 
-                    if (c != null && nowPosition == columnIndex) {
-                        if (field.getName().equalsIgnoreCase(field.getName())) {
-                            return String.format(c.formato(),
-                                    field.get(object));
-                        }
-                    }
-                }
+		    if (c != null && nowPosition == columnIndex) {
+			if (field.getName().equalsIgnoreCase(field.getName())) {
 
-            }
+			    return field.get(object);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+			}
+		    }
+		}
+
+	    }
+
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	return null;
     }
 
     /**
@@ -112,87 +143,94 @@ public class GenericTableModel<T> extends AbstractTableModel {
      * nome do cabe�alho da coluna da tabela. Nota: este nome n�o precisa ser
      * exclusivo, duas colunas de uma tabela pode ter o mesmo nome.
      *
-     * @param column int - o �ndice de coluna
+     * @param column
+     *            int - o �ndice de coluna
      * @return String - O nome da coluna.
      */
     @Override
     public String getColumnName(int column) {
-        try {
-            int beforePosition = -1, nowPosition = -1, newPosition = -1;
+	try {
+	    int beforePosition = -1, nowPosition = -1, newPosition = -1;
 
-            for (Field field : clazz.getDeclaredFields()) {
-                Coluna c = field.getAnnotation(Coluna.class);
+	    for (Field field : clazz.getDeclaredFields()) {
+		Coluna c = field.getAnnotation(Coluna.class);
 
-                if (field.isAnnotationPresent(Coluna.class)) {
-                    nowPosition = c.colunaPosicao();
+		if (field.isAnnotationPresent(Coluna.class)) {
+		    nowPosition = c.colunaPosicao();
 
-                    if (beforePosition == nowPosition) {
-                        newPosition++;
-                        nowPosition = newPosition;
-                    }
+		    if (beforePosition == nowPosition) {
+			newPosition++;
+			nowPosition = newPosition;
+		    }
 
-                    if (c != null && nowPosition == column) {
-                        if (field.getName().equalsIgnoreCase(field.getName())) {
-                            return c.colunaNome();
-                        }
-                    }
-                }
+		    if (c != null && nowPosition == column) {
+			if (field.getName().equalsIgnoreCase(field.getName())) {
+			    return c.colunaNome();
+			}
+		    }
+		}
 
-            }
+	    }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	return "";
     }
 
     /**
      * Define o valor da c�lula em columnIndex e rowIndex para value .
      *
-     * @param value Object- O novo valor.
-     * @param rowIndex int - A linha cujo valor deve ser consultado.
-     * @param columnIndex int - A coluna cujo valor deve ser consultado.
+     * @param value
+     *            Object- O novo valor.
+     * @param rowIndex
+     *            int - A linha cujo valor deve ser consultado.
+     * @param columnIndex
+     *            int - A coluna cujo valor deve ser consultado.
      */
     @Override
     public void setValueAt(Object value, int rowIndex, int columnIndex) {
-        int pos = -1;
-        try {
-            Object object = list.get(rowIndex);
-            proximo:
-            for (Field field : clazz.getDeclaredFields()) {
-                Coluna c = field.getAnnotation(Coluna.class);
-                Tabela tm = field.getAnnotation(Tabela.class);
+	int pos = -1;
+	try {
+	    Object object = list.get(rowIndex);
+	    proximo: for (Field field : clazz.getDeclaredFields()) {
+		Coluna c = field.getAnnotation(Coluna.class);
+		Tabela tm = field.getAnnotation(Tabela.class);
 
-                if ((c != null || tm != null || ++pos == columnIndex)) {
-                    for (Method method : clazz.getDeclaredMethods()) {
-                        if (method.getName().equalsIgnoreCase("set" + field.getName())) {
-                            method.invoke(object, value);
-                            continue proximo;
-                        }
-                    }
-                }
+		if ((c != null || tm != null || ++pos == columnIndex)) {
+		    for (Method method : clazz.getDeclaredMethods()) {
+			if (method.getName().equalsIgnoreCase("set" + field.getName())) {
+			    method.invoke(object, value);
+			    continue proximo;
+			}
+		    }
+		}
 
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+    }
+
+    public int indexOf(T element) {
+	return list.indexOf(element);
     }
 
     public void addItem() {
-        int line = list.size() - 1;
-        fireTableRowsInserted(line, line);
+	int line = list.size() - 1;
+	fireTableRowsInserted(line, line);
     }
 
     public Object loadItem(int row) {
-        return list.get(row);
+	return list.get(row);
     }
 
     public void deleteItem(int row) {
-        fireTableRowsDeleted(row, row);
-        list.remove(row);
+	fireTableRowsDeleted(row, row);
+	list.remove(row);
     }
 
     public String getName() {
-        return fieldName;
+	return fieldName;
     }
 }

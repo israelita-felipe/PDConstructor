@@ -17,22 +17,13 @@ public class AlocacaoTextoController extends AbstractController<AlocacaoTexto> {
 	// TODO Auto-generated constructor stub
     }
 
-    @Override
-    public void setEmbeddableKeys() {
-	// TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void initializeEmbeddableKey() {
-
-    }
+   
 
     @Override
     public AlocacaoTexto getSelected() {
 	if (getCurrent() == null) {
 	    setCurrent(new AlocacaoTexto());
-	    initializeEmbeddableKey();
+	    
 	    setSelectedItemIndex(-1);
 	}
 	return getCurrent();
@@ -41,7 +32,7 @@ public class AlocacaoTextoController extends AbstractController<AlocacaoTexto> {
     @Override
     public AlocacaoTexto prepareCreate() {
 	setCurrent(new AlocacaoTexto());
-	initializeEmbeddableKey();
+	
 	setSelectedItemIndex(-1);
 	return getCurrent();
     }
