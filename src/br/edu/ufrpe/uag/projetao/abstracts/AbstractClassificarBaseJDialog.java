@@ -1,6 +1,7 @@
-package br.edu.ufrpe.uag.projetao.view.jdialog;
+package br.edu.ufrpe.uag.projetao.abstracts;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Frame;
 import java.awt.GridLayout;
 
@@ -12,24 +13,36 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.border.EmptyBorder;
 
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceWindow;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceClassificaBase;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 import br.edu.ufrpe.uag.projetao.view.listeners.FecharActionListener;
 
-public class ClassificarBaseJDialog extends JDialog implements InterfaceWindow {
+/**
+ * Classe genérica para classificação de bases
+ * 
+ * @author israel
+ *
+ * @param <C>
+ *            tipo de componente da mídia a ser analizada
+ * @param <T>
+ *            tipo de dado da escolha das classes do modelo de banco de dados
+ */
+public abstract class AbstractClassificarBaseJDialog<C extends Component, T extends InterfaceEntity> extends JDialog
+	implements InterfaceClassificaBase<C, T> {
 
     private final JPanel contentPanel = new JPanel();
     private JButton proximoButton;
     private JButton sairButton;
     private JButton btnAnterior;
     private JPanel panel;
-    private JComboBox comboBox;
+    private JComboBox<T> comboBox;
     private JPanel panel_1;
     private JPanel separator;
 
     /**
      * Create the dialog.
      */
-    public ClassificarBaseJDialog(Frame owner, String title, boolean modal) {
+    public AbstractClassificarBaseJDialog(Frame owner, String title, boolean modal) {
 	super(owner, title, modal);
 	init();
 	addListeners();
@@ -48,7 +61,7 @@ public class ClassificarBaseJDialog extends JDialog implements InterfaceWindow {
 	    panel = new JPanel();
 	    contentPanel.add(panel, BorderLayout.NORTH);
 	    {
-		comboBox = new JComboBox();
+		comboBox = new JComboBox<T>();
 	    }
 
 	    JLabel lblClasse = new JLabel("Classe:");
@@ -97,19 +110,23 @@ public class ClassificarBaseJDialog extends JDialog implements InterfaceWindow {
 
     }
 
+    @Override
     public JButton getProximoButton() {
 	return proximoButton;
     }
 
+    @Override
     public JButton getSairButton() {
 	return sairButton;
     }
 
+    @Override
     public JButton getAnteriorButton() {
 	return btnAnterior;
     }
 
-    public JComboBox getClasseComboBox() {
+    @Override
+    public JComboBox<T> getClasseComboBox() {
 	return comboBox;
     }
 

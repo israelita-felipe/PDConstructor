@@ -12,12 +12,14 @@ import javax.swing.JOptionPane;
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.UsuarioController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceClassificaBase;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto;
 import br.edu.ufrpe.uag.projetao.view.GenericTable;
 import br.edu.ufrpe.uag.projetao.view.jdialog.ClassificarBaseTextoJDialog;
+import br.edu.ufrpe.uag.projetao.view.scrollPanel.ClassificarTextoJScrollPane;
 
 /**
  * @author israel
@@ -58,14 +60,14 @@ public class NovaClassificacaoTextoActionListener implements ActionListener {
 		    DetachedCriteriaFactory.getAlocacoesTextoPorLiberacao(liberacaoTextoController.getSelected()));
 	    alocacaoTextoController.prepareView(0);
 
-	    ClassificarBaseTextoJDialog classificacaoBaseTextoDialog = new ClassificarBaseTextoJDialog();
+	    InterfaceClassificaBase<ClassificarTextoJScrollPane, EscolhaClasseTexto> classificacaoBaseTextoDialog = new ClassificarBaseTextoJDialog();
 	    DefaultComboBoxModel<EscolhaClasseTexto> model = new DefaultComboBoxModel<>();
 	    for (EscolhaClasseTexto classe : alocacaoTextoController.getSelected().getEscolhaClasseTextos()) {
 		model.addElement(classe);
 	    }
 	    classificacaoBaseTextoDialog.getClasseComboBox().setModel(model);
 
-	    classificacaoBaseTextoDialog.getClassificaTextoScrollPane().getEditorPane()
+	    classificacaoBaseTextoDialog.getMediaComponet().getEditorPane()
 		    .setText(alocacaoTextoController.getSelected().getTexto());
 
 	    JOptionPane.showMessageDialog(null, liberacaoTextoController.getSelected().getBaseTexto().getDescricao(),

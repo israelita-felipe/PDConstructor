@@ -5,6 +5,8 @@ package br.edu.ufrpe.uag.projetao.view.jdialog;
 
 import java.awt.BorderLayout;
 
+import br.edu.ufrpe.uag.projetao.abstracts.AbstractClassificarBaseJDialog;
+import br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto;
 import br.edu.ufrpe.uag.projetao.view.listeners.ClassificarBaseTextoProximoActionListener;
 import br.edu.ufrpe.uag.projetao.view.scrollPanel.ClassificarTextoJScrollPane;
 
@@ -12,7 +14,8 @@ import br.edu.ufrpe.uag.projetao.view.scrollPanel.ClassificarTextoJScrollPane;
  * @author israel
  *
  */
-public class ClassificarBaseTextoJDialog extends ClassificarBaseJDialog {
+public class ClassificarBaseTextoJDialog
+	extends AbstractClassificarBaseJDialog<ClassificarTextoJScrollPane, EscolhaClasseTexto> {
 
     private ClassificarTextoJScrollPane classificaTextoScrollPane;
 
@@ -40,12 +43,10 @@ public class ClassificarBaseTextoJDialog extends ClassificarBaseJDialog {
 	getProximoButton().addActionListener(new ClassificarBaseTextoProximoActionListener(this));
     }
 
-    public ClassificarTextoJScrollPane getClassificaTextoScrollPane() {
-	return classificaTextoScrollPane;
-    }
-
-    public void setClassificaTextoScrollPane(ClassificarTextoJScrollPane classificaTextoScrollPane) {
-	this.classificaTextoScrollPane = classificaTextoScrollPane;
+    @Override
+    public ClassificarTextoJScrollPane getMediaComponet() {
+	// TODO Auto-generated method stub
+	return this.classificaTextoScrollPane;
     }
 
 }

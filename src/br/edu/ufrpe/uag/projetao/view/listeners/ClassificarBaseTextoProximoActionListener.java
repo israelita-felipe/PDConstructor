@@ -13,13 +13,14 @@ import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.UsuarioController;
 import br.edu.ufrpe.uag.projetao.control.hibernate.FacesContextUtil;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceClassificaBase;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto;
 import br.edu.ufrpe.uag.projetao.model.enumerate.StatusDeLiberacao;
-import br.edu.ufrpe.uag.projetao.view.jdialog.ClassificarBaseTextoJDialog;
+import br.edu.ufrpe.uag.projetao.view.scrollPanel.ClassificarTextoJScrollPane;
 
 /**
  * @author israel
@@ -27,13 +28,13 @@ import br.edu.ufrpe.uag.projetao.view.jdialog.ClassificarBaseTextoJDialog;
  */
 public class ClassificarBaseTextoProximoActionListener implements ActionListener {
 
-    private ClassificarBaseTextoJDialog classificacaoBaseTextoDialog;
+    private InterfaceClassificaBase<ClassificarTextoJScrollPane, EscolhaClasseTexto> classificacaoBaseTextoDialog;
 
     /**
      * 
      */
-    public ClassificarBaseTextoProximoActionListener(ClassificarBaseTextoJDialog classificacaoBaseTextoDialog) {
-	// TODO Auto-generated constructor stub
+    public ClassificarBaseTextoProximoActionListener(
+	    InterfaceClassificaBase<ClassificarTextoJScrollPane, EscolhaClasseTexto> classificacaoBaseTextoDialog) {
 	this.classificacaoBaseTextoDialog = classificacaoBaseTextoDialog;
     }
 
@@ -79,7 +80,7 @@ public class ClassificarBaseTextoProximoActionListener implements ActionListener
 
 	    // preenchendo os campos
 	    this.classificacaoBaseTextoDialog.getClasseComboBox().setModel(model);
-	    this.classificacaoBaseTextoDialog.getClassificaTextoScrollPane().getEditorPane()
+	    this.classificacaoBaseTextoDialog.getMediaComponet().getEditorPane()
 		    .setText(alocacaoTextoController.getSelected().getTexto());
 	} else {
 	    int aprovacao = JOptionPane.showConfirmDialog(null, "Parabéns, tudo finalizado, deseja encerrar a base?",

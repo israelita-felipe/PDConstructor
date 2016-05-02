@@ -6,9 +6,11 @@ package br.edu.ufrpe.uag.projetao.view.listeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.persistence.PersistenceException;
 import javax.swing.JOptionPane;
 
 import org.hibernate.NonUniqueObjectException;
+import org.hibernate.exception.ConstraintViolationException;
 
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.UsuarioController;
@@ -61,15 +63,14 @@ public class CriarLiberacaoBaseTextoActionListener implements ActionListener {
 		liberacaoController.getSelected().setUsuarioBySupervisor(UsuarioController.currrentSupervisor);
 
 		liberacaoController.create();
+		FacesContextUtil.end();
 
 		janela.dispose();
 		JOptionPane.showMessageDialog(null,
 			"Base liberada para " + liberacaoController.getSelected().getUsuarioByEscravo().getNome(),
 			"Liberação [" + liberacaoController.getSelected() + "]", JOptionPane.INFORMATION_MESSAGE);
-	    } catch (NonUniqueObjectException ex) {
+	    } catch (ConstraintViolationException ex) {
 		JOptionPane.showMessageDialog(null, "A base já foi liberada para este usuário");
-	    } finally {
-		FacesContextUtil.end();
 	    }
 	}
     }

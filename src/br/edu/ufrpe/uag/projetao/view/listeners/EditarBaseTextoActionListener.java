@@ -15,7 +15,7 @@ import br.edu.ufrpe.uag.projetao.control.UsuarioController;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
 import br.edu.ufrpe.uag.projetao.view.GenericTableModel;
-import br.edu.ufrpe.uag.projetao.view.jdialog.SupervisorEditarBaseClassificacaoTextoJDialog;
+import br.edu.ufrpe.uag.projetao.view.jdialog.EditarBaseClassificacaoTextoJDialog;
 
 /**
  * @author israel
@@ -42,7 +42,7 @@ public class EditarBaseTextoActionListener implements ActionListener {
 	InterfaceController<BaseTexto> controller = ControllerFactory.getBaseTextoController();
 	if (table.getSelectedRow() != -1) {
 	    controller.prepareEdit(table.getSelectedRow());
-	    new SupervisorEditarBaseClassificacaoTextoJDialog(controller).setVisible(true);
+	    new EditarBaseClassificacaoTextoJDialog().setVisible(true);
 	    table.setModel(new GenericTableModel<BaseTexto>(new LinkedList<>(controller.getItemsFromCriteria(
 		    DetachedCriteriaFactory.getBasesTextoDoUsuario(UsuarioController.currrentSupervisor)))));
 	}

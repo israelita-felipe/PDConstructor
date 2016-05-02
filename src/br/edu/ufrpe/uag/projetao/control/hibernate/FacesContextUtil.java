@@ -1,6 +1,7 @@
 package br.edu.ufrpe.uag.projetao.control.hibernate;
 
 import org.hibernate.Session;
+import org.hibernate.exception.ConstraintViolationException;
 
 /**
  *
@@ -27,10 +28,16 @@ public class FacesContextUtil {
 	FacesContextUtil.getRequestSession().beginTransaction();
     }
 
-    public static void end() {
+    public static void end() throws ConstraintViolationException {
+	ConstraintViolationException ex = null;
 	Session currentSession = FacesContextUtil.getRequestSession();
 	try {
 	    currentSession.getTransaction().commit();
+	} catch (ConstraintViolationException e) {
+	    if (currentSession.getTransaction().isActive()) {
+		currentSession.getTransaction().rollback();
+	    }
+	    ex = e;
 	} catch (Exception e) {
 	    if (currentSession.getTransaction().isActive()) {
 		currentSession.getTransaction().rollback();
@@ -38,6 +45,9 @@ public class FacesContextUtil {
 	} finally {
 	    currentSession.close();
 	    setRequestSession(null);
+	    if (ex != null) {
+		throw ex;
+	    }
 	}
     }
 

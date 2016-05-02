@@ -13,7 +13,7 @@ import br.edu.ufrpe.uag.projetao.control.UsuarioController;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
 import br.edu.ufrpe.uag.projetao.view.GenericTable;
-import br.edu.ufrpe.uag.projetao.view.jdialog.SupervisorCriarBaseClassificacaoTextoJDialog;
+import br.edu.ufrpe.uag.projetao.view.jdialog.CriarBaseClassificacaoTextoJDialog;
 
 /**
  * @author israel
@@ -41,7 +41,7 @@ public class NovaBaseTextoActionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
-	new SupervisorCriarBaseClassificacaoTextoJDialog().setVisible(true);
+	new CriarBaseClassificacaoTextoJDialog().setVisible(true);
 	table.clear();
 	table.addAll(new LinkedList<>(
 		((InterfaceController<BaseTexto>) ControllerFactory.getBaseTextoController()).getItemsFromCriteria(

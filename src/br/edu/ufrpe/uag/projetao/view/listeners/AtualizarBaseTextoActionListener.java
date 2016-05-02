@@ -8,10 +8,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.hibernate.FacesContextUtil;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceCriaEAtualizaBase;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
-import br.edu.ufrpe.uag.projetao.view.jdialog.SupervisorCriarEAtualizarBaseClassificacaoJDialog;
+import br.edu.ufrpe.uag.projetao.view.JPane.BaseTextoJPanel;
 
 /**
  * @author israel
@@ -19,14 +21,11 @@ import br.edu.ufrpe.uag.projetao.view.jdialog.SupervisorCriarEAtualizarBaseClass
  */
 public class AtualizarBaseTextoActionListener implements ActionListener {
 
-    private SupervisorCriarEAtualizarBaseClassificacaoJDialog jdialog;
-    private InterfaceController<BaseTexto> baseTextoController;
+    private InterfaceCriaEAtualizaBase<BaseTextoJPanel> jdialog;
 
-    public AtualizarBaseTextoActionListener(SupervisorCriarEAtualizarBaseClassificacaoJDialog jdialog,
-	    InterfaceController<BaseTexto> baseTextoController) {
+    public AtualizarBaseTextoActionListener(InterfaceCriaEAtualizaBase<BaseTextoJPanel> jdialog) {
 	// TODO Auto-generated constructor stub
 	this.jdialog = jdialog;
-	this.baseTextoController = baseTextoController;
     }
 
     /*
@@ -38,10 +37,12 @@ public class AtualizarBaseTextoActionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
+	InterfaceController<BaseTexto> baseTextoController = ControllerFactory.getBaseTextoController();
+
 	FacesContextUtil.begin();
 
-	baseTextoController.getSelected().setTitulo(jdialog.getTituloBaseTextField().getText());
-	baseTextoController.getSelected().setDescricao(jdialog.getDescricaoBaseTextArea().getText());
+	baseTextoController.getSelected().setTitulo(jdialog.getMediaComponent().getTituloTextField().getText());
+	baseTextoController.getSelected().setDescricao(jdialog.getMediaComponent().getDescricaoEditorPane().getText());
 
 	baseTextoController.update();
 
