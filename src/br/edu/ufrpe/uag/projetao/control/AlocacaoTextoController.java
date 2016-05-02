@@ -17,13 +17,11 @@ public class AlocacaoTextoController extends AbstractController<AlocacaoTexto> {
 	// TODO Auto-generated constructor stub
     }
 
-   
-
     @Override
     public AlocacaoTexto getSelected() {
 	if (getCurrent() == null) {
 	    setCurrent(new AlocacaoTexto());
-	    
+
 	    setSelectedItemIndex(-1);
 	}
 	return getCurrent();
@@ -32,7 +30,7 @@ public class AlocacaoTextoController extends AbstractController<AlocacaoTexto> {
     @Override
     public AlocacaoTexto prepareCreate() {
 	setCurrent(new AlocacaoTexto());
-	
+
 	setSelectedItemIndex(-1);
 	return getCurrent();
     }

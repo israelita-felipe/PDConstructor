@@ -20,7 +20,7 @@ public class NovaLiberacaoBaseTextoActionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
-	if(tabela.getSelectedRow()!=-1){
+	if (tabela.getSelectedRow() != -1) {
 	    ControllerFactory.getBaseTextoController().prepareView(tabela.getSelectedRow());
 	    new LiberarBaseTextoJDialog().setVisible(true);
 	}

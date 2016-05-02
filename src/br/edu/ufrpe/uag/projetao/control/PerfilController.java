@@ -17,13 +17,11 @@ public class PerfilController extends AbstractController<Perfil> {
 	// TODO Auto-generated constructor stub
     }
 
-   
-
     @Override
     public Perfil getSelected() {
 	if (getCurrent() == null) {
 	    setCurrent(new Perfil());
-	    
+
 	    setSelectedItemIndex(-1);
 	}
 	return getCurrent();
@@ -32,7 +30,7 @@ public class PerfilController extends AbstractController<Perfil> {
     @Override
     public Perfil prepareCreate() {
 	setCurrent(new Perfil());
-	
+
 	setSelectedItemIndex(-1);
 	return getCurrent();
     }

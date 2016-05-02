@@ -38,7 +38,7 @@ public class SubtableCellRenderer extends DefaultTableCellRenderer {
 	    }
 
 	    setPreferredSize(embedded.getPreferredSize());
-	    
+
 	    return embedded;
 	} else {
 	    return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
@@ -48,8 +48,7 @@ public class SubtableCellRenderer extends DefaultTableCellRenderer {
     public static void main(String[] args) {
 	JFrame f = new JFrame();
 	JScrollPane sp = new JScrollPane();
-	JTable t = new JTable(new GenericTableModel<BaseTexto>(
-		ControllerFactory.getBaseTextoController().getItems()));
+	JTable t = new JTable(new GenericTableModel<BaseTexto>(ControllerFactory.getBaseTextoController().getItems()));
 	t.setDefaultRenderer(Object.class, new SubtableCellRenderer());
 	sp.setViewportView(t);
 	f.setContentPane(sp);

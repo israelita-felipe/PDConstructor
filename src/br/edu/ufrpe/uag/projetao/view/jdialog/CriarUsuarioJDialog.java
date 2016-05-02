@@ -11,14 +11,12 @@ import br.edu.ufrpe.uag.projetao.view.listeners.CriarUsuarioActionListener;
  */
 public class CriarUsuarioJDialog extends CriarEditarUsuarioJDialog {
 
- 
     public CriarUsuarioJDialog() {
 	super();
 	addListeners();
     }
 
-    
-    private void addListeners(){
+    private void addListeners() {
 	getSalvarButton().addActionListener(new CriarUsuarioActionListener(this));
     }
 }

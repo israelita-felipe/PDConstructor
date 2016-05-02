@@ -14,7 +14,7 @@ public class FacesContextUtil {
     // METODOS
     public static void setRequestSession(Session session) {
 	FacesContextUtil.session = session;
-    }        
+    }
 
     public static Session getRequestSession() {
 	if (FacesContextUtil.session == null) {
@@ -35,7 +35,7 @@ public class FacesContextUtil {
 	    if (currentSession.getTransaction().isActive()) {
 		currentSession.getTransaction().rollback();
 	    }
-	}finally {
+	} finally {
 	    currentSession.close();
 	    setRequestSession(null);
 	}

@@ -35,7 +35,7 @@ public class DetachedCriteriaFactory {
 		    .add(Restrictions.eq("usuarioByEscravo.id", liberacao.getUsuarioByEscravo().getId()))
 		    .forClass(AlocacaoTexto.class)
 		    .add(Restrictions.eq("baseTexto.id", liberacao.getBaseTexto().getId()));
-	}	
+	}
 	return alocacoesTextoPorLiberacao;
     }
 

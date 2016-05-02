@@ -6,8 +6,6 @@ package br.edu.ufrpe.uag.projetao.view.listeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
-import br.edu.ufrpe.uag.projetao.control.hibernate.FacesContextUtil;
 import br.edu.ufrpe.uag.projetao.view.jdialog.CriarUsuarioJDialog;
 
 /**
@@ -30,7 +28,7 @@ public class NovoUsuarioActionListener implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-	// TODO Auto-generated method stub		
+	// TODO Auto-generated method stub
 	new CriarUsuarioJDialog().setVisible(true);
     }
 

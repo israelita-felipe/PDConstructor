@@ -2,15 +2,14 @@ package br.edu.ufrpe.uag.projetao.view.jdialog;
 
 import java.awt.BorderLayout;
 import java.awt.Frame;
+import java.awt.GridLayout;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JToolBar;
 import javax.swing.border.EmptyBorder;
 
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceWindow;
@@ -25,11 +24,12 @@ public class ClassificarBaseJDialog extends JDialog implements InterfaceWindow {
     private JPanel panel;
     private JComboBox comboBox;
     private JPanel panel_1;
+    private JPanel separator;
 
     /**
      * Create the dialog.
      */
-    public ClassificarBaseJDialog(Frame owner,String title, boolean modal) {
+    public ClassificarBaseJDialog(Frame owner, String title, boolean modal) {
 	super(owner, title, modal);
 	init();
 	addListeners();
@@ -55,13 +55,17 @@ public class ClassificarBaseJDialog extends JDialog implements InterfaceWindow {
 	    panel.setLayout(new BorderLayout(0, 0));
 	    panel.add(comboBox);
 	    panel.add(lblClasse, BorderLayout.NORTH);
+
+	    separator = new JPanel();
+	    panel.add(separator, BorderLayout.SOUTH);
 	}
 
 	panel_1 = new JPanel();
 	contentPanel.add(panel_1, BorderLayout.CENTER);
 	panel_1.setLayout(new BorderLayout(0, 0));
 	{
-	    JPanel buttonPane = new JPanel();
+	    JToolBar buttonPane = new JToolBar();
+	    buttonPane.setFloatable(false);
 	    getContentPane().add(buttonPane, BorderLayout.SOUTH);
 	    {
 		sairButton = new JButton("Sair");
@@ -74,20 +78,10 @@ public class ClassificarBaseJDialog extends JDialog implements InterfaceWindow {
 	    }
 
 	    btnAnterior = new JButton("Anterior");
-	    GroupLayout gl_buttonPane = new GroupLayout(buttonPane);
-	    gl_buttonPane.setHorizontalGroup(gl_buttonPane.createParallelGroup(Alignment.LEADING)
-		    .addGroup(gl_buttonPane.createSequentialGroup().addContainerGap().addComponent(sairButton)
-			    .addGap(430).addComponent(btnAnterior).addPreferredGap(ComponentPlacement.RELATED)
-			    .addComponent(proximoButton).addContainerGap()));
-	    gl_buttonPane
-		    .setVerticalGroup(gl_buttonPane.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
-			    gl_buttonPane.createSequentialGroup()
-				    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-				    .addGroup(gl_buttonPane.createParallelGroup(Alignment.BASELINE)
-					    .addComponent(sairButton).addComponent(proximoButton)
-					    .addComponent(btnAnterior))
-				    .addContainerGap()));
-	    buttonPane.setLayout(gl_buttonPane);
+	    buttonPane.setLayout(new GridLayout(0, 3, 0, 0));
+	    buttonPane.add(sairButton);
+	    buttonPane.add(btnAnterior);
+	    buttonPane.add(proximoButton);
 	}
     }
 

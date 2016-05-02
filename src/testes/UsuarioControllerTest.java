@@ -39,13 +39,13 @@ public class UsuarioControllerTest {
 
 	// criando usuários de teste
 	for (int i = 0; i < 50; i++) {
-	    
+
 	    uc.prepareCreate();
 	    uc.getSelected().setEmail(i + "@mail.com");
 	    uc.getSelected().setNome("Nome(" + i + ")");
 	    uc.getSelected().setPerfil(pc.getItemsAvailableSelectOne().get(0));
-	    uc.getSelected().setSenha("senha" + i);	    
-	    
+	    uc.getSelected().setSenha("senha" + i);
+
 	    us = uc.create();
 	    toRemove.add(us);
 	}
@@ -77,7 +77,7 @@ public class UsuarioControllerTest {
 	uc.getSelected().setNome("Nome(" + i + ")");
 	uc.getSelected().setPerfil(pc.getItemsAvailableSelectOne().get(0));
 	uc.getSelected().setSenha("senha" + i);
-		
+
 	us = uc.create();
 	toRemove.add(us);
 	FacesContextUtil.end();
@@ -103,5 +103,5 @@ public class UsuarioControllerTest {
 	Usuario current = uc.prepareList().get(0);
 	FacesContextUtil.end();
 	assertNotEquals(us, current);
-    }    
+    }
 }

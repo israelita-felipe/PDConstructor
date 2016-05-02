@@ -19,11 +19,11 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 @Table(name = "classificacao_texto", schema = "public")
 public class ClassificacaoTexto implements java.io.Serializable, InterfaceEntity {
 
-    @Coluna(colunaNome="Alocação de Texto",colunaPosicao=0)
+    @Coluna(colunaNome = "Alocação de Texto", colunaPosicao = 0)
     private AlocacaoTexto alocacaoTexto;
-    @Coluna(colunaNome="Classe",colunaPosicao=1)
+    @Coluna(colunaNome = "Classe", colunaPosicao = 1)
     private EscolhaClasseTexto escolhaClasseTexto;
-    @Coluna(colunaNome="Escravo",colunaPosicao=2)
+    @Coluna(colunaNome = "Escravo", colunaPosicao = 2)
     private Usuario usuario;
 
     public ClassificacaoTexto() {

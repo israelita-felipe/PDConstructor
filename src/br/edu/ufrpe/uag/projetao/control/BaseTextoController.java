@@ -3,12 +3,6 @@
  */
 package br.edu.ufrpe.uag.projetao.control;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
-
-import javax.swing.JOptionPane;
-
 import br.edu.ufrpe.uag.projetao.abstracts.AbstractController;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
 
@@ -39,6 +33,6 @@ public class BaseTextoController extends AbstractController<BaseTexto> {
 
 	setSelectedItemIndex(-1);
 	return getCurrent();
-    }    
+    }
 
 }

@@ -20,11 +20,11 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 @Table(name = "classsificacao_imagem_classe", schema = "public")
 public class ClasssificacaoImagemClasse implements java.io.Serializable, InterfaceEntity {
 
-    @Coluna(colunaNome="Alocação de Imagem",colunaPosicao=0)
+    @Coluna(colunaNome = "Alocação de Imagem", colunaPosicao = 0)
     private AlocacaoImagemClasse alocacaoImagemClasse;
-    @Coluna(colunaNome="Classe",colunaPosicao=1)
+    @Coluna(colunaNome = "Classe", colunaPosicao = 1)
     private EscolhaImagemClasse escolhaImagemClasse;
-    @Coluna(colunaNome="Escravo",colunaPosicao=2)
+    @Coluna(colunaNome = "Escravo", colunaPosicao = 2)
     private Usuario usuario;
 
     public ClasssificacaoImagemClasse() {

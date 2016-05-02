@@ -10,7 +10,6 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
@@ -114,7 +113,8 @@ public class LiberarBaseJDialog extends JDialog implements InterfaceWindow {
     @Override
     public void preencheCampos() {
 	// TODO Auto-generated method stub
-	list = new GenericTable<Usuario>(ControllerFactory.getUsuarioController().getItemsFromCriteria(DetachedCriteriaFactory.getTodosEscravos()));
+	list = new GenericTable<Usuario>(ControllerFactory.getUsuarioController()
+		.getItemsFromCriteria(DetachedCriteriaFactory.getTodosEscravos()));
 	scrollPane.setViewportView(list);
     }
 
@@ -137,7 +137,8 @@ public class LiberarBaseJDialog extends JDialog implements InterfaceWindow {
     public JButton getCancelarButton() {
 	return cancelButton;
     }
-	public JScrollPane getScrollPane() {
-		return scrollPane;
-	}
+
+    public JScrollPane getScrollPane() {
+	return scrollPane;
+    }
 }

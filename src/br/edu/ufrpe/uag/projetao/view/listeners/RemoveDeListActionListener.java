@@ -15,12 +15,12 @@ import javax.swing.JList;
  */
 public class RemoveDeListActionListener implements ActionListener {
 
-    private JList list;
+    private JList<?> list;
 
     /**
      * 
      */
-    public RemoveDeListActionListener(JList list) {
+    public RemoveDeListActionListener(JList<?> list) {
 	// TODO Auto-generated constructor stub
 	this.list = list;
     }
@@ -35,10 +35,10 @@ public class RemoveDeListActionListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
 	if (list.getSelectedIndex() != -1) {
-	    DefaultListModel model = (DefaultListModel) list.getModel();
-	    model.removeElementAt(list.getSelectedIndex());	    
+	    DefaultListModel<?> model = (DefaultListModel<?>) list.getModel();
+	    model.removeElementAt(list.getSelectedIndex());
 	    model = null;
-	    list.revalidate();	    
+	    list.revalidate();
 	}
     }
 

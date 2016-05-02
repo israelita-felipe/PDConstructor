@@ -21,11 +21,11 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 @Table(name = "liberacao_base_texto", schema = "public")
 public class LiberacaoBaseTexto implements java.io.Serializable, InterfaceEntity {
 
-    @Coluna(colunaPosicao = 0,colunaNome="Base nº")
-    private BaseTexto baseTexto;    
-    private Usuario usuarioByEscravo;    
-    @Coluna(colunaPosicao = 1,colunaNome="Supervisor")
-    private Usuario usuarioBySupervisor;    
+    @Coluna(colunaPosicao = 0, colunaNome = "Base nº")
+    private BaseTexto baseTexto;
+    private Usuario usuarioByEscravo;
+    @Coluna(colunaPosicao = 1, colunaNome = "Supervisor")
+    private Usuario usuarioBySupervisor;
     private char status;
 
     public LiberacaoBaseTexto() {
@@ -62,7 +62,7 @@ public class LiberacaoBaseTexto implements java.io.Serializable, InterfaceEntity
 
 	this.usuarioByEscravo = usuarioByEscravo;
     }
-    
+
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "supervisor", nullable = false, insertable = false, updatable = false)

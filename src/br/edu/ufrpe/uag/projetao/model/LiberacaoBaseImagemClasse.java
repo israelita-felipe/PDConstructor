@@ -19,28 +19,26 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 @Tabela
 @Entity
 @Table(name = "liberacao_base_imagem_classe", schema = "public")
-public class LiberacaoBaseImagemClasse implements java.io.Serializable,InterfaceEntity {
+public class LiberacaoBaseImagemClasse implements java.io.Serializable, InterfaceEntity {
 
-    @Coluna(colunaNome="Base de Imagem",colunaPosicao=0)
+    @Coluna(colunaNome = "Base de Imagem", colunaPosicao = 0)
     private BaseImagemClasse baseImagemClasse;
-    @Coluna(colunaNome="Escravo",colunaPosicao=1)
+    @Coluna(colunaNome = "Escravo", colunaPosicao = 1)
     private Usuario usuarioByEscravo;
-    @Coluna(colunaNome="Supervisor",colunaPosicao=2)
+    @Coluna(colunaNome = "Supervisor", colunaPosicao = 2)
     private Usuario usuarioBySupervisor;
     private char status;
 
     public LiberacaoBaseImagemClasse() {
     }
 
-    public LiberacaoBaseImagemClasse(BaseImagemClasse baseImagemClasse,
-	    Usuario usuarioByEscravo, Usuario usuarioBySupervisor, char status) {
+    public LiberacaoBaseImagemClasse(BaseImagemClasse baseImagemClasse, Usuario usuarioByEscravo,
+	    Usuario usuarioBySupervisor, char status) {
 	this.baseImagemClasse = baseImagemClasse;
 	this.usuarioByEscravo = usuarioByEscravo;
 	this.usuarioBySupervisor = usuarioBySupervisor;
 	this.status = status;
     }
-
-
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
@@ -83,8 +81,6 @@ public class LiberacaoBaseImagemClasse implements java.io.Serializable,Interface
     public void setStatus(char status) {
 	this.status = status;
     }
-
-    
 
     @Override
     public int hashCode() {

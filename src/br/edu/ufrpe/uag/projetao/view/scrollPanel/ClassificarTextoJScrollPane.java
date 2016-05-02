@@ -3,11 +3,12 @@
  */
 package br.edu.ufrpe.uag.projetao.view.scrollPanel;
 
-import javax.swing.JScrollPane;
-import javax.swing.JEditorPane;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
+
+import javax.swing.JEditorPane;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 
 /**

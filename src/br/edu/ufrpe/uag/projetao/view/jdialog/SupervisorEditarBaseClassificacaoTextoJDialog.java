@@ -22,11 +22,11 @@ public class SupervisorEditarBaseClassificacaoTextoJDialog extends SupervisorCri
      */
     public SupervisorEditarBaseClassificacaoTextoJDialog(InterfaceController<BaseTexto> baseTextoController) {
 	// TODO Auto-generated constructor stub
-	super(null,"Editar Base de Texto",true);
+	super(null, "Editar Base de Texto", true);
 	this.baseTextoController = baseTextoController;
 	addListeners();
 	preencheCampos();
-    }       
+    }
 
     private void addListeners() {
 	getCriarButton().addActionListener(new AtualizarBaseTextoActionListener(this, baseTextoController));

@@ -18,19 +18,14 @@ public class FileManager {
 
     private static Scanner leitor;
     private static FileWriter escritor;
-    
 
     private static Scanner getLeitor(String file) throws FileNotFoundException {
-	if (leitor == null) {
-	    leitor = new Scanner(new FileInputStream(new File(file)));
-	}
+	leitor = new Scanner(new FileInputStream(new File(file)));
 	return leitor;
     }
 
     private static FileWriter getEscritor(String file) throws IOException {
-	if (escritor == null) {
-	    escritor = new FileWriter(file);
-	}
+	escritor = new FileWriter(file);
 	return escritor;
     }
 
@@ -42,8 +37,8 @@ public class FileManager {
 	}
 	return retorno;
     }
-    
-    public static void escreverArquivo(String arquivo, String texto) throws IOException{
+
+    public static void escreverArquivo(String arquivo, String texto) throws IOException {
 	getEscritor(arquivo).write(texto);
     }
 

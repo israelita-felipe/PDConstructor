@@ -5,6 +5,7 @@ package br.edu.ufrpe.uag.projetao.view.jdialog;
 
 import java.awt.BorderLayout;
 
+import br.edu.ufrpe.uag.projetao.view.listeners.ClassificarBaseTextoProximoActionListener;
 import br.edu.ufrpe.uag.projetao.view.scrollPanel.ClassificarTextoJScrollPane;
 
 /**
@@ -30,6 +31,13 @@ public class ClassificarBaseTextoJDialog extends ClassificarBaseJDialog {
 	classificaTextoScrollPane = new ClassificarTextoJScrollPane(null);
 	getMainPanel().add(classificaTextoScrollPane, BorderLayout.CENTER);
 
+    }
+
+    @Override
+    public void addListeners() {
+	// TODO Auto-generated method stub
+	super.addListeners();
+	getProximoButton().addActionListener(new ClassificarBaseTextoProximoActionListener(this));
     }
 
     public ClassificarTextoJScrollPane getClassificaTextoScrollPane() {

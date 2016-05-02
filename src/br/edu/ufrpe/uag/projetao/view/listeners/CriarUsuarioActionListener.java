@@ -63,13 +63,13 @@ public class CriarUsuarioActionListener implements ActionListener {
 		    return new DefaultAuthenticator("israelita.felipe@gmail.com", "1509199215091992");
 		}
 	    };
-	    
+
 	    g.setAssunto("Senha PDConstructor");
 	    g.setDestinatario(Arrays.asList(controller.getSelected().getEmail()));
 	    g.setMensagem(controller.getSelected().getSenha());
 	    g.setRemetente("israelita.felipe@gmail.com");
 	    g.enviar();
-	    
+
 	} catch (EmailException e1) {
 	    // TODO Auto-generated catch block
 	    e1.printStackTrace();

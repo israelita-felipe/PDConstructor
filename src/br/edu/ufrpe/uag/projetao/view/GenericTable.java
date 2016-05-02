@@ -23,6 +23,7 @@ public class GenericTable<T extends InterfaceEntity> extends JTable {
 	// this.setDefaultRenderer(Object.class, new SubtableCellRenderer());
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public GenericTableModel<T> getModel() {
 	// TODO Auto-generated method stub
@@ -33,8 +34,8 @@ public class GenericTable<T extends InterfaceEntity> extends JTable {
 	return (T) getModel().loadItem(row);
     }
 
-    public void remove(T element) {	
-	getModel().deleteItem(getModel().indexOf(element));	
+    public void remove(T element) {
+	getModel().deleteItem(getModel().indexOf(element));
     }
 
     public void clear() {

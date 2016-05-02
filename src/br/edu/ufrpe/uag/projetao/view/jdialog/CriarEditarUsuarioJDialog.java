@@ -46,7 +46,7 @@ public class CriarEditarUsuarioJDialog extends JDialog {
 
     }
 
-    private void addListeners() {	
+    private void addListeners() {
 	getCancelarButton().addActionListener(new FecharActionListener(this));
 
     }
@@ -73,7 +73,7 @@ public class CriarEditarUsuarioJDialog extends JDialog {
 	JLabel lblPerfil = new JLabel("Perfil:");
 
 	comboBox = new JComboBox();
-	
+
 	GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 	gl_contentPanel
 		.setHorizontalGroup(

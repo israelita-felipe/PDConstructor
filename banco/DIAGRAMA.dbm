@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.1" last-position="0,90" last-zoom="1"
+<dbmodel pgmodeler-ver="0.8.1" last-position="0,0" last-zoom="1"
 	 default-schema="public" default-owner="postgres">
 <database name="PDCONSTRUCTOR" template="pdconstructor">
 </database>
@@ -291,25 +291,25 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </constraint>
 
 <constraint name="ESCOLHA_TEXTO_ALOCACAO_TEXTO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
-	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;ALOCACAO_TEXTO&quot;" table="public.&quot;ESCOLHA_CLASSE_TEXTO&quot;">
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.&quot;ALOCACAO_TEXTO&quot;" table="public.&quot;ESCOLHA_CLASSE_TEXTO&quot;">
 	<columns names="ALOCACAO_TEXTO" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="CLASSIFICACAO_TEXTO_ESCRAVO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
-	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;CLASSIFICACAO_TEXTO&quot;">
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;CLASSIFICACAO_TEXTO&quot;">
 	<columns names="ESCRAVO" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="CLASSIFICACAO_TEXTO_ALOCACAO_TEXTO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
-	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;ALOCACAO_TEXTO&quot;" table="public.&quot;CLASSIFICACAO_TEXTO&quot;">
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.&quot;ALOCACAO_TEXTO&quot;" table="public.&quot;CLASSIFICACAO_TEXTO&quot;">
 	<columns names="ALOCACAO_TEXTO" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="CLASSIFICACAO_TEXTO_ESCOLHA_TEXTO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
-	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;ESCOLHA_CLASSE_TEXTO&quot;" table="public.&quot;CLASSIFICACAO_TEXTO&quot;">
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.&quot;ESCOLHA_CLASSE_TEXTO&quot;" table="public.&quot;CLASSIFICACAO_TEXTO&quot;">
 	<columns names="ESCOLHA_TEXTO" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>
@@ -327,13 +327,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </constraint>
 
 <constraint name="LIBERACAO_BASE_TEXTO_BASE_TEXTO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
-	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;BASE_TEXTO&quot;" table="public.&quot;LIBERACAO_BASE_TEXTO&quot;">
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.&quot;BASE_TEXTO&quot;" table="public.&quot;LIBERACAO_BASE_TEXTO&quot;">
 	<columns names="BASE_TEXTO" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="BASE_IMAGEM_CLASSE_SUPERVISOR_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
-	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;BASE_IMAGEM_CLASSE&quot;">
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;BASE_IMAGEM_CLASSE&quot;">
 	<columns names="SUPERVISOR" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>
@@ -363,7 +363,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </constraint>
 
 <constraint name="ESCOLHA_IMAGEM_CLASSE_ALOCACAO_IMAGEM_CLASSE_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
-	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;ALOCACAO_IMAGEM_CLASSE&quot;" table="public.&quot;ESCOLHA_IMAGEM_CLASSE&quot;">
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.&quot;ALOCACAO_IMAGEM_CLASSE&quot;" table="public.&quot;ESCOLHA_IMAGEM_CLASSE&quot;">
 	<columns names="ALOCACAO_IMAGEM_CLASSE" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>
@@ -375,31 +375,31 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </constraint>
 
 <constraint name="CLASSIFICACAO_IMAGEM_CLASSE_ALOCACAO_IMAGEM_CLASSE_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
-	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;ALOCACAO_IMAGEM_CLASSE&quot;" table="public.&quot;CLASSSIFICACAO_IMAGEM_CLASSE&quot;">
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.&quot;ALOCACAO_IMAGEM_CLASSE&quot;" table="public.&quot;CLASSSIFICACAO_IMAGEM_CLASSE&quot;">
 	<columns names="ALOCACAO_IMAGEM_CLASSE" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="CLASSIFICACAO_IMAGEM_CLASSE_ESCOLHA_IMAGEM_CLASSE_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
-	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;ESCOLHA_IMAGEM_CLASSE&quot;" table="public.&quot;CLASSSIFICACAO_IMAGEM_CLASSE&quot;">
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.&quot;ESCOLHA_IMAGEM_CLASSE&quot;" table="public.&quot;CLASSSIFICACAO_IMAGEM_CLASSE&quot;">
 	<columns names="ESCOLHA_IMAGEM_CLASSE" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="LIBERACAO_BASE_IMAGEM_CLASSE_BASE_IMAGEM_CLASSE" type="fk-constr" comparison-type="MATCH SIMPLE"
-	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;BASE_IMAGEM_CLASSE&quot;" table="public.&quot;LIBERACAO_BASE_IMAGEM_CLASSE&quot;">
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.&quot;BASE_IMAGEM_CLASSE&quot;" table="public.&quot;LIBERACAO_BASE_IMAGEM_CLASSE&quot;">
 	<columns names="BASE_IMAGEM" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="LIBERACAO_BASE_IMAGEM_CLASSE_SUPERVISOR_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
-	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;LIBERACAO_BASE_IMAGEM_CLASSE&quot;">
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;LIBERACAO_BASE_IMAGEM_CLASSE&quot;">
 	<columns names="SUPERVISOR" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="LIBERACAO_BASE_IMAGEM_CLASSE_ESCRAVO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
-	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;LIBERACAO_BASE_IMAGEM_CLASSE&quot;">
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;LIBERACAO_BASE_IMAGEM_CLASSE&quot;">
 	<columns names="ESCRAVO" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>

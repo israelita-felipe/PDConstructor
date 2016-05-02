@@ -13,7 +13,8 @@ import javax.swing.filechooser.FileFilter;
  */
 public class TextoFileFilter extends FileFilter {
 
-    private String extensions[] = {"txt"};
+    private String extensions[] = { "txt" };
+
     /**
      * 
      */
@@ -21,27 +22,30 @@ public class TextoFileFilter extends FileFilter {
 	// TODO Auto-generated constructor stub
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.swing.filechooser.FileFilter#accept(java.io.File)
      */
     @Override
-    public boolean accept(File f) {	
+    public boolean accept(File f) {
 	if (f.isDirectory()) {
-	      return true;
-	    } else {
-	      String path = f.getAbsolutePath().toLowerCase();
-	      for (int i = 0, n = extensions.length; i < n; i++) {
-	        String extension = extensions[i];
-	        if ((path.endsWith(extension) && (path.charAt(path.length() 
-	                  - extension.length() - 1)) == '.')) {
-	          return true;
-	        }
-	      }
+	    return true;
+	} else {
+	    String path = f.getAbsolutePath().toLowerCase();
+	    for (int i = 0, n = extensions.length; i < n; i++) {
+		String extension = extensions[i];
+		if ((path.endsWith(extension) && (path.charAt(path.length() - extension.length() - 1)) == '.')) {
+		    return true;
+		}
 	    }
-	    return false;
+	}
+	return false;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.swing.filechooser.FileFilter#getDescription()
      */
     @Override

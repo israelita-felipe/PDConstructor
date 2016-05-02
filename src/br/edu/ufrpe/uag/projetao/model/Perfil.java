@@ -21,11 +21,10 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
  */
 @Tabela
 @Entity
-@Table(name = "perfil", schema = "public"
-)
+@Table(name = "perfil", schema = "public")
 public class Perfil implements java.io.Serializable, InterfaceEntity {
 
-    @Coluna(colunaNome="Perfil")
+    @Coluna(colunaNome = "Perfil")
     private String nome;
     private String descricao;
     private Set<Usuario> usuarios = new HashSet<>(0);
@@ -34,70 +33,70 @@ public class Perfil implements java.io.Serializable, InterfaceEntity {
     }
 
     public Perfil(String nome, String descricao) {
-        this.nome = nome;
-        this.descricao = descricao;
+	this.nome = nome;
+	this.descricao = descricao;
     }
 
     public Perfil(String nome, String descricao, Set<Usuario> usuarios) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.usuarios = usuarios;
+	this.nome = nome;
+	this.descricao = descricao;
+	this.usuarios = usuarios;
     }
 
     @Id
 
     @Column(name = "nome", unique = true, nullable = false, length = 100)
     public String getNome() {
-        return this.nome;
+	return this.nome;
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+	this.nome = nome;
     }
 
     @Column(name = "descricao", nullable = false)
     public String getDescricao() {
-        return this.descricao;
+	return this.descricao;
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao;
+	this.descricao = descricao;
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "perfil")
     public Set<Usuario> getUsuarios() {
-        return this.usuarios;
+	return this.usuarios;
     }
 
     public void setUsuarios(Set<Usuario> usuarios) {
-        this.usuarios = usuarios;
+	this.usuarios = usuarios;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + Objects.hashCode(this.nome);
-        return hash;
+	int hash = 5;
+	hash = 37 * hash + Objects.hashCode(this.nome);
+	return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Perfil other = (Perfil) obj;
-        return Objects.equals(this.nome, other.nome);
+	if (this == obj) {
+	    return true;
+	}
+	if (obj == null) {
+	    return false;
+	}
+	if (getClass() != obj.getClass()) {
+	    return false;
+	}
+	final Perfil other = (Perfil) obj;
+	return Objects.equals(this.nome, other.nome);
     }
 
     @Override
     public String toString() {
-        return nome;
+	return nome;
     }
 
 }

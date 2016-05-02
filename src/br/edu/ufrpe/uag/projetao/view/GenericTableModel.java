@@ -35,6 +35,7 @@ public class GenericTableModel<T extends InterfaceEntity> extends AbstractTableM
     private String fieldName;
 
     public GenericTableModel(List<T> lista) {
+	super();
 	if (lista != null) {
 	    this.list = lista;
 	    if (!list.isEmpty()) {
@@ -43,32 +44,26 @@ public class GenericTableModel<T extends InterfaceEntity> extends AbstractTableM
 	} else {
 	    lista = new LinkedList<>();
 	}
-    }    
-
+    }
 
     public void clear() {
-	this.list.clear();
+	while (!list.isEmpty()) {
+	    deleteItem(0);
+	}
     }
 
     public void addAll(Collection<T> collection) {
-	for(T element:collection){
-	    addItem();
-	    this.list.add(element);
-	}	
-	if (clazz == null) {
-	    this.clazz = (Class<T>) this.list.get(0).getClass();
+	for (T element : collection) {
+	    addElement(element);
 	}
     }
 
     public void addElement(T element) {
-	if (this.list == null) {
-	    this.list = new LinkedList<T>();
-	}
 	if (clazz == null) {
 	    this.clazz = (Class<T>) element.getClass();
 	}
-	this.list.add(element);
 	addItem();
+	this.list.add(element);
     }
 
     /**
@@ -221,13 +216,13 @@ public class GenericTableModel<T extends InterfaceEntity> extends AbstractTableM
 	fireTableRowsInserted(line, line);
     }
 
-    public Object loadItem(int row) {
+    public T loadItem(int row) {
 	return list.get(row);
     }
 
     public void deleteItem(int row) {
-	fireTableRowsDeleted(row, row);
 	list.remove(row);
+	fireTableRowsDeleted(row, row);
     }
 
     public String getName() {

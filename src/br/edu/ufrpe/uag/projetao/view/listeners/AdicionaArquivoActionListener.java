@@ -10,7 +10,6 @@ import java.io.File;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 
 import br.edu.ufrpe.uag.projetao.view.filter.TextoFileFilter;
 

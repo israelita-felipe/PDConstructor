@@ -23,5 +23,5 @@ public class LiberarBaseTextoJDialog extends LiberarBaseJDialog {
 	// TODO Auto-generated method stub
 	super.addListeners();
 	getSalvarButton().addActionListener(new CriarLiberacaoBaseTextoActionListener(this));
-    }    
+    }
 }

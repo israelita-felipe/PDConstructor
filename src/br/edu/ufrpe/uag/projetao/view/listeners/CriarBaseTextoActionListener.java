@@ -41,7 +41,6 @@ public class CriarBaseTextoActionListener implements ActionListener {
      * @see
      * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub

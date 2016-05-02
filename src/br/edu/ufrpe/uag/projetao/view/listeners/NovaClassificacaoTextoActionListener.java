@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
+import br.edu.ufrpe.uag.projetao.control.UsuarioController;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto;
@@ -71,6 +72,11 @@ public class NovaClassificacaoTextoActionListener implements ActionListener {
 		    "Classificação de Bases", JOptionPane.INFORMATION_MESSAGE);
 
 	    classificacaoBaseTextoDialog.setVisible(true);
+
+	    // preenchendo atualizações
+	    tabela.clear();
+	    tabela.addAll(ControllerFactory.getLiberacaoBaseTextoController().getItemsFromCriteria(
+		    DetachedCriteriaFactory.getLiberacoesBaseTextoDoEscravo(UsuarioController.currentEscravo)));
 
 	}
     }
