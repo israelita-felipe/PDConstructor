@@ -111,6 +111,20 @@ public interface InterfaceController<T extends InterfaceEntity> {
     void recreatePagination();
 
     /**
+     * Seleciona o elemento posterior e seleciona como o idem atual
+     * 
+     * @return índice do elemento na lista de itens
+     */
+    int next() throws IllegalArgumentException;
+
+    /**
+     * Seleciona o elemento anterior e seleciona como o idem atual
+     * 
+     * @return índice do elemento na lista de itens
+     */
+    int previous() throws IllegalArgumentException;
+
+    /**
      *
      * @return lista todos os elementos selecionáveis do banco de dados
      */

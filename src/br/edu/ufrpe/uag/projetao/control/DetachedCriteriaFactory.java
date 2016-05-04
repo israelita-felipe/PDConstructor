@@ -9,10 +9,10 @@ import org.hibernate.criterion.Restrictions;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
+import br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto;
 import br.edu.ufrpe.uag.projetao.model.Usuario;
-import br.edu.ufrpe.uag.projetao.model.enumerate.StatusDeLiberacao;
 
 /**
  * @author israel
@@ -22,28 +22,37 @@ public class DetachedCriteriaFactory {
 
     private static DetachedCriteria todosEscravos;
     private static DetachedCriteria todosSupervisores;
-    private static DetachedCriteria basesTextoDoUsuario;
-    private static DetachedCriteria basesImagemClasseDoUsuario;
-    private static DetachedCriteria liberacaoBasesTextoDoEscravo;
-    private static DetachedCriteria liberacaoBasesTextoDoSupervisor;
-    private static DetachedCriteria alocacoesTextoPorLiberacao;
-    private static DetachedCriteria classesTextoPorAlocacao;
+
+    /**
+     * Faz uma busca de toda as classificações de texto feitas por um usuário e
+     * pertencentes a uma alocação
+     * 
+     * @param escravo
+     * @param alocacao
+     * @return
+     */
+    public static DetachedCriteria getClassificacaoTextoPorEscravoEAlocacao(Usuario escravo, AlocacaoTexto alocacao) {
+	DetachedCriteria classificacaoTextoPorEscravoEAlocacao = DetachedCriteria.forClass(ClassificacaoTexto.class)
+		.add(Restrictions.eq("usuario.id", escravo.getId()))
+		.add(Restrictions.eq("alocacaoTexto.id", alocacao.getId()));
+
+	return classificacaoTextoPorEscravoEAlocacao;
+    }
 
     public static DetachedCriteria getAlocacoesTextoPorLiberacao(LiberacaoBaseTexto liberacao) {
-	if (alocacoesTextoPorLiberacao == null) {
-	    alocacoesTextoPorLiberacao = DetachedCriteria.forClass(LiberacaoBaseTexto.class)
-		    .add(Restrictions.eq("usuarioByEscravo.id", liberacao.getUsuarioByEscravo().getId()))
-		    .forClass(AlocacaoTexto.class)
-		    .add(Restrictions.eq("baseTexto.id", liberacao.getBaseTexto().getId()));
-	}
+
+	DetachedCriteria alocacoesTextoPorLiberacao = DetachedCriteria.forClass(LiberacaoBaseTexto.class)
+		.add(Restrictions.eq("usuarioByEscravo.id", liberacao.getUsuarioByEscravo().getId()))
+		.forClass(AlocacaoTexto.class).add(Restrictions.eq("baseTexto.id", liberacao.getBaseTexto().getId()));
+
 	return alocacoesTextoPorLiberacao;
     }
 
     public static DetachedCriteria getClassesTextoPorAlocacao(AlocacaoTexto alocacao) {
-	if (classesTextoPorAlocacao == null) {
-	    classesTextoPorAlocacao = DetachedCriteria.forClass(EscolhaClasseTexto.class)
-		    .add(Restrictions.eq("alocacaoTexto.id", alocacao.getId()));
-	}
+
+	DetachedCriteria classesTextoPorAlocacao = DetachedCriteria.forClass(EscolhaClasseTexto.class)
+		.add(Restrictions.eq("alocacaoTexto.id", alocacao.getId()));
+
 	return classesTextoPorAlocacao;
     }
 
@@ -62,34 +71,34 @@ public class DetachedCriteriaFactory {
     }
 
     public static DetachedCriteria getBasesImagemClasseDoUsuario(Usuario usuario) {
-	if (basesImagemClasseDoUsuario == null) {
-	    basesImagemClasseDoUsuario = getDetachedCriteriaBase(BaseImagemClasse.class, usuario);
-	}
+
+	DetachedCriteria basesImagemClasseDoUsuario = getDetachedCriteriaBase(BaseImagemClasse.class, usuario);
+
 	return basesImagemClasseDoUsuario;
 
     }
 
     public static DetachedCriteria getBasesTextoDoUsuario(Usuario usuario) {
-	if (basesTextoDoUsuario == null) {
-	    basesTextoDoUsuario = getDetachedCriteriaBase(BaseTexto.class, usuario);
-	}
+
+	DetachedCriteria basesTextoDoUsuario = getDetachedCriteriaBase(BaseTexto.class, usuario);
+
 	return basesTextoDoUsuario;
 
     }
 
     public static DetachedCriteria getLiberacoesBaseTextoDoEscravo(Usuario usuario) {
-	if (liberacaoBasesTextoDoEscravo == null) {
-	    liberacaoBasesTextoDoEscravo = getDetachedCriteriaLiberacaoBasePorEscravo(LiberacaoBaseTexto.class,
-		    usuario);
-	}
+
+	DetachedCriteria liberacaoBasesTextoDoEscravo = getDetachedCriteriaLiberacaoBasePorEscravo(
+		LiberacaoBaseTexto.class, usuario);
+
 	return liberacaoBasesTextoDoEscravo;
     }
 
     public static DetachedCriteria getLiberacoesBaseTextoDoSupervisor(Usuario usuario) {
-	if (liberacaoBasesTextoDoSupervisor == null) {
-	    liberacaoBasesTextoDoSupervisor = getDetachedCriteriaLiberacaoBasePorSupervisor(LiberacaoBaseTexto.class,
-		    usuario);
-	}
+
+	DetachedCriteria liberacaoBasesTextoDoSupervisor = getDetachedCriteriaLiberacaoBasePorSupervisor(
+		LiberacaoBaseTexto.class, usuario);
+
 	return liberacaoBasesTextoDoSupervisor;
     }
 
@@ -107,8 +116,11 @@ public class DetachedCriteriaFactory {
     }
 
     private static DetachedCriteria getDetachedCriteriaLiberacaoBasePorEscravo(Class<?> classe, Usuario usuario) {
-	return DetachedCriteria.forClass(classe).add(Restrictions.eq("usuarioByEscravo.id", usuario.getId()))
-		.add(Restrictions.eq("status", StatusDeLiberacao.LIBERADO));
+	return DetachedCriteria.forClass(classe).add(Restrictions.eq("usuarioByEscravo.id",
+		usuario.getId()))/*
+				  * .add(Restrictions.eq("status",
+				  * StatusDeLiberacao.LIBERADO))
+				  */;
     }
 
     private static DetachedCriteria getDetachedCriteriaLiberacaoBasePorSupervisor(Class<?> classe, Usuario usuario) {

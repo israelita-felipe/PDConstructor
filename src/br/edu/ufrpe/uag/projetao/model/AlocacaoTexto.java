@@ -151,7 +151,7 @@ public class AlocacaoTexto implements java.io.Serializable, InterfaceEntity {
 
     @Override
     public String toString() {
-	return "AlocacaoTexto{" + "baseTexto=" + baseTexto + ", usuario=" + usuario + ", texto=" + texto + '}';
+	return "AlocacaoTexto{ id=" + id + ", baseTexto=" + baseTexto.getId() + ", usuario=" + usuario.getId() + '}';
     }
 
 }

@@ -6,15 +6,13 @@ package br.edu.ufrpe.uag.projetao.view.listeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.persistence.PersistenceException;
 import javax.swing.JOptionPane;
 
-import org.hibernate.NonUniqueObjectException;
 import org.hibernate.exception.ConstraintViolationException;
 
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.UsuarioController;
-import br.edu.ufrpe.uag.projetao.control.hibernate.FacesContextUtil;
+import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto;
@@ -48,13 +46,14 @@ public class CriarLiberacaoBaseTextoActionListener implements ActionListener {
 	// TODO Auto-generated method stub
 	if (janela.getUsuariosList().getSelectedRow() != -1) {
 	    try {
-		FacesContextUtil.begin();
+		TransactionManager.begin();
 
 		InterfaceController<LiberacaoBaseTexto> liberacaoController = ControllerFactory
 			.getLiberacaoBaseTextoController();
 
 		liberacaoController.prepareCreate();
 
+		// preenchendo os campos
 		liberacaoController.getSelected()
 			.setBaseTexto((BaseTexto) ControllerFactory.getBaseTextoController().getSelected());
 		liberacaoController.getSelected().setStatus(StatusDeLiberacao.LIBERADO);
@@ -63,13 +62,16 @@ public class CriarLiberacaoBaseTextoActionListener implements ActionListener {
 		liberacaoController.getSelected().setUsuarioBySupervisor(UsuarioController.currrentSupervisor);
 
 		liberacaoController.create();
-		FacesContextUtil.end();
+		TransactionManager.end();
 
+		// fechando
 		janela.dispose();
 		JOptionPane.showMessageDialog(null,
 			"Base liberada para " + liberacaoController.getSelected().getUsuarioByEscravo().getNome(),
 			"Liberação [" + liberacaoController.getSelected() + "]", JOptionPane.INFORMATION_MESSAGE);
 	    } catch (ConstraintViolationException ex) {
+		// violação de chave estrangeira, informando que a liberação já
+		// foi feita.
 		JOptionPane.showMessageDialog(null, "A base já foi liberada para este usuário");
 	    }
 	}

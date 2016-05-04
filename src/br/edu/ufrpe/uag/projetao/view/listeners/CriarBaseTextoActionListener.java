@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.UsuarioController;
-import br.edu.ufrpe.uag.projetao.control.hibernate.FacesContextUtil;
+import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.control.util.FileManager;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceCriaEAtualizaBase;
@@ -46,7 +46,7 @@ public class CriarBaseTextoActionListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
 
-	FacesContextUtil.begin();
+	TransactionManager.begin();
 
 	InterfaceController<BaseTexto> base = ControllerFactory.getBaseTextoController();
 	InterfaceController<EscolhaClasseTexto> escolhaClasseTexto = ControllerFactory
@@ -81,7 +81,7 @@ public class CriarBaseTextoActionListener implements ActionListener {
 		    escolhaClasseTexto.prepareCreate();
 		    escolhaClasseTexto.getSelected().setAlocacaoTexto(alocacaoTexto.getSelected());
 		    escolhaClasseTexto.getSelected().setDescricao(jdialog.getMediaComponent().getListaClasses()
-			    .getClassesList().getModel().getElementAt(j).toString());
+			    .getClassesList().getModel().getElementAt(j).toString());		    
 		    escolhaClasseTexto.create();
 		}
 
@@ -92,7 +92,7 @@ public class CriarBaseTextoActionListener implements ActionListener {
 	    }
 	}
 
-	FacesContextUtil.end();
+	TransactionManager.end();
 	jdialog.dispose();
 	JOptionPane.showMessageDialog(null, "Base " + base.getSelected().getId() + " criada com sucesso");
     }

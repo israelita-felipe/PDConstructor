@@ -4,6 +4,7 @@
 package br.edu.ufrpe.uag.projetao.view;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.util.Arrays;
 
 import javax.swing.BorderFactory;
@@ -11,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+
+import com.thoughtworks.xstream.io.binary.Token.Value;
 
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
@@ -27,19 +30,26 @@ public class SubtableCellRenderer extends DefaultTableCellRenderer {
 	    int row, int column) {
 
 	if (value instanceof InterfaceEntity) {
-	    final JTable embedded = new JTable(new GenericTableModel(Arrays.asList(value)));
+	    GenericTable<?> embedded = new GenericTable(Arrays.asList(value));
+	    JScrollPane scroll = new JScrollPane();
+	    scroll.setViewportView(embedded);
 
-	    embedded.setDefaultRenderer(Object.class, new SubtableCellRenderer());
 	    embedded.setBorder(BorderFactory.createEmptyBorder());
+	    scroll.setBorder(BorderFactory.createEmptyBorder());
 
 	    if (isSelected) {
 		embedded.setBackground(table.getSelectionBackground());
 		embedded.setForeground(table.getSelectionForeground());
 	    }
+	    setPreferredSize(new Dimension(embedded.getPreferredSize().width, embedded.getPreferredSize().height
+		    + (embedded.getPreferredSize().height / embedded.getRowCount())+4));
+	    // setPreferredSize(embedded.getPreferredSize());
 
-	    setPreferredSize(embedded.getPreferredSize());
+	    if (getPreferredSize().height > table.getRowHeight(row)) {
+		table.setRowHeight(row, getPreferredSize().height);
+	    }
 
-	    return embedded;
+	    return scroll;
 	} else {
 	    return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 	}

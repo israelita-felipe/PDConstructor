@@ -47,9 +47,8 @@ public class ClassificacaoTexto implements java.io.Serializable, InterfaceEntity
 	this.alocacaoTexto = alocacaoTexto;
     }
 
-    @Id
     @ManyToOne
-    @JoinColumn(name = "escolha_texto", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "escolha_texto", nullable = false)
     public EscolhaClasseTexto getEscolhaClasseTexto() {
 	return this.escolhaClasseTexto;
     }
@@ -108,8 +107,9 @@ public class ClassificacaoTexto implements java.io.Serializable, InterfaceEntity
 
     @Override
     public String toString() {
-	return "ClassificacaoTexto{" + "alocacaoTexto=" + alocacaoTexto + ", escolhaClasseTexto=" + escolhaClasseTexto
-		+ ", usuario=" + usuario + '}';
+	return "ClassificacaoTexto{" + "alocacaoTexto=" + (alocacaoTexto != null ? alocacaoTexto.getId() : "-")
+		+ ", escolhaClasseTexto=" + (escolhaClasseTexto != null ? escolhaClasseTexto.getId() : "-")
+		+ ", usuario=" + (usuario != null ? usuario.getId() : "-") + '}';
     }
 
 }

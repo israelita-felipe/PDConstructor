@@ -44,4 +44,10 @@ public interface InterfaceClassificaBase<C extends Component, T extends Interfac
      */
     C getMediaComponet();
 
+    /**
+     * Adiciona uma mídia de componentes principais
+     * 
+     * @param mediaComponent
+     */
+    void setMediaComponent(C mediaComponent);
 }

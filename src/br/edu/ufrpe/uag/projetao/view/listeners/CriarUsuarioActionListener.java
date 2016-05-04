@@ -14,7 +14,7 @@ import org.apache.commons.mail.EmailException;
 
 import br.edu.ufrpe.uag.projetao.abstracts.GmailUtil;
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
-import br.edu.ufrpe.uag.projetao.control.hibernate.FacesContextUtil;
+import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.Perfil;
 import br.edu.ufrpe.uag.projetao.model.Usuario;
@@ -46,7 +46,7 @@ public class CriarUsuarioActionListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
 	InterfaceController<Usuario> controller = ControllerFactory.getUsuarioController();
-	FacesContextUtil.begin();
+	TransactionManager.begin();
 
 	controller.getSelected().setNome(janela.getUsuarioNomeTextField().getText());
 	controller.getSelected().setEmail(janela.getUsuarioEmailTextField().getText());
@@ -54,7 +54,7 @@ public class CriarUsuarioActionListener implements ActionListener {
 	controller.getSelected().setPerfil((Perfil) janela.getPerfilComboBox().getSelectedItem());
 	controller.create();
 
-	FacesContextUtil.end();
+	TransactionManager.end();
 	try {
 	    GmailUtil g = new GmailUtil() {
 

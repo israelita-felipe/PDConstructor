@@ -7,30 +7,47 @@ import org.hibernate.exception.ConstraintViolationException;
  *
  * @author Israel Araújo
  */
-public class FacesContextUtil {
+public class TransactionManager {
 
-    // ATRIBUTOS
     private static Session session;
 
-    // METODOS
+    /**
+     * Inserção da sessão
+     * 
+     * @param session
+     */
     public static void setRequestSession(Session session) {
-	FacesContextUtil.session = session;
+	TransactionManager.session = session;
     }
 
+    /**
+     * Instancia uma sessão e abre caso não existe alguma ativa
+     * 
+     * @return
+     */
     public static Session getRequestSession() {
-	if (FacesContextUtil.session == null) {
-	    FacesContextUtil.session = HibernateUtil.getSessionFactory().openSession();
+	if (TransactionManager.session == null) {
+	    TransactionManager.session = HibernateUtil.getSessionFactory().openSession();
 	}
-	return FacesContextUtil.session;
+	return TransactionManager.session;
     }
 
+    /**
+     * Inicia uma transação
+     */
     public static void begin() {
-	FacesContextUtil.getRequestSession().beginTransaction();
+	TransactionManager.getRequestSession().beginTransaction();
     }
 
+    /**
+     * Finaliza uma transação dando commit nas operações
+     * 
+     * @throws ConstraintViolationException
+     *             caso haja dados já cadastrados com os mesmos dados
+     */
     public static void end() throws ConstraintViolationException {
 	ConstraintViolationException ex = null;
-	Session currentSession = FacesContextUtil.getRequestSession();
+	Session currentSession = TransactionManager.getRequestSession();
 	try {
 	    currentSession.getTransaction().commit();
 	} catch (ConstraintViolationException e) {
@@ -43,8 +60,8 @@ public class FacesContextUtil {
 		currentSession.getTransaction().rollback();
 	    }
 	} finally {
-	    currentSession.close();
-	    setRequestSession(null);
+	    //currentSession.close();
+	    //setRequestSession(null);
 	    if (ex != null) {
 		throw ex;
 	    }

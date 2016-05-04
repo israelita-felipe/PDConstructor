@@ -19,7 +19,7 @@ public class Facade<T extends InterfaceEntity> extends AbstractFacade<T> {
 
     @Override
     public Session getSession() {
-	return FacesContextUtil.getRequestSession();
+	return TransactionManager.getRequestSession();
     }
 
     public Facade(Class<T> clazz) {

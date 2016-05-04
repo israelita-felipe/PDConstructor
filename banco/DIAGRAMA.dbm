@@ -120,11 +120,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="ALOCACAO_TEXTO" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="ESCOLHA_TEXTO" not-null="true">
+	<column name="ESCOLHA_TEXTO">
 		<type name="integer"/>
 	</column>
 	<constraint name="CLASSIFICACAO_TEXTO_PK" type="pk-constr" table="public.&quot;CLASSIFICACAO_TEXTO&quot;">
-		<columns names="ESCRAVO,ALOCACAO_TEXTO,ESCOLHA_TEXTO" ref-type="src-columns"/>
+		<columns names="ESCRAVO,ALOCACAO_TEXTO" ref-type="src-columns"/>
 	</constraint>
 </table>
 

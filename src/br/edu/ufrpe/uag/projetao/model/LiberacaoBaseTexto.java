@@ -26,6 +26,7 @@ public class LiberacaoBaseTexto implements java.io.Serializable, InterfaceEntity
     private Usuario usuarioByEscravo;
     @Coluna(colunaPosicao = 1, colunaNome = "Supervisor")
     private Usuario usuarioBySupervisor;
+    @Coluna(colunaPosicao = 2, colunaNome = "Status")
     private char status;
 
     public LiberacaoBaseTexto() {

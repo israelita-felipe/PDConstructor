@@ -2,9 +2,8 @@ package br.edu.ufrpe.uag.projetao.control.hibernate;
 
 // IMPORTS
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
 
 /**
  * FÁBRICA DE SESSÃO DO HIBERNATE
@@ -24,9 +23,11 @@ public class HibernateUtil {
     static {
 	try {
 	    Configuration configuration = new Configuration().configure();
-	    ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties())
-		    .build();
-	    sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+
+	    StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
+		    .applySettings(configuration.getProperties());
+
+	    sessionFactory = configuration.buildSessionFactory(builder.build());
 	} catch (Exception ex) {
 	    throw new ExceptionInInitializerError(ex);
 	}

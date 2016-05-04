@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
-import br.edu.ufrpe.uag.projetao.control.hibernate.FacesContextUtil;
+import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.Perfil;
 import br.edu.ufrpe.uag.projetao.model.Usuario;
@@ -27,7 +27,7 @@ public class UsuarioControllerTest {
     public void setUp() throws Exception {
 	uc = ControllerFactory.getUsuarioController();
 	pc = ControllerFactory.getPerfilController();
-	FacesContextUtil.begin();
+	TransactionManager.begin();
 
 	// criando perfil caso não exista
 	if (pc.getItemsAvailableSelectOne().size() < 1) {
@@ -49,7 +49,7 @@ public class UsuarioControllerTest {
 	    us = uc.create();
 	    toRemove.add(us);
 	}
-	FacesContextUtil.end();
+	TransactionManager.end();
     }
 
     @Test
@@ -70,7 +70,7 @@ public class UsuarioControllerTest {
     @Test
     public void testCreate() {
 	int i = -1;
-	FacesContextUtil.begin();
+	TransactionManager.begin();
 	uc.prepareCreate();
 	Usuario u = new Usuario();
 	uc.getSelected().setEmail(i + "@mail.com");
@@ -80,28 +80,28 @@ public class UsuarioControllerTest {
 
 	us = uc.create();
 	toRemove.add(us);
-	FacesContextUtil.end();
+	TransactionManager.end();
 	assertNotEquals(null, us);
     }
 
     @Test
     public void testUpdate() {
-	FacesContextUtil.begin();
+	TransactionManager.begin();
 	us = uc.prepareList().get(0);
 	us.setNome("alterado");
 	uc.prepareEdit(0);
 	Usuario current = uc.update();
-	FacesContextUtil.end();
+	TransactionManager.end();
 	assertEquals(us, current);
     }
 
     @Test
     public void testDestroy() {
-	FacesContextUtil.begin();
+	TransactionManager.begin();
 	us = uc.prepareList().get(0);
 	uc.destroy(0);
 	Usuario current = uc.prepareList().get(0);
-	FacesContextUtil.end();
+	TransactionManager.end();
 	assertNotEquals(us, current);
     }
 }

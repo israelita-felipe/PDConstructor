@@ -20,7 +20,7 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
     private final InterfaceFacade<T> ejbFacade;
     private T current;
     private List<T> items = null;
-    private int selectedItemIndex;
+    private int selectedItemIndex = 0;
 
     public AbstractController(Class<T> clazz) {
 	this.ejbFacade = new Facade<>(clazz);
@@ -158,6 +158,29 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
 	T object = ejbFacade.find(id);
 
 	return object;
+    }
+
+    @Override
+    public int next() throws IllegalArgumentException {
+
+	setSelectedItemIndex(getSelectedItemIndex() + 1);
+	if (getSelectedItemIndex() >= getItems().size()) {
+	    setSelectedItemIndex(getSelectedItemIndex() - 1);
+	    throw new IllegalArgumentException("Último índice");
+	}
+	prepareView(getSelectedItemIndex());
+	return getSelectedItemIndex();
+    }
+
+    @Override
+    public int previous() throws IllegalArgumentException {
+	setSelectedItemIndex(getSelectedItemIndex() - 1);
+	if (getSelectedItemIndex() < 0) {
+	    setSelectedItemIndex(getSelectedItemIndex() + 1);
+	    throw new IllegalArgumentException("Primeiro índice");
+	}
+	prepareView(getSelectedItemIndex());
+	return getSelectedItemIndex();
     }
 
     public int getSelectedItemIndex() {

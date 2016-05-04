@@ -13,7 +13,7 @@ import javax.swing.JTable;
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.UsuarioController;
-import br.edu.ufrpe.uag.projetao.control.hibernate.FacesContextUtil;
+import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
 import br.edu.ufrpe.uag.projetao.view.GenericTableModel;
@@ -51,7 +51,7 @@ public class ExcluirBaseTextoActionListener implements ActionListener {
 		    "Deseja excluir a Base " + controller.prepareEdit(table.getSelectedRow()).getId() + "?", "Exclusão",
 		    JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
 		try {
-		    FacesContextUtil.begin();
+		    TransactionManager.begin();
 
 		    controller.destroy(table.getSelectedRow());
 		    table.setModel(new GenericTableModel<BaseTexto>(new LinkedList<>(controller.getItemsFromCriteria(
@@ -59,7 +59,7 @@ public class ExcluirBaseTextoActionListener implements ActionListener {
 		} catch (Exception ex) {
 
 		} finally {
-		    FacesContextUtil.end();
+		    TransactionManager.end();
 		}
 
 	    }

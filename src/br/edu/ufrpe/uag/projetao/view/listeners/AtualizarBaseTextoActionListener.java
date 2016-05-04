@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
-import br.edu.ufrpe.uag.projetao.control.hibernate.FacesContextUtil;
+import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceCriaEAtualizaBase;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
@@ -39,14 +39,14 @@ public class AtualizarBaseTextoActionListener implements ActionListener {
 	// TODO Auto-generated method stub
 	InterfaceController<BaseTexto> baseTextoController = ControllerFactory.getBaseTextoController();
 
-	FacesContextUtil.begin();
+	TransactionManager.begin();
 
 	baseTextoController.getSelected().setTitulo(jdialog.getMediaComponent().getTituloTextField().getText());
 	baseTextoController.getSelected().setDescricao(jdialog.getMediaComponent().getDescricaoEditorPane().getText());
 
 	baseTextoController.update();
 
-	FacesContextUtil.end();
+	TransactionManager.end();
 
 	jdialog.dispose();
 	JOptionPane.showMessageDialog(null,

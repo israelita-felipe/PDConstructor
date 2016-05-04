@@ -38,6 +38,7 @@ public abstract class AbstractClassificarBaseJDialog<C extends Component, T exte
     private JComboBox<T> comboBox;
     private JPanel panel_1;
     private JPanel separator;
+    private C mediaComponent;
 
     /**
      * Create the dialog.
@@ -108,6 +109,17 @@ public abstract class AbstractClassificarBaseJDialog<C extends Component, T exte
     public void preencheCampos() {
 	// TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public C getMediaComponet() {
+	// TODO Auto-generated method stub
+	return this.mediaComponent;
+    }
+
+    @Override
+    public void setMediaComponent(C mediaComponent) {
+	this.mediaComponent = mediaComponent;
     }
 
     @Override

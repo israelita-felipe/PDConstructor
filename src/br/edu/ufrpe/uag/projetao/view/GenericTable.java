@@ -20,7 +20,7 @@ public class GenericTable<T extends InterfaceEntity> extends JTable {
     public GenericTable(List<T> list) {
 	super(new GenericTableModel<T>(list));
 	setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-	// this.setDefaultRenderer(Object.class, new SubtableCellRenderer());
+	//this.setDefaultRenderer(Object.class, new SubtableCellRenderer());
     }
 
     @SuppressWarnings("unchecked")

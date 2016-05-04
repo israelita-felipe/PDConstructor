@@ -25,17 +25,17 @@ import br.edu.ufrpe.uag.projetao.view.scrollPanel.ClassificarTextoJScrollPane;
  * @author israel
  *
  */
-public class ClassificarBaseTextoProximoActionListener implements ActionListener {
+public class ClassificarBaseTextoAnteriorActionListener implements ActionListener {
 
     private InterfaceController<LiberacaoBaseTexto> liberacaoBaseTextoController;
 
-    private AbstractPaginador<LiberacaoBaseTexto, ClassificacaoTexto, EscolhaClasseTexto, AlocacaoTexto> paginador;
     private InterfaceClassificaBase<ClassificarTextoJScrollPane, EscolhaClasseTexto> classificacaoBaseTextoDialog;
+    private AbstractPaginador<LiberacaoBaseTexto, ClassificacaoTexto, EscolhaClasseTexto, AlocacaoTexto> paginador;
 
     /**
      * 
      */
-    public ClassificarBaseTextoProximoActionListener(
+    public ClassificarBaseTextoAnteriorActionListener(
 	    InterfaceClassificaBase<ClassificarTextoJScrollPane, EscolhaClasseTexto> classificacaoBaseTextoDialog,
 	    AbstractPaginador<LiberacaoBaseTexto, ClassificacaoTexto, EscolhaClasseTexto, AlocacaoTexto> paginador) {
 	this.classificacaoBaseTextoDialog = classificacaoBaseTextoDialog;
@@ -50,7 +50,6 @@ public class ClassificarBaseTextoProximoActionListener implements ActionListener
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-
 	if (paginador.getItemAtual().getEscolhaClasseTexto() == null) {
 	    paginador.setInserindo();
 	} else {
@@ -60,13 +59,16 @@ public class ClassificarBaseTextoProximoActionListener implements ActionListener
 		(EscolhaClasseTexto) classificacaoBaseTextoDialog.getClasseComboBox().getSelectedItem());
 	paginador.gravaAlteracoes();
 
-	selecionaProximoItem();
+	selecionaAnteriorItem();
     }
 
-    private void selecionaProximoItem() {
+    /**
+     * Seleciona o elemento anterior a ser manipulado
+     */
+    private void selecionaAnteriorItem() {
 
 	try {
-	    paginador.proximo();
+	    paginador.anterior();
 	    // preenchendo as classe
 	    DefaultComboBoxModel<EscolhaClasseTexto> model = new DefaultComboBoxModel<>();
 	    for (EscolhaClasseTexto classe : paginador.getAlocacaoAtual().getEscolhaClasseTextos()) {
@@ -88,8 +90,6 @@ public class ClassificarBaseTextoProximoActionListener implements ActionListener
      * Verifica se o usuário deseja fechar a base que está trabalhando.
      */
     private void aprovaFechamentoDaBase() {
-	// verifica se o último ítem precisa ser gravado
-
 	int aprovacao = JOptionPane.showConfirmDialog(null, "Parabéns, tudo finalizado, deseja encerrar a base?",
 		"Finalizado", JOptionPane.YES_NO_OPTION);
 	if (aprovacao == JOptionPane.YES_OPTION) {
@@ -109,5 +109,4 @@ public class ClassificarBaseTextoProximoActionListener implements ActionListener
 	    this.classificacaoBaseTextoDialog.dispose();
 	}
     }
-
 }
