@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import br.edu.ufrpe.uag.projetao.abstracts.AbstractPaginador;
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceClassificaBase;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceClassificacao;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto;
@@ -29,14 +29,14 @@ public class ClassificarBaseTextoAnteriorActionListener implements ActionListene
 
     private InterfaceController<LiberacaoBaseTexto> liberacaoBaseTextoController;
 
-    private InterfaceClassificaBase<ClassificarTextoJScrollPane, EscolhaClasseTexto> classificacaoBaseTextoDialog;
+    private InterfaceClassificacao<ClassificarTextoJScrollPane, EscolhaClasseTexto> classificacaoBaseTextoDialog;
     private AbstractPaginador<LiberacaoBaseTexto, ClassificacaoTexto, EscolhaClasseTexto, AlocacaoTexto> paginador;
 
     /**
      * 
      */
     public ClassificarBaseTextoAnteriorActionListener(
-	    InterfaceClassificaBase<ClassificarTextoJScrollPane, EscolhaClasseTexto> classificacaoBaseTextoDialog,
+	    InterfaceClassificacao<ClassificarTextoJScrollPane, EscolhaClasseTexto> classificacaoBaseTextoDialog,
 	    AbstractPaginador<LiberacaoBaseTexto, ClassificacaoTexto, EscolhaClasseTexto, AlocacaoTexto> paginador) {
 	this.classificacaoBaseTextoDialog = classificacaoBaseTextoDialog;
 	this.paginador = paginador;

@@ -14,7 +14,7 @@ import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.UsuarioController;
 import br.edu.ufrpe.uag.projetao.control.util.ClassificacaoBaseTextoPaginator;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceClassificaBase;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceClassificacao;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto;
@@ -29,7 +29,7 @@ import br.edu.ufrpe.uag.projetao.view.scrollPanel.ClassificarTextoJScrollPane;
  */
 public class NovaClassificacaoTextoActionListener implements ActionListener {
 
-    private InterfaceClassificaBase<ClassificarTextoJScrollPane, EscolhaClasseTexto> classificacaoBaseTextoDialog;
+    private InterfaceClassificacao<ClassificarTextoJScrollPane, EscolhaClasseTexto> classificacaoBaseTextoDialog;
     private GenericTable<LiberacaoBaseTexto> tabela;
     private AbstractPaginador<LiberacaoBaseTexto, ClassificacaoTexto, EscolhaClasseTexto, AlocacaoTexto> paginador;
 

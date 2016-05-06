@@ -14,7 +14,7 @@ import br.edu.ufrpe.uag.projetao.control.UsuarioController;
 import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.control.util.FileManager;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceCriaEAtualizaBase;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceCriaEAtualiza;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
 import br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto;
@@ -26,12 +26,12 @@ import br.edu.ufrpe.uag.projetao.view.JPane.BaseTextoJPanel;
  */
 public class CriarBaseTextoActionListener implements ActionListener {
 
-    private InterfaceCriaEAtualizaBase<BaseTextoJPanel> jdialog;
+    private InterfaceCriaEAtualiza<BaseTextoJPanel> jdialog;
 
     /**
      * 
      */
-    public CriarBaseTextoActionListener(InterfaceCriaEAtualizaBase<BaseTextoJPanel> jdialog) {
+    public CriarBaseTextoActionListener(InterfaceCriaEAtualiza<BaseTextoJPanel> jdialog) {
 	// TODO Auto-generated constructor stub
 	this.jdialog = jdialog;
     }

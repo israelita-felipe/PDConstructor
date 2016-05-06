@@ -12,7 +12,7 @@ import javax.swing.JComboBox;
  * @author israel
  *
  */
-public interface InterfaceClassificaBase<C extends Component, T extends InterfaceEntity> extends InterfaceWindow {
+public interface InterfaceClassificacao<C extends Component, T extends InterfaceEntity> extends InterfaceWindow {
 
     /**
      * 

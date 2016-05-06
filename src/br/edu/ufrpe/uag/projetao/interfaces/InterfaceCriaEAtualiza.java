@@ -14,7 +14,7 @@ import javax.swing.JButton;
  * @param <C>
  *            componente de visual de mídia
  */
-public interface InterfaceCriaEAtualizaBase<C extends Component> extends InterfaceWindow {
+public interface InterfaceCriaEAtualiza<C extends Component> extends InterfaceWindow {
 
     C getMediaComponent();
     

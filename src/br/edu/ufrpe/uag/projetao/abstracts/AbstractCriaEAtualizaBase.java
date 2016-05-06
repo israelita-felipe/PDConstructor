@@ -15,7 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceCriaEAtualizaBase;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceCriaEAtualiza;
 import br.edu.ufrpe.uag.projetao.view.JPane.BaseTextoJPanel;
 import br.edu.ufrpe.uag.projetao.view.listeners.FecharActionListener;
 
@@ -24,7 +24,7 @@ import br.edu.ufrpe.uag.projetao.view.listeners.FecharActionListener;
  *
  */
 public abstract class AbstractCriaEAtualizaBase<C extends Component> extends JDialog
-	implements InterfaceCriaEAtualizaBase<C> {
+	implements InterfaceCriaEAtualiza<C> {
 
     private JButton okButton;
     private JButton cancelButton;

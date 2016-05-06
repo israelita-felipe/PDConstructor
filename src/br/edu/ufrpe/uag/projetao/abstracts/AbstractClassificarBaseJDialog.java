@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.border.EmptyBorder;
 
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceClassificaBase;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceClassificacao;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 import br.edu.ufrpe.uag.projetao.view.listeners.FecharActionListener;
 
@@ -28,7 +28,7 @@ import br.edu.ufrpe.uag.projetao.view.listeners.FecharActionListener;
  *            tipo de dado da escolha das classes do modelo de banco de dados
  */
 public abstract class AbstractClassificarBaseJDialog<C extends Component, T extends InterfaceEntity> extends JDialog
-	implements InterfaceClassificaBase<C, T> {
+	implements InterfaceClassificacao<C, T> {
 
     private final JPanel contentPanel = new JPanel();
     private JButton proximoButton;
