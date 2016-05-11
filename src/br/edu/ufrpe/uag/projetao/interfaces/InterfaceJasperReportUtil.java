@@ -5,6 +5,7 @@ package br.edu.ufrpe.uag.projetao.interfaces;
 
 import java.util.List;
 import java.util.Map;
+import java.util.jar.JarException;
 
 import javax.swing.JPanel;
 
@@ -34,5 +35,5 @@ public interface InterfaceJasperReportUtil {
      * @return Painel contendo o relatório
      * @throws JRException 
      */
-    JPanel getRelatorio() throws JRException;
+    JPanel getRelatorio() throws JarException, JRException;
 }

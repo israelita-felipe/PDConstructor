@@ -14,7 +14,9 @@ import br.edu.ufrpe.uag.projetao.model.Usuario;
  */
 public class UsuarioController extends AbstractController<Usuario> {
 
-    public static Usuario currrentSupervisor = (Usuario) ControllerFactory.getUsuarioController()
+	private static final long serialVersionUID = 1L;
+
+	public static Usuario currrentSupervisor = (Usuario) ControllerFactory.getUsuarioController()
 	    .getItemsFromCriteria(DetachedCriteriaFactory.getTodosSupervisores()).get(0);
 
     public static Usuario currentEscravo = (Usuario) ControllerFactory.getUsuarioController()

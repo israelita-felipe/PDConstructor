@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.jar.JarException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -56,7 +57,13 @@ public class JasperReportFactory {
     }
 
     public static void main(String[] args) throws JRException {
-	JPanel relatorio = JasperReportFactory.getRelatorioDeUsuarios().getRelatorio();
+	JPanel relatorio = null;
+	try {
+		relatorio = JasperReportFactory.getRelatorioDeUsuarios().getRelatorio();
+	} catch (JarException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	JFrame janela = new JFrame();
 	janela.setContentPane(relatorio);
 	janela.setVisible(true);

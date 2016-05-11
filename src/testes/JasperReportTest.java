@@ -5,6 +5,8 @@ package testes;
 
 import static org.junit.Assert.*;
 
+import java.util.jar.JarException;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -29,7 +31,13 @@ public class JasperReportTest {
 
     @Test
     public void test() throws JRException {
-	JPanel relatorio = JasperReportFactory.getRelatorioDeUsuarios().getRelatorio();
+	JPanel relatorio = null;
+	try {
+		relatorio = JasperReportFactory.getRelatorioDeUsuarios().getRelatorio();
+	} catch (JarException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	JFrame janela = new JFrame();
 	janela.setContentPane(relatorio);
 	janela.setVisible(true);

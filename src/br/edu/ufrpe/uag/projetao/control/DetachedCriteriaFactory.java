@@ -41,8 +41,9 @@ public class DetachedCriteriaFactory {
 
     public static DetachedCriteria getAlocacoesTextoPorLiberacao(LiberacaoBaseTexto liberacao) {
 
-	DetachedCriteria alocacoesTextoPorLiberacao = DetachedCriteria.forClass(LiberacaoBaseTexto.class)
-		.add(Restrictions.eq("usuarioByEscravo.id", liberacao.getUsuarioByEscravo().getId()))
+	DetachedCriteria.forClass(LiberacaoBaseTexto.class)
+			.add(Restrictions.eq("usuarioByEscravo.id", liberacao.getUsuarioByEscravo().getId()));
+	DetachedCriteria alocacoesTextoPorLiberacao = DetachedCriteria
 		.forClass(AlocacaoTexto.class).add(Restrictions.eq("baseTexto.id", liberacao.getBaseTexto().getId()));
 
 	return alocacoesTextoPorLiberacao;
