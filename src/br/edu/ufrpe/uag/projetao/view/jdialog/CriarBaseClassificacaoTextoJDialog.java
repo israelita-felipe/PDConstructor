@@ -14,7 +14,7 @@ import br.edu.ufrpe.uag.projetao.view.listeners.CriarBaseTextoActionListener;
  * @author israel
  *
  */
-public class CriarBaseClassificacaoTextoJDialog extends AbstractCriaEAtualizaBase<BaseTextoJPanel> {   
+public class CriarBaseClassificacaoTextoJDialog extends AbstractCriaEAtualizaBase<BaseTextoJPanel> {
 
     /**
      * 
@@ -42,7 +42,7 @@ public class CriarBaseClassificacaoTextoJDialog extends AbstractCriaEAtualizaBas
     }
 
     @Override
-    public void preencheCampos() {	
+    public void preencheCampos() {
     }
 
 }

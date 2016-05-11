@@ -97,14 +97,21 @@ public class ClassificarBaseTextoProximoActionListener implements ActionListener
 	    // iniciar o fechamento da base
 	    liberacaoBaseTextoController = ControllerFactory.getLiberacaoBaseTextoController();
 
-	    TransactionManager.begin();
+	    try {
 
-	    liberacaoBaseTextoController
-		    .prepareEdit(liberacaoBaseTextoController.getItems().indexOf(paginador.getLiberacao()));
-	    liberacaoBaseTextoController.getSelected().setStatus(StatusDeLiberacao.BLOQUEADO);
-	    liberacaoBaseTextoController.update();
+		TransactionManager.begin();
 
-	    TransactionManager.end();
+		liberacaoBaseTextoController
+			.prepareEdit(liberacaoBaseTextoController.getItems().indexOf(paginador.getLiberacao()));
+		liberacaoBaseTextoController.getSelected().setStatus(StatusDeLiberacao.BLOQUEADO);
+		liberacaoBaseTextoController.update();
+
+	    } catch (Exception ex) {
+		JOptionPane.showMessageDialog(null, "Não foi possível finalizar a base, tente novamente");
+
+	    } finally {
+		TransactionManager.end();
+	    }
 
 	    this.classificacaoBaseTextoDialog.dispose();
 	}

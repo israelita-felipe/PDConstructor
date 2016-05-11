@@ -16,7 +16,7 @@ import br.edu.ufrpe.uag.projetao.control.UsuarioController;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto;
 import br.edu.ufrpe.uag.projetao.view.GenericTable;
 import br.edu.ufrpe.uag.projetao.view.listeners.NovaClassificacaoTextoActionListener;
-import br.edu.ufrpe.uag.projetao.view.util.PopupManager;
+import br.edu.ufrpe.uag.projetao.view.util.GerenciadorDePopUp;
 
 public class EscravoMainJFrame {
 
@@ -71,7 +71,7 @@ public class EscravoMainJFrame {
 	scrollPane.setViewportView(tableBaseTexto);
 
 	JPopupMenu popupMenu = new JPopupMenu();
-	PopupManager.addPopup(tableBaseTexto, popupMenu);
+	GerenciadorDePopUp.addPopup(tableBaseTexto, popupMenu);
 
 	mntmClassificar = new JMenuItem("Classificar");
 	popupMenu.add(mntmClassificar);

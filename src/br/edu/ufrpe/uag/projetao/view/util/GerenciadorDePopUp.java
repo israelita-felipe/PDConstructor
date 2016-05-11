@@ -13,7 +13,7 @@ import javax.swing.JPopupMenu;
  * @author israel
  *
  */
-public class PopupManager {
+public class GerenciadorDePopUp {
 
     public static void addPopup(Component component, final JPopupMenu popup) {
 	component.addMouseListener(new MouseAdapter() {

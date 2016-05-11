@@ -13,10 +13,11 @@ public class CriarUsuarioJDialog extends CriarEditarUsuarioJDialog {
 
     public CriarUsuarioJDialog() {
 	super();
-	addListeners();
     }
 
-    private void addListeners() {
+    @Override
+    public void addListeners() {
+	super.addListeners();
 	getSalvarButton().addActionListener(new CriarUsuarioActionListener(this));
     }
 }

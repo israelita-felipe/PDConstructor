@@ -15,6 +15,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import br.edu.ufrpe.uag.projetao.view.listeners.SelecionaLinhaJListMouseListener;
 import br.edu.ufrpe.uag.projetao.view.scrollPanel.ListaArquivosJScrollPane;
 import br.edu.ufrpe.uag.projetao.view.scrollPanel.ListaClassesJScrollPane;
 
@@ -34,8 +35,7 @@ public class BaseTextoJPanel extends JPanel {
      */
     public BaseTextoJPanel() {
 	init();
-    }
-
+    }    
     private void init() {
 
 	JLabel lblNomeDabase = new JLabel("Título da base:");

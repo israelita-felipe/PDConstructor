@@ -17,7 +17,8 @@ import javax.swing.JTextField;
 
 import br.edu.ufrpe.uag.projetao.view.listeners.AdicionaClasseActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.RemoveDeListActionListener;
-import br.edu.ufrpe.uag.projetao.view.util.PopupManager;
+import br.edu.ufrpe.uag.projetao.view.listeners.SelecionaLinhaJListMouseListener;
+import br.edu.ufrpe.uag.projetao.view.util.GerenciadorDePopUp;
 import javax.swing.JSeparator;
 
 /**
@@ -46,7 +47,7 @@ public class ListaClassesJScrollPane extends JScrollPane {
 	list.setModel(new DefaultListModel<>());
 
 	popupMenu = new JPopupMenu();
-	PopupManager.addPopup(list, popupMenu);
+	GerenciadorDePopUp.addPopup(list, popupMenu);
 
 	mntmRemover = new JMenuItem("Remover");
 	popupMenu.add(mntmRemover);
@@ -70,6 +71,7 @@ public class ListaClassesJScrollPane extends JScrollPane {
     }
 
     private void addListeners() {
+	getClassesList().addMouseListener(new SelecionaLinhaJListMouseListener(getClassesList()));
 	getAdiconarButton().addActionListener(new AdicionaClasseActionListener(getClasseTextField(), getClassesList()));
 	getRemoverPopMenuItem().addActionListener(new RemoveDeListActionListener(getClassesList()));
     }

@@ -92,13 +92,19 @@ public abstract class AbstractPaginador<L extends InterfaceEntity, T extends Int
     }
 
     public void gravaAlteracoes() {
-	TransactionManager.begin();
-	if (this.status.equals(Status.EDITANDO)) {
-	    atualizar();
-	} else {
-	    criar();
+	try {
+	    TransactionManager.begin();
+	    
+	    if (this.status.equals(Status.EDITANDO)) {
+		atualizar();
+	    } else {
+		criar();
+	    }
+	} catch (Throwable tw) {
+
+	} finally {
+	    TransactionManager.end();
 	}
-	TransactionManager.end();
     }
 
     /**

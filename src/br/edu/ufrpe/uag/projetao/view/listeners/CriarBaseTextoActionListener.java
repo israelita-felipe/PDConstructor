@@ -44,57 +44,89 @@ public class CriarBaseTextoActionListener implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-	// TODO Auto-generated method stub
 
-	TransactionManager.begin();
+	try {
 
-	InterfaceController<BaseTexto> base = ControllerFactory.getBaseTextoController();
-	InterfaceController<EscolhaClasseTexto> escolhaClasseTexto = ControllerFactory
-		.getEscolhaClasseTextoController();
-	InterfaceController<AlocacaoTexto> alocacaoTexto = ControllerFactory.getAlocacaoTextoController();
+	    validar();
 
-	// criação da base
-	base.prepareCreate();
-	base.getSelected().setTitulo(jdialog.getMediaComponent().getTituloTextField().getText());
-	base.getSelected().setDescricao(jdialog.getMediaComponent().getDescricaoEditorPane().getText());
-	base.getSelected().setUsuario(UsuarioController.currrentSupervisor);
-	base.create();
+	    TransactionManager.begin();
 
-	// criação dos textos
-	for (int i = 0; i < jdialog.getMediaComponent().getListaArquivos().getArquivosList().getModel()
-		.getSize(); i++) {
-	    try {
+	    InterfaceController<BaseTexto> base = ControllerFactory.getBaseTextoController();
+	    InterfaceController<EscolhaClasseTexto> escolhaClasseTexto = ControllerFactory
+		    .getEscolhaClasseTextoController();
+	    InterfaceController<AlocacaoTexto> alocacaoTexto = ControllerFactory.getAlocacaoTextoController();
 
-		// aloca um texto para uma base
-		alocacaoTexto.prepareCreate();
-		alocacaoTexto.getSelected().setBaseTexto(base.getSelected());
-		alocacaoTexto.getSelected().setUsuario(UsuarioController.currrentSupervisor);
-		alocacaoTexto.getSelected().setTexto(FileManager.lerArquivo(jdialog.getMediaComponent()
-			.getListaArquivos().getArquivosList().getModel().getElementAt(i).toString()));
-		alocacaoTexto.create();
+	    // criação da base
+	    base.prepareCreate();
+	    base.getSelected().setTitulo(jdialog.getMediaComponent().getTituloTextField().getText());
+	    base.getSelected().setDescricao(jdialog.getMediaComponent().getDescricaoEditorPane().getText());
+	    base.getSelected().setUsuario(UsuarioController.currrentSupervisor);
+	    base.create();
 
-		// criação das classes
-		for (int j = 0; j < jdialog.getMediaComponent().getListaClasses().getClassesList().getModel()
-			.getSize(); j++) {
+	    // criação dos textos
+	    for (int i = 0; i < jdialog.getMediaComponent().getListaArquivos().getArquivosList().getModel()
+		    .getSize(); i++) {
+		try {
 
-		    // aloca uma classe para uma alocacao de texto
-		    escolhaClasseTexto.prepareCreate();
-		    escolhaClasseTexto.getSelected().setAlocacaoTexto(alocacaoTexto.getSelected());
-		    escolhaClasseTexto.getSelected().setDescricao(jdialog.getMediaComponent().getListaClasses()
-			    .getClassesList().getModel().getElementAt(j).toString());		    
-		    escolhaClasseTexto.create();
+		    // aloca um texto para uma base
+		    alocacaoTexto.prepareCreate();
+		    alocacaoTexto.getSelected().setBaseTexto(base.getSelected());
+		    alocacaoTexto.getSelected().setUsuario(UsuarioController.currrentSupervisor);
+		    alocacaoTexto.getSelected().setTexto(FileManager.lerArquivo(jdialog.getMediaComponent()
+			    .getListaArquivos().getArquivosList().getModel().getElementAt(i).toString()));
+		    alocacaoTexto.create();
+
+		    // criação das classes
+		    for (int j = 0; j < jdialog.getMediaComponent().getListaClasses().getClassesList().getModel()
+			    .getSize(); j++) {
+
+			// aloca uma classe para uma alocacao de texto
+			escolhaClasseTexto.prepareCreate();
+			escolhaClasseTexto.getSelected().setAlocacaoTexto(alocacaoTexto.getSelected());
+			escolhaClasseTexto.getSelected().setDescricao(jdialog.getMediaComponent().getListaClasses()
+				.getClassesList().getModel().getElementAt(j).toString());
+			escolhaClasseTexto.create();
+		    }
+
+		} catch (FileNotFoundException e1) {
+		    JOptionPane.showMessageDialog(null, "Erro ao ler arquivo:\n" + jdialog.getMediaComponent()
+			    .getListaArquivos().getArquivosList().getModel().getElementAt(i).toString());
 		}
-
-	    } catch (FileNotFoundException e1) {
-		// TODO Auto-generated catch block
-		JOptionPane.showMessageDialog(null, "Erro ao ler arquivo:\n" + jdialog.getMediaComponent()
-			.getListaArquivos().getArquivosList().getModel().getElementAt(i).toString());
 	    }
+	    jdialog.dispose();
+	    JOptionPane.showMessageDialog(null, "Base " + base.getSelected().getId() + " criada com sucesso");
+	    
+	} catch (IllegalArgumentException ex) {
+	    JOptionPane.showMessageDialog(null, ex.getMessage());
+	    
+	} catch (Exception ex) {
+	    JOptionPane.showMessageDialog(null, "Não foi possível gravar, tente novamente");
+	    
+	} finally {
+	    TransactionManager.end();
 	}
+    }
 
-	TransactionManager.end();
-	jdialog.dispose();
-	JOptionPane.showMessageDialog(null, "Base " + base.getSelected().getId() + " criada com sucesso");
+    /**
+     * Executa a validação dos campos
+     * 
+     * @throws IllegalArgumentException
+     */
+    private void validar() throws IllegalArgumentException {
+	if (jdialog.getMediaComponent().getTituloTextField().getText() == null
+		|| jdialog.getMediaComponent().getTituloTextField().getText().trim().equals("")) {
+	    throw new IllegalArgumentException("Campo de título não pode estar vazio");
+	}
+	if (jdialog.getMediaComponent().getDescricaoEditorPane().getText() == null
+		|| jdialog.getMediaComponent().getDescricaoEditorPane().getText().equals("")) {
+	    throw new IllegalArgumentException("Campo de descrição não pode estar vazio");
+	}
+	if (jdialog.getMediaComponent().getListaClasses().getClassesList().getModel().getSize() == 0) {
+	    throw new IllegalArgumentException("Lista de classes não pode estar vazia");
+	}
+	if (jdialog.getMediaComponent().getListaArquivos().getArquivosList().getModel().getSize() == 0) {
+	    throw new IllegalArgumentException("Lista de arquivos não pode estar vazia");
+	}
     }
 
 }

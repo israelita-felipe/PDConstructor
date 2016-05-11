@@ -16,7 +16,8 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 
 import br.edu.ufrpe.uag.projetao.view.listeners.RemoveDeListActionListener;
-import br.edu.ufrpe.uag.projetao.view.util.PopupManager;
+import br.edu.ufrpe.uag.projetao.view.listeners.SelecionaLinhaJListMouseListener;
+import br.edu.ufrpe.uag.projetao.view.util.GerenciadorDePopUp;
 import javax.swing.JSeparator;
 
 /**
@@ -43,7 +44,7 @@ public class ListaArquivosJScrollPane extends JScrollPane {
 	list.setModel(new DefaultListModel<>());
 
 	JPopupMenu popupMenu = new JPopupMenu();
-	PopupManager.addPopup(list, popupMenu);
+	GerenciadorDePopUp.addPopup(list, popupMenu);
 
 	mntmRemover = new JMenuItem("Remover");
 	popupMenu.add(mntmRemover);
@@ -63,6 +64,7 @@ public class ListaArquivosJScrollPane extends JScrollPane {
     }
 
     private void addListeners() {
+	getArquivosList().addMouseListener(new SelecionaLinhaJListMouseListener(getArquivosList()));
 	getRemoverPopMenuItem().addActionListener(new RemoveDeListActionListener(getArquivosList()));
     }
 

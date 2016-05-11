@@ -52,32 +52,43 @@ public class NovaClassificacaoTextoActionListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
 	if (tabela.getSelectedRow() != -1) {
-	    this.paginador = ClassificacaoBaseTextoPaginator.getInstance(tabela.getValueAt(tabela.getSelectedRow()));
+
+	    try {
+
+		this.paginador = ClassificacaoBaseTextoPaginator
+			.getInstance(tabela.getValueAt(tabela.getSelectedRow()));
+
+		// preenchimento da GUI
+		classificacaoBaseTextoDialog = new ClassificarBaseTextoJDialog();
+		addListeners();
+
+		DefaultComboBoxModel<EscolhaClasseTexto> model = new DefaultComboBoxModel<>();
+		for (EscolhaClasseTexto classe : paginador.getAlocacaoAtual().getEscolhaClasseTextos()) {
+		    model.addElement(classe);
+		}
+		classificacaoBaseTextoDialog.getClasseComboBox().setModel(model);
+		classificacaoBaseTextoDialog.getMediaComponet().getEditorPane()
+			.setText(paginador.getAlocacaoAtual().getTexto());
+		classificacaoBaseTextoDialog.getClasseComboBox()
+			.setSelectedItem(paginador.getItemAtual().getEscolhaClasseTexto());
+
+		// mostra descrição da base na inicialização
+		JOptionPane.showMessageDialog(null, paginador.getAlocacaoAtual().getBaseTexto().getDescricao(),
+			"Classificação de Bases", JOptionPane.INFORMATION_MESSAGE);
+
+		classificacaoBaseTextoDialog.setVisible(true);
+
+	    } catch (Exception ex) {
+
+		JOptionPane.showMessageDialog(null, "Não foi possível acessar a liberação contacte o supervisor");
+
+	    } finally {
+		// atualiza a tabela de liberações, exibindo somente as que
+		// estão
+		// liberadas e não foram finalizadas
+		atualizaTabela();
+	    }
 	}
-
-	// preenchimento da GUI
-	classificacaoBaseTextoDialog = new ClassificarBaseTextoJDialog();
-	addListeners();
-
-	DefaultComboBoxModel<EscolhaClasseTexto> model = new DefaultComboBoxModel<>();
-	for (EscolhaClasseTexto classe : paginador.getAlocacaoAtual().getEscolhaClasseTextos()) {
-	    model.addElement(classe);
-	}
-	classificacaoBaseTextoDialog.getClasseComboBox().setModel(model);
-	classificacaoBaseTextoDialog.getMediaComponet().getEditorPane()
-		.setText(paginador.getAlocacaoAtual().getTexto());
-	classificacaoBaseTextoDialog.getClasseComboBox()
-		.setSelectedItem(paginador.getItemAtual().getEscolhaClasseTexto());
-
-	// mostra descrição da base na inicialização
-	JOptionPane.showMessageDialog(null, paginador.getAlocacaoAtual().getBaseTexto().getDescricao(),
-		"Classificação de Bases", JOptionPane.INFORMATION_MESSAGE);
-
-	classificacaoBaseTextoDialog.setVisible(true);
-
-	// atualiza a tabela de liberações, exibindo somente as que estão
-	// liberadas e não foram finalizadas
-	atualizaTabela();
 
     }
 

@@ -1,8 +1,12 @@
 package br.edu.ufrpe.uag.projetao.view.jdialog;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
 
+import javax.swing.ComboBoxEditor;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -16,16 +20,17 @@ import javax.swing.border.EmptyBorder;
 
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceWindow;
 import br.edu.ufrpe.uag.projetao.model.Perfil;
 import br.edu.ufrpe.uag.projetao.view.listeners.FecharActionListener;
 
-public class CriarEditarUsuarioJDialog extends JDialog {
+public class CriarEditarUsuarioJDialog extends JDialog implements InterfaceWindow {
 
     private final JPanel contentPanel = new JPanel();
     private JTextField textField;
     private JTextField textField_1;
 
-    private JComboBox comboBox;
+    private JComboBox<Perfil> comboBox;
     private JButton okButton;
     private JButton cancelButton;
 
@@ -38,22 +43,29 @@ public class CriarEditarUsuarioJDialog extends JDialog {
 	addListeners();
     }
 
-    private void preencheCampos() {
+    @Override
+    public void preencheCampos() {
 
-	for (Perfil perfil : ((InterfaceController<Perfil>) ControllerFactory.getPerfilController()).getItems()) {
-	    getPerfilComboBox().addItem(perfil);
+	InterfaceController<Perfil> controller = ControllerFactory.getPerfilController();
+	DefaultComboBoxModel<Perfil> model = new DefaultComboBoxModel<>();
+
+	for (Perfil perfil : controller.prepareList()) {
+	    model.addElement(perfil);
 	}
-
+	comboBox.setModel(model);
+	comboBox.setEditable(true);
     }
 
-    private void addListeners() {
+    @Override
+    public void addListeners() {
 	getCancelarButton().addActionListener(new FecharActionListener(this));
-
     }
 
-    private void init() {
-	setTitle("Criar/Atualizar Usuário");
+    @Override
+    public void init() {
+	setTitle("Criar Usuário");
 	setModal(true);
+	setResizable(false);
 	setBounds(100, 100, 450, 244);
 	setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 	getContentPane().setLayout(new BorderLayout());
@@ -72,56 +84,53 @@ public class CriarEditarUsuarioJDialog extends JDialog {
 
 	JLabel lblPerfil = new JLabel("Perfil:");
 
-	comboBox = new JComboBox();
+	comboBox = new JComboBox<Perfil>();
 
 	GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
-	gl_contentPanel
-		.setHorizontalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(
-					gl_contentPanel.createSequentialGroup().addContainerGap()
-						.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 414,
-								Short.MAX_VALUE)
-							.addComponent(lblNome).addComponent(lblEmail)
-							.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 414,
-								Short.MAX_VALUE)
-							.addComponent(lblPerfil)
-							.addComponent(comboBox, 0, 414, Short.MAX_VALUE))
-						.addContainerGap()));
-	gl_contentPanel.setVerticalGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-		.addGroup(gl_contentPanel.createSequentialGroup().addContainerGap().addComponent(lblNome)
+	gl_contentPanel.setHorizontalGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+		.addGroup(gl_contentPanel.createSequentialGroup().addContainerGap()
+			.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+				.addComponent(comboBox, 0, 414, Short.MAX_VALUE)
+				.addComponent(textField_1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 414,
+					Short.MAX_VALUE)
+				.addComponent(lblEmail)
+				.addComponent(textField, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+				.addComponent(lblNome).addComponent(lblPerfil))
+			.addContainerGap()));
+	gl_contentPanel.setVerticalGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING).addGroup(
+		Alignment.TRAILING,
+		gl_contentPanel.createSequentialGroup().addContainerGap(18, Short.MAX_VALUE).addComponent(lblPerfil)
+			.addPreferredGap(ComponentPlacement.RELATED)
+			.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+				GroupLayout.PREFERRED_SIZE)
+			.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(lblNome)
 			.addPreferredGap(ComponentPlacement.RELATED)
 			.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 				GroupLayout.PREFERRED_SIZE)
-			.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblEmail)
-			.addPreferredGap(ComponentPlacement.RELATED)
-			.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-				GroupLayout.PREFERRED_SIZE)
-			.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblPerfil)
-			.addPreferredGap(ComponentPlacement.RELATED).addComponent(comboBox, GroupLayout.PREFERRED_SIZE,
-				GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-			.addContainerGap(80, Short.MAX_VALUE)));
+			.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(lblEmail)
+			.addPreferredGap(ComponentPlacement.RELATED).addComponent(textField_1,
+				GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+			.addContainerGap()));
 	contentPanel.setLayout(gl_contentPanel);
 	{
 	    JPanel buttonPane = new JPanel();
 	    buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 	    getContentPane().add(buttonPane, BorderLayout.SOUTH);
 	    {
+		cancelButton = new JButton("Cancelar");
+		cancelButton.setActionCommand("Cancel");
+		buttonPane.add(cancelButton);
+	    }
+	    {
 		okButton = new JButton("Salvar");
 		okButton.setActionCommand("OK");
 		buttonPane.add(okButton);
 		getRootPane().setDefaultButton(okButton);
 	    }
-	    {
-		cancelButton = new JButton("Cancelar");
-		cancelButton.setActionCommand("Cancel");
-		buttonPane.add(cancelButton);
-	    }
 	}
     }
 
-    public JComboBox getPerfilComboBox() {
+    public JComboBox<Perfil> getPerfilComboBox() {
 	return comboBox;
     }
 

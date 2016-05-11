@@ -10,6 +10,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
+import br.edu.ufrpe.uag.projetao.view.listeners.SelecionarLinhaJTableMouseListener;
 
 /**
  * @author israel
@@ -20,7 +21,8 @@ public class GenericTable<T extends InterfaceEntity> extends JTable {
     public GenericTable(List<T> list) {
 	super(new GenericTableModel<T>(list));
 	setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-	//this.setDefaultRenderer(Object.class, new SubtableCellRenderer());
+	// this.setDefaultRenderer(Object.class, new SubtableCellRenderer());
+	addListeners();
     }
 
     @SuppressWarnings("unchecked")
@@ -50,4 +52,7 @@ public class GenericTable<T extends InterfaceEntity> extends JTable {
 	getModel().addElement(element);
     }
 
+    private void addListeners() {
+	this.addMouseListener(new SelecionarLinhaJTableMouseListener(this));
+    }
 }

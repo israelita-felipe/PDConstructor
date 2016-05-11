@@ -24,7 +24,7 @@ import br.edu.ufrpe.uag.projetao.view.listeners.ExcluirBaseTextoActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.NovaBaseTextoActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.NovaLiberacaoBaseTextoActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.NovoUsuarioActionListener;
-import br.edu.ufrpe.uag.projetao.view.util.PopupManager;
+import br.edu.ufrpe.uag.projetao.view.util.GerenciadorDePopUp;
 
 public class SupervisorMainJFrame {
 
@@ -124,7 +124,7 @@ public class SupervisorMainJFrame {
 		DetachedCriteriaFactory.getBasesTextoDoUsuario(UsuarioController.currrentSupervisor)));
 	scrollPane.setViewportView(table);
 
-	PopupManager.addPopup(table, popupMenu);
+	GerenciadorDePopUp.addPopup(table, popupMenu);
 
     }
 
