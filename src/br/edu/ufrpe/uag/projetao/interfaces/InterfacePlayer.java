@@ -3,11 +3,16 @@
  */
 package br.edu.ufrpe.uag.projetao.interfaces;
 
+import javax.swing.JPanel;
+
+import br.edu.ufrpe.uag.projetao.control.util.video.CoordenadaTempoVideo;
+
 /**
+ * 
  * @author israel
  *
  */
-public interface InterfacePlayer {
+public interface InterfacePlayer extends InterfaceComponenteListavel<CoordenadaTempoVideo> {
 
     /**
      * Inicia o player
@@ -43,4 +48,23 @@ public interface InterfacePlayer {
      * @return o tempo atual em segundos
      */
     double getTempoAtual();
+
+    /**
+     * 
+     * @return Painel de video
+     */
+    JPanel getVideoPanel();
+
+    /**
+     * Insere um arquivo de mídia para ser reproduzido
+     * 
+     * @param arquivoDeMidia
+     *            caminho do arquivo
+     */
+    void setMidia(String arquivoDeMidia);
+
+    /**
+     * Libera o player avisando ao GargabeCollector
+     */
+    void encerrar();
 }

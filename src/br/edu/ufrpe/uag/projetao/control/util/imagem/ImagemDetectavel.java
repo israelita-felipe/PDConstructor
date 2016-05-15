@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.edu.ufrpe.uag.projetao.view.util;
+package br.edu.ufrpe.uag.projetao.control.util.imagem;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -22,14 +22,15 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
-import br.edu.ufrpe.uag.projetao.control.util.imagem.ImagemDigital;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceComponenteListavel;
 import br.edu.ufrpe.uag.projetao.view.listeners.RemoveDeListActionListener;
+import br.edu.ufrpe.uag.projetao.view.util.GerenciadorDePopUp;
 
 /**
  * @author israel
  *
  */
-public class CapturaMouse extends MouseAdapter {
+public class ImagemDetectavel extends MouseAdapter implements InterfaceComponenteListavel<Integer[]> {
 
     private JList<Integer[]> coordenadas;
     private JLabel label;
@@ -39,7 +40,7 @@ public class CapturaMouse extends MouseAdapter {
 
     private Integer[] coordenada;
 
-    public CapturaMouse(int[][][] imagemMatriz, JLabel label) {
+    public ImagemDetectavel(int[][][] imagemMatriz, JLabel label) {
 	super();
 	this.imagemMatriz = imagemMatriz.clone();
 	this.label = label;
@@ -195,7 +196,7 @@ public class CapturaMouse extends MouseAdapter {
 	JFrame frm = new JFrame("teste");
 	JPanel pan = new JPanel();
 	JLabel lbl = new JLabel();
-	CapturaMouse cm = new CapturaMouse(ImagemDigital.carregarImagemCor("/home/israel/Downloads/DilermandoReis.jpg"),
+	ImagemDetectavel cm = new ImagemDetectavel(ImagemDigital.carregarImagemCor("/home/israel/Downloads/DilermandoReis.jpg"),
 		lbl);
 	lbl.addMouseListener(cm);
 	pan.add(lbl);
