@@ -32,7 +32,7 @@ public class CriarBaseTextoActionListener implements ActionListener {
      * 
      */
     public CriarBaseTextoActionListener(InterfaceCriaEAtualiza<BaseTextoJPanel> jdialog) {
-	// TODO Auto-generated constructor stub
+	// TODO Auto-generated constructor stub S2
 	this.jdialog = jdialog;
     }
 

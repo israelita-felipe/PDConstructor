@@ -28,7 +28,7 @@ public class NovaBaseTextoActionListener implements ActionListener {
      * 
      */
     public NovaBaseTextoActionListener(GenericTable<BaseTexto> table) {
-	// TODO Auto-generated constructor stub
+	// TODO Auto-generated constructor stub S2
 	this.table = table;
     }
 
@@ -40,7 +40,7 @@ public class NovaBaseTextoActionListener implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-	// TODO Auto-generated method stub
+	// TODO Auto-generated method stub S2
 	new CriarBaseClassificacaoTextoJDialog().setVisible(true);
 	table.clear();
 	table.addAll(new LinkedList<>(

@@ -5,18 +5,14 @@ package br.edu.ufrpe.uag.projetao.abstracts;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Dialog;
 import java.awt.FlowLayout;
 import java.awt.Frame;
-import java.awt.GraphicsConfiguration;
-import java.awt.Window;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceCriaEAtualiza;
-import br.edu.ufrpe.uag.projetao.view.JPane.BaseTextoJPanel;
 import br.edu.ufrpe.uag.projetao.view.listeners.FecharActionListener;
 
 /**

@@ -3,7 +3,7 @@
  */
 package testes;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;

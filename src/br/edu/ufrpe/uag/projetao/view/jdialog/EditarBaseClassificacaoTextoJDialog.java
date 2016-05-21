@@ -5,8 +5,6 @@ package br.edu.ufrpe.uag.projetao.view.jdialog;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JOptionPane;
-
 import br.edu.ufrpe.uag.projetao.abstracts.AbstractCriaEAtualizaBase;
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;

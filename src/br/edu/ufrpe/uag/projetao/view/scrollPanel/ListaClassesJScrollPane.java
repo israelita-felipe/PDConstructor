@@ -13,13 +13,13 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 import br.edu.ufrpe.uag.projetao.view.listeners.AdicionaClasseActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.RemoveDeListActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.SelecionaLinhaJListMouseListener;
 import br.edu.ufrpe.uag.projetao.view.util.GerenciadorDePopUp;
-import javax.swing.JSeparator;
 
 /**
  * @author israel

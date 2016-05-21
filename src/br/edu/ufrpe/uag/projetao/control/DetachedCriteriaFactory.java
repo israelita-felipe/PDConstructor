@@ -6,16 +6,20 @@ package br.edu.ufrpe.uag.projetao.control;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
+import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
 import br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto;
+import br.edu.ufrpe.uag.projetao.model.ClasssificacaoImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto;
+import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto;
 import br.edu.ufrpe.uag.projetao.model.Usuario;
 
 /**
  * @author israel
+ * @author Juan Augusto
  *
  */
 public class DetachedCriteriaFactory {
@@ -130,5 +134,24 @@ public class DetachedCriteriaFactory {
     private static DetachedCriteria getDetachedCriteriaUsuarioPorPerfil(String perfil) {
 	return DetachedCriteria.forClass(Usuario.class).add(Restrictions.eq("perfil.nome", perfil));
     }
+
+	public static DetachedCriteria getAlocacoesImagemPorLiberacao(LiberacaoBaseImagemClasse liberacao) {
+		DetachedCriteria alocacoesImagemPorLiberacao = DetachedCriteria.forClass(LiberacaoBaseImagemClasse.class)
+				.add(Restrictions.eq("usuarioByEscravo.id", liberacao.getUsuarioByEscravo().getId()))
+				.forClass(AlocacaoImagemClasse.class).add(Restrictions.eq("baseImagemClasse.id", liberacao.getBaseImagemClasse().getId()));
+
+			return alocacoesImagemPorLiberacao;
+	}
+
+	public static DetachedCriteria getClassificacaoImagemClassePorEscravoEAlocacao(Usuario escravo,
+			AlocacaoImagemClasse alocacao) {
+		DetachedCriteria classificacaoImagemClassePorEscravoEAlocacao = DetachedCriteria.forClass(ClasssificacaoImagemClasse.class)
+				.add(Restrictions.eq("usuario.id", escravo.getId()))
+				.add(Restrictions.eq("alocacaoImagemClasse.id", alocacao.getId()));
+
+			return classificacaoImagemClassePorEscravoEAlocacao;
+	}
+
+
 
 }

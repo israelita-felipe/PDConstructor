@@ -13,7 +13,7 @@ import br.edu.ufrpe.uag.projetao.abstracts.AbstractPaginador;
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.UsuarioController;
-import br.edu.ufrpe.uag.projetao.control.util.ClassificacaoBaseTextoPaginator;
+import br.edu.ufrpe.uag.projetao.control.util.texto.ClassificacaoBaseTextoPaginator;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceClassificacao;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto;

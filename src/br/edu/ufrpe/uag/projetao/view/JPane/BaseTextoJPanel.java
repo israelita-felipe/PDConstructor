@@ -15,7 +15,6 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import br.edu.ufrpe.uag.projetao.view.listeners.SelecionaLinhaJListMouseListener;
 import br.edu.ufrpe.uag.projetao.view.scrollPanel.ListaArquivosJScrollPane;
 import br.edu.ufrpe.uag.projetao.view.scrollPanel.ListaClassesJScrollPane;
 

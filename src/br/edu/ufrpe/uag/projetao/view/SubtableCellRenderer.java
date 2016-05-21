@@ -13,8 +13,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import com.thoughtworks.xstream.io.binary.Token.Value;
-
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;

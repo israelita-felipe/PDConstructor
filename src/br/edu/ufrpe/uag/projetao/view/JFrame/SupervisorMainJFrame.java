@@ -17,10 +17,12 @@ import javax.swing.SwingConstants;
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.UsuarioController;
+import br.edu.ufrpe.uag.projetao.model.BaseImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
 import br.edu.ufrpe.uag.projetao.view.GenericTable;
 import br.edu.ufrpe.uag.projetao.view.listeners.EditarBaseTextoActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.ExcluirBaseTextoActionListener;
+import br.edu.ufrpe.uag.projetao.view.listeners.NovaBaseImagemClasseActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.NovaBaseTextoActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.NovaLiberacaoBaseTextoActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.NovoUsuarioActionListener;
@@ -31,12 +33,16 @@ public class SupervisorMainJFrame {
     private JFrame frame;
     private JMenuItem mntmTexto;
     private JPanel panel;
-    private GenericTable<BaseTexto> table;
+    private GenericTable<BaseTexto> baseTextoJTable;
     private JMenuItem mntmEditar;
     private JMenuItem mntmExcluir;
     private JLabel lblUsurio;
     private JMenuItem mntmCriar;
     private JMenuItem mntmLiberarPara;
+    private JMenuItem mntmClassificaoDeImagem;
+    private JPanel panel_2;
+    private JScrollPane scrollPane_1;
+    private GenericTable<BaseImagemClasse> baseImagemClasseJTable;
 
     /**
      * Launch the application.
@@ -81,6 +87,9 @@ public class SupervisorMainJFrame {
 
 	mntmTexto = new JMenuItem("Texto");
 	mnCriar.add(mntmTexto);
+	
+	mntmClassificaoDeImagem = new JMenuItem("Classifica\u00E7\u00E3o de Imagem");
+	mnCriar.add(mntmClassificaoDeImagem);
 
 	JMenu mnEscravo = new JMenu("Usuário");
 	menuBar.add(mnEscravo);
@@ -107,7 +116,7 @@ public class SupervisorMainJFrame {
 	panel.setLayout(new BorderLayout(0, 0));
 
 	JScrollPane scrollPane = new JScrollPane();
-	panel.add(scrollPane, BorderLayout.CENTER);
+	panel.add(scrollPane, BorderLayout.WEST);
 
 	JPopupMenu popupMenu = new JPopupMenu();
 
@@ -120,17 +129,31 @@ public class SupervisorMainJFrame {
 	mntmLiberarPara = new JMenuItem("Liberar para");
 	popupMenu.add(mntmLiberarPara);
 
-	table = new GenericTable<BaseTexto>(ControllerFactory.getBaseTextoController().getItemsFromCriteria(
+	baseTextoJTable = new GenericTable<BaseTexto>(ControllerFactory.getBaseTextoController().getItemsFromCriteria(
 		DetachedCriteriaFactory.getBasesTextoDoUsuario(UsuarioController.currrentSupervisor)));
-	scrollPane.setViewportView(table);
+	scrollPane.setViewportView(baseTextoJTable);
 
-	GerenciadorDePopUp.addPopup(table, popupMenu);
+	GerenciadorDePopUp.addPopup(baseTextoJTable, popupMenu);
+	
+	panel_2 = new JPanel();
+	tabbedPane.addTab("Bases de Imagens", null, panel_2, null);
+	panel_2.setLayout(new BorderLayout(0, 0));
+	
+	scrollPane_1 = new JScrollPane();
+	panel_2.add(scrollPane_1);
+	
+	baseImagemClasseJTable = new GenericTable<BaseImagemClasse>(ControllerFactory.getBaseImagemClasseController().getItemsFromCriteria(
+			DetachedCriteriaFactory.getBasesImagemClasseDoUsuario(UsuarioController.currrentSupervisor)));
+		scrollPane.setViewportView(baseTextoJTable);
+	scrollPane_1.setViewportView(baseImagemClasseJTable);
 
     }
 
     private void addListeners() {
 
 	getCriarBaseTextoMenuItem().addActionListener(new NovaBaseTextoActionListener(getBaseTextoTable()));
+	
+	getCriarBaseClassificacaoDeImagemMenuItem().addActionListener(new NovaBaseImagemClasseActionListener(getBaseImagemClasseJTable()));
 
 	getEditarPopMenuItem().addActionListener(new EditarBaseTextoActionListener(getBaseTextoTable()));
 
@@ -155,7 +178,7 @@ public class SupervisorMainJFrame {
     }
 
     public GenericTable getBaseTextoTable() {
-	return table;
+	return baseTextoJTable;
     }
 
     public JMenuItem getExcluirPopMenuItem() {
@@ -173,4 +196,10 @@ public class SupervisorMainJFrame {
     public JMenuItem getLiberarBaseParaPopMenuItem() {
 	return mntmLiberarPara;
     }
+	public JMenuItem getCriarBaseClassificacaoDeImagemMenuItem() {
+		return mntmClassificaoDeImagem;
+	}
+	public GenericTable getBaseImagemClasseJTable() {
+		return baseImagemClasseJTable;
+	}
 }
