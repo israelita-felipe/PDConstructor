@@ -35,7 +35,7 @@ public class TransactionManager {
     /**
      * Inicia uma transação
      */
-    public static void begin() {
+    public static synchronized void begin() {
 	TransactionManager.getRequestSession().beginTransaction();
     }
 
@@ -45,7 +45,7 @@ public class TransactionManager {
      * @throws ConstraintViolationException
      *             caso haja dados já cadastrados com os mesmos dados
      */
-    public static void end() throws ConstraintViolationException {
+    public static synchronized void end() throws ConstraintViolationException {
 	ConstraintViolationException ex = null;
 	Session currentSession = TransactionManager.getRequestSession();
 	try {
@@ -60,8 +60,8 @@ public class TransactionManager {
 		currentSession.getTransaction().rollback();
 	    }
 	} finally {
-	    //currentSession.close();
-	    //setRequestSession(null);
+	    // currentSession.close();
+	    // setRequestSession(null);
 	    if (ex != null) {
 		throw ex;
 	    }

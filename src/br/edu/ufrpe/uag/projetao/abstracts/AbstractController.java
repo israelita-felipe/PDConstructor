@@ -27,12 +27,12 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
     }
 
     @Override
-    public InterfaceFacade<T> getFacade() {
+    public synchronized InterfaceFacade<T> getFacade() {
 	return ejbFacade;
     }
 
     @Override
-    public List<T> prepareList() {
+    public synchronized List<T> prepareList() {
 
 	recreateModel();
 
@@ -40,7 +40,7 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
     }
 
     @Override
-    public T prepareView(int index) {
+    public synchronized T prepareView(int index) {
 	selectedItemIndex = index;
 
 	current = getItems().get(selectedItemIndex);
@@ -49,7 +49,7 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
     }
 
     @Override
-    public T create() {
+    public synchronized T create() {
 
 	getFacade().create(current);
 
@@ -57,14 +57,14 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
     }
 
     @Override
-    public T prepareEdit(int index) {
+    public synchronized T prepareEdit(int index) {
 	selectedItemIndex = index;
 	current = getItems().get(selectedItemIndex);
 	return current;
     }
 
     @Override
-    public T update() {
+    public synchronized T update() {
 
 	getFacade().edit(current);
 
@@ -78,7 +78,7 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
      * @return
      */
     @Override
-    public T destroy(int index) {
+    public synchronized T destroy(int index) {
 	selectedItemIndex = index;
 
 	current = getItems().get(selectedItemIndex);
@@ -91,7 +91,7 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
     }
 
     @Override
-    public T destroyAndView(int index) {
+    public synchronized T destroyAndView(int index) {
 	selectedItemIndex = index;
 
 	current = getItems().get(selectedItemIndex);
@@ -106,13 +106,13 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
      *
      */
     @Override
-    public void performDestroy() {
+    public synchronized void performDestroy() {
 	getFacade().remove(current);
 
     }
 
     @Override
-    public List<T> getItems() {
+    public synchronized List<T> getItems() {
 	if (items == null) {
 	    items = getFacade().findAll();
 	}
@@ -120,17 +120,17 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
     }
 
     @Override
-    public void recreateModel() {
+    public synchronized void recreateModel() {
 	items = null;
     }
 
     @Override
-    public void recreatePagination() {
+    public synchronized void recreatePagination() {
 	items = null;
     }
 
     @Override
-    public List<T> getItemsAvailableSelectMany() {
+    public synchronized List<T> getItemsAvailableSelectMany() {
 
 	List<T> list = ejbFacade.findAll();
 
@@ -138,7 +138,7 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
     }
 
     @Override
-    public List<T> getItemsAvailableSelectOne() {
+    public synchronized List<T> getItemsAvailableSelectOne() {
 
 	List<T> list = ejbFacade.findAll();
 
@@ -146,14 +146,14 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
     }
 
     @Override
-    public List<T> getItemsFromCriteria(DetachedCriteria criteria) {
+    public synchronized List<T> getItemsFromCriteria(DetachedCriteria criteria) {
 	List<T> list = getFacade().getEntitiesByDetachedCriteria(criteria);
 	setItems(list);
 	return list;
     }
 
     @Override
-    public T get(Serializable id) {
+    public synchronized T get(Serializable id) {
 
 	T object = ejbFacade.find(id);
 
@@ -161,7 +161,7 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
     }
 
     @Override
-    public int next() throws IllegalArgumentException {
+    public synchronized int next() throws IllegalArgumentException {
 
 	setSelectedItemIndex(getSelectedItemIndex() + 1);
 	if (getSelectedItemIndex() >= getItems().size()) {
@@ -173,7 +173,7 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
     }
 
     @Override
-    public int previous() throws IllegalArgumentException {
+    public synchronized int previous() throws IllegalArgumentException {
 	setSelectedItemIndex(getSelectedItemIndex() - 1);
 	if (getSelectedItemIndex() < 0) {
 	    setSelectedItemIndex(getSelectedItemIndex() + 1);
@@ -183,27 +183,27 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
 	return getSelectedItemIndex();
     }
 
-    public int getSelectedItemIndex() {
+    public synchronized int getSelectedItemIndex() {
 	return selectedItemIndex;
     }
 
-    public void setSelectedItemIndex(int selectedItemIndex) {
+    public synchronized void setSelectedItemIndex(int selectedItemIndex) {
 	this.selectedItemIndex = selectedItemIndex;
     }
 
-    public T getCurrent() {
+    public synchronized T getCurrent() {
 	return current;
     }
 
-    public void setCurrent(T current) {
+    public synchronized void setCurrent(T current) {
 	this.current = current;
     }
 
-    public void setSelected(T current) {
+    public synchronized void setSelected(T current) {
 	this.current = current;
     }
 
-    public void setItems(List<T> items) {
+    public synchronized void setItems(List<T> items) {
 	this.items = items;
     }
 

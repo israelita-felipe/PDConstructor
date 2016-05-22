@@ -31,19 +31,19 @@ public class ImagemClasse implements java.io.Serializable, InterfaceEntity {
     private int id;
     @Coluna(colunaNome = "Usuário", colunaPosicao = 1)
     private Usuario usuario;
-    private int[][][] objeto;
+    private byte[] objeto;
     private Set<AlocacaoImagemClasse> alocacaoImagemClasses = new HashSet<>(0);
 
     public ImagemClasse() {
     }
 
-    public ImagemClasse(int id, Usuario usuario, int[][][] objeto) {
+    public ImagemClasse(int id, Usuario usuario, byte[] objeto) {
 	this.id = id;
 	this.usuario = usuario;
 	this.objeto = objeto;
     }
 
-    public ImagemClasse(int id, Usuario usuario, int[][][] objeto, Set<AlocacaoImagemClasse> alocacaoImagemClasses) {
+    public ImagemClasse(int id, Usuario usuario, byte[] objeto, Set<AlocacaoImagemClasse> alocacaoImagemClasses) {
 	this.id = id;
 	this.usuario = usuario;
 	this.objeto = objeto;
@@ -72,11 +72,11 @@ public class ImagemClasse implements java.io.Serializable, InterfaceEntity {
     }
 
     @Column(name = "objeto", nullable = false)
-    public int[][][] getObjeto() {
+    public byte[] getObjeto() {
 	return this.objeto;
     }
 
-    public void setObjeto(int[][][] objeto) {
+    public void setObjeto(byte[] objeto) {
 	this.objeto = objeto;
     }
 

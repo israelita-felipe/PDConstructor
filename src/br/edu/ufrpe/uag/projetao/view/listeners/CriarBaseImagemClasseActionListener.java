@@ -25,82 +25,100 @@ import br.edu.ufrpe.uag.projetao.view.JPane.BaseImagemClasseJPanel;
  *
  */
 public class CriarBaseImagemClasseActionListener implements ActionListener {
-	private InterfaceCriaEAtualiza<BaseImagemClasseJPanel> jdialog;
-	/**
-	 * 
-	 */
-	public CriarBaseImagemClasseActionListener(InterfaceCriaEAtualiza<BaseImagemClasseJPanel> jdialog) {
-		this.jdialog = jdialog;
-	}
-	
+    private InterfaceCriaEAtualiza<BaseImagemClasseJPanel> jdialog;
 
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	//Imagens s�o como textos , os pedestres s�o como os banhistas 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		try {
+    /**
+     * 
+     */
+    public CriarBaseImagemClasseActionListener(InterfaceCriaEAtualiza<BaseImagemClasseJPanel> jdialog) {
+	this.jdialog = jdialog;
+    }
 
-		    validar();
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
+    // Imagens s�o como textos , os pedestres s�o como os banhistas
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
+	try {
+
+	    validar();
+
+	    InterfaceController<BaseImagemClasse> base = ControllerFactory.getBaseImagemClasseController();
+	    InterfaceController<EscolhaImagemClasse> escolhaImagemClasse = ControllerFactory
+		    .getEscolhaClasseImagemClasseController();
+	    InterfaceController<AlocacaoImagemClasse> alocacaoImagemClasse = ControllerFactory
+		    .getAlocacaoImagemClasseController();
+	    InterfaceController<ImagemClasse> imagemClasseController = ControllerFactory.getImagemClasseController();
+
+	    // criação da base
+	    TransactionManager.begin();
+	    base.prepareCreate();
+	    base.getSelected().setTitulo(jdialog.getMediaComponent().getTituloTextField().getText());
+	    base.getSelected().setDescricao(jdialog.getMediaComponent().getDescricaoEditorPane().getText());
+	    base.getSelected().setUsuario(UsuarioController.currrentSupervisor);
+	    base.create();
+	    TransactionManager.end();
+
+	    // criação dos textos
+	    for (int i = 0; i < jdialog.getMediaComponent().getArquivosList().getArquivosList().getModel()
+		    .getSize(); i++) {
+
+		TransactionManager.begin();
+		imagemClasseController.prepareCreate();
+		imagemClasseController.getSelected()
+			.setObjeto(ImagemDigital.toByte(ImagemDigital.carregarImagemCor(jdialog.getMediaComponent()
+				.getArquivosList().getArquivosList().getModel().getElementAt(i).getAbsolutePath())));
+		imagemClasseController.getSelected().setUsuario(UsuarioController.currrentSupervisor);
+		imagemClasseController.create();
+		TransactionManager.end();
+
+		// aloca um texto para uma base
+		TransactionManager.begin();
+		alocacaoImagemClasse.prepareCreate();
+		alocacaoImagemClasse.getSelected().setBaseImagemClasse(base.getSelected());
+		alocacaoImagemClasse.getSelected().setUsuario(UsuarioController.currrentSupervisor);
+		alocacaoImagemClasse.getSelected().setImagemClasse(imagemClasseController.getSelected());
+		alocacaoImagemClasse.create();
+		TransactionManager.end();
+
+		// criação das classes
+		for (int j = 0; j < jdialog.getMediaComponent().getClassesList().getClassesList().getModel()
+			.getSize(); j++) {
+
+		    // aloca uma classe para uma alocacao de texto
 		    TransactionManager.begin();
-
-		    InterfaceController<BaseImagemClasse> base = ControllerFactory.getBaseImagemClasseController();
-		    InterfaceController<EscolhaImagemClasse> escolhaImagemClasse = ControllerFactory
-			    .getEscolhaClasseImagemClasseController();
-		    InterfaceController<AlocacaoImagemClasse> alocacaoImagemClasse = ControllerFactory.getAlocacaoImagemClasseController();
-		    InterfaceController<ImagemClasse> imagemClasseController = ControllerFactory.getImagemClasseController();
-
-		    // criação da base
-		    base.prepareCreate();
-		    base.getSelected().setTitulo(jdialog.getMediaComponent().getTituloTextField().getText());
-		    base.getSelected().setDescricao(jdialog.getMediaComponent().getDescricaoEditorPane().getText());
-		    base.getSelected().setUsuario(UsuarioController.currrentSupervisor);
-		    base.create();
-
-		    // criação dos textos
-		    for (int i = 0; i < jdialog.getMediaComponent().getArquivosList().getArquivosList().getModel()
-			    .getSize(); i++) {
-			
-				imagemClasseController.prepareCreate();
-				imagemClasseController.getSelected().setObjeto(ImagemDigital.carregarImagemCor(jdialog.getMediaComponent()
-					    .getArquivosList().getArquivosList().getModel().getElementAt(i).getAbsolutePath()));
-				imagemClasseController.getSelected().setUsuario(UsuarioController.currrentSupervisor);
-				imagemClasseController.create();
-			    // aloca um texto para uma base
-			    alocacaoImagemClasse.prepareCreate();
-			    alocacaoImagemClasse.getSelected().setBaseImagemClasse(base.getSelected());
-			    alocacaoImagemClasse.getSelected().setUsuario(UsuarioController.currrentSupervisor);
-			    alocacaoImagemClasse.getSelected().setImagemClasse(imagemClasseController.getSelected());
-			    alocacaoImagemClasse.create();
-
-			    // criação das classes
-			    for (int j = 0; j < jdialog.getMediaComponent().getClassesList().getClassesList().getModel()
-				    .getSize(); j++) {
-
-				// aloca uma classe para uma alocacao de texto
-				escolhaImagemClasse.prepareCreate();
-				escolhaImagemClasse.getSelected().setAlocacaoImagemClasse(alocacaoImagemClasse.getSelected());
-				escolhaImagemClasse.getSelected().setDescricao(jdialog.getMediaComponent().getClassesList()
-					.getClassesList().getModel().getElementAt(j).toString());
-				escolhaImagemClasse.create();
-			    }			
-		    }
-		    jdialog.dispose();
-		    JOptionPane.showMessageDialog(null, "Base " + base.getSelected().getId() + " criada com sucesso");
-		    
-		} catch (IllegalArgumentException ex) {
-		    JOptionPane.showMessageDialog(null, ex.getMessage());
-		    
-		} catch (Exception ex) {
-		    JOptionPane.showMessageDialog(null, "Não foi possível gravar, tente novamente");
-		    
-		} finally {
+		    escolhaImagemClasse.prepareCreate();
+		    escolhaImagemClasse.getSelected().setAlocacaoImagemClasse(alocacaoImagemClasse.getSelected());
+		    escolhaImagemClasse.getSelected().setDescricao(jdialog.getMediaComponent().getClassesList()
+			    .getClassesList().getModel().getElementAt(j).toString());
+		    escolhaImagemClasse.create();
 		    TransactionManager.end();
 		}
+	    }
+	    jdialog.dispose();
+	    JOptionPane.showMessageDialog(null, "Base " + base.getSelected().getId() + " criada com sucesso");
 
+	} catch (IllegalArgumentException ex) {
+	    JOptionPane.showMessageDialog(null, ex.getMessage());
+
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	    JOptionPane.showMessageDialog(null, "Não foi possível gravar, tente novamente");
+
+	} finally {
+	    try {
+		TransactionManager.end();
+	    } catch (Exception ex) {
+
+	    }
 	}
+
+    }
 
     /**
      * Executa a validação dos campos
@@ -123,6 +141,5 @@ public class CriarBaseImagemClasseActionListener implements ActionListener {
 	    throw new IllegalArgumentException("Lista de arquivos não pode estar vazia");
 	}
     }
-
 
 }

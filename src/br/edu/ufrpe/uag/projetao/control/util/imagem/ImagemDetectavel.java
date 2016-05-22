@@ -3,7 +3,6 @@
  */
 package br.edu.ufrpe.uag.projetao.control.util.imagem;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -36,14 +35,14 @@ public class ImagemDetectavel extends MouseAdapter implements InterfaceComponent
     private JLabel label;
 
     private boolean fecharRetangulo;
-    private int[][][] imagemMatriz;
 
+    private BufferedImage imagem;
     private Integer[] coordenada;
 
-    public ImagemDetectavel(int[][][] imagemMatriz, JLabel label) {
+    public ImagemDetectavel(String imagem, JLabel label) {
 	super();
-	this.imagemMatriz = imagemMatriz.clone();
 	this.label = label;
+	this.imagem = ImagemDigital.carregarImagemCor(imagem);
 	init();
     }
 
@@ -156,22 +155,13 @@ public class ImagemDetectavel extends MouseAdapter implements InterfaceComponent
      * @throws IOException
      */
     public BufferedImage pintar() throws IOException {
-	int w = imagemMatriz[0].length;
-	int h = imagemMatriz.length;
-	ImagemDigital teste = new ImagemDigital(w, h);
-	for (int y = 0; y < h; y++) {
-	    for (int x = 0; x < w; x++) {
-		// int i = y * h + x;
-		teste.pintar(y, x, new Color(imagemMatriz[y][x][0], imagemMatriz[y][x][1], imagemMatriz[y][x][2]));
-	    }
-	}
-
+	BufferedImage clone = imagem.getSubimage(0, 0, imagem.getWidth(), imagem.getHeight());
 	// pintando os retângulos
 	for (int i = 0; i < coordenadas.getModel().getSize(); i++) {
 	    Integer[] coordenada = coordenadas.getModel().getElementAt(i);
-	    pintarRetangulo(teste.getBuffer(), coordenada);
+	    pintarRetangulo(clone, coordenada);
 	}
-	return teste.getBuffer();
+	return clone;
     }
 
     /**
@@ -196,8 +186,7 @@ public class ImagemDetectavel extends MouseAdapter implements InterfaceComponent
 	JFrame frm = new JFrame("teste");
 	JPanel pan = new JPanel();
 	JLabel lbl = new JLabel();
-	ImagemDetectavel cm = new ImagemDetectavel(ImagemDigital.carregarImagemCor("/home/israel/Downloads/DilermandoReis.jpg"),
-		lbl);
+	ImagemDetectavel cm = new ImagemDetectavel("/home/israel/Downloads/DilermandoReis.jpg", lbl);
 	lbl.addMouseListener(cm);
 	pan.add(lbl);
 	frm.getContentPane().add(pan);
