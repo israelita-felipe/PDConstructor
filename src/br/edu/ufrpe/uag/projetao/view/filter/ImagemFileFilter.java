@@ -13,7 +13,7 @@ import javax.swing.filechooser.FileFilter;
  */
 public class ImagemFileFilter extends FileFilter {
 
-	private String extensions[] = { "jpeg", "jpg", "eps", "bmp" };
+	private String extensions[] = { "jpeg", "jpg", "png", "bmp" };
 
 	/**
 	 * 
