@@ -13,6 +13,7 @@ import javax.swing.JTabbedPane;
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.UsuarioController;
+import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto;
 import br.edu.ufrpe.uag.projetao.view.GenericTable;
 import br.edu.ufrpe.uag.projetao.view.listeners.NovaClassificacaoTextoActionListener;
@@ -23,6 +24,7 @@ public class EscravoMainJFrame {
     private JFrame frame;
     private GenericTable<LiberacaoBaseTexto> tableBaseTexto;
     private JMenuItem mntmClassificar;
+    private GenericTable<LiberacaoBaseImagemClasse> tabelaBaseImagemClasse;
 
     /**
      * Launch the application.
@@ -75,6 +77,17 @@ public class EscravoMainJFrame {
 
 	mntmClassificar = new JMenuItem("Classificar");
 	popupMenu.add(mntmClassificar);
+	
+	JPanel panel_1 = new JPanel();
+	tabbedPane.addTab("Base de Imagem", null, panel_1, null);
+	panel_1.setLayout(new BorderLayout(0, 0));
+	
+	JScrollPane scrollPane_1 = new JScrollPane();
+	panel_1.add(scrollPane_1);
+	
+	tabelaBaseImagemClasse = new GenericTable(ControllerFactory.getLiberacaoBaseImagemClasseController().getItemsFromCriteria(
+			DetachedCriteriaFactory.getLiberacoesBaseImagemClasseDoEscravo(UsuarioController.currentEscravo)));
+			scrollPane_1.setViewportView(tabelaBaseImagemClasse);
     }
 
     private void addListeners() {
@@ -84,4 +97,7 @@ public class EscravoMainJFrame {
     public JMenuItem getClassificarPopMenuItem() {
 	return mntmClassificar;
     }
+	public GenericTable<LiberacaoBaseImagemClasse> getTabelaImagem() {
+		return tabelaBaseImagemClasse;
+	}
 }

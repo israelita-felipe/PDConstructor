@@ -152,6 +152,13 @@ public class DetachedCriteriaFactory {
 			return classificacaoImagemClassePorEscravoEAlocacao;
 	}
 
+	public static DetachedCriteria getLiberacoesBaseImagemClasseDoEscravo(Usuario usuario) {
+		DetachedCriteria liberacaoBasesImagemClasseDoEscravo = getDetachedCriteriaLiberacaoBasePorEscravo(
+				LiberacaoBaseImagemClasse.class, usuario);
+
+			return liberacaoBasesImagemClasseDoEscravo;
+	}
+
 
 
 }

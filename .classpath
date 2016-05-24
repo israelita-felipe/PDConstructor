@@ -13,31 +13,31 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="net.sf.jasperreports.JR_CONTAINER"/>
-	<classpathentry kind="con" path="net.sf.jasperreports.JR_DEPENDENCIES_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/junit.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/jboss-transaction-api_1.2_spec-1.0.0.Final.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/jboss-logging-annotations-1.2.0.Beta1.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/jboss-logging-3.1.3.GA.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/javax.mail-1.5.0.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/jandex-1.1.0.Final.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/hibernate-core-4.3.11.Final.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/activation-1.1.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/xstream-1.4.9.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/xpp3_min-1.1.4c.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/xmlpull-1.1.3.1.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/postgresql-9.4.1208.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/org.hamcrest.core_1.3.0.v201303031735.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/javaee-api-7.0.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/hibernate-commons-annotations-4.0.5.Final.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/antlr-2.7.7.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/javassist-3.18.1-GA.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/xml-apis-1.0.b2.jar"/>
-	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/hibernate-commons-annotations-4.0.5.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/hibernate-core-4.3.11.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/jandex-1.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/javaee-api-7.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/javassist-3.18.1-GA.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/javax.mail-1.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/jboss-logging-3.1.3.GA.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/jboss-logging-annotations-1.2.0.Beta1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/jboss-transaction-api_1.2_spec-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/junit.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/postgresql-9.4.1208.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/xml-apis-1.0.b2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/xmlpull-1.1.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/xpp3_min-1.1.4c.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan Augusto/git/PDConstructor/lib/xstream-1.4.9.jar"/>
+	<classpathentry kind="con" path="net.sf.jasperreports.JR_DEPENDENCIES_CONTAINER"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

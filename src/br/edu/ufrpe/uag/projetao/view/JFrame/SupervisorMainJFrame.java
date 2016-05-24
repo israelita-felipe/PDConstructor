@@ -24,6 +24,7 @@ import br.edu.ufrpe.uag.projetao.view.listeners.EditarBaseTextoActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.ExcluirBaseTextoActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.NovaBaseImagemClasseActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.NovaBaseTextoActionListener;
+import br.edu.ufrpe.uag.projetao.view.listeners.NovaLiberacaoBaseImagemClasseActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.NovaLiberacaoBaseTextoActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.NovoUsuarioActionListener;
 import br.edu.ufrpe.uag.projetao.view.util.GerenciadorDePopUp;
@@ -43,6 +44,10 @@ public class SupervisorMainJFrame {
     private JPanel panel_2;
     private JScrollPane scrollPane_1;
     private GenericTable<BaseImagemClasse> baseImagemClasseJTable;
+    private JPopupMenu popupMenu_1;
+    private JMenuItem mntmEditar_1;
+    private JMenuItem mntmExcluir_1;
+    private JMenuItem mntmLiberarPara_1;
 
     /**
      * Launch the application.
@@ -146,15 +151,27 @@ public class SupervisorMainJFrame {
 			DetachedCriteriaFactory.getBasesImagemClasseDoUsuario(UsuarioController.currrentSupervisor)));
 		scrollPane.setViewportView(baseTextoJTable);
 	scrollPane_1.setViewportView(baseImagemClasseJTable);
+	
+	popupMenu_1 = new JPopupMenu();
+	GerenciadorDePopUp.addPopup(baseImagemClasseJTable, popupMenu_1);
+	
+	mntmEditar_1 = new JMenuItem("Editar");
+	popupMenu_1.add(mntmEditar_1);
+	
+	mntmExcluir_1 = new JMenuItem("Excluir");
+	popupMenu_1.add(mntmExcluir_1);
+	
+	mntmLiberarPara_1 = new JMenuItem("Liberar Para");
+	popupMenu_1.add(mntmLiberarPara_1);
 
     }
 
     private void addListeners() {
+    	
+    	//Atribuição na base de Texto
 
 	getCriarBaseTextoMenuItem().addActionListener(new NovaBaseTextoActionListener(getBaseTextoTable()));
 	
-	getCriarBaseClassificacaoDeImagemMenuItem().addActionListener(new NovaBaseImagemClasseActionListener(getBaseImagemClasseJTable()));
-
 	getEditarPopMenuItem().addActionListener(new EditarBaseTextoActionListener(getBaseTextoTable()));
 
 	getExcluirPopMenuItem().addActionListener(new ExcluirBaseTextoActionListener(getBaseTextoTable()));
@@ -163,6 +180,17 @@ public class SupervisorMainJFrame {
 
 	getLiberarBaseParaPopMenuItem()
 		.addActionListener(new NovaLiberacaoBaseTextoActionListener(getBaseTextoTable()));
+	
+	 //Atribuição na base de imagem classe
+	
+	getCriarBaseClassificacaoDeImagemMenuItem().addActionListener(new NovaBaseImagemClasseActionListener(getBaseImagemClasseJTable()));
+	
+	getLiberarBaseImagemClasseMenuItem()
+	.addActionListener(new NovaLiberacaoBaseImagemClasseActionListener(getBaseImagemClasseJTable()));
+	
+	
+
+	
     }
 
     public JMenuItem getCriarBaseTextoMenuItem() {
@@ -201,5 +229,18 @@ public class SupervisorMainJFrame {
 	}
 	public GenericTable getBaseImagemClasseJTable() {
 		return baseImagemClasseJTable;
+	}
+
+	public JPopupMenu getPopupImagemClasse() {
+		return popupMenu_1;
+	}
+	public JMenuItem getEditarBaseImagemClasseMenuItem() {
+		return mntmEditar_1;
+	}
+	public JMenuItem getExcluirBaseImagemClasseMenuItem() {
+		return mntmExcluir_1;
+	}
+	public JMenuItem getLiberarBaseImagemClasseMenuItem() {
+		return mntmLiberarPara_1;
 	}
 }
