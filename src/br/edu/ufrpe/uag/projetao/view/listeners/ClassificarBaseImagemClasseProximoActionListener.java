@@ -80,6 +80,7 @@ public class ClassificarBaseImagemClasseProximoActionListener implements ActionL
 		    .setSelectedItem(paginador.getItemAtual().getEscolhaImagemClasse());
 	    BufferedImage imagem = ImagemDigital.toImage(paginador.getAlocacaoAtual().getImagemClasse().getObjeto());
 	    if (imagem != null) {
+		imagem = ImagemDigital.resize(imagem, ImagemDigital.getWidth(), ImagemDigital.getHeight());
 		classificacaoBaseImagemClasseDialog.getMediaComponet().getImagemLabel().setIcon(new ImageIcon(imagem));
 	    }
 

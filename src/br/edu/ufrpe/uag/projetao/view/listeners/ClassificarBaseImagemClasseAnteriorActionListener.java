@@ -80,8 +80,10 @@ public class ClassificarBaseImagemClasseAnteriorActionListener implements Action
 
 	    classificacaoBaseImagemClasseDialog.getClasseComboBox()
 		    .setSelectedItem(paginador.getItemAtual().getEscolhaImagemClasse());
+
 	    BufferedImage imagem = ImagemDigital.toImage(paginador.getAlocacaoAtual().getImagemClasse().getObjeto());
 	    if (imagem != null) {
+		imagem = ImagemDigital.resize(imagem, ImagemDigital.getWidth(), ImagemDigital.getHeight());
 		classificacaoBaseImagemClasseDialog.getMediaComponet().getImagemLabel().setIcon(new ImageIcon(imagem));
 	    }
 

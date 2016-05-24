@@ -7,7 +7,6 @@ import java.awt.BorderLayout;
 
 import br.edu.ufrpe.uag.projetao.abstracts.AbstractCriaEAtualizaBase;
 import br.edu.ufrpe.uag.projetao.view.JPane.BaseImagemClasseJPanel;
-import br.edu.ufrpe.uag.projetao.view.listeners.AdicionaArquivoActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.AdicionaImagemActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.CriarBaseImagemClasseActionListener;
 

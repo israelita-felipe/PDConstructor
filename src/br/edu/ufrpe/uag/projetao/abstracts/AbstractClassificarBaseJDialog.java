@@ -52,7 +52,7 @@ public abstract class AbstractClassificarBaseJDialog<C extends Component, T exte
 
     @Override
     public void init() {
-	// TODO Auto-generated method stub
+	setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 	setBounds(100, 100, 706, 412);
 	getContentPane().setLayout(new BorderLayout());
 	contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
