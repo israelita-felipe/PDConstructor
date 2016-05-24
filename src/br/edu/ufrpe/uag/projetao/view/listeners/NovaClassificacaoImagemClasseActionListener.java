@@ -4,8 +4,11 @@
 package br.edu.ufrpe.uag.projetao.view.listeners;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import br.edu.ufrpe.uag.projetao.abstracts.AbstractPaginador;
@@ -13,6 +16,7 @@ import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.UsuarioController;
 import br.edu.ufrpe.uag.projetao.control.util.imagem.ClassificacaoBaseImagemPaginator;
+import br.edu.ufrpe.uag.projetao.control.util.imagem.ImagemDigital;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceClassificacao;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.ClasssificacaoImagemClasse;
@@ -26,9 +30,9 @@ import br.edu.ufrpe.uag.projetao.view.scrollPanel.ClassificarImagemClasseJScroll
  * @author Juan Augusto
  *
  */
-public class NovaClassificacaoImagemClasseActionListener {
+public class NovaClassificacaoImagemClasseActionListener implements ActionListener {
 
-	private InterfaceClassificacao<ClassificarImagemClasseJScrollPane, EscolhaImagemClasse> classificacaoBaseImagemClasseDialog;
+    private InterfaceClassificacao<ClassificarImagemClasseJScrollPane, EscolhaImagemClasse> classificacaoBaseImagemClasseDialog;
     private GenericTable<LiberacaoBaseImagemClasse> tabela;
     private AbstractPaginador<LiberacaoBaseImagemClasse, ClasssificacaoImagemClasse, EscolhaImagemClasse, AlocacaoImagemClasse> paginador;
 
@@ -60,11 +64,16 @@ public class NovaClassificacaoImagemClasseActionListener {
 		addListeners();
 
 		DefaultComboBoxModel<EscolhaImagemClasse> model = new DefaultComboBoxModel<>();
-		for (EscolhaImagemClasse classe : paginador.getAlocacaoAtual().getEscolhaImagemClasses()){
+		for (EscolhaImagemClasse classe : paginador.getAlocacaoAtual().getEscolhaImagemClasses()) {
 		    model.addElement(classe);
 		}
 		classificacaoBaseImagemClasseDialog.getClasseComboBox().setModel(model);
-		classificacaoBaseImagemClasseDialog.getMediaComponet().getImagemLabel();
+		BufferedImage imagem = ImagemDigital
+			.toImage(paginador.getAlocacaoAtual().getImagemClasse().getObjeto());
+		if (imagem != null) {
+		    classificacaoBaseImagemClasseDialog.getMediaComponet().getImagemLabel()
+			    .setIcon(new ImageIcon(imagem));
+		}
 		classificacaoBaseImagemClasseDialog.getClasseComboBox()
 			.setSelectedItem(paginador.getItemAtual().getEscolhaImagemClasse());
 
@@ -77,6 +86,7 @@ public class NovaClassificacaoImagemClasseActionListener {
 	    } catch (Exception ex) {
 
 		JOptionPane.showMessageDialog(null, "Não foi possível acessar a liberação contacte o supervisor");
+		ex.printStackTrace();
 
 	    } finally {
 		// atualiza a tabela de liberações, exibindo somente as que
@@ -104,8 +114,7 @@ public class NovaClassificacaoImagemClasseActionListener {
     private void atualizaTabela() {
 	tabela.clear();
 	tabela.addAll(ControllerFactory.getLiberacaoBaseImagemClasseController().getItemsFromCriteria(
-		DetachedCriteriaFactory.getLiberacoesBaseTextoDoEscravo(UsuarioController.currentEscravo)));
+		DetachedCriteriaFactory.getLiberacoesBaseImagemClasseDoEscravo(UsuarioController.currentEscravo)));
     }
-
 
 }

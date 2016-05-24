@@ -16,6 +16,7 @@ import br.edu.ufrpe.uag.projetao.control.UsuarioController;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto;
 import br.edu.ufrpe.uag.projetao.view.GenericTable;
+import br.edu.ufrpe.uag.projetao.view.listeners.NovaClassificacaoImagemClasseActionListener;
 import br.edu.ufrpe.uag.projetao.view.listeners.NovaClassificacaoTextoActionListener;
 import br.edu.ufrpe.uag.projetao.view.util.GerenciadorDePopUp;
 
@@ -25,6 +26,8 @@ public class EscravoMainJFrame {
     private GenericTable<LiberacaoBaseTexto> tableBaseTexto;
     private JMenuItem mntmClassificar;
     private GenericTable<LiberacaoBaseImagemClasse> tabelaBaseImagemClasse;
+    private JPopupMenu popupMenu_1;
+    private JMenuItem mntmClassificar_1;
 
     /**
      * Launch the application.
@@ -77,27 +80,45 @@ public class EscravoMainJFrame {
 
 	mntmClassificar = new JMenuItem("Classificar");
 	popupMenu.add(mntmClassificar);
-	
+
 	JPanel panel_1 = new JPanel();
 	tabbedPane.addTab("Base de Imagem", null, panel_1, null);
 	panel_1.setLayout(new BorderLayout(0, 0));
-	
+
 	JScrollPane scrollPane_1 = new JScrollPane();
 	panel_1.add(scrollPane_1);
-	
-	tabelaBaseImagemClasse = new GenericTable(ControllerFactory.getLiberacaoBaseImagemClasseController().getItemsFromCriteria(
-			DetachedCriteriaFactory.getLiberacoesBaseImagemClasseDoEscravo(UsuarioController.currentEscravo)));
-			scrollPane_1.setViewportView(tabelaBaseImagemClasse);
+
+	tabelaBaseImagemClasse = new GenericTable(
+		ControllerFactory.getLiberacaoBaseImagemClasseController().getItemsFromCriteria(DetachedCriteriaFactory
+			.getLiberacoesBaseImagemClasseDoEscravo(UsuarioController.currentEscravo)));
+	scrollPane_1.setViewportView(tabelaBaseImagemClasse);
+
+	popupMenu_1 = new JPopupMenu();
+	GerenciadorDePopUp.addPopup(tabelaBaseImagemClasse, popupMenu_1);
+
+	mntmClassificar_1 = new JMenuItem("Classificar");
+	popupMenu_1.add(mntmClassificar_1);
     }
 
     private void addListeners() {
 	getClassificarPopMenuItem().addActionListener(new NovaClassificacaoTextoActionListener(tableBaseTexto));
+	getClassificarBaseImagemClasseMenuItem()
+		.addActionListener(new NovaClassificacaoImagemClasseActionListener(tabelaBaseImagemClasse));
     }
 
     public JMenuItem getClassificarPopMenuItem() {
 	return mntmClassificar;
     }
-	public GenericTable<LiberacaoBaseImagemClasse> getTabelaImagem() {
-		return tabelaBaseImagemClasse;
-	}
+
+    public GenericTable<LiberacaoBaseImagemClasse> getTabelaImagem() {
+	return tabelaBaseImagemClasse;
+    }
+
+    public JPopupMenu getBaseImagemClassePopUpMenu() {
+	return popupMenu_1;
+    }
+
+    public JMenuItem getClassificarBaseImagemClasseMenuItem() {
+	return mntmClassificar_1;
+    }
 }

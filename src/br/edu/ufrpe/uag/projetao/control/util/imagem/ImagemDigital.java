@@ -31,7 +31,7 @@ public class ImagemDigital {
 
     public static BufferedImage toImage(byte[] b) {
 	try {
-	    ImageIO.read(new ByteArrayInputStream(b));
+	    return ImageIO.read(new ByteArrayInputStream(b));
 	} catch (IOException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();

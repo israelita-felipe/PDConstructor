@@ -3,10 +3,8 @@
  */
 package br.edu.ufrpe.uag.projetao.view.scrollPanel;
 
-import java.awt.Component;
 import java.awt.image.BufferedImage;
 
-import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -16,45 +14,45 @@ import javax.swing.JScrollPane;
  *
  */
 public class ClassificarImagemClasseJScrollPane extends JScrollPane {
-	private JLabel label;
-	
-	/**
-	 * 
-	 */
-	public ClassificarImagemClasseJScrollPane(BufferedImage imagem) {
-		super();
-		init();
-		label = new JLabel(new ImageIcon(imagem));
-		
-	}
-	
-	private void init(){
-		JLabel lblImagem = new JLabel("Imagem:");
-		setColumnHeaderView(lblImagem);
-		
-		setViewportView(label);		
-	}
-	/**
-	 * @param arg0
-	 * @param arg1
-	 */
-	public ClassificarImagemClasseJScrollPane(int arg0, int arg1) {
-		super(arg0, arg1);
-		// TODO Auto-generated constructor stub
-	}
+    private JLabel label;
+    private BufferedImage imagem;
 
-	/**
-	 * @param arg0
-	 * @param arg1
-	 * @param arg2
-	 */
-	public ClassificarImagemClasseJScrollPane(Component arg0, int arg1, int arg2) {
-		super(arg0, arg1, arg2);
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * 
+     */
+    public ClassificarImagemClasseJScrollPane(BufferedImage imagem) {
+	super();
+	this.imagem = imagem;
+	init();
+    }
 
-	public JLabel getImagemLabel() {
-		return label;
+    private void init() {
+	JLabel lblImagem = new JLabel("Imagem:");
+	setColumnHeaderView(lblImagem);
+	label = new JLabel();
+	if (this.imagem != null) {
+	    label.setIcon(new ImageIcon(imagem));
 	}
+	setViewportView(label);
+    }
+
+    public JLabel getImagemLabel() {
+	return label;
+    }
+
+    /**
+     * @return the imagem
+     */
+    public BufferedImage getImagem() {
+	return imagem;
+    }
+
+    /**
+     * @param imagem
+     *            the imagem to set
+     */
+    public void setImagem(BufferedImage imagem) {
+	this.imagem = imagem;
+    }
 
 }

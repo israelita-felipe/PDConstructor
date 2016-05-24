@@ -5,13 +5,16 @@ package br.edu.ufrpe.uag.projetao.view.listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import br.edu.ufrpe.uag.projetao.abstracts.AbstractPaginador;
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
+import br.edu.ufrpe.uag.projetao.control.util.imagem.ImagemDigital;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceClassificacao;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemClasse;
@@ -27,7 +30,7 @@ import br.edu.ufrpe.uag.projetao.view.scrollPanel.ClassificarImagemClasseJScroll
  */
 public class ClassificarBaseImagemClasseAnteriorActionListener implements ActionListener {
 
-	private InterfaceController<LiberacaoBaseImagemClasse> liberacaoBaseImagemClasseController;
+    private InterfaceController<LiberacaoBaseImagemClasse> liberacaoBaseImagemClasseController;
 
     private InterfaceClassificacao<ClassificarImagemClasseJScrollPane, EscolhaImagemClasse> classificacaoBaseImagemClasseDialog;
     private AbstractPaginador<LiberacaoBaseImagemClasse, ClasssificacaoImagemClasse, EscolhaImagemClasse, AlocacaoImagemClasse> paginador;
@@ -77,7 +80,10 @@ public class ClassificarBaseImagemClasseAnteriorActionListener implements Action
 
 	    classificacaoBaseImagemClasseDialog.getClasseComboBox()
 		    .setSelectedItem(paginador.getItemAtual().getEscolhaImagemClasse());
-	    classificacaoBaseImagemClasseDialog.getMediaComponet().getImagemLabel();
+	    BufferedImage imagem = ImagemDigital.toImage(paginador.getAlocacaoAtual().getImagemClasse().getObjeto());
+	    if (imagem != null) {
+		classificacaoBaseImagemClasseDialog.getMediaComponet().getImagemLabel().setIcon(new ImageIcon(imagem));
+	    }
 
 	} catch (IllegalArgumentException ex) {
 	    aprovaFechamentoDaBase();
