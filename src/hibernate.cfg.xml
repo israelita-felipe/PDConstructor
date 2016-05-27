@@ -12,18 +12,24 @@
 		<!-- <property name="show_sql">true</property> <property name="format_sql">true</property> -->
 		<property name="hibernate.current_session_context_class">thread</property>
 
-		<mapping class="br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.BaseTexto" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.AlocacaoTexto" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.AlocacaoImagemClasse" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.Usuario" />
 		<mapping class="br.edu.ufrpe.uag.projetao.model.Perfil" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemClasse" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.ImagemClasse" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.EscolhaImagemClasse" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.BaseImagemClasse" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto" />
+		<mapping class="br.edu.ufrpe.uag.projetao.model.AlocacaoImagemClasse" />
 		<mapping class="br.edu.ufrpe.uag.projetao.model.ClasssificacaoImagemClasse" />
+		<mapping class="br.edu.ufrpe.uag.projetao.model.ImagemClasse" />
+		<mapping class="br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemClasse" />
+		<mapping class="br.edu.ufrpe.uag.projetao.model.BaseTexto" />
+		<mapping class="br.edu.ufrpe.uag.projetao.model.BaseImagemClasse" />
+		<mapping class="br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto" />
+		<mapping class="br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto" />
+		<mapping class="br.edu.ufrpe.uag.projetao.model.EscolhaImagemClasse" />
+		<mapping class="br.edu.ufrpe.uag.projetao.model.BaseImagemDeteccao" />
+		<mapping class="br.edu.ufrpe.uag.projetao.model.AlocacaoTexto" />
+		<mapping class="br.edu.ufrpe.uag.projetao.model.ImagemDeteccao" />
+		<mapping class="br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto" />
+		<mapping class="br.edu.ufrpe.uag.projetao.model.DeteccaoImagem" />
+		<mapping class="br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemDeteccao" />
+		<mapping class="br.edu.ufrpe.uag.projetao.model.Usuario" />
+		<mapping class="br.edu.ufrpe.uag.projetao.model.AlocacaoImagemDeteccao" />
+		
 	</session-factory>
 </hibernate-configuration>

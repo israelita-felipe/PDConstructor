@@ -2,7 +2,6 @@ package br.edu.ufrpe.uag.projetao.model;
 // Generated 26/04/2016 23:17:23 by Hibernate Tools 4.3.1
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -92,15 +91,22 @@ public class EscolhaImagemClasse implements java.io.Serializable, InterfaceEntit
 	this.classsificacaoImagemClasses = classsificacaoImagemClasses;
     }
 
+   
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
     @Override
     public int hashCode() {
-	int hash = 7;
-	hash = 53 * hash + this.id;
-	hash = 53 * hash + Objects.hashCode(this.alocacaoImagemClasse);
-	hash = 53 * hash + Objects.hashCode(this.descricao);
-	return hash;
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
+	return result;
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @Override
     public boolean equals(Object obj) {
 	if (this == obj) {
@@ -109,23 +115,23 @@ public class EscolhaImagemClasse implements java.io.Serializable, InterfaceEntit
 	if (obj == null) {
 	    return false;
 	}
-	if (getClass() != obj.getClass()) {
+	if (!(obj instanceof EscolhaImagemClasse)) {
 	    return false;
 	}
-	final EscolhaImagemClasse other = (EscolhaImagemClasse) obj;
-	if (this.id != other.id) {
+	EscolhaImagemClasse other = (EscolhaImagemClasse) obj;
+	if (descricao == null) {
+	    if (other.descricao != null) {
+		return false;
+	    }
+	} else if (!descricao.equals(other.descricao)) {
 	    return false;
 	}
-	if (!Objects.equals(this.descricao, other.descricao)) {
-	    return false;
-	}
-	return Objects.equals(this.alocacaoImagemClasse, other.alocacaoImagemClasse);
+	return true;
     }
 
     @Override
     public String toString() {
-	return "EscolhaImagemClasse{" + "alocacaoImagemClasse=" + alocacaoImagemClasse + ", descricao=" + descricao
-		+ '}';
+	return this.descricao;
     }
 
 }

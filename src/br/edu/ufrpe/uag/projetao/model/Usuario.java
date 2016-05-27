@@ -35,17 +35,27 @@ public class Usuario implements java.io.Serializable, InterfaceEntity {
     @Coluna(colunaNome = "E-mail", colunaPosicao = 1)
     private String email;
     private String senha;
-    private Set<ImagemClasse> imagemClasses = new HashSet<>(0);
-    private Set<LiberacaoBaseImagemClasse> liberacaoBaseImagemClassesForEscravo = new HashSet<>(0);
-    private Set<LiberacaoBaseTexto> liberacaoBaseTextosForEscravo = new HashSet<>(0);
-    private Set<AlocacaoImagemClasse> alocacaoImagemClasses = new HashSet<>(0);
-    private Set<AlocacaoTexto> alocacaoTextos = new HashSet<>(0);
-    private Set<LiberacaoBaseImagemClasse> liberacaoBaseImagemClassesForSupervisor = new HashSet<>(0);
-    private Set<BaseTexto> baseTextos = new HashSet<>(0);
-    private Set<ClassificacaoTexto> classificacaoTextos = new HashSet<>(0);
-    private Set<LiberacaoBaseTexto> liberacaoBaseTextosForSupervisor = new HashSet<>(0);
-    private Set<BaseImagemClasse> baseImagemClasses = new HashSet<>(0);
-    private Set<ClasssificacaoImagemClasse> classsificacaoImagemClasses = new HashSet<>(0);
+    private Set<DeteccaoImagem> deteccaoImagems = new HashSet<DeteccaoImagem>(0);
+    private Set<LiberacaoBaseImagemClasse> liberacaoBaseImagemClassesForEscravo = new HashSet<LiberacaoBaseImagemClasse>(
+	    0);
+    private Set<LiberacaoBaseTexto> liberacaoBaseTextosForEscravo = new HashSet<LiberacaoBaseTexto>(0);
+    private Set<BaseImagemDeteccao> baseImagemDeteccaos = new HashSet<BaseImagemDeteccao>(0);
+    private Set<AlocacaoImagemClasse> alocacaoImagemClasses = new HashSet<AlocacaoImagemClasse>(0);
+    private Set<AlocacaoTexto> alocacaoTextos = new HashSet<AlocacaoTexto>(0);
+    private Set<BaseTexto> baseTextos = new HashSet<BaseTexto>(0);
+    private Set<ClassificacaoTexto> classificacaoTextos = new HashSet<ClassificacaoTexto>(0);
+    private Set<ClasssificacaoImagemClasse> classsificacaoImagemClasses = new HashSet<ClasssificacaoImagemClasse>(0);
+    private Set<AlocacaoImagemDeteccao> alocacaoImagemDeteccaos = new HashSet<AlocacaoImagemDeteccao>(0);
+    private Set<LiberacaoBaseImagemDeteccao> liberacaoBaseImagemDeteccaosForSupervisor = new HashSet<LiberacaoBaseImagemDeteccao>(
+	    0);
+    private Set<ImagemClasse> imagemClasses = new HashSet<ImagemClasse>(0);
+    private Set<LiberacaoBaseImagemDeteccao> liberacaoBaseImagemDeteccaosForEscravo = new HashSet<LiberacaoBaseImagemDeteccao>(
+	    0);
+    private Set<ImagemDeteccao> imagemDeteccaos = new HashSet<ImagemDeteccao>(0);
+    private Set<LiberacaoBaseImagemClasse> liberacaoBaseImagemClassesForSupervisor = new HashSet<LiberacaoBaseImagemClasse>(
+	    0);
+    private Set<LiberacaoBaseTexto> liberacaoBaseTextosForSupervisor = new HashSet<LiberacaoBaseTexto>(0);
+    private Set<BaseImagemClasse> baseImagemClasses = new HashSet<BaseImagemClasse>(0);
 
     public Usuario() {
     }
@@ -57,34 +67,9 @@ public class Usuario implements java.io.Serializable, InterfaceEntity {
 	this.senha = senha;
     }
 
-    public Usuario(int id, Perfil perfil, String nome, String email, String senha, Set<ImagemClasse> imagemClasses,
-	    Set<LiberacaoBaseImagemClasse> liberacaoBaseImagemClassesForEscravo,
-	    Set<LiberacaoBaseTexto> liberacaoBaseTextosForEscravo, Set<AlocacaoImagemClasse> alocacaoImagemClasses,
-	    Set<AlocacaoTexto> alocacaoTextos, Set<LiberacaoBaseImagemClasse> liberacaoBaseImagemClassesForSupervisor,
-	    Set<BaseTexto> baseTextos, Set<ClassificacaoTexto> classificacaoTextos,
-	    Set<LiberacaoBaseTexto> liberacaoBaseTextosForSupervisor, Set<BaseImagemClasse> baseImagemClasses,
-	    Set<ClasssificacaoImagemClasse> classsificacaoImagemClasses) {
-	this.id = id;
-	this.perfil = perfil;
-	this.nome = nome;
-	this.email = email;
-	this.senha = senha;
-	this.imagemClasses = imagemClasses;
-	this.liberacaoBaseImagemClassesForEscravo = liberacaoBaseImagemClassesForEscravo;
-	this.liberacaoBaseTextosForEscravo = liberacaoBaseTextosForEscravo;
-	this.alocacaoImagemClasses = alocacaoImagemClasses;
-	this.alocacaoTextos = alocacaoTextos;
-	this.liberacaoBaseImagemClassesForSupervisor = liberacaoBaseImagemClassesForSupervisor;
-	this.baseTextos = baseTextos;
-	this.classificacaoTextos = classificacaoTextos;
-	this.liberacaoBaseTextosForSupervisor = liberacaoBaseTextosForSupervisor;
-	this.baseImagemClasses = baseImagemClasses;
-	this.classsificacaoImagemClasses = classsificacaoImagemClasses;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true)
+    @Column(name = "id", unique = true, nullable = false)
     public int getId() {
 	return this.id;
     }
@@ -94,7 +79,7 @@ public class Usuario implements java.io.Serializable, InterfaceEntity {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "perfil")
+    @JoinColumn(name = "perfil", nullable = false)
     public Perfil getPerfil() {
 	return this.perfil;
     }
@@ -112,7 +97,7 @@ public class Usuario implements java.io.Serializable, InterfaceEntity {
 	this.nome = nome;
     }
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     public String getEmail() {
 	return this.email;
     }
@@ -121,7 +106,7 @@ public class Usuario implements java.io.Serializable, InterfaceEntity {
 	this.email = email;
     }
 
-    @Column(name = "senha")
+    @Column(name = "senha", nullable = false)
     public String getSenha() {
 	return this.senha;
     }
@@ -131,12 +116,12 @@ public class Usuario implements java.io.Serializable, InterfaceEntity {
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
-    public Set<ImagemClasse> getImagemClasses() {
-	return this.imagemClasses;
+    public Set<DeteccaoImagem> getDeteccaoImagems() {
+	return this.deteccaoImagems;
     }
 
-    public void setImagemClasses(Set<ImagemClasse> imagemClasses) {
-	this.imagemClasses = imagemClasses;
+    public void setDeteccaoImagems(Set<DeteccaoImagem> deteccaoImagems) {
+	this.deteccaoImagems = deteccaoImagems;
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioByEscravo")
@@ -159,6 +144,15 @@ public class Usuario implements java.io.Serializable, InterfaceEntity {
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    public Set<BaseImagemDeteccao> getBaseImagemDeteccaos() {
+	return this.baseImagemDeteccaos;
+    }
+
+    public void setBaseImagemDeteccaos(Set<BaseImagemDeteccao> baseImagemDeteccaos) {
+	this.baseImagemDeteccaos = baseImagemDeteccaos;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
     public Set<AlocacaoImagemClasse> getAlocacaoImagemClasses() {
 	return this.alocacaoImagemClasses;
     }
@@ -174,16 +168,6 @@ public class Usuario implements java.io.Serializable, InterfaceEntity {
 
     public void setAlocacaoTextos(Set<AlocacaoTexto> alocacaoTextos) {
 	this.alocacaoTextos = alocacaoTextos;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioBySupervisor")
-    public Set<LiberacaoBaseImagemClasse> getLiberacaoBaseImagemClassesForSupervisor() {
-	return this.liberacaoBaseImagemClassesForSupervisor;
-    }
-
-    public void setLiberacaoBaseImagemClassesForSupervisor(
-	    Set<LiberacaoBaseImagemClasse> liberacaoBaseImagemClassesForSupervisor) {
-	this.liberacaoBaseImagemClassesForSupervisor = liberacaoBaseImagemClassesForSupervisor;
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
@@ -204,6 +188,72 @@ public class Usuario implements java.io.Serializable, InterfaceEntity {
 	this.classificacaoTextos = classificacaoTextos;
     }
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    public Set<ClasssificacaoImagemClasse> getClasssificacaoImagemClasses() {
+	return this.classsificacaoImagemClasses;
+    }
+
+    public void setClasssificacaoImagemClasses(Set<ClasssificacaoImagemClasse> classsificacaoImagemClasses) {
+	this.classsificacaoImagemClasses = classsificacaoImagemClasses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    public Set<AlocacaoImagemDeteccao> getAlocacaoImagemDeteccaos() {
+	return this.alocacaoImagemDeteccaos;
+    }
+
+    public void setAlocacaoImagemDeteccaos(Set<AlocacaoImagemDeteccao> alocacaoImagemDeteccaos) {
+	this.alocacaoImagemDeteccaos = alocacaoImagemDeteccaos;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioBySupervisor")
+    public Set<LiberacaoBaseImagemDeteccao> getLiberacaoBaseImagemDeteccaosForSupervisor() {
+	return this.liberacaoBaseImagemDeteccaosForSupervisor;
+    }
+
+    public void setLiberacaoBaseImagemDeteccaosForSupervisor(
+	    Set<LiberacaoBaseImagemDeteccao> liberacaoBaseImagemDeteccaosForSupervisor) {
+	this.liberacaoBaseImagemDeteccaosForSupervisor = liberacaoBaseImagemDeteccaosForSupervisor;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    public Set<ImagemClasse> getImagemClasses() {
+	return this.imagemClasses;
+    }
+
+    public void setImagemClasses(Set<ImagemClasse> imagemClasses) {
+	this.imagemClasses = imagemClasses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioByEscravo")
+    public Set<LiberacaoBaseImagemDeteccao> getLiberacaoBaseImagemDeteccaosForEscravo() {
+	return this.liberacaoBaseImagemDeteccaosForEscravo;
+    }
+
+    public void setLiberacaoBaseImagemDeteccaosForEscravo(
+	    Set<LiberacaoBaseImagemDeteccao> liberacaoBaseImagemDeteccaosForEscravo) {
+	this.liberacaoBaseImagemDeteccaosForEscravo = liberacaoBaseImagemDeteccaosForEscravo;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    public Set<ImagemDeteccao> getImagemDeteccaos() {
+	return this.imagemDeteccaos;
+    }
+
+    public void setImagemDeteccaos(Set<ImagemDeteccao> imagemDeteccaos) {
+	this.imagemDeteccaos = imagemDeteccaos;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioBySupervisor")
+    public Set<LiberacaoBaseImagemClasse> getLiberacaoBaseImagemClassesForSupervisor() {
+	return this.liberacaoBaseImagemClassesForSupervisor;
+    }
+
+    public void setLiberacaoBaseImagemClassesForSupervisor(
+	    Set<LiberacaoBaseImagemClasse> liberacaoBaseImagemClassesForSupervisor) {
+	this.liberacaoBaseImagemClassesForSupervisor = liberacaoBaseImagemClassesForSupervisor;
+    }
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioBySupervisor")
     public Set<LiberacaoBaseTexto> getLiberacaoBaseTextosForSupervisor() {
 	return this.liberacaoBaseTextosForSupervisor;
@@ -220,15 +270,6 @@ public class Usuario implements java.io.Serializable, InterfaceEntity {
 
     public void setBaseImagemClasses(Set<BaseImagemClasse> baseImagemClasses) {
 	this.baseImagemClasses = baseImagemClasses;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
-    public Set<ClasssificacaoImagemClasse> getClasssificacaoImagemClasses() {
-	return this.classsificacaoImagemClasses;
-    }
-
-    public void setClasssificacaoImagemClasses(Set<ClasssificacaoImagemClasse> classsificacaoImagemClasses) {
-	this.classsificacaoImagemClasses = classsificacaoImagemClasses;
     }
 
     @Override

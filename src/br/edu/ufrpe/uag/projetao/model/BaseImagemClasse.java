@@ -148,8 +148,7 @@ public class BaseImagemClasse implements java.io.Serializable, InterfaceEntity {
 
     @Override
     public String toString() {
-	return "BaseImagemClasse{" + "id=" + id + ", usuario=" + usuario + ", titulo=" + titulo + ", descricao="
-		+ descricao + '}';
+	return this.titulo;
     }
 
 }

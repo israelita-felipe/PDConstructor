@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.1" last-position="0,0" last-zoom="1"
+<dbmodel pgmodeler-ver="0.8.1" last-position="0,360" last-zoom="0.8"
 	 default-schema="public" default-owner="postgres">
 <database name="PDCONSTRUCTOR" template="pdconstructor">
 </database>
@@ -266,6 +266,114 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
+<table name="BASE_IMAGEM_DETECCAO">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="535" y="645"/>
+	<column name="ID" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="TITULO" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="DESCRICAO" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="SUPERVISOR" not-null="true">
+		<type name="integer"/>
+	</column>
+	<constraint name="BASE_IMAGEM_DETECCAO_PK" type="pk-constr" table="public.&quot;BASE_IMAGEM_DETECCAO&quot;">
+		<columns names="ID" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="LIBERACAO_BASE_IMAGEM_DETECCAO">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="922.5" y="703.75"/>
+	<column name="ESCRAVO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="SUPERVISOR" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="BASE_IMAGEM_DETECCAO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="STATUS" not-null="true">
+		<type name="char"/>
+	</column>
+	<constraint name="LIBERACAO_BASE_IMAGEM_DETECCAO_PK" type="pk-constr" table="public.&quot;LIBERACAO_BASE_IMAGEM_DETECCAO&quot;">
+		<columns names="BASE_IMAGEM_DETECCAO,SUPERVISOR,ESCRAVO" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="IMAGEM_DETECCAO">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="165" y="853.75"/>
+	<column name="ID" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="OBJETO" not-null="true">
+		<type name="bytea"/>
+	</column>
+	<column name="SUPERVISOR" not-null="true">
+		<type name="integer"/>
+	</column>
+	<constraint name="IMAGEM_DETECCAO_PK" type="pk-constr" table="public.&quot;IMAGEM_DETECCAO&quot;">
+		<columns names="ID" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="ALOCACAO_IMAGEM_DETECCAO">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="937.5" y="826.25"/>
+	<column name="ID" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="BASE_IMAGEM_DETECCAO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="IMAGEM_DETECCAO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="SUPERVISOR" not-null="true">
+		<type name="integer"/>
+	</column>
+	<constraint name="ALOCACAO_IMAGEM_DETECCAO_PK" type="pk-constr" table="public.&quot;ALOCACAO_IMAGEM_DETECCAO&quot;">
+		<columns names="ID" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="DETECCAO_IMAGEM">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="831.25" y="965"/>
+	<column name="X1" not-null="true">
+		<type name="double precision"/>
+	</column>
+	<column name="Y1" not-null="true">
+		<type name="double precision"/>
+	</column>
+	<column name="X2" not-null="true">
+		<type name="double precision"/>
+	</column>
+	<column name="Y2" not-null="true">
+		<type name="double precision"/>
+	</column>
+	<column name="ALOCACAO_IMAGEM_DETECCCAO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="ESCRAVO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<constraint name="DETECCAO_IMAGEM_PK" type="pk-constr" table="public.&quot;DETECCAO_IMAGEM&quot;">
+		<columns names="X1,Y1,X2,Y2,ALOCACAO_IMAGEM_DETECCCAO,ESCRAVO" ref-type="src-columns"/>
+	</constraint>
+</table>
+
 <constraint name="USUARIO_PERFIL_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
 	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;PERFIL&quot;" table="public.&quot;USUARIO&quot;">
 	<columns names="PERFIL" ref-type="src-columns"/>
@@ -400,6 +508,66 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <constraint name="LIBERACAO_BASE_IMAGEM_CLASSE_ESCRAVO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
 	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;LIBERACAO_BASE_IMAGEM_CLASSE&quot;">
+	<columns names="ESCRAVO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="BASE_IMAGEM_DETECCAO_SUPERVISOR_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;BASE_IMAGEM_DETECCAO&quot;">
+	<columns names="SUPERVISOR" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="LIBERACAO_BASE_IMAGEM_DETECCAO_BASE_IMAGEM_DETECCAO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.&quot;BASE_IMAGEM_DETECCAO&quot;" table="public.&quot;LIBERACAO_BASE_IMAGEM_DETECCAO&quot;">
+	<columns names="BASE_IMAGEM_DETECCAO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="LIBERACAO_BASE_IMAGEM_DETECCAO_SUPERVISOR_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;LIBERACAO_BASE_IMAGEM_DETECCAO&quot;">
+	<columns names="SUPERVISOR" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="LIBERACAO_BASE_IMAGEM_DETECCAO_ESCRAVO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;LIBERACAO_BASE_IMAGEM_DETECCAO&quot;">
+	<columns names="ESCRAVO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="IMAGEM_DETECCAO_SUPERVISOR_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;IMAGEM_DETECCAO&quot;">
+	<columns names="SUPERVISOR" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="ALOCACAO_IMAGEM_DETECCAO_BASE_IMAGEM_DETECCAO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.&quot;BASE_IMAGEM_DETECCAO&quot;" table="public.&quot;ALOCACAO_IMAGEM_DETECCAO&quot;">
+	<columns names="BASE_IMAGEM_DETECCAO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="ALOCACAO_IMAGEM_DETECCAO_IMAGEM_DETECCAO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;IMAGEM_DETECCAO&quot;" table="public.&quot;ALOCACAO_IMAGEM_DETECCAO&quot;">
+	<columns names="IMAGEM_DETECCAO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="ALOCACAO_IMAGEM_DETECCAO_SUPERVISOR_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;ALOCACAO_IMAGEM_DETECCAO&quot;">
+	<columns names="SUPERVISOR" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="DETECCAO_IMAGEM_ALOCACAO_IMAGEM_DETECCAO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.&quot;ALOCACAO_IMAGEM_DETECCAO&quot;" table="public.&quot;DETECCAO_IMAGEM&quot;">
+	<columns names="ALOCACAO_IMAGEM_DETECCCAO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="DETECCAO_IMAGEM_ESCRAVO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;DETECCAO_IMAGEM&quot;">
 	<columns names="ESCRAVO" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>
@@ -589,6 +757,77 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-required="false" dst-required="false">
 	<line>
 		<position x="913" y="459"/>
+	</line>
+</relationship>
+
+<relationship name="&quot;rel_BASE_IMAGEM_DETECCAO_USUARIO&quot;" type="relfk"
+	 src-table="public.&quot;BASE_IMAGEM_DETECCAO&quot;"
+	 dst-table="public.&quot;USUARIO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_LIBERACAO_BASE_IMAGEM_DETECCAO_BASE_IMAGEM_DETECCAO" type="relfk"
+	 src-table="public.&quot;LIBERACAO_BASE_IMAGEM_DETECCAO&quot;"
+	 dst-table="public.&quot;BASE_IMAGEM_DETECCAO&quot;"
+	 src-required="false" dst-required="false">
+	<line>
+		<position x="754.128" y="763.85"/>
+	</line>
+</relationship>
+
+<relationship name="rel_LIBERACAO_BASE_IMAGEM_DETECCAO_USUARIO" type="relfk"
+	 src-table="public.&quot;LIBERACAO_BASE_IMAGEM_DETECCAO&quot;"
+	 dst-table="public.&quot;USUARIO&quot;"
+	 src-required="false" dst-required="false">
+	<line>
+		<position x="903.75" y="576.25"/>
+	</line>
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="&quot;rel_IMAGEM_DETECCAO_USUARIO&quot;" type="relfk"
+	 src-table="public.&quot;IMAGEM_DETECCAO&quot;"
+	 dst-table="public.&quot;USUARIO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_ALOCACAO_IMAGEM_DETECCAO_BASE_IMAGEM_DETECCAO" type="relfk"
+	 src-table="public.&quot;ALOCACAO_IMAGEM_DETECCAO&quot;"
+	 dst-table="public.&quot;BASE_IMAGEM_DETECCAO&quot;"
+	 src-required="false" dst-required="false">
+	<line>
+		<position x="860" y="870"/>
+	<position x="858.75" y="677.5"/>
+	</line>
+</relationship>
+
+<relationship name="&quot;rel_ALOCACAO_IMAGEM_DETECCAO_IMAGEM_DETECCAO&quot;" type="relfk"
+	 src-table="public.&quot;ALOCACAO_IMAGEM_DETECCAO&quot;"
+	 dst-table="public.&quot;IMAGEM_DETECCAO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_ALOCACAO_IMAGEM_DETECCAO_USUARIO" type="relfk"
+	 src-table="public.&quot;ALOCACAO_IMAGEM_DETECCAO&quot;"
+	 dst-table="public.&quot;USUARIO&quot;"
+	 src-required="false" dst-required="false">
+	<line>
+		<position x="833.053" y="901.35"/>
+	<position x="835" y="570"/>
+	</line>
+</relationship>
+
+<relationship name="&quot;rel_DETECCAO_IMAGEM_ALOCACAO_IMAGEM_DETECCAO&quot;" type="relfk"
+	 src-table="public.&quot;DETECCAO_IMAGEM&quot;"
+	 dst-table="public.&quot;ALOCACAO_IMAGEM_DETECCAO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_DETECCAO_IMAGEM_USUARIO" type="relfk"
+	 src-table="public.&quot;DETECCAO_IMAGEM&quot;"
+	 dst-table="public.&quot;USUARIO&quot;"
+	 src-required="false" dst-required="false">
+	<line>
+		<position x="779.928" y="1070.1"/>
+	<position x="779.928" y="459.1"/>
 	</line>
 </relationship>
 

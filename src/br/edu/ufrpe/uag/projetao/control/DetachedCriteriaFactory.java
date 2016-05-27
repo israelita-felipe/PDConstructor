@@ -3,6 +3,7 @@
  */
 package br.edu.ufrpe.uag.projetao.control;
 
+import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
@@ -135,30 +136,55 @@ public class DetachedCriteriaFactory {
 	return DetachedCriteria.forClass(Usuario.class).add(Restrictions.eq("perfil.nome", perfil));
     }
 
-	public static DetachedCriteria getAlocacoesImagemPorLiberacao(LiberacaoBaseImagemClasse liberacao) {
-		DetachedCriteria alocacoesImagemPorLiberacao = DetachedCriteria.forClass(LiberacaoBaseImagemClasse.class)
-				.add(Restrictions.eq("usuarioByEscravo.id", liberacao.getUsuarioByEscravo().getId()))
-				.forClass(AlocacaoImagemClasse.class).add(Restrictions.eq("baseImagemClasse.id", liberacao.getBaseImagemClasse().getId()));
+    public static DetachedCriteria getAlocacoesImagemPorLiberacao(LiberacaoBaseImagemClasse liberacao) {
+	DetachedCriteria alocacoesImagemPorLiberacao = DetachedCriteria.forClass(LiberacaoBaseImagemClasse.class)
+		.add(Restrictions.eq("usuarioByEscravo.id", liberacao.getUsuarioByEscravo().getId()))
+		.forClass(AlocacaoImagemClasse.class)
+		.add(Restrictions.eq("baseImagemClasse.id", liberacao.getBaseImagemClasse().getId()));
 
-			return alocacoesImagemPorLiberacao;
-	}
+	return alocacoesImagemPorLiberacao;
+    }
 
-	public static DetachedCriteria getClassificacaoImagemClassePorEscravoEAlocacao(Usuario escravo,
-			AlocacaoImagemClasse alocacao) {
-		DetachedCriteria classificacaoImagemClassePorEscravoEAlocacao = DetachedCriteria.forClass(ClasssificacaoImagemClasse.class)
-				.add(Restrictions.eq("usuario.id", escravo.getId()))
-				.add(Restrictions.eq("alocacaoImagemClasse.id", alocacao.getId()));
+    public static DetachedCriteria getClassificacaoImagemClassePorEscravoEAlocacao(Usuario escravo,
+	    AlocacaoImagemClasse alocacao) {
+	DetachedCriteria classificacaoImagemClassePorEscravoEAlocacao = DetachedCriteria
+		.forClass(ClasssificacaoImagemClasse.class).add(Restrictions.eq("usuario.id", escravo.getId()))
+		.add(Restrictions.eq("alocacaoImagemClasse.id", alocacao.getId()));
 
-			return classificacaoImagemClassePorEscravoEAlocacao;
-	}
+	return classificacaoImagemClassePorEscravoEAlocacao;
+    }
 
-	public static DetachedCriteria getLiberacoesBaseImagemClasseDoEscravo(Usuario usuario) {
-		DetachedCriteria liberacaoBasesImagemClasseDoEscravo = getDetachedCriteriaLiberacaoBasePorEscravo(
-				LiberacaoBaseImagemClasse.class, usuario);
+    public static DetachedCriteria getLiberacoesBaseImagemClasseDoEscravo(Usuario usuario) {
+	DetachedCriteria liberacaoBasesImagemClasseDoEscravo = getDetachedCriteriaLiberacaoBasePorEscravo(
+		LiberacaoBaseImagemClasse.class, usuario);
 
-			return liberacaoBasesImagemClasseDoEscravo;
-	}
+	return liberacaoBasesImagemClasseDoEscravo;
+    }
 
+    public static DetachedCriteria getLiberacoesPorBaseDeTexto(BaseTexto base) {
+	DetachedCriteria usuariosComLiberacoesPorBaseDeTexto = DetachedCriteria.forClass(LiberacaoBaseTexto.class)
+		.add(Restrictions.eq("baseTexto.id", base.getId()));
 
+	return usuariosComLiberacoesPorBaseDeTexto;
+    }
+
+    /**
+     * Seleciona o usuário dado uma senha e um email
+     * 
+     * @param email
+     * @param senha
+     * @return lista de usuários com senha e email passados como parâmetro
+     */
+    public static DetachedCriteria getUsuario(String email, String senha) {
+	return DetachedCriteria.forClass(Usuario.class).add(Restrictions.eq("email", email))
+		.add(Restrictions.eq("senha", senha));
+    }
+
+    public static DetachedCriteria getLiberacoesPorBaseDeImagemClasse(BaseImagemClasse base) {
+	DetachedCriteria usuariosComLiberacoesPorBaseDeTexto = DetachedCriteria
+		.forClass(LiberacaoBaseImagemClasse.class).add(Restrictions.eq("baseImagemClasse.id", base.getId()));
+
+	return usuariosComLiberacoesPorBaseDeTexto;
+    }
 
 }
