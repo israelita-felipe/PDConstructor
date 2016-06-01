@@ -91,9 +91,9 @@ public class EscolhaImagemClasse implements java.io.Serializable, InterfaceEntit
 	this.classsificacaoImagemClasses = classsificacaoImagemClasses;
     }
 
-   
-
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Object#hashCode()
      */
     @Override
@@ -104,7 +104,9 @@ public class EscolhaImagemClasse implements java.io.Serializable, InterfaceEntit
 	return result;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override

@@ -1,0 +1,1992 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 28, 2015, 2:33:32 PM
+    Author     : Felipe
+*/
+/***************************************************************************
+ *                                                                         *
+ * Colors			                                                       *
+ *                                                                         *
+ **************************************************************************/
+.red-50 {
+	-fx-background-color: #ffebee;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.red-100 {
+	-fx-background-color: #ffcdd2;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.red-200 {
+	-fx-background-color: #ef9a9a;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.red-300 {
+	-fx-background-color: #e57373;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.red-400 {
+	-fx-background-color: #ef5350;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.red-500 {
+	-fx-background-color: #f44336;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.red-600 {
+	-fx-background-color: #e53935;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.red-700 {
+	-fx-background-color: #d32f2f;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.red-800 {
+	-fx-background-color: #c62828;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.red-900 {
+	-fx-background-color: #b71c1c;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.red-A100 {
+	-fx-background-color: #ff8a80;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.red-A200 {
+	-fx-background-color: #ff5252;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.red-A400 {
+	-fx-background-color: #ff1744;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.red-A700 {
+	-fx-background-color: #d50000;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.pink-50 {
+	-fx-background-color: #fce4ec;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.pink-100 {
+	-fx-background-color: #f8bbd0;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.pink-200 {
+	-fx-background-color: #f48fb1;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.pink-300 {
+	-fx-background-color: #f06292;
+	-fx-text-fill: #FFF;
+}
+
+.pink-400 {
+	-fx-background-color: #ec407a;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.pink-500 {
+	-fx-background-color: #e91e63;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.pink-600 {
+	-fx-background-color: #d81b60;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.pink-700 {
+	-fx-background-color: #c2185b;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.pink-800 {
+	-fx-background-color: #ad1457;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.pink-900 {
+	-fx-background-color: #880e4f;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.pink-A100 {
+	-fx-background-color: #ff80ab;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.pink-A200 {
+	-fx-background-color: #ff4081;
+	-fx-text-fill: #FFF;
+}
+
+.pink-A400 {
+	-fx-background-color: #f50057;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.pink-A700 {
+	-fx-background-color: #c51162;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.purple-50 {
+	-fx-background-color: #f3e5f5;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.purple-100 {
+	-fx-background-color: #e1bee7;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.purple-200 {
+	-fx-background-color: #ce93d8;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.purple-300 {
+	-fx-background-color: #ba68c8;
+	-fx-text-fill: #FFF;
+}
+
+.purple-400 {
+	-fx-background-color: #ab47bc;
+	-fx-text-fill: #FFF;
+}
+
+.purple-500 {
+	-fx-background-color: #9c27b0;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.purple-600 {
+	-fx-background-color: #8e24aa;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.purple-700 {
+	-fx-background-color: #7b1fa2;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.purple-800 {
+	-fx-background-color: #6a1b9a;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.purple-900 {
+	-fx-background-color: #4a148c;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.purple-A100 {
+	-fx-background-color: #ea80fc;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.purple-A200 {
+	-fx-background-color: #e040fb;
+	-fx-text-fill: #FFF;
+}
+
+.purple-A400 {
+	-fx-background-color: #d500f9;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.purple-A700 {
+	-fx-background-color: #aa00ff;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.deep-purple-50 {
+	-fx-background-color: #ede7f6;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.deep-purple-100 {
+	-fx-background-color: #d1c4e9;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.deep-purple-200 {
+	-fx-background-color: #b39ddb;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.deep-purple-300 {
+	-fx-background-color: #9575cd;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.deep-purple-400 {
+	-fx-background-color: #7e57c2;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.deep-purple-500 {
+	-fx-background-color: #673ab7;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.deep-purple-600 {
+	-fx-background-color: #5e35b1;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.deep-purple-700 {
+	-fx-background-color: #512da8;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.deep-purple-800 {
+	-fx-background-color: #4527a0;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.deep-purple-900 {
+	-fx-background-color: #311b92;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.deep-purple-A100 {
+	-fx-background-color: #b388ff;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.deep-purple-A200 {
+	-fx-background-color: #7c4dff;
+	-fx-text-fill: #FFF;
+}
+
+.deep-purple-A400 {
+	-fx-background-color: #651fff;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.deep-purple-A700 {
+	-fx-background-color: #6200ea;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.indigo-50 {
+	-fx-background-color: #e8eaf6;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.indigo-100 {
+	-fx-background-color: #c5cae9;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.indigo-200 {
+	-fx-background-color: #9fa8da;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.indigo-300 {
+	-fx-background-color: #7986cb;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.indigo-400 {
+	-fx-background-color: #5c6bc0;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.indigo-500 {
+	-fx-background-color: #3f51b5;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.indigo-600 {
+	-fx-background-color: #3949ab;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.indigo-700 {
+	-fx-background-color: #303f9f;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.indigo-800 {
+	-fx-background-color: #283593;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.indigo-900 {
+	-fx-background-color: #1a237e;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.indigo-A100 {
+	-fx-background-color: #8c9eff;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.indigo-A200 {
+	-fx-background-color: #536dfe;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.indigo-A400 {
+	-fx-background-color: #3d5afe;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.indigo-A700 {
+	-fx-background-color: #304ffe;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.blue-50 {
+	-fx-background-color: #e3f2fd;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.blue-100 {
+	-fx-background-color: #bbdefb;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.blue-200 {
+	-fx-background-color: #90caf9;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.blue-300 {
+	-fx-background-color: #64b5f6;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.blue-400 {
+	-fx-background-color: #42a5f5;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.blue-500 {
+	-fx-background-color: #2196f3;
+	-fx-text-fill: #FFF;
+}
+
+.blue-600 {
+	-fx-background-color: #1e88e5;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.blue-700 {
+	-fx-background-color: #1976d2;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.blue-800 {
+	-fx-background-color: #1565c0;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.blue-900 {
+	-fx-background-color: #0d47a1;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.blue-A100 {
+	-fx-background-color: #82b1ff;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.blue-A200 {
+	-fx-background-color: #448aff;
+	-fx-text-fill: #FFF;
+}
+
+.blue-A400 {
+	-fx-background-color: #2979ff;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.blue-A700 {
+	-fx-background-color: #2962ff;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.light-blue-50 {
+	-fx-background-color: #e1f5fe;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-blue-100 {
+	-fx-background-color: #b3e5fc;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-blue-200 {
+	-fx-background-color: #81d4fa;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-blue-300 {
+	-fx-background-color: #4fc3f7;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-blue-400 {
+	-fx-background-color: #29b6f6;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-blue-500 {
+	-fx-background-color: #03a9f4;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-blue-600 {
+	-fx-background-color: #039be5;
+	-fx-text-fill: #FFF;
+}
+
+.light-blue-700 {
+	-fx-background-color: #0288d1;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.light-blue-800 {
+	-fx-background-color: #0277bd;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.light-blue-900 {
+	-fx-background-color: #01579b;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.light-blue-A100 {
+	-fx-background-color: #80d8ff;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-blue-A200 {
+	-fx-background-color: #40c4ff;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-blue-A400 {
+	-fx-background-color: #00b0ff;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-blue-A700 {
+	-fx-background-color: #0091ea;
+	-fx-text-fill: #FFF;
+}
+
+.cyan-50 {
+	-fx-background-color: #e0f7fa;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.cyan-100 {
+	-fx-background-color: #b2ebf2;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.cyan-200 {
+	-fx-background-color: #80deea;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.cyan-300 {
+	-fx-background-color: #4dd0e1;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.cyan-400 {
+	-fx-background-color: #26c6da;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.cyan-500 {
+	-fx-background-color: #00bcd4;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.cyan-600 {
+	-fx-background-color: #00acc1;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.cyan-700 {
+	-fx-background-color: #0097a7;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.cyan-800 {
+	-fx-background-color: #00838f;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.cyan-900 {
+	-fx-background-color: #006064;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.cyan-A100 {
+	-fx-background-color: #84ffff;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.cyan-A200 {
+	-fx-background-color: #18ffff;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.cyan-A400 {
+	-fx-background-color: #00e5ff;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.cyan-A700 {
+	-fx-background-color: #00b8d4;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.teal-50 {
+	-fx-background-color: #e0f2f1;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.teal-100 {
+	-fx-background-color: #b2dfdb;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.teal-200 {
+	-fx-background-color: #80cbc4;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.teal-300 {
+	-fx-background-color: #4db6ac;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.teal-400 {
+	-fx-background-color: #26a69a;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.teal-500 {
+	-fx-background-color: #009688;
+	-fx-text-fill: #FFF;
+}
+
+.teal-600 {
+	-fx-background-color: #00897b;
+	-fx-text-fill: #FFF;
+}
+
+.teal-700 {
+	-fx-background-color: #00796b;
+	-fx-text-fill: #FFF;
+}
+
+.teal-800 {
+	-fx-background-color: #00695c;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.teal-900 {
+	-fx-background-color: #004d40;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.teal-A100 {
+	-fx-background-color: #a7ffeb;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.teal-A200 {
+	-fx-background-color: #64ffda;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.teal-A400 {
+	-fx-background-color: #1de9b6;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.teal-A700 {
+	-fx-background-color: #00bfa5;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.green-50 {
+	-fx-background-color: #e8f5e9;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.green-100 {
+	-fx-background-color: #c8e6c9;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.green-200 {
+	-fx-background-color: #a5d6a7;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.green-300 {
+	-fx-background-color: #81c784;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.green-400 {
+	-fx-background-color: #66bb6a;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.green-500 {
+	-fx-background-color: #4caf50;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.green-600 {
+	-fx-background-color: #43a047;
+	-fx-text-fill: #FFF;
+}
+
+.green-700 {
+	-fx-background-color: #388e3c;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.green-800 {
+	-fx-background-color: #2e7d32;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.green-900 {
+	-fx-background-color: #1b5e20;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.green-A100 {
+	-fx-background-color: #b9f6ca;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.green-A200 {
+	-fx-background-color: #69f0ae;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.green-A400 {
+	-fx-background-color: #00e676;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.green-A700 {
+	-fx-background-color: #00c853;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.light-green-50 {
+	-fx-background-color: #f1f8e9;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-green-100 {
+	-fx-background-color: #dcedc8;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-green-200 {
+	-fx-background-color: #c5e1a5;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-green-300 {
+	-fx-background-color: #aed581;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-green-400 {
+	-fx-background-color: #9ccc65;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-green-500 {
+	-fx-background-color: #8bc34a;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-green-600 {
+	-fx-background-color: #7cb342;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-green-700 {
+	-fx-background-color: #689f38;
+	-fx-text-fill: #FFF;
+}
+
+.light-green-800 {
+	-fx-background-color: #558b2f;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.light-green-900 {
+	-fx-background-color: #33691e;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.light-green-A100 {
+	-fx-background-color: #ccff90;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-green-A200 {
+	-fx-background-color: #b2ff59;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-green-A400 {
+	-fx-background-color: #76ff03;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.light-green-A700 {
+	-fx-background-color: #64dd17;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.lime-50 {
+	-fx-background-color: #f9fbe7;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.lime-100 {
+	-fx-background-color: #f0f4c3;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.lime-200 {
+	-fx-background-color: #e6ee9c;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.lime-300 {
+	-fx-background-color: #dce775;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.lime-400 {
+	-fx-background-color: #d4e157;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.lime-500 {
+	-fx-background-color: #cddc39;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.lime-600 {
+	-fx-background-color: #c0ca33;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.lime-700 {
+	-fx-background-color: #afb42b;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.lime-800 {
+	-fx-background-color: #9e9d24;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.lime-900 {
+	-fx-background-color: #827717;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.lime-A100 {
+	-fx-background-color: #f4ff81;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.lime-A200 {
+	-fx-background-color: #eeff41;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.lime-A400 {
+	-fx-background-color: #c6ff00;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.lime-A700 {
+	-fx-background-color: #aeea00;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.yellow-50 {
+	-fx-background-color: #fffde7;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.yellow-100 {
+	-fx-background-color: #fff9c4;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.yellow-200 {
+	-fx-background-color: #fff59d;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.yellow-300 {
+	-fx-background-color: #fff176;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.yellow-400 {
+	-fx-background-color: #ffee58;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.yellow-500 {
+	-fx-background-color: #ffeb3b;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.yellow-600 {
+	-fx-background-color: #fdd835;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.yellow-700 {
+	-fx-background-color: #fbc02d;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.yellow-800 {
+	-fx-background-color: #f9a825;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.yellow-900 {
+	-fx-background-color: #f57f17;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.yellow-A100 {
+	-fx-background-color: #ffff8d;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.yellow-A200 {
+	-fx-background-color: #ffff00;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.yellow-A400 {
+	-fx-background-color: #ffea00;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.yellow-A700 {
+	-fx-background-color: #ffd600;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.amber-50 {
+	-fx-background-color: #fff8e1;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.amber-100 {
+	-fx-background-color: #ffecb3;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.amber-200 {
+	-fx-background-color: #ffe082;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.amber-300 {
+	-fx-background-color: #ffd54f;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.amber-400 {
+	-fx-background-color: #ffca28;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.amber-500 {
+	-fx-background-color: #ffc107;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.amber-600 {
+	-fx-background-color: #ffb300;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.amber-700 {
+	-fx-background-color: #ffa000;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.amber-800 {
+	-fx-background-color: #ff8f00;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.amber-900 {
+	-fx-background-color: #ff6f00;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.amber-A100 {
+	-fx-background-color: #ffe57f;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.amber-A200 {
+	-fx-background-color: #ffd740;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.amber-A400 {
+	-fx-background-color: #ffc400;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.amber-A700 {
+	-fx-background-color: #ffab00;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.orange-50 {
+	-fx-background-color: #fff3e0;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.orange-100 {
+	-fx-background-color: #ffe0b2;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.orange-200 {
+	-fx-background-color: #ffcc80;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.orange-300 {
+	-fx-background-color: #ffb74d;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.orange-400 {
+	-fx-background-color: #ffa726;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.orange-500 {
+	-fx-background-color: #ff9800;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.orange-600 {
+	-fx-background-color: #fb8c00;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.orange-700 {
+	-fx-background-color: #f57c00;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.orange-800 {
+	-fx-background-color: #ef6c00;
+	-fx-text-fill: #FFF;
+}
+
+.orange-900 {
+	-fx-background-color: #e65100;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.orange-A100 {
+	-fx-background-color: #ffd180;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.orange-A200 {
+	-fx-background-color: #ffab40;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.orange-A400 {
+	-fx-background-color: #ff9100;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.orange-A700 {
+	-fx-background-color: #ff6d00;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.deep-orange-50 {
+	-fx-background-color: #fbe9e7;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.deep-orange-100 {
+	-fx-background-color: #ffccbc;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.deep-orange-200 {
+	-fx-background-color: #ffab91;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.deep-orange-300 {
+	-fx-background-color: #ff8a65;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.deep-orange-400 {
+	-fx-background-color: #ff7043;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.deep-orange-500 {
+	-fx-background-color: #ff5722;
+	-fx-text-fill: #FFF;
+}
+
+.deep-orange-600 {
+	-fx-background-color: #f4511e;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.deep-orange-700 {
+	-fx-background-color: #e64a19;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.deep-orange-800 {
+	-fx-background-color: #d84315;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.deep-orange-900 {
+	-fx-background-color: #bf360c;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.deep-orange-A100 {
+	-fx-background-color: #ff9e80;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.deep-orange-A200 {
+	-fx-background-color: #ff6e40;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.deep-orange-A400 {
+	-fx-background-color: #ff3d00;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.deep-orange-A700 {
+	-fx-background-color: #dd2c00;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.brown-50 {
+	-fx-background-color: #efebe9;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.brown-100 {
+	-fx-background-color: #d7ccc8;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.brown-200 {
+	-fx-background-color: #bcaaa4;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.brown-300 {
+	-fx-background-color: #a1887f;
+	-fx-text-fill: #FFF;
+}
+
+.brown-400 {
+	-fx-background-color: #8d6e63;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.brown-500 {
+	-fx-background-color: #795548;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.brown-600 {
+	-fx-background-color: #6d4c41;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.brown-700 {
+	-fx-background-color: #5d4037;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.brown-800 {
+	-fx-background-color: #4e342e;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.brown-900 {
+	-fx-background-color: #3e2723;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.grey-50 {
+	-fx-background-color: #fafafa;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.grey-100 {
+	-fx-background-color: #f5f5f5;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.grey-200 {
+	-fx-background-color: #eeeeee;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.grey-300 {
+	-fx-background-color: #e0e0e0;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.grey-400 {
+	-fx-background-color: #bdbdbd;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.grey-500 {
+	-fx-background-color: #9e9e9e;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.grey-600 {
+	-fx-background-color: #757575;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.grey-700 {
+	-fx-background-color: #616161;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.grey-800 {
+	-fx-background-color: #424242;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.grey-900 {
+	-fx-background-color: #212121;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.blue-grey-50 {
+	-fx-background-color: #eceff1;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.blue-grey-100 {
+	-fx-background-color: #cfd8dc;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.blue-grey-200 {
+	-fx-background-color: #b0bec5;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.blue-grey-300 {
+	-fx-background-color: #90a4ae;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.blue-grey-400 {
+	-fx-background-color: #78909c;
+	-fx-text-fill: #FFF;
+}
+
+.blue-grey-500 {
+	-fx-background-color: #607d8b;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.blue-grey-600 {
+	-fx-background-color: #546e7a;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.blue-grey-700 {
+	-fx-background-color: #455a64;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.blue-grey-800 {
+	-fx-background-color: #37474f;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.blue-grey-900 {
+	-fx-background-color: #263238;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.black {
+	-fx-background-color: #000000;
+	-fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.white {
+	-fx-background-color: #ffffff;
+	-fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+@font-face {
+	-fx-font-family: 'Roboto Medium';
+	src: url('Roboto-Medium.ttf');
+}
+
+@font-face {
+	-fx-font-family: 'Roboto Bold';
+	src: url('Roboto-Bold.ttf');
+}
+
+@font-face {
+	-fx-font-family: 'Robot';
+	src: url('Roboto-Regular.ttf');
+}
+
+* {
+	-color-primary: #3F51B5;
+	-color-accent: #F44336;
+	-color-secondary: #1E88E5;
+	-color-dark-primary: #303F9F;
+	-color-body: #F5F5F5;
+}
+
+.text-input {
+	-fx-highlight-fill: rgba(0, 0, 0, 0.15);
+	-fx-highlight-text-fill: black;
+}
+
+.context-menu {
+	-fx-padding: 0;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.30), 13, 0, 0, 6);
+	-fx-background-radius: 3px;
+	-fx-background-color: white;
+}
+
+.menu-item {
+	-fx-padding: 8 16 8 16;
+	-fx-background-color: transparent;
+}
+
+.menu-item:focused {
+	-fx-text-fill: black;
+}
+
+.menu-item:hover:focused {
+	-fx-background-color: rgba(0, 0, 0, 0.06);
+	-fx-text-fill: -color-primary;
+}
+
+.menu-item .label {
+	-fx-font-size: 16;
+	-fx-text-fill: -color-primary;
+}
+
+.window {
+	-fx-background-color: -color-body;
+}
+
+.label {
+	-fx-font-size: 16;
+	-fx-font-family: "Roboto";
+}
+
+.text-input {
+	-fx-font-size: 16;
+	-fx-font-family: "Roboto";
+}
+
+.ripple-button {
+	-fx-font-family: 'Roboto Medium', sans-serif;
+	-fx-font-size: 13;
+	-fx-background-color: -color-primary;
+	-fx-text-fill: #fff;
+	-fx-padding: 8 16 8 16;
+}
+
+.ripple-button.flat {
+	-fx-background-color: transparent;
+	-fx-font-size: 13;
+	-fx-text-fill: -color-dark-primary;
+}
+
+.ripple-button.flat:hover {
+	-fx-background-color: rgba(153, 153, 153, 0.20);
+}
+
+.ripple-button.flat:pressed {
+	-fx-background-color: rgba(153, 153, 153, 0.40);
+}
+
+.ripple-button.toggle {
+	-fx-padding: 8 16 8 16 !important;
+	-fx-font-weight: bold;
+}
+
+.action-item {
+	-fx-background-color: transparent;
+	-fx-effect: none;
+}
+
+/*CHECKBOX*/
+.check-box .box {
+	-fx-background-color: transparent;
+	-fx-border-color: rgba(0, 0, 0, 0.5);
+	-fx-border-width: 2px;
+	-fx-border-radius: 3px;
+}
+
+.check-box:selected .box {
+	-fx-background-color: -color-primary;
+	-fx-border-color: -color-primary;
+}
+
+.check-box .mark {
+	-fx-shape: "M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z";
+	-fx-fill: transparent;
+	-fx-background-color: transparent;
+}
+
+.check-box:selected .mark {
+	-fx-fill: white;
+	-fx-background-color: white;
+}
+/*RowHeader*/
+.row-header {
+	-fx-background-color: white;
+	-fx-padding: 8 8 8 8;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.16), 5, 0, 0, 2);
+}
+
+/* ListView*/
+.list-view {
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.16), 5, 0, 0, 2);
+	-fx-background-radius: 3px;
+	-fx-background-color: white;
+}
+
+.list-view:focused {
+	-fx-background-insets: 0;
+}
+
+.list-view .list-cell {
+	-fx-background-color: transparent;
+	-fx-padding: 8px;
+	-fx-font-size: 16px;
+	-fx-text-fill: black;
+}
+
+.list-view .list-cell:hover {
+	-fx-text-fill: -color-primary;
+}
+
+.list-view .list-cell:filled:selected:focused {
+	-fx-text-fill: -color-accent;
+}
+
+.list-cell .list-cell:empty:hover {
+	-fx-background-color: transparent;
+}
+
+/*ComboBox*/
+.combo-box>.list-cell {
+	-fx-background-color: white;
+	-fx-padding: 6 6 6 0;
+	-fx-text-fill:#999;
+}
+
+.combo-box:hover>.list-cell {
+	-fx-background-color: white;
+	-fx-padding: 6 6 6 8;
+	-fx-text-fill:#999;
+}
+
+.combo-box-base {
+	-fx-background-color: white;
+	-fx-border-radius: 2px;
+	-fx-background-radius: 2px;
+	/* -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 2); */
+	-fx-background-insets: 0;
+	-fx-font-size: 16px;
+	-fx-border-width:0;
+	-fx-border-color: #e0e0e0;
+	-fx-border-width: 0 0 1 0;
+}
+
+.combo-box-base:hover {
+	-fx-background-color: white;
+	-fx-border-radius: 2px;
+	-fx-background-radius: 2px;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
+	-fx-background-insets: 0;
+	-fx-font-size: 16px;
+}
+
+.combo-box-base .list-view {
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.30), 13, 0, 0, 6);
+	-fx-background-radius: 2px;
+	-fx-background-color: white;
+}
+
+.combo-box-base .list-view .list-cell {
+	-fx-padding: 6 6 6 8;
+	-fx-text-fill:#999;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected {
+	-fx-background-color: white;
+	-fx-text-fill: -color-accent;
+	-fx-background-color: rgba(0, 0, 0, 0.06);
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected .label {
+	-fx-font-weigth: bold;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected:hover,
+	.combo-box-popup .list-view .list-cell:hover {
+	-fx-background-color: rgba(0, 0, 0, 0.06);
+	-fx-text-fill: -color-primary;
+}
+
+/* DatePicker*/
+.date-picker-popup {
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.16), 5, 0, 0, 2);
+	-fx-background-radius: 6px;
+	-fx-background-color: white;
+}
+
+.date-picker>.arrow-button {
+	-fx-background-color: transparent;
+}
+
+.date-picker>.arrow-button>.arrow {
+	-fx-shape:
+		"M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z";
+	-fx-background-color: -color-primary;
+	-fx-scale-x: 1.5;
+	-fx-scale-y: 1.5;
+}
+
+.date-picker>.text-input {
+	-fx-background-color: transparent;
+}
+
+.date-picker-popup>.month-year-pane {
+	-fx-padding: 24 16 24 16; /* 7 6 8 6 */
+	-fx-background-color: -color-primary;
+	-fx-background-insets: 0;
+}
+
+.date-picker-popup>.month-year-pane .label {
+	-fx-text-fill: #fff;
+	-fx-font-size: 24px;
+}
+
+.date-picker-popup>*>.spinner>.button>.left-arrow, .date-picker-popup>*>.spinner>.button>.right-arrow
+	{
+	-fx-background-color: #fff;
+	-fx-effect: none;
+}
+
+.date-picker-popup>*>.spinner>.button:hover>.left-arrow,
+	.date-picker-popup>*>.spinner>.button:hover>.right-arrow {
+	-fx-background-color: #fff;
+}
+
+.date-picker-popup>*>.spinner>.button:pressed>.left-arrow,
+	.date-picker-popup>*>.spinner>.button:pressed>.right-arrow {
+	-fx-background-color: #fff;
+}
+
+.date-picker-popup>*>.spinner>.button:focused {
+	-fx-background-color: transparent;
+	-fx-color: transparent;
+}
+
+.date-picker-popup>*>.spinner>.button:hover {
+	-fx-color: transparent;
+}
+
+.date-picker-popup>*>.spinner>.button:armed {
+	-fx-color: transparent;
+}
+
+.date-picker-popup>.calendar-grid {
+	-fx-background-color: #fff;
+	-fx-padding: 8px;
+}
+
+.date-picker-popup>*>.date-cell {
+	-fx-background-color: transparent;
+	-fx-background-insets: 1, 2;
+	-fx-padding: 0;
+	-fx-alignment: BASELINE_CENTER;
+	-fx-opacity: 1.0;
+}
+
+.date-picker-popup>*>.day-name-cell, .date-picker-popup>*>.week-number-cell
+	{
+	-fx-font-size: 16;
+}
+
+.date-picker-popup>*>.day-cell {
+	-fx-padding: 8 12;
+	-fx-background: transparent;
+	-fx-background-color: transparent;
+	-fx-text-fill: rgba(0, 0, 0, 0.75);
+	-fx-border-width: 0;
+}
+
+.date-picker-popup>*>.day-cell:hover {
+	-fx-text-fill: -color-primary;
+	-fx-background: transparent;
+	-fx-background-color: transparent;
+}
+
+.date-picker-popup>*>.selected, .date-picker-popup>*>.selected:hover,
+	.date-picker-popup>*>.day-cell:pressed {
+	-fx-background-radius: 50%;
+	-fx-background-insets: 0 4;
+	-fx-background: -color-primary;
+	-fx-background-color: -color-primary;
+	-fx-text-fill: #fff;
+}
+/*ScrollPane*/
+.scroll-pane {
+	-fx-background-color: transparent;
+}
+
+.scroll-pane>.viewport {
+	-fx-background-color: transparent;
+}
+/*ScrollBar*/
+.scroll-bar {
+	-fx-background-color: transparent;
+	-fx-padding: 0;
+}
+
+.scroll-bar>.thumb {
+	-fx-background-color: -color-primary;
+	-fx-opacity: 0.5;
+	-fx-background-insets: 4;
+}
+
+.scroll-bar>.increment-button, .scroll-bar>.decrement-button {
+	-fx-opacity: 0;
+}
+
+/** TableView**/
+.table-view {
+	-fx-table-cell-border-color: transparent;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.16), 5, 0, 0, 2);
+	-fx-background-radius: 3px;
+	-fx-background-color: white;
+	-fx-background-insets: 0;
+}
+
+.table-view .column-header, .table-view .filler {
+	-fx-background-color: white;
+}
+
+.table-view .column-header:last-visible {
+	-fx-border-width: 0 0 1 0;
+}
+
+.table-view .column-header-background {
+	-fx-background-color: transparent;
+}
+
+.table-view .column-header {
+	-fx-border-width: 0 1 1 0;
+	-fx-border-color: rgba(1, 1, 1, 0.15);
+}
+
+.table-view .column-header .label {
+	-fx-font-size: 16px;
+	-fx-text-fill: -color-primary;
+	-fx-padding: 16 0 16 0;
+	-fx-alignment: CENTER-LEFT;
+	-fx-font-weight: 400;
+}
+
+.table-view .table-row-cell .table-cell {
+	-fx-border-width: 0 0 0 0;
+}
+
+.table-view .table-row-cell:selected .table-cell {
+	-fx-text-fill: -color-dark-primary;
+	-fx-border-width: 0 0 0 0;
+}
+
+.table-view .table-row-cell:selected {
+	-fx-background-color: rgba(0, 0, 0, 0.04);
+	-fx-background-insets: 0;
+}
+
+.table-view .table-row-cell {
+	-fx-background-color: transparent;
+	-fx-background-insets: 0;
+}
+
+.table-view .table-column {
+	-fx-alignment: CENTER-LEFT;
+	-fx-padding: 0 16 0 16;
+}
+
+.table-view .table-cell {
+	-fx-font-size: 16px;
+}
+
+.table-view .table-cell .ripple-circle {
+	-fx-fill: #2196F3;
+}
+
+.table-view .table-cell>.text-field {
+	-fx-background-color: transparent;
+	-fx-padding: 0 8 8 8;
+	-fx-background-insets: 0;
+	-fx-border-width: 0 0 2 0;
+	-fx-border-color: -color-primary;
+}
+
+.table-view .corner {
+	-fx-background-color: transparent;
+}
+/*SVG icons*/
+.icon-svg {
+	-fx-fill: -color-primary;
+}
+
+/*Radio Button*/
+.radio-button {
+	-fx-font-size: 16;
+}
+
+.radio-button>.radio {
+	-fx-border-radius: 50%;
+	-fx-border-width: 2px;
+	-fx-border-color: -color-primary;
+	-fx-background-color: transparent;
+	-fx-padding: 3;
+}
+
+.radio-button:selected>.radio>.dot {
+	-fx-background-color: -color-primary;
+	-fx-background-insets: 0;
+}
+
+.radio-button.material>.radio>.dot {
+	-fx-background-color: -color-primary;
+	-fx-background-insets: 0;
+}
+
+.radio-button.material>.ripple {
+	-fx-fill: -color-primary;
+}
+
+/*TextInputLayout*/
+.text-input {
+	-fx-highlight-fill: rgba(0, 0, 0, 0.15);
+	-fx-highlight-text-fill: black;
+}
+
+.label {
+	-fx-font-size: 16;
+	-fx-font-family: "Roboto";
+}
+
+.text-input {
+	-fx-font-size: 16;
+	-fx-font-family: "Roboto";
+}
+
+/**ScrollPane**/
+.scroll-pane {
+	-fx-background-insets: 0;
+	-fx-padding: 0;
+}
+
+.scroll-pane:focused {
+	-fx-background-insets: 0;
+}
+
+.scroll-pane .corner {
+	-fx-background-color: transparent;
+	-fx-background-insets: 0;
+}
+
+.scroll-bar {
+	-fx-background-color: transparent;
+	-fx-padding: 0;
+}
+
+.scroll-bar>.thumb {
+	-fx-background-color: -color-primary;
+	-fx-opacity: 0.5;
+}
+
+.scroll-bar>.increment-button, .scroll-bar>.decrement-button {
+	-fx-opacity: 0;
+}
+
+.paper-input {
+	-fx-padding: 8px 0px;
+}
+
+.paper-input .bar {
+	-fx-stroke: -color-primary;
+	-fx-translate-y: 1px;
+}
+
+.paper-input .text-input {
+	-fx-background-color: transparent;
+	-fx-background-insets: 0;
+	-fx-background-radius: 0;
+	-fx-border-color: rgba(0, 0, 0, 0.15);
+	-fx-border-width: 0 0 1 0;
+	-fx-padding: 8px 0px;
+	-fx-font-size: 16px;
+}
+
+.paper-input .text-input:not-animated:focused, .paper-input:bar-placed .text-input:focused
+	{
+	-fx-border-color: -color-primary;
+}
+
+.paper-input .text-input:focused {
+	-fx-border-width: 0 0 2 0;
+	-fx-border-color: rgba(0, 0, 0, 0.07);
+	-fx-border-insets: 0 0 -1 0;
+}
+
+.paper-input>.label {
+	-fx-text-fill: #999;
+}
+
+.paper-input:focused  .label {
+	-fx-text-fill: -color-primary;
+}
+
+.text-area {
+	-fx-padding: 0;
+	-fx-wrap-text: true;
+	-fx-background-color: transparent;
+}
+
+.text-area .content {
+	-fx-background-color: transparent;
+	-fx-padding: 0;
+}
+
+.text-area .viewport {
+	-fx-background-color: transparent;
+}
+
+/*Toolbar */
+.toolbar {
+	-fx-background-color: -color-primary;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 2);
+}
+
+.toolbar .top-place {
+	-fx-padding: 0 12 0 12;
+	-fx-pref-height: 64;
+}
+
+.toolbar .icon-svg {
+	-fx-fill: white;
+}
+
+.toolbar .ripple {
+	-fx-fill: white;
+}
+
+.toolbar .label {
+	-fx-text-fill: white;
+	-fx-font-weight: 400;
+	-fx-font-size: 20px;
+}
+
+.toolbar .title {
+	-fx-padding: 0 0 0 16;
+}
+
+/* Card */
+.paper-material {
+	-fx-background-color: #fff;
+	-fx-background-radius: 3px;
+	-fx-text-fill: #212121;
+	-fx-font-size: 16px;
+}
+
+.paper-material .title {
+	-fx-padding: 16px;
+}
+
+.paper-material .paper-content {
+	-fx-padding: 16px;
+	-fx-min-height: 0px;
+}
+
+.card {
+	-fx-background-color: #fff;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.16), 5, 0, 0, 2);
+	-fx-background-radius: 3px;
+	-fx-text-fill: #212121;
+	-fx-font-size: 16px;
+}
+
+/* SlidingTabLayout */
+.sliding-tab-layout {
+	-fx-background-color: -color-primary;
+	-fx-padding: 0 0 0 56;
+}
+
+.sliding-tab-layout .button {
+	-fx-font-size: 16;
+	-fx-text-fill: #fff;
+	-fx-padding: 16px;
+	-fx-background-color: transparent;
+	-fx-text-origin: bottom;
+	-fx-font-family: 'Roboto Medium'
+}
+
+.sliding-tab-layout .button .ripple {
+	-fx-fill: -color-accent;
+}
+
+.sliding-tab-layout .bar {
+	-fx-stroke: -color-accent;
+}
+
+/** Editing Table Cell**/
+.editing-table-cell .text-field {
+	-fx-background-color: transparent;
+	-fx-padding: 0 8 8 8;
+	-fx-background-insets: 0;
+	-fx-border-width: 0 0 2 0;
+	-fx-border-color: -color-primary;
+}
+
+.floating-button {
+	-fx-background-color: #ff5722;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.20), 25, 0.2, 0, 6);
+}
+
+.floating-button .ripple {
+	-fx-fill: white;
+}
+
+.floating-button .icon-svg {
+	-fx-fill: white;
+}
+
+/**
+NAVIGATION DRAWER
+**/
+.navigation-drawer {
+	-fx-background-color: #FFF;
+	-fx-border-color: #f5f5f5;
+	-fx-border-width: 0 0 1 0;
+}
+
+.navigation-drawer .image-view {
+	-fx-pref-height: 48;
+	-fx-opacity: 0.54;
+	-fx-translate-x: 16;
+	-fx-translate-y: 12;
+}
+
+.navigation-drawer .item-selectable:hover {
+	-fx-background-color: #f5f5f5;
+}
+
+.navigation-drawer .navigation-drawer-header {
+	-fx-border-width: 0 0 1 0;
+	-fx-border-color: #f5f5f5;
+	-fx-background-color: #039be5;
+	/* -fx-background-image:	url('/br/edu/ufrpe/uag/projetao/view/principal/util/navigation-drawer-wallpaper.jpg'); */
+	-fx-padding: 16px;
+	-fx-pref-height:117;
+}
+
+.navigation-drawer .navigation-drawer-header .nome {
+	-fx-background-color: transparent;
+	-fx-text-fill: #ffffff;
+	-fx-font-family: 'Robot Medium';
+	-fx-font-size: 14px;
+	-fx-text-alignment: left;
+}
+
+.navigation-drawer .navigation-drawer-header .email {
+	-fx-background-color: transparent;
+	-fx-text-fill: #ffffff;
+	-fx-font-family: 'Robot';
+	-fx-font-size: 14px;
+	-fx-text-alignment: left;
+}

@@ -49,9 +49,8 @@ public class ClasssificacaoImagemClasse implements java.io.Serializable, Interfa
 	this.alocacaoImagemClasse = alocacaoImagemClasse;
     }
 
-    @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "escolha_imagem_classe", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "escolha_imagem_classe", nullable = false)
     public EscolhaImagemClasse getEscolhaImagemClasse() {
 	return this.escolhaImagemClasse;
     }
@@ -110,8 +109,7 @@ public class ClasssificacaoImagemClasse implements java.io.Serializable, Interfa
 
     @Override
     public String toString() {
-	return "ClasssificacaoImagemClasse{" + "alocacaoImagemClasse=" + alocacaoImagemClasse + ", escolhaImagemClasse="
-		+ escolhaImagemClasse + ", usuario=" + usuario + '}';
+	return alocacaoImagemClasse.getId() + "." + escolhaImagemClasse.getId() + "." + usuario.getId();
     }
 
 }

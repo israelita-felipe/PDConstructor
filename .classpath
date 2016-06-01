@@ -39,5 +39,8 @@
 	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/javassist-3.18.1-GA.jar"/>
 	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/xml-apis-1.0.b2.jar"/>
 	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/jfoenix.jar"/>
+	<classpathentry kind="lib" path="/home/israel/Dropbox/UTILITARIOS (PROJETOS JAVA)/Projetão/lib/kairos-all-0.5.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -137,8 +137,8 @@ public class LiberacaoBaseImagemDeteccao implements InterfaceEntity, Serializabl
      */
     @Override
     public String toString() {
-	return "LiberacaoBaseImagemDeteccao [baseImagemDeteccao=" + baseImagemDeteccao + ", usuarioBySupervisor="
-		+ usuarioBySupervisor + ", usuarioByEscravo=" + usuarioByEscravo + ", status=" + status + "]";
+	return "Base: " + baseImagemDeteccao + ", Supervisor: " + usuarioBySupervisor + ", Escravo: " + usuarioByEscravo
+		+ "]";
     }
 
 }

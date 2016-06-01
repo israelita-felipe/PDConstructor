@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import org.kairos.core.Fragment?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import org.kairos.components.MaterialButton?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
+
+<fx:root type="Fragment" xmlns:fx="http://javafx.com/fxml/1"
+	xmlns="http://javafx.com/javafx/8.0.65" stylesheets="/br/edu/ufrpe/uag/projetao/view/css/controls.css">
+
+	<VBox AnchorPane.topAnchor="16" AnchorPane.rightAnchor="16"
+		AnchorPane.bottomAnchor="16" AnchorPane.leftAnchor="16">
+		<HBox style="-fx-padding:0 0 16 0">
+			<children>
+				<MaterialButton text="Classificar" onAction="#paginator" />
+			</children>
+		</HBox>
+		<TableView fx:id="tabelaLiberacoesImagemClasse"
+			AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0"
+			AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" VBox.vgrow="ALWAYS">
+			<columns>
+				<TableColumn text="Base">
+					<cellValueFactory>
+						<PropertyValueFactory property="baseImagemClasse" />
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Supervisor">
+					<cellValueFactory>
+						<PropertyValueFactory property="usuarioBySupervisor" />
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Status">
+					<cellValueFactory>
+						<PropertyValueFactory property="status" />
+					</cellValueFactory>
+				</TableColumn>
+			</columns>
+			<contextMenu>
+				<ContextMenu>
+					<items>
+						<MenuItem text="Classificar" onAction="#paginator" />
+					</items>
+				</ContextMenu>
+			</contextMenu>
+		</TableView>
+	</VBox>
+</fx:root>
+

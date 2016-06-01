@@ -1,0 +1,376 @@
+/**
+ * 
+ */
+package br.edu.ufrpe.uag.projetao.control.base.imagem;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.kairos.components.TextInputLayout;
+import org.kairos.core.Fragment;
+
+import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
+import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
+import br.edu.ufrpe.uag.projetao.control.UsuarioController;
+import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
+import br.edu.ufrpe.uag.projetao.control.util.imagem.ImagemDigital;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
+import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemDeteccao;
+import br.edu.ufrpe.uag.projetao.model.DeteccaoImagem;
+import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemDeteccao;
+import javafx.collections.FXCollections;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Pagination;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.util.Callback;
+
+/**
+ * @author israel
+ *
+ */
+public class BaseImagemDeteccaoLiberacaoController extends Fragment {
+
+    private FXMLLoader loader;
+
+    @FXML
+    private TableView<LiberacaoBaseImagemDeteccao> tabelaLiberacoesImagemDeteccao;
+    @FXML
+    private Pagination pagination;
+    @FXML
+    private List<AlocacaoImagemDeteccao> alocacoes;
+    @FXML
+    private ListView<DeteccaoImagem> deteccoes;
+
+    private BufferedImage imagemAtual;
+
+    private InterfaceController<DeteccaoImagem> deteccaoController = ControllerFactory.getDeteccaoImagemController();
+
+    @Override
+    public void onCreateView(FXMLLoader fxmlLoader) {
+	this.loader = fxmlLoader;
+	list();
+    }
+
+    @FXML
+    private void list() {
+	getChildren().clear();
+	this.loader.setLocation(getClass()
+		.getResource("/br/edu/ufrpe/uag/projetao/view/base/imagem/BaseImagemDeteccaoLiberacaoView.fxml"));
+	try {
+	    this.loader.load();
+	    this.tabelaLiberacoesImagemDeteccao.setItems(FXCollections.observableList(ControllerFactory
+		    .getLiberacaoBaseImagemDeteccaoController().getItemsFromCriteria(DetachedCriteriaFactory
+			    .getLiberacoesBaseImagemDeteccaoDoEscravo(UsuarioController.currentEscravo))));
+	} catch (IOException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+    }
+
+    private Node createPage(int pageIndex) throws IOException {
+
+	// cria as caixas de armazenamento dos componentes visuais
+	BorderPane borderPane = new BorderPane();
+	borderPane.setPadding(new Insets(8));
+	this.deteccoes = new ListView<>(FXCollections
+		.observableList(new LinkedList<>(ControllerFactory.getDeteccaoImagemController().getItemsFromCriteria(
+			DetachedCriteriaFactory.getDeteccaoImagemPorAlocacao(this.alocacoes.get(pageIndex))))));
+
+	// cria caixa de descrição da base
+	TextInputLayout descricaoLayout = new TextInputLayout();
+	descricaoLayout.setPadding(new Insets(16));
+	TextArea descricaoTextArea = new TextArea();
+	descricaoTextArea.setEditable(false);
+	descricaoTextArea.setWrapText(true);
+	descricaoTextArea.setText(this.alocacoes.get(pageIndex).getBaseImagemDeteccao().getDescricao());
+	descricaoTextArea.setPromptText("Descrição da base");
+	descricaoLayout.getChildren().add(descricaoTextArea);
+	descricaoLayout.setMaxHeight(80);
+	descricaoLayout.setMinHeight(80);
+	descricaoLayout.setPrefHeight(80);
+	borderPane.setTop(descricaoLayout);
+
+	imagemAtual = ImagemDigital.toImage(this.alocacoes.get(pageIndex).getImagemDeteccao().getObjeto());
+	// cria caixa de texto a classificar
+	ImageView imageView = new ImageView();
+	imageView.preserveRatioProperty().set(true);
+
+	ScrollPane scroll = new ScrollPane();
+	borderPane.setCenter(scroll);
+
+	scroll.setContent(imageView);
+
+	ContextMenu cm = new ContextMenu();
+	MenuItem removeMenuItem = new MenuItem("Remover");
+	cm.getItems().add(removeMenuItem);
+	removeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+
+	    @Override
+	    public void handle(ActionEvent event) {
+		removeDeteccao();
+		gerarImagem(imageView);
+	    }
+	});
+	this.deteccoes.setContextMenu(cm);
+
+	// preenchendo as detecções
+	this.deteccoes.setItems(
+		FXCollections.observableList(ControllerFactory.getDeteccaoImagemController().getItemsFromCriteria(
+			DetachedCriteriaFactory.getDeteccaoImagemPorEscravoEAlocacao(UsuarioController.currentEscravo,
+				this.alocacoes.get(pageIndex)))));
+
+	// new ZoomnableImageView(imageView, scroll, 200.0);
+	addComportamentoItentificacao(imageView, this.alocacoes.get(pageIndex));
+
+	borderPane.setRight(deteccoes);
+	HBox.setHgrow(this.deteccoes, Priority.SOMETIMES);
+	gerarImagem(imageView);
+
+	return borderPane;
+    }
+
+    private void addComportamentoItentificacao(ImageView imageView, AlocacaoImagemDeteccao alocacao) {
+
+	imageView.setOnMousePressed(new EventHandler<MouseEvent>() {
+
+	    @Override
+	    public void handle(MouseEvent event) {
+		TransactionManager.begin();
+		deteccaoController.prepareCreate();
+
+		deteccaoController.getSelected().setAlocacaoImagemDeteccao(alocacao);
+		deteccaoController.getSelected().setUsuario(UsuarioController.currentEscravo);
+		deteccaoController.getSelected().setX1(event.getX());
+		deteccaoController.getSelected().setY1(event.getY());
+	    }
+	});
+
+	imageView.setOnMouseReleased(new EventHandler<MouseEvent>() {
+
+	    @Override
+	    public void handle(MouseEvent event) {
+		deteccaoController.getSelected().setX2(event.getX());
+		deteccaoController.getSelected().setY2(event.getY());
+
+		if (deteccaoController.getSelected().getX2() < deteccaoController.getSelected().getX1()
+			&& deteccaoController.getSelected().getY2() < deteccaoController.getSelected().getY1()) {
+		    // inverte as duas coordenadas
+		    Double y1 = deteccaoController.getSelected().getY1();
+		    Double x1 = deteccaoController.getSelected().getX1();
+
+		    // y1<-y2
+		    deteccaoController.getSelected().setY1(deteccaoController.getSelected().getY2());
+		    // y2<-y1
+		    deteccaoController.getSelected().setY2(y1);
+
+		    // x1<-x2
+		    deteccaoController.getSelected().setX1(deteccaoController.getSelected().getX2());
+		    // x2<-x1
+		    deteccaoController.getSelected().setX2(x1);
+
+		} else if (deteccaoController.getSelected().getX2() > deteccaoController.getSelected().getX1()
+			&& deteccaoController.getSelected().getY2() < deteccaoController.getSelected().getY1()) {
+
+		    Double y1 = deteccaoController.getSelected().getY1();
+		    // y1<-y2
+		    deteccaoController.getSelected().setY1(deteccaoController.getSelected().getY2());
+		    // y2<-y1
+		    deteccaoController.getSelected().setY2(y1);
+
+		} else if (deteccaoController.getSelected().getX1() > deteccaoController.getSelected().getX2()
+			&& deteccaoController.getSelected().getY2() > deteccaoController.getSelected().getY1()) {
+
+		    Double x1 = deteccaoController.getSelected().getX1();
+		    // x1<-x2
+		    deteccaoController.getSelected().setX1(deteccaoController.getSelected().getX2());
+		    // x2<-x1
+		    deteccaoController.getSelected().setX2(x1);
+		}
+
+		deteccaoController.create();
+		TransactionManager.end();
+
+		// preenchendo as detecções
+		deteccoes.setItems(
+			FXCollections.observableList(ControllerFactory.getDeteccaoImagemController().getItemsFromCriteria(
+				DetachedCriteriaFactory.getDeteccaoImagemPorEscravoEAlocacao(UsuarioController.currentEscravo,
+					alocacao))));
+		deteccoes.refresh();
+
+		gerarImagem(imageView);
+
+	    }
+	});
+
+    }
+
+    private void gerarImagem(ImageView imagemView) {
+	try {
+	    Image image = SwingFXUtils.toFXImage(pintar(), null);
+	    imagemView.setImage(image);
+	} catch (IOException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+    }
+
+    /**
+     * Pinta os retângulos capturados
+     * 
+     * @param imagemMatriz
+     *            matriz RGB que compõe a imagem
+     * @return imagem pintada com os retângulos
+     * @throws IOException
+     */
+    public BufferedImage pintar() throws IOException {
+	BufferedImage clone = imagemAtual.getSubimage(0, 0, imagemAtual.getWidth(), imagemAtual.getHeight());
+	// pintando os retângulos
+	for (int i = 0; i < deteccoes.getItems().size(); i++) {
+	    DeteccaoImagem coordenada = deteccoes.getItems().get(i);
+	    pintarRetangulo(clone, coordenada);
+	}
+	return clone;
+    }
+
+    /**
+     * Pinta um retângulo em uma imagem
+     * 
+     * @param imagem
+     *            a ser pintado os retângulos
+     * @param coordenada
+     *            do retângulo a ser pintado
+     */
+    private void pintarRetangulo(BufferedImage imagem, DeteccaoImagem coordenada) {
+	Graphics g = imagem.createGraphics();	
+	g.setXORMode(Color.BLACK);
+	g.drawRect((int) coordenada.getX1(), (int) coordenada.getY1(), (int) (coordenada.getX2() - coordenada.getX1()),
+		(int) (coordenada.getY2() - coordenada.getY1()));
+    }
+
+    private void removeDeteccao() {
+	if (this.deteccoes.getSelectionModel().getSelectedItem() != null) {
+	    InterfaceController<DeteccaoImagem> deteccaoImagemController = ControllerFactory
+		    .getDeteccaoImagemController();
+
+	    TransactionManager.begin();
+	    deteccaoImagemController.destroy(deteccaoImagemController.prepareList()
+		    .indexOf(this.deteccoes.getSelectionModel().getSelectedItem()));
+	    TransactionManager.end();
+	    this.deteccoes.getItems().remove(deteccaoImagemController.getSelected());
+	    this.deteccoes.refresh();
+	}
+    }
+
+    @FXML
+    private void paginator() {
+	LiberacaoBaseImagemDeteccao liberacao = tabelaLiberacoesImagemDeteccao.getSelectionModel().getSelectedItem();
+
+	if (liberacao != null) {
+	    getChildren().clear();
+
+	    this.loader.setLocation(getClass().getResource(
+		    "/br/edu/ufrpe/uag/projetao/view/base/imagem/classificacao/BaseImagemDeteccaoView.fxml"));
+
+	    try {
+		this.loader.load();
+
+		this.alocacoes = ControllerFactory.getAlocacaoImagemDeteccaoController()
+			.getItemsFromCriteria(DetachedCriteriaFactory.getAlocacoesImagemDeteccaoPorLiberacao(
+				this.tabelaLiberacoesImagemDeteccao.getSelectionModel().getSelectedItem()));
+
+		pagination.setPageFactory(new Callback<Integer, Node>() {
+
+		    @Override
+		    public Node call(Integer pageIndex) {
+			try {
+			    return createPage(pageIndex);
+			} catch (IOException ex) {
+			    Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+			    dialogoErro.setTitle("Não foi possível fazer...");
+			    dialogoErro.setHeaderText("Algo saiu errado");
+			    dialogoErro.setContentText(
+				    "Não foi possível criar a imagem para detecção, por favor tente novamente");
+
+			    // Create expandable Exception.
+			    StringWriter sw = new StringWriter();
+			    PrintWriter pw = new PrintWriter(sw);
+			    ex.printStackTrace(pw);
+			    String exceptionText = sw.toString();
+
+			    Label label = new Label("The exception stacktrace was:");
+
+			    TextArea textArea = new TextArea(exceptionText);
+			    textArea.setEditable(false);
+			    textArea.setWrapText(true);
+
+			    textArea.setMaxWidth(Double.MAX_VALUE);
+			    textArea.setMaxHeight(Double.MAX_VALUE);
+			    GridPane.setVgrow(textArea, Priority.ALWAYS);
+			    GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+			    GridPane expContent = new GridPane();
+			    expContent.setMaxWidth(Double.MAX_VALUE);
+			    expContent.add(label, 0, 0);
+			    expContent.add(textArea, 0, 1);
+
+			    // Set expandable Exception into the dialog pane.
+			    dialogoErro.getDialogPane().setExpandableContent(expContent);
+
+			    dialogoErro.showAndWait();
+			}
+			return null;
+		    }
+		});
+
+		pagination.setPageCount(alocacoes.size());
+		pagination.setCurrentPageIndex(buscaPrimeiraAlocacaoSemDeteccao());
+
+	    } catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
+	} else {
+	    Alert dialogoErro = new Alert(Alert.AlertType.INFORMATION);
+	    dialogoErro.setTitle("Informação");
+	    dialogoErro.setHeaderText("Seleção da base");
+	    dialogoErro.setContentText("Selecione uma base para poder classificar");
+	    dialogoErro.showAndWait();
+	    list();
+	}
+    }
+
+    public int buscaPrimeiraAlocacaoSemDeteccao() {
+	int i = 0;
+	while (i < alocacoes.size() && !alocacoes.get(i).getDeteccaoImagems().isEmpty()) {
+	    i++;
+	}
+	return i == 0 ? 0 : i - 1;
+    }
+
+}

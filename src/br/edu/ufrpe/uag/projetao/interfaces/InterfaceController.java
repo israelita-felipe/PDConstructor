@@ -153,4 +153,12 @@ public interface InterfaceController<T extends InterfaceEntity> {
      */
     T get(Serializable id);
 
+    T prepareView(T entity);
+
+    T prepareEdit(T entity);
+
+    T destroy(T entity);
+
+    T destroyAndView(T entity);
+
 }
