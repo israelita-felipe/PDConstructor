@@ -4,10 +4,8 @@
 package br.edu.ufrpe.uag.projetao.control.base.imagem;
 
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
-import org.hibernate.criterion.DetachedCriteria;
 import org.kairos.components.TextInputLayout;
 import org.kairos.core.Fragment;
 
@@ -22,7 +20,6 @@ import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.ClasssificacaoImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.EscolhaImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemClasse;
-import br.edu.ufrpe.uag.projetao.model.Usuario;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -33,6 +30,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
@@ -91,9 +89,13 @@ public class BaseImagemClasseLiberacaoController extends Fragment {
 
 	// cria as caixas de armazenamento dos componentes visuais
 	BorderPane borderPane = new BorderPane();
-	borderPane.setPadding(new Insets(8));
 	VBox escolha = new VBox();
 	escolha.setPadding(new Insets(8));
+	escolha.setSpacing(8);
+	escolha.getStyleClass().add("card");
+	Label label = new Label("Escolha uma classe");
+
+	escolha.getChildren().add(label);
 
 	// cria caixa de descrição da base
 	TextInputLayout descricaoLayout = new TextInputLayout();
@@ -116,20 +118,33 @@ public class BaseImagemClasseLiberacaoController extends Fragment {
 	imageView.preserveRatioProperty().set(true);
 
 	ScrollPane scroll = new ScrollPane();
-	borderPane.setCenter(scroll);
 
-	new ZoomnableImageView(imageView, scroll, 200.0);
+	ZoomnableImageView zoom = new ZoomnableImageView(imageView, scroll, 100.0);
+
+	BorderPane center = new BorderPane();
+	center.setCenter(scroll);
+	center.setRight(zoom.getControles());
+	center.setPadding(new Insets(8));
+	center.getStyleClass().add("card");
+
+	borderPane.setCenter(center);
+
 	// grupo de seleção do radiobutton
 	ToggleGroup group = new ToggleGroup();
-	for (EscolhaImagemClasse classe : this.alocacoes.get(pageIndex).getEscolhaImagemClasses()) {
+	for (EscolhaImagemClasse classe : ControllerFactory.getEscolhaClasseImagemClasseController()
+		.getItemsFromCriteria(DetachedCriteriaFactory.getEscolhaImagemClassePorLiberacaoEAlocacao(
+			tabelaLiberacoesImagemClasse.getSelectionModel().getSelectedItem(),
+			alocacoes.get(pageIndex)))) {
 
 	    // cria um radiobutton para cada opção de classe
 	    RadioButton opcao = new RadioButton(classe.getDescricao());
 	    opcao.setUserData(classe);
 
-	    for (ClasssificacaoImagemClasse classificacaoEfetivada : this.alocacoes.get(pageIndex)
-		    .getClasssificacaoImagemClasses()) {
-		if (classificacaoEfetivada.getEscolhaImagemClasse().equals(classe)) {
+	    for (ClasssificacaoImagemClasse classificacaoEfetivada : ControllerFactory
+		    .getClassificacaoImagemClasseController()
+		    .getItemsFromCriteria(DetachedCriteriaFactory.getClassificacaoImagemClassePorEscravoEAlocacao(
+			    UsuarioController.currentEscravo, this.alocacoes.get(pageIndex)))) {
+		if (classificacaoEfetivada.getEscolhaImagemClasse().getDescricao().equals(classe.getDescricao())) {
 		    opcao.setSelected(true);
 		    break;
 		}
@@ -148,8 +163,10 @@ public class BaseImagemClasseLiberacaoController extends Fragment {
 			.getClassificacaoImagemClasseController();
 
 		ClasssificacaoImagemClasse classificacaoAtual = null;
-		for (ClasssificacaoImagemClasse classificacaoEfetivada : alocacoes.get(pageIndex)
-			.getClasssificacaoImagemClasses()) {
+		for (ClasssificacaoImagemClasse classificacaoEfetivada : ControllerFactory
+			.getClassificacaoImagemClasseController()
+			.getItemsFromCriteria(DetachedCriteriaFactory.getClassificacaoImagemClassePorEscravoEAlocacao(
+				UsuarioController.currentEscravo, alocacoes.get(pageIndex)))) {
 		    if (classificacaoEfetivada.getEscolhaImagemClasse().equals(old_toggle.getUserData())) {
 			classificacaoAtual = classificacaoEfetivada;
 			break;
@@ -183,11 +200,17 @@ public class BaseImagemClasseLiberacaoController extends Fragment {
 			TransactionManager.end();
 		    }
 		}
+		// atualizando as alocações com a votação atual.
+		// fazendo uma nova busca no banco
+		atualizaAlocacoes();
 	    }
 	});
 
 	HBox.setHgrow(escolha, Priority.SOMETIMES);
-	borderPane.setRight(escolha);
+	BorderPane bp = new BorderPane();
+	bp.setPadding(new Insets(0, 0, 0, 8));
+	bp.setCenter(escolha);
+	borderPane.setRight(bp);
 
 	return borderPane;
     }
@@ -205,14 +228,13 @@ public class BaseImagemClasseLiberacaoController extends Fragment {
 	    try {
 		this.loader.load();
 
-		this.alocacoes = ControllerFactory.getAlocacaoImagemClasseController()
-			.getItemsFromCriteria(DetachedCriteriaFactory.getAlocacoesImagemPorLiberacao(
-				this.tabelaLiberacoesImagemClasse.getSelectionModel().getSelectedItem()));
+		atualizaAlocacoes();
 
 		pagination.setPageFactory(new Callback<Integer, Node>() {
 
 		    @Override
 		    public Node call(Integer pageIndex) {
+			atualizaAlocacoes();
 			return createPage(pageIndex);
 		    }
 		});
@@ -234,9 +256,15 @@ public class BaseImagemClasseLiberacaoController extends Fragment {
 	}
     }
 
+    private void atualizaAlocacoes() {
+	this.alocacoes = ControllerFactory.getAlocacaoImagemClasseController()
+		.getItemsFromCriteria(DetachedCriteriaFactory.getAlocacoesImagemPorLiberacao(
+			this.tabelaLiberacoesImagemClasse.getSelectionModel().getSelectedItem()));
+    }
+
     public int buscaPrimeiraAlocacaoSemDeteccao() {
 	int i = 0;
-	while (i < alocacoes.size() && !alocacoes.get(i).getEscolhaImagemClasses().isEmpty()) {
+	while (i < alocacoes.size() && !alocacoes.get(i).getClasssificacaoImagemClasses().isEmpty()) {
 	    i++;
 	}
 	return i == 0 ? 0 : i - 1;

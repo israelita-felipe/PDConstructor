@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.1" last-position="0,360" last-zoom="0.8"
+<dbmodel pgmodeler-ver="0.8.1" last-position="0,270" last-zoom="0.8"
 	 default-schema="public" default-owner="postgres">
 <database name="PDCONSTRUCTOR" template="pdconstructor">
 </database>
@@ -120,11 +120,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="ALOCACAO_TEXTO" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="ESCOLHA_TEXTO">
+	<column name="ESCOLHA_TEXTO" not-null="true">
 		<type name="integer"/>
 	</column>
+	<column name="ID" not-null="true">
+		<type name="serial"/>
+	</column>
 	<constraint name="CLASSIFICACAO_TEXTO_PK" type="pk-constr" table="public.&quot;CLASSIFICACAO_TEXTO&quot;">
-		<columns names="ESCRAVO,ALOCACAO_TEXTO" ref-type="src-columns"/>
+		<columns names="ID,ESCRAVO,ALOCACAO_TEXTO,ESCOLHA_TEXTO" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -240,8 +243,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="ESCOLHA_IMAGEM_CLASSE" not-null="true">
 		<type name="integer"/>
 	</column>
+	<column name="ID" not-null="true">
+		<type name="serial"/>
+	</column>
 	<constraint name="CLASSIFICACAO_IMAGEM_CLASSE_PK" type="pk-constr" table="public.&quot;CLASSSIFICACAO_IMAGEM_CLASSE&quot;">
-		<columns names="ESCRAVO,ALOCACAO_IMAGEM_CLASSE,ESCOLHA_IMAGEM_CLASSE" ref-type="src-columns"/>
+		<columns names="ESCRAVO,ALOCACAO_IMAGEM_CLASSE,ESCOLHA_IMAGEM_CLASSE,ID" ref-type="src-columns"/>
 	</constraint>
 </table>
 

@@ -35,6 +35,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Pagination;
@@ -67,7 +68,7 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
     @FXML
     private ListView<DeteccaoImagem> deteccoes;
 
-    private BufferedImage imagemAtual;
+    private AlocacaoImagemDeteccao alocacaoAtual;
 
     private InterfaceController<DeteccaoImagem> deteccaoController = ControllerFactory.getDeteccaoImagemController();
 
@@ -93,14 +94,29 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
 	}
     }
 
+    /**
+     * Cria uma página para detecção dado o índice da alocação
+     * 
+     * @param PageIndex
+     *            número da página e da alocação ao qual será criando uma tela
+     *            de detecção
+     * @return Página para ser adicionada no paginador
+     * @throws IOException
+     */
     private Node createPage(int pageIndex) throws IOException {
 
 	// cria as caixas de armazenamento dos componentes visuais
 	BorderPane borderPane = new BorderPane();
 	borderPane.setPadding(new Insets(8));
-	this.deteccoes = new ListView<>(FXCollections
-		.observableList(new LinkedList<>(ControllerFactory.getDeteccaoImagemController().getItemsFromCriteria(
-			DetachedCriteriaFactory.getDeteccaoImagemPorAlocacao(this.alocacoes.get(pageIndex))))));
+
+	// preenchendo as detecções
+	this.deteccoes = new ListView<>(
+		FXCollections
+			.observableList(
+				new LinkedList<>(ControllerFactory.getDeteccaoImagemController()
+					.getItemsFromCriteria(DetachedCriteriaFactory
+						.getDeteccaoImagemPorEscravoEAlocacao(UsuarioController.currentEscravo,
+							this.alocacoes.get(pageIndex))))));
 
 	// cria caixa de descrição da base
 	TextInputLayout descricaoLayout = new TextInputLayout();
@@ -116,7 +132,7 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
 	descricaoLayout.setPrefHeight(80);
 	borderPane.setTop(descricaoLayout);
 
-	imagemAtual = ImagemDigital.toImage(this.alocacoes.get(pageIndex).getImagemDeteccao().getObjeto());
+	alocacaoAtual = this.alocacoes.get(pageIndex);
 	// cria caixa de texto a classificar
 	ImageView imageView = new ImageView();
 	imageView.preserveRatioProperty().set(true);
@@ -125,6 +141,50 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
 	borderPane.setCenter(scroll);
 
 	scroll.setContent(imageView);
+
+	// new ZoomnableImageView(imageView, scroll, 200.0);
+	addComportamentoItentificacao(imageView);
+
+	borderPane.setRight(deteccoes);
+	HBox.setHgrow(this.deteccoes, Priority.SOMETIMES);
+	gerarImagem(imageView);
+
+	return borderPane;
+    }
+
+    /**
+     * Comportamento dos ítens, ações e ações atribuídas a cada componente
+     * 
+     * @param imageView
+     */
+    private void addComportamentoItentificacao(ImageView imageView) {
+
+	this.deteccoes.setCellFactory(listView -> new ListCell<DeteccaoImagem>() {
+
+	    @Override
+	    public void updateItem(DeteccaoImagem item, boolean empty) {
+		super.updateItem(item, empty);
+		ImageView icone = new ImageView();
+		if (empty) {
+		    setGraphic(null);
+		} else {
+
+		    int w = (int) (item.getX2() - item.getX1());
+		    int h = (int) (item.getY2() - item.getY1());		    		   
+
+		    Image image = SwingFXUtils.toFXImage(ImagemDigital
+			    .toImage(item.getAlocacaoImagemDeteccao().getImagemDeteccao().getObjeto())
+			    .getSubimage((int) item.getX1(), (int) item.getY1(), w <= 0 ? 1 : w, h <= 0 ? 1 : h), null);
+		    
+		    icone.setFitHeight(48);
+		    icone.setFitWidth(48);
+		    icone.setPreserveRatio(true);
+		    icone.setImage(image);
+		    setGraphic(icone);
+		    setText(item.toString());
+		}
+	    }
+	});
 
 	ContextMenu cm = new ContextMenu();
 	MenuItem removeMenuItem = new MenuItem("Remover");
@@ -137,25 +197,8 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
 		gerarImagem(imageView);
 	    }
 	});
+
 	this.deteccoes.setContextMenu(cm);
-
-	// preenchendo as detecções
-	this.deteccoes.setItems(
-		FXCollections.observableList(ControllerFactory.getDeteccaoImagemController().getItemsFromCriteria(
-			DetachedCriteriaFactory.getDeteccaoImagemPorEscravoEAlocacao(UsuarioController.currentEscravo,
-				this.alocacoes.get(pageIndex)))));
-
-	// new ZoomnableImageView(imageView, scroll, 200.0);
-	addComportamentoItentificacao(imageView, this.alocacoes.get(pageIndex));
-
-	borderPane.setRight(deteccoes);
-	HBox.setHgrow(this.deteccoes, Priority.SOMETIMES);
-	gerarImagem(imageView);
-
-	return borderPane;
-    }
-
-    private void addComportamentoItentificacao(ImageView imageView, AlocacaoImagemDeteccao alocacao) {
 
 	imageView.setOnMousePressed(new EventHandler<MouseEvent>() {
 
@@ -164,7 +207,7 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
 		TransactionManager.begin();
 		deteccaoController.prepareCreate();
 
-		deteccaoController.getSelected().setAlocacaoImagemDeteccao(alocacao);
+		deteccaoController.getSelected().setAlocacaoImagemDeteccao(alocacaoAtual);
 		deteccaoController.getSelected().setUsuario(UsuarioController.currentEscravo);
 		deteccaoController.getSelected().setX1(event.getX());
 		deteccaoController.getSelected().setY1(event.getY());
@@ -218,11 +261,10 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
 
 		// preenchendo as detecções
 		deteccoes.setItems(
-			FXCollections.observableList(ControllerFactory.getDeteccaoImagemController().getItemsFromCriteria(
-				DetachedCriteriaFactory.getDeteccaoImagemPorEscravoEAlocacao(UsuarioController.currentEscravo,
-					alocacao))));
+			FXCollections.observableList(new LinkedList<>(ControllerFactory.getDeteccaoImagemController()
+				.getItemsFromCriteria(DetachedCriteriaFactory.getDeteccaoImagemPorEscravoEAlocacao(
+					UsuarioController.currentEscravo, alocacaoAtual)))));
 		deteccoes.refresh();
-
 		gerarImagem(imageView);
 
 	    }
@@ -230,49 +272,30 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
 
     }
 
-    private void gerarImagem(ImageView imagemView) {
-	try {
-	    Image image = SwingFXUtils.toFXImage(pintar(), null);
-	    imagemView.setImage(image);
-	} catch (IOException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	}
-    }
-
     /**
-     * Pinta os retângulos capturados
+     * Gera uma imagem
      * 
-     * @param imagemMatriz
-     *            matriz RGB que compõe a imagem
-     * @return imagem pintada com os retângulos
-     * @throws IOException
+     * @param imagemView
      */
-    public BufferedImage pintar() throws IOException {
-	BufferedImage clone = imagemAtual.getSubimage(0, 0, imagemAtual.getWidth(), imagemAtual.getHeight());
+    private void gerarImagem(ImageView imagemView) {
+	BufferedImage imagem = ImagemDigital.toImage(alocacaoAtual.getImagemDeteccao().getObjeto());
 	// pintando os retângulos
 	for (int i = 0; i < deteccoes.getItems().size(); i++) {
 	    DeteccaoImagem coordenada = deteccoes.getItems().get(i);
-	    pintarRetangulo(clone, coordenada);
+
+	    Graphics g = imagem.createGraphics();
+
+	    g.setXORMode(Color.BLACK);
+	    g.drawRect((int) coordenada.getX1(), (int) coordenada.getY1(),
+		    (int) (coordenada.getX2() - coordenada.getX1()), (int) (coordenada.getY2() - coordenada.getY1()));
 	}
-	return clone;
+	Image image = SwingFXUtils.toFXImage(imagem, null);
+	imagemView.setImage(image);
     }
 
     /**
-     * Pinta um retângulo em uma imagem
-     * 
-     * @param imagem
-     *            a ser pintado os retângulos
-     * @param coordenada
-     *            do retângulo a ser pintado
+     * Remove uma detecção selecionada
      */
-    private void pintarRetangulo(BufferedImage imagem, DeteccaoImagem coordenada) {
-	Graphics g = imagem.createGraphics();	
-	g.setXORMode(Color.BLACK);
-	g.drawRect((int) coordenada.getX1(), (int) coordenada.getY1(), (int) (coordenada.getX2() - coordenada.getX1()),
-		(int) (coordenada.getY2() - coordenada.getY1()));
-    }
-
     private void removeDeteccao() {
 	if (this.deteccoes.getSelectionModel().getSelectedItem() != null) {
 	    InterfaceController<DeteccaoImagem> deteccaoImagemController = ControllerFactory
@@ -371,6 +394,11 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
 	    i++;
 	}
 	return i == 0 ? 0 : i - 1;
+    }
+
+    public DeteccaoImagem selecionaDeteccao() {
+
+	return null;
     }
 
 }

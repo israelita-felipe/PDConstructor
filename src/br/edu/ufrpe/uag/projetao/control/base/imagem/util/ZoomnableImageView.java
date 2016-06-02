@@ -6,7 +6,9 @@ package br.edu.ufrpe.uag.projetao.control.base.imagem.util;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ScrollEvent;
@@ -19,6 +21,7 @@ public class ZoomnableImageView extends SimpleDoubleProperty {
 
     private final ImageView imageView;
     private final ScrollPane scroll;
+    private ZoomControles controles;
 
     /**
      * 
@@ -31,7 +34,10 @@ public class ZoomnableImageView extends SimpleDoubleProperty {
     }
 
     private void init() {
+	
 	this.scroll.setContent(this.imageView);
+	
+	this.controles = new ZoomControles();
 
 	addListener(new InvalidationListener() {
 	    @Override
@@ -50,6 +56,24 @@ public class ZoomnableImageView extends SimpleDoubleProperty {
 		}
 	    }
 	});
+
+	this.controles.getMais().setOnAction(new EventHandler<ActionEvent>() {
+
+	    @Override
+	    public void handle(ActionEvent event) {
+		set(get() * 1.1);
+	    }
+	});
+	this.controles.getMenos().setOnAction(new EventHandler<ActionEvent>() {
+
+	    @Override
+	    public void handle(ActionEvent event) {
+		set(get() / 1.1);
+	    }
+	});
     }
 
+    public ZoomControles getControles() {
+	return controles;
+    }
 }

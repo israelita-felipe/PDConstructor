@@ -1,7 +1,10 @@
 package br.edu.ufrpe.uag.projetao.model;
 // Generated 26/04/2016 23:17:23 by Hibernate Tools 4.3.1
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,6 +28,7 @@ public class ClassificacaoTexto implements java.io.Serializable, InterfaceEntity
     private EscolhaClasseTexto escolhaClasseTexto;
     @Coluna(colunaNome = "Escravo", colunaPosicao = 2)
     private Usuario usuario;
+    private int id;
 
     public ClassificacaoTexto() {
     }
@@ -37,8 +41,18 @@ public class ClassificacaoTexto implements java.io.Serializable, InterfaceEntity
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    public int getId() {
+	return id;
+    }
+
+    public void setId(int id) {
+	this.id = id;
+    }
+
     @ManyToOne
-    @JoinColumn(name = "alocacao_texto", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "alocacao_texto")
     public AlocacaoTexto getAlocacaoTexto() {
 	return this.alocacaoTexto;
     }
@@ -48,7 +62,7 @@ public class ClassificacaoTexto implements java.io.Serializable, InterfaceEntity
     }
 
     @ManyToOne
-    @JoinColumn(name = "escolha_texto", nullable = false)
+    @JoinColumn(name = "escolha_texto")
     public EscolhaClasseTexto getEscolhaClasseTexto() {
 	return this.escolhaClasseTexto;
     }
@@ -57,9 +71,8 @@ public class ClassificacaoTexto implements java.io.Serializable, InterfaceEntity
 	this.escolhaClasseTexto = escolhaClasseTexto;
     }
 
-    @Id
     @ManyToOne
-    @JoinColumn(name = "escravo", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "escravo")
     public Usuario getUsuario() {
 	return this.usuario;
     }
@@ -68,6 +81,11 @@ public class ClassificacaoTexto implements java.io.Serializable, InterfaceEntity
 	this.usuario = usuario;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#hashCode()
+     */
     @Override
     public int hashCode() {
 	final int prime = 31;
@@ -78,38 +96,56 @@ public class ClassificacaoTexto implements java.io.Serializable, InterfaceEntity
 	return result;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @Override
     public boolean equals(Object obj) {
-	if (this == obj)
+	if (this == obj) {
 	    return true;
-	if (obj == null)
+	}
+	if (obj == null) {
 	    return false;
-	if (getClass() != obj.getClass())
+	}
+	if (!(obj instanceof ClassificacaoTexto)) {
 	    return false;
+	}
 	ClassificacaoTexto other = (ClassificacaoTexto) obj;
 	if (alocacaoTexto == null) {
-	    if (other.alocacaoTexto != null)
+	    if (other.alocacaoTexto != null) {
 		return false;
-	} else if (!alocacaoTexto.equals(other.alocacaoTexto))
+	    }
+	} else if (alocacaoTexto.getId() != other.alocacaoTexto.getId()) {
 	    return false;
+	}
 	if (escolhaClasseTexto == null) {
-	    if (other.escolhaClasseTexto != null)
+	    if (other.escolhaClasseTexto != null) {
 		return false;
-	} else if (!escolhaClasseTexto.equals(other.escolhaClasseTexto))
+	    }
+	} else if (!escolhaClasseTexto.getDescricao().equals(other.escolhaClasseTexto.getDescricao())) {
 	    return false;
+	}
 	if (usuario == null) {
-	    if (other.usuario != null)
+	    if (other.usuario != null) {
 		return false;
-	} else if (!usuario.equals(other.usuario))
+	    }
+	} else if (usuario.getId() != other.usuario.getId()) {
 	    return false;
+	}
 	return true;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#toString()
+     */
     @Override
     public String toString() {
-	return "ClassificacaoTexto{" + "alocacaoTexto=" + (alocacaoTexto != null ? alocacaoTexto.getId() : "-")
-		+ ", escolhaClasseTexto=" + (escolhaClasseTexto != null ? escolhaClasseTexto.getId() : "-")
-		+ ", usuario=" + (usuario != null ? usuario.getId() : "-") + '}';
+	return "ClassificacaoTexto [alocacaoTexto=" + alocacaoTexto + ", escolhaClasseTexto=" + escolhaClasseTexto
+		+ ", usuario=" + usuario + ", id=" + id + "]";
     }
 
 }
