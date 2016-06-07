@@ -21,7 +21,7 @@ import javafx.scene.control.Label;
 
 /**
  * @author israel
- * @author bruno
+ * @author Bruno Barros
  */
 public class PrincipalSupervisorController extends Activity {
 

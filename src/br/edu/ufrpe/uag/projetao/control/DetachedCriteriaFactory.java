@@ -72,7 +72,7 @@ public class DetachedCriteriaFactory {
 
     public static DetachedCriteria getTodosEscravos() {
 	if (todosEscravos == null) {
-	    todosEscravos = getDetachedCriteriaUsuarioPorPerfil("CLASSIFICADOR");
+	    todosEscravos = getDetachedCriteriaUsuarioPorPerfil("ESCRAVO");
 	}
 	return todosEscravos;
     }

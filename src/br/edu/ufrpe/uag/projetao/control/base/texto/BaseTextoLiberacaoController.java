@@ -44,7 +44,7 @@ import javafx.util.Callback;
 
 /**
  * @author israel
- * @author bruno
+ * @author Bruno Barros
  *
  */
 public class BaseTextoLiberacaoController extends Fragment {

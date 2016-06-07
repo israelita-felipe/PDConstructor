@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -55,7 +57,6 @@ import javafx.util.Callback;
 
 /**
  * @author israel
- * @author bruno
  *
  */
 public class BaseImagemDeteccaoLiberacaoController extends Fragment {
@@ -248,10 +249,10 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
      * @param imagemView
      */
     private void gerarImagem(ImageView imagemView) {
-	
+
 	group.getChildren().clear();
 	group.getChildren().add(imagemView);
-	
+
 	BufferedImage imagem = ImagemDigital.toImage(alocacaoAtual.getImagemDeteccao().getObjeto());
 	// pintando os retângulos
 	for (int i = 0; i < deteccoes.getItems().size(); i++) {
@@ -269,7 +270,7 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
 	    ContextMenu cm = new ContextMenu();
 	    MenuItem removeMenuItem = new MenuItem("Remover");
 	    cm.getItems().add(removeMenuItem);
-	    cm.setAutoHide(false);
+	    // cm.setAutoHide(false);
 	    removeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 
 		@Override
@@ -284,10 +285,10 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
 		@Override
 		public void handle(MouseEvent e) {
 		    if (e.getButton() == MouseButton.SECONDARY)
-			cm.show((Node) e.getSource(), e.getScreenX(), e.getScreenY());
+			cm.show(r, e.getScreenX(), e.getScreenY());
 		}
-	    });	  
-	    
+	    });
+
 	    r.setOnMouseEntered(new EventHandler<Event>() {
 		@Override
 		public void handle(Event event) {
@@ -300,7 +301,7 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
 		@Override
 		public void handle(Event event) {
 		    r.setStroke(Color.BLUE);
-		    r.setFill(Color.LIGHTBLUE.deriveColor(0, 1.2, 1, 0.2));		    
+		    r.setFill(Color.LIGHTBLUE.deriveColor(0, 1.2, 1, 0.2));
 		}
 	    });
 	}
@@ -339,7 +340,7 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
 		this.alocacoes = ControllerFactory.getAlocacaoImagemDeteccaoController()
 			.getItemsFromCriteria(DetachedCriteriaFactory.getAlocacoesImagemDeteccaoPorLiberacao(
 				this.tabelaLiberacoesImagemDeteccao.getSelectionModel().getSelectedItem()));
-
+		
 		pagination.setPageFactory(new Callback<Integer, Node>() {
 
 		    @Override
@@ -401,12 +402,26 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
 	}
     }
 
+    /**
+     * Ordena as alocações de forma que as com menos detecções fiquem primeiro
+     */
+    public void sortAlocacoes() {
+	Collections.sort(alocacoes, new Comparator<AlocacaoImagemDeteccao>() {
+	    @Override
+	    public int compare(AlocacaoImagemDeteccao o1, AlocacaoImagemDeteccao o2) {
+		return o1.getDeteccaoImagems().size() - o2.getDeteccaoImagems().size();
+	    }
+	});
+    }
+
     public int buscaPrimeiraAlocacaoSemDeteccao() {
-	int i = 0;
-	while (i < alocacoes.size() && !alocacoes.get(i).getDeteccaoImagems().isEmpty()) {
-	    i++;
-	}
-	return i == 0 ? 0 : i - 1;
+	sortAlocacoes();
+	/*
+	 * int i = 0; while (i < alocacoes.size() &&
+	 * !alocacoes.get(i).getDeteccaoImagems().isEmpty()) { i++; } return i
+	 * == 0 ? 0 : i - 1;
+	 */
+	return 0;
     }
 
     public DeteccaoImagem selecionaDeteccao() {

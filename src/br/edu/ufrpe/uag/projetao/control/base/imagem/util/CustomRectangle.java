@@ -7,8 +7,7 @@ import br.edu.ufrpe.uag.projetao.model.DeteccaoImagem;
 import javafx.scene.shape.Rectangle;
 
 /**
- * @author israel
- * @author bruno
+ * @author Bruno Barros
  *
  */
 public class CustomRectangle extends Rectangle {

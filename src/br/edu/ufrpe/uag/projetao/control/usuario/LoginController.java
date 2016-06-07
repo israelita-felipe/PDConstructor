@@ -23,7 +23,7 @@ import javafx.scene.control.TextField;
 
 /**
  * @author israel
- * @author bruno
+ * @author Bruno Barros
  *
  */
 public class LoginController extends Activity {
