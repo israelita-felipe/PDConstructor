@@ -3,8 +3,6 @@
  */
 package br.edu.ufrpe.uag.projetao.control.base.imagem;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,6 +16,7 @@ import org.kairos.core.Fragment;
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.UsuarioController;
+import br.edu.ufrpe.uag.projetao.control.base.imagem.util.CustomRectangle;
 import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.control.util.imagem.ImagemDigital;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
@@ -27,15 +26,16 @@ import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemDeteccao;
 import javafx.collections.FXCollections;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Pagination;
@@ -44,15 +44,18 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.StrokeLineCap;
 import javafx.util.Callback;
 
 /**
  * @author israel
+ * @author bruno
  *
  */
 public class BaseImagemDeteccaoLiberacaoController extends Fragment {
@@ -65,12 +68,14 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
     private Pagination pagination;
     @FXML
     private List<AlocacaoImagemDeteccao> alocacoes;
-    @FXML
+
     private ListView<DeteccaoImagem> deteccoes;
 
     private AlocacaoImagemDeteccao alocacaoAtual;
 
     private InterfaceController<DeteccaoImagem> deteccaoController = ControllerFactory.getDeteccaoImagemController();
+
+    private Group group = new Group();
 
     @Override
     public void onCreateView(FXMLLoader fxmlLoader) {
@@ -138,17 +143,17 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
 	imageView.preserveRatioProperty().set(true);
 
 	ScrollPane scroll = new ScrollPane();
-	borderPane.setCenter(scroll);
+	BorderPane center = new BorderPane();
+	center.setCenter(scroll);
+	center.getStyleClass().add("card");
+	center.setPadding(new Insets(8));
+	borderPane.setCenter(center);
 
-	scroll.setContent(imageView);
+	scroll.setContent(group);
 
-	// new ZoomnableImageView(imageView, scroll, 200.0);
 	addComportamentoItentificacao(imageView);
 
-	borderPane.setRight(deteccoes);
-	HBox.setHgrow(this.deteccoes, Priority.SOMETIMES);
 	gerarImagem(imageView);
-
 	return borderPane;
     }
 
@@ -159,58 +164,20 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
      */
     private void addComportamentoItentificacao(ImageView imageView) {
 
-	this.deteccoes.setCellFactory(listView -> new ListCell<DeteccaoImagem>() {
-
-	    @Override
-	    public void updateItem(DeteccaoImagem item, boolean empty) {
-		super.updateItem(item, empty);
-		ImageView icone = new ImageView();
-		if (empty) {
-		    setGraphic(null);
-		} else {
-
-		    int w = (int) (item.getX2() - item.getX1());
-		    int h = (int) (item.getY2() - item.getY1());		    		   
-
-		    Image image = SwingFXUtils.toFXImage(ImagemDigital
-			    .toImage(item.getAlocacaoImagemDeteccao().getImagemDeteccao().getObjeto())
-			    .getSubimage((int) item.getX1(), (int) item.getY1(), w <= 0 ? 1 : w, h <= 0 ? 1 : h), null);
-		    
-		    icone.setFitHeight(48);
-		    icone.setFitWidth(48);
-		    icone.setPreserveRatio(true);
-		    icone.setImage(image);
-		    setGraphic(icone);
-		    setText(item.toString());
-		}
-	    }
-	});
-
-	ContextMenu cm = new ContextMenu();
-	MenuItem removeMenuItem = new MenuItem("Remover");
-	cm.getItems().add(removeMenuItem);
-	removeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-
-	    @Override
-	    public void handle(ActionEvent event) {
-		removeDeteccao();
-		gerarImagem(imageView);
-	    }
-	});
-
-	this.deteccoes.setContextMenu(cm);
-
 	imageView.setOnMousePressed(new EventHandler<MouseEvent>() {
 
 	    @Override
 	    public void handle(MouseEvent event) {
-		TransactionManager.begin();
-		deteccaoController.prepareCreate();
+		if (event.getButton() == MouseButton.PRIMARY) {
+		    TransactionManager.begin();
+		    deteccaoController.prepareCreate();
 
-		deteccaoController.getSelected().setAlocacaoImagemDeteccao(alocacaoAtual);
-		deteccaoController.getSelected().setUsuario(UsuarioController.currentEscravo);
-		deteccaoController.getSelected().setX1(event.getX());
-		deteccaoController.getSelected().setY1(event.getY());
+		    deteccaoController.getSelected().setAlocacaoImagemDeteccao(alocacaoAtual);
+		    deteccaoController.getSelected().setUsuario(UsuarioController.currentEscravo);
+		    deteccaoController.getSelected().setX1(event.getX());
+		    deteccaoController.getSelected().setY1(event.getY());
+		}
+
 	    }
 	});
 
@@ -218,54 +185,57 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
 
 	    @Override
 	    public void handle(MouseEvent event) {
-		deteccaoController.getSelected().setX2(event.getX());
-		deteccaoController.getSelected().setY2(event.getY());
+		if (event.getButton() == MouseButton.PRIMARY) {
+		    deteccaoController.getSelected().setX2(event.getX());
+		    deteccaoController.getSelected().setY2(event.getY());
 
-		if (deteccaoController.getSelected().getX2() < deteccaoController.getSelected().getX1()
-			&& deteccaoController.getSelected().getY2() < deteccaoController.getSelected().getY1()) {
-		    // inverte as duas coordenadas
-		    Double y1 = deteccaoController.getSelected().getY1();
-		    Double x1 = deteccaoController.getSelected().getX1();
+		    if (deteccaoController.getSelected().getX2() < deteccaoController.getSelected().getX1()
+			    && deteccaoController.getSelected().getY2() < deteccaoController.getSelected().getY1()) {
+			// inverte as duas coordenadas
+			Double y1 = deteccaoController.getSelected().getY1();
+			Double x1 = deteccaoController.getSelected().getX1();
 
-		    // y1<-y2
-		    deteccaoController.getSelected().setY1(deteccaoController.getSelected().getY2());
-		    // y2<-y1
-		    deteccaoController.getSelected().setY2(y1);
+			// y1<-y2
+			deteccaoController.getSelected().setY1(deteccaoController.getSelected().getY2());
+			// y2<-y1
+			deteccaoController.getSelected().setY2(y1);
 
-		    // x1<-x2
-		    deteccaoController.getSelected().setX1(deteccaoController.getSelected().getX2());
-		    // x2<-x1
-		    deteccaoController.getSelected().setX2(x1);
+			// x1<-x2
+			deteccaoController.getSelected().setX1(deteccaoController.getSelected().getX2());
+			// x2<-x1
+			deteccaoController.getSelected().setX2(x1);
 
-		} else if (deteccaoController.getSelected().getX2() > deteccaoController.getSelected().getX1()
-			&& deteccaoController.getSelected().getY2() < deteccaoController.getSelected().getY1()) {
+		    } else if (deteccaoController.getSelected().getX2() > deteccaoController.getSelected().getX1()
+			    && deteccaoController.getSelected().getY2() < deteccaoController.getSelected().getY1()) {
 
-		    Double y1 = deteccaoController.getSelected().getY1();
-		    // y1<-y2
-		    deteccaoController.getSelected().setY1(deteccaoController.getSelected().getY2());
-		    // y2<-y1
-		    deteccaoController.getSelected().setY2(y1);
+			Double y1 = deteccaoController.getSelected().getY1();
+			// y1<-y2
+			deteccaoController.getSelected().setY1(deteccaoController.getSelected().getY2());
+			// y2<-y1
+			deteccaoController.getSelected().setY2(y1);
 
-		} else if (deteccaoController.getSelected().getX1() > deteccaoController.getSelected().getX2()
-			&& deteccaoController.getSelected().getY2() > deteccaoController.getSelected().getY1()) {
+		    } else if (deteccaoController.getSelected().getX1() > deteccaoController.getSelected().getX2()
+			    && deteccaoController.getSelected().getY2() > deteccaoController.getSelected().getY1()) {
 
-		    Double x1 = deteccaoController.getSelected().getX1();
-		    // x1<-x2
-		    deteccaoController.getSelected().setX1(deteccaoController.getSelected().getX2());
-		    // x2<-x1
-		    deteccaoController.getSelected().setX2(x1);
+			Double x1 = deteccaoController.getSelected().getX1();
+			// x1<-x2
+			deteccaoController.getSelected().setX1(deteccaoController.getSelected().getX2());
+			// x2<-x1
+			deteccaoController.getSelected().setX2(x1);
+		    }
+
+		    deteccaoController.create();
+		    TransactionManager.end();
+
+		    // preenchendo as detecções
+		    deteccoes.setItems(FXCollections
+			    .observableList(new LinkedList<>(ControllerFactory.getDeteccaoImagemController()
+				    .getItemsFromCriteria(DetachedCriteriaFactory.getDeteccaoImagemPorEscravoEAlocacao(
+					    UsuarioController.currentEscravo, alocacaoAtual)))));
+		    group.getChildren().clear();
+		    deteccoes.refresh();
+		    gerarImagem(imageView);
 		}
-
-		deteccaoController.create();
-		TransactionManager.end();
-
-		// preenchendo as detecções
-		deteccoes.setItems(
-			FXCollections.observableList(new LinkedList<>(ControllerFactory.getDeteccaoImagemController()
-				.getItemsFromCriteria(DetachedCriteriaFactory.getDeteccaoImagemPorEscravoEAlocacao(
-					UsuarioController.currentEscravo, alocacaoAtual)))));
-		deteccoes.refresh();
-		gerarImagem(imageView);
 
 	    }
 	});
@@ -278,16 +248,61 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
      * @param imagemView
      */
     private void gerarImagem(ImageView imagemView) {
+	
+	group.getChildren().clear();
+	group.getChildren().add(imagemView);
+	
 	BufferedImage imagem = ImagemDigital.toImage(alocacaoAtual.getImagemDeteccao().getObjeto());
 	// pintando os retângulos
 	for (int i = 0; i < deteccoes.getItems().size(); i++) {
 	    DeteccaoImagem coordenada = deteccoes.getItems().get(i);
 
-	    Graphics g = imagem.createGraphics();
+	    CustomRectangle r = new CustomRectangle(coordenada);
 
-	    g.setXORMode(Color.BLACK);
-	    g.drawRect((int) coordenada.getX1(), (int) coordenada.getY1(),
-		    (int) (coordenada.getX2() - coordenada.getX1()), (int) (coordenada.getY2() - coordenada.getY1()));
+	    r.setStroke(Color.BLUE);
+	    r.setStrokeWidth(1);
+	    r.setStrokeLineCap(StrokeLineCap.ROUND);
+	    r.setFill(Color.LIGHTBLUE.deriveColor(0, 1.2, 1, 0.2));
+
+	    group.getChildren().add(r);
+
+	    ContextMenu cm = new ContextMenu();
+	    MenuItem removeMenuItem = new MenuItem("Remover");
+	    cm.getItems().add(removeMenuItem);
+	    cm.setAutoHide(false);
+	    removeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+
+		@Override
+		public void handle(ActionEvent event) {
+		    removeDeteccao(coordenada);
+		    group.getChildren().remove(r);
+		    gerarImagem(imagemView);
+		}
+	    });
+
+	    r.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+		@Override
+		public void handle(MouseEvent e) {
+		    if (e.getButton() == MouseButton.SECONDARY)
+			cm.show((Node) e.getSource(), e.getScreenX(), e.getScreenY());
+		}
+	    });	  
+	    
+	    r.setOnMouseEntered(new EventHandler<Event>() {
+		@Override
+		public void handle(Event event) {
+		    r.setStroke(Color.RED);
+		    r.setFill(Color.LIGHTCORAL.deriveColor(0, 1.2, 1, 0.2));
+		}
+	    });
+
+	    r.setOnMouseExited(new EventHandler<Event>() {
+		@Override
+		public void handle(Event event) {
+		    r.setStroke(Color.BLUE);
+		    r.setFill(Color.LIGHTBLUE.deriveColor(0, 1.2, 1, 0.2));		    
+		}
+	    });
 	}
 	Image image = SwingFXUtils.toFXImage(imagem, null);
 	imagemView.setImage(image);
@@ -296,18 +311,16 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
     /**
      * Remove uma detecção selecionada
      */
-    private void removeDeteccao() {
-	if (this.deteccoes.getSelectionModel().getSelectedItem() != null) {
-	    InterfaceController<DeteccaoImagem> deteccaoImagemController = ControllerFactory
-		    .getDeteccaoImagemController();
+    private void removeDeteccao(DeteccaoImagem deteccao) {
 
-	    TransactionManager.begin();
-	    deteccaoImagemController.destroy(deteccaoImagemController.prepareList()
-		    .indexOf(this.deteccoes.getSelectionModel().getSelectedItem()));
-	    TransactionManager.end();
-	    this.deteccoes.getItems().remove(deteccaoImagemController.getSelected());
-	    this.deteccoes.refresh();
-	}
+	group.getChildren().clear();
+	InterfaceController<DeteccaoImagem> deteccaoImagemController = ControllerFactory.getDeteccaoImagemController();
+
+	TransactionManager.begin();
+	deteccaoImagemController.destroy(deteccao);
+	TransactionManager.end();
+	this.deteccoes.getItems().remove(deteccao);
+	this.deteccoes.refresh();
     }
 
     @FXML

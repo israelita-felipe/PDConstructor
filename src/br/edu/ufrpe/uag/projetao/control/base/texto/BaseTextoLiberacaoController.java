@@ -29,6 +29,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
@@ -43,6 +44,7 @@ import javafx.util.Callback;
 
 /**
  * @author israel
+ * @author bruno
  *
  */
 public class BaseTextoLiberacaoController extends Fragment {
@@ -86,6 +88,13 @@ public class BaseTextoLiberacaoController extends Fragment {
 	BorderPane borderPane = new BorderPane();
 	borderPane.setPadding(new Insets(8));
 	VBox escolha = new VBox();
+	escolha.setPadding(new Insets(8));
+	escolha.setSpacing(8);
+
+	escolha.getStyleClass().add("card");
+	Label label = new Label("Escolha uma classe");
+
+	escolha.getChildren().add(label);
 
 	// cria caixa de descrição da base
 	TextInputLayout descricaoLayout = new TextInputLayout();
@@ -110,6 +119,13 @@ public class BaseTextoLiberacaoController extends Fragment {
 	textoTextArea.setPromptText("Classifique o texto");
 	textoLayout.getChildren().add(textoTextArea);
 	borderPane.setCenter(textoLayout);
+
+	BorderPane center = new BorderPane();
+	center.setCenter(textoLayout);
+	center.setPadding(new Insets(8));
+	center.getStyleClass().add("card");
+
+	borderPane.setCenter(center);
 
 	// grupo de seleção do radiobutton
 	ToggleGroup group = new ToggleGroup();
@@ -170,7 +186,11 @@ public class BaseTextoLiberacaoController extends Fragment {
 	});
 
 	HBox.setHgrow(escolha, Priority.SOMETIMES);
-	borderPane.setRight(escolha);
+
+	BorderPane bp = new BorderPane();
+	bp.setPadding(new Insets(0, 0, 0, 8));
+	bp.setCenter(escolha);
+	borderPane.setRight(bp);
 
 	return borderPane;
     }

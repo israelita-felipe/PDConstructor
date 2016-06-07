@@ -23,6 +23,7 @@ import javafx.scene.control.TextField;
 
 /**
  * @author israel
+ * @author bruno
  *
  */
 public class LoginController extends Activity {
@@ -43,28 +44,60 @@ public class LoginController extends Activity {
     public void onCreate() {
 	super.onCreate();
 	setContentView(getClass().getResource("/br/edu/ufrpe/uag/projetao/view/usuario/LoginView.fxml"));
-	perfil.setItems(FXCollections.observableList(ControllerFactory.getPerfilController().prepareList()));	
+	perfil.setItems(FXCollections.observableList(ControllerFactory.getPerfilController().prepareList()));
     }
 
     @FXML
     public void principal() {
-	List<Usuario> usuarios = ControllerFactory.getUsuarioController().getItemsFromCriteria(DetachedCriteriaFactory
-		.getUsuario(email.getText(), senha.getText(), perfil.getSelectionModel().getSelectedItem()));
-	
-	if (usuarios.size() == 1) {
-	    if (usuarios.get(0).getPerfil().getNome().equals("SUPERVISOR")) {
-		UsuarioController.currrentSupervisor = usuarios.get(0);
-		startActivity(PrincipalSupervisorController.class);
+
+	try {
+
+	    validar();
+
+	    List<Usuario> usuarios = ControllerFactory.getUsuarioController()
+		    .getItemsFromCriteria(DetachedCriteriaFactory.getUsuario(email.getText(), senha.getText(),
+			    perfil.getSelectionModel().getSelectedItem()));
+
+	    if (usuarios.size() == 1) {
+		if (usuarios.get(0).getPerfil().getNome().equals("SUPERVISOR")) {
+		    UsuarioController.currrentSupervisor = usuarios.get(0);
+		    startActivity(PrincipalSupervisorController.class);
+		} else {
+		    UsuarioController.currentEscravo = usuarios.get(0);
+		    startActivity(PrincipalEscravoController.class);
+		}
 	    } else {
-		UsuarioController.currentEscravo = usuarios.get(0);
-		startActivity(PrincipalEscravoController.class);
+		Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+		dialogoErro.setTitle("Login");
+		dialogoErro.setHeaderText("Dados inválidos");
+		dialogoErro.setContentText("Usuário e/ou senha(s) errado(s), tente novamente\n");
+		dialogoErro.showAndWait();
 	    }
-	} else {
+
+	} catch (IllegalArgumentException ex) {
 	    Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
 	    dialogoErro.setTitle("Login");
 	    dialogoErro.setHeaderText("Dados inválidos");
-	    dialogoErro.setContentText("Usuário e/ou senha(s) errado(s), tente novamente\n");
+	    dialogoErro.setContentText(ex.getMessage());
 	    dialogoErro.showAndWait();
+	} catch (Throwable ex) {
+	    Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+	    dialogoErro.setTitle("Login");
+	    dialogoErro.setHeaderText("Erro desconhecido");
+	    dialogoErro.setContentText("Um erro ocorreu, reinicie o sistema e tente novamente");
+	    dialogoErro.showAndWait();
+	}
+    }
+
+    private void validar() {
+	if (email.getText() == null || email.getText().trim().toUpperCase().equals("")) {
+	    throw new IllegalArgumentException("Informe seu e-mail");
+	}
+	if (perfil.getSelectionModel().getSelectedItem() == null) {
+	    throw new IllegalArgumentException("Informe o perfil");
+	}
+	if (senha.getText() == null || senha.getText().trim().toUpperCase().equals("")) {
+	    throw new IllegalArgumentException("Informe sua senha");
 	}
     }
 }

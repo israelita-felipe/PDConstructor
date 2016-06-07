@@ -3,12 +3,9 @@
  */
 package br.edu.ufrpe.uag.projetao.control.principal;
 
-import java.awt.Toolkit;
-
 import org.kairos.ActionBarDrawerToggle;
 import org.kairos.Toolbar;
 import org.kairos.core.Activity;
-import org.kairos.layouts.DrawerLayout;
 import org.kairos.layouts.SlidingTabLayout;
 import org.kairos.layouts.ViewPager;
 
@@ -24,7 +21,7 @@ import javafx.scene.control.Label;
 
 /**
  * @author israel
- *
+ * @author bruno
  */
 public class PrincipalSupervisorController extends Activity {
 
@@ -52,7 +49,7 @@ public class PrincipalSupervisorController extends Activity {
 	setActionBar(toolbar);
 
 	drawer.setForceNarrow(true);
-	drawer.setDrawerListener(new ActionBarDrawerToggle(this, drawer, toolbar));	
+	drawer.setDrawerListener(new ActionBarDrawerToggle(this, drawer, toolbar));
 
 	ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getFragmentManager());
 	viewPager.setAdapter(pagerAdapter);
