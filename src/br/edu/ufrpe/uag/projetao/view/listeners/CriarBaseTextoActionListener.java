@@ -95,13 +95,13 @@ public class CriarBaseTextoActionListener implements ActionListener {
 	    }
 	    jdialog.dispose();
 	    JOptionPane.showMessageDialog(null, "Base " + base.getSelected().getId() + " criada com sucesso");
-	    
+
 	} catch (IllegalArgumentException ex) {
 	    JOptionPane.showMessageDialog(null, ex.getMessage());
-	    
+
 	} catch (Exception ex) {
 	    JOptionPane.showMessageDialog(null, "Não foi possível gravar, tente novamente");
-	    
+
 	} finally {
 	    TransactionManager.end();
 	}

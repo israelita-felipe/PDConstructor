@@ -12,28 +12,28 @@ import br.edu.ufrpe.uag.projetao.model.BaseImagemClasse;
  */
 public class BaseImagemClasseController extends AbstractController<BaseImagemClasse> {
 
-	public BaseImagemClasseController() {
-		super(BaseImagemClasse.class);
+    public BaseImagemClasseController() {
+	super(BaseImagemClasse.class);
+    }
+
+    @Override
+    public BaseImagemClasse getSelected() {
+
+	if (getCurrent() == null) {
+	    setCurrent(new BaseImagemClasse());
+
+	    setSelectedItemIndex(-1);
 	}
+	return getCurrent();
+    }
 
-	@Override
-	public BaseImagemClasse getSelected() {
+    @Override
+    public BaseImagemClasse prepareCreate() {
 
-		if (getCurrent() == null) {
-		    setCurrent(new BaseImagemClasse());
+	setCurrent(new BaseImagemClasse());
 
-		    setSelectedItemIndex(-1);
-		}
-		return getCurrent();
-	}
-
-	@Override
-	public BaseImagemClasse prepareCreate() {
-
-		setCurrent(new BaseImagemClasse());
-
-		setSelectedItemIndex(-1);
-		return getCurrent();
-	}
+	setSelectedItemIndex(-1);
+	return getCurrent();
+    }
 
 }

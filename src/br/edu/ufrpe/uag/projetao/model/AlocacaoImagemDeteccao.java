@@ -23,7 +23,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
  */
 @Entity
 @Table(name = "alocacao_imagem_deteccao", schema = "public")
-public class AlocacaoImagemDeteccao implements InterfaceEntity, Serializable {
+public class AlocacaoImagemDeteccao implements InterfaceEntity{
 
     private int id;
     private BaseImagemDeteccao baseImagemDeteccao;

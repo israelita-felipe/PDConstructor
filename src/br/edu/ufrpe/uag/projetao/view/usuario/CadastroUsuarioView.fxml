@@ -10,6 +10,8 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Hyperlink?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" prefWidth="800"
 	prefHeight="600" spacing="8" alignment="center"
@@ -40,11 +42,15 @@
 			<TextInputLayout>
 				<PasswordField fx:id="confirmaSenha" promptText="Confirme sua senha" />
 			</TextInputLayout>
+			<BorderPane>
+				<right>
+					<MaterialButton text="Salvar" onAction="#cadastrar" />
+				</right>
+				<left>
+					<Hyperlink text="Cancelar" onAction="#login" />
+				</left>
+			</BorderPane>
 
-			<HBox spacing="8">
-				<MaterialButton text="Cancelar" onAction="#login" />
-				<MaterialButton text="Cadastrar-se" onAction="#cadastrar" />
-			</HBox>
 		</VBox>
 	</VBox>
 </VBox>

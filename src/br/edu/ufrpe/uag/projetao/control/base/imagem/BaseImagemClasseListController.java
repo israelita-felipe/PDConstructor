@@ -162,7 +162,7 @@ public class BaseImagemClasseListController extends Fragment {
 	    dialogoErro.showAndWait();
 
 	} catch (Exception ex) {
-	    
+
 	    Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
 	    dialogoErro.setTitle("Não foi possível fazer...");
 	    dialogoErro.setHeaderText("Algo saiu errado");

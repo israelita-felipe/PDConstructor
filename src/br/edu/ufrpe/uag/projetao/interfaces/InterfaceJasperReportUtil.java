@@ -32,7 +32,7 @@ public interface InterfaceJasperReportUtil {
     /**
      * 
      * @return Painel contendo o relatório
-     * @throws JRException 
+     * @throws JRException
      */
     JPanel getRelatorio() throws JRException;
 }

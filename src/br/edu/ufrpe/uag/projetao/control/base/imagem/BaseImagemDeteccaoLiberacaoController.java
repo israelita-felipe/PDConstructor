@@ -340,7 +340,7 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
 		this.alocacoes = ControllerFactory.getAlocacaoImagemDeteccaoController()
 			.getItemsFromCriteria(DetachedCriteriaFactory.getAlocacoesImagemDeteccaoPorLiberacao(
 				this.tabelaLiberacoesImagemDeteccao.getSelectionModel().getSelectedItem()));
-		
+
 		pagination.setPageFactory(new Callback<Integer, Node>() {
 
 		    @Override

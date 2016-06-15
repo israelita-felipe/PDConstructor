@@ -25,7 +25,7 @@ import br.edu.ufrpe.uag.projetao.view.jdialog.LiberarBaseJDialog;
  */
 public class CriarLiberacaoBaseImagemClasseActionListener implements ActionListener {
 
-	private LiberarBaseJDialog janela;
+    private LiberarBaseJDialog janela;
 
     /**
      * 
@@ -54,8 +54,8 @@ public class CriarLiberacaoBaseImagemClasseActionListener implements ActionListe
 		liberacaoController.prepareCreate();
 
 		// preenchendo os campos
-		liberacaoController.getSelected()
-			.setBaseImagemClasse((BaseImagemClasse) ControllerFactory.getBaseImagemClasseController().getSelected());
+		liberacaoController.getSelected().setBaseImagemClasse(
+			(BaseImagemClasse) ControllerFactory.getBaseImagemClasseController().getSelected());
 		liberacaoController.getSelected().setStatus(StatusDeLiberacao.LIBERADO);
 		liberacaoController.getSelected().setUsuarioByEscravo(
 			janela.getUsuariosList().getValueAt(janela.getUsuariosList().getSelectedRow()));

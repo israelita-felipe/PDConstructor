@@ -250,7 +250,7 @@ public class AudioPlayer {
      *         <code>false</code> otherwise
      */
     public static boolean loadClip(String soundName, String filename) {
-	try {	    
+	try {
 	    return loadClip(soundName, AudioSystem.getAudioInputStream(new File(filename)));
 	} catch (Exception e) {
 	    e.printStackTrace();
@@ -316,7 +316,6 @@ public class AudioPlayer {
 
 	return retVal;
     }
-
 
     /**
      * Converts an AudioInputStream to PCM_SIGNED format if it is not already
@@ -478,30 +477,23 @@ public class AudioPlayer {
      * Any previously loaded sounds will have to be re-loaded to be played
      * again.
      */
-    public static void shutdown()
-    {
-        for (AudioData ad : soundMap.values())
-        {
-            if (ad != null)
-            {
-                if (ad.thread != null)
-                {
-                    ad.thread.stopSound();
-                    ad.dataLine.close();
-                    try
-                    {
-                        ad.audioInputStream.close();
-                    }
-                    catch (Exception e)
-                    {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-        soundMap.clear();
+    public static void shutdown() {
+	for (AudioData ad : soundMap.values()) {
+	    if (ad != null) {
+		if (ad.thread != null) {
+		    ad.thread.stopSound();
+		    ad.dataLine.close();
+		    try {
+			ad.audioInputStream.close();
+		    } catch (Exception e) {
+			e.printStackTrace();
+		    }
+		}
+	    }
+	}
+	soundMap.clear();
     }
-    
+
     public static void main(String[] args) {
 	AudioPlayer.loadClip("reproduzir.mp3", "reproduzir.mp3");
 	AudioPlayer.play("reproduzir.mp3", true);

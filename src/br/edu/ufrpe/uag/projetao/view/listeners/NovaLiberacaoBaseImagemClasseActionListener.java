@@ -16,7 +16,7 @@ import br.edu.ufrpe.uag.projetao.view.jdialog.LiberarBaseImagemClasseJDialog;
  *
  */
 public class NovaLiberacaoBaseImagemClasseActionListener implements ActionListener {
-	private JTable tabela;
+    private JTable tabela;
 
     public NovaLiberacaoBaseImagemClasseActionListener(JTable tabela) {
 	// TODO Auto-generated constructor stub

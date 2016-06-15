@@ -43,20 +43,15 @@ public class LiberarBaseJDialog extends JDialog implements InterfaceWindow {
 
 	scrollPane = new JScrollPane();
 	GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
-	gl_contentPanel.setHorizontalGroup(
-		gl_contentPanel.createParallelGroup(Alignment.LEADING)
-			.addGroup(gl_contentPanel.createSequentialGroup()
-				.addContainerGap()
+	gl_contentPanel
+		.setHorizontalGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+			.addGroup(gl_contentPanel.createSequentialGroup().addContainerGap()
 				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
-				.addContainerGap())
-	);
-	gl_contentPanel.setVerticalGroup(
-		gl_contentPanel.createParallelGroup(Alignment.LEADING)
-			.addGroup(gl_contentPanel.createSequentialGroup()
-				.addContainerGap()
-				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 298, GroupLayout.PREFERRED_SIZE)
-				.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-	);
+				.addContainerGap()));
+	gl_contentPanel.setVerticalGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+		.addGroup(gl_contentPanel.createSequentialGroup().addContainerGap()
+			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 298, GroupLayout.PREFERRED_SIZE)
+			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 	contentPanel.setLayout(gl_contentPanel);
 	{
 	    JPanel buttonPane = new JPanel();

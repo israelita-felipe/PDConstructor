@@ -27,7 +27,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 @Tabela
 @Entity
 @Table(name = "base_texto", schema = "public")
-public class BaseTexto implements java.io.Serializable, InterfaceEntity {
+public class BaseTexto implements InterfaceEntity {
 
     @Coluna(colunaPosicao = 0, colunaNome = "ID")
     private int id;

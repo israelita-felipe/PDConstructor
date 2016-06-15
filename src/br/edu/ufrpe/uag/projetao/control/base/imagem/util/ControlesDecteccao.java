@@ -3,8 +3,6 @@
  */
 package br.edu.ufrpe.uag.projetao.control.base.imagem.util;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
@@ -37,7 +35,7 @@ public class ControlesDecteccao extends VBox {
 	getChildren().add(deteccao);
 	getChildren().add(selecao);
     }
-    
+
     public ToggleButton getSelecao() {
 	return selecao;
     }
@@ -45,12 +43,12 @@ public class ControlesDecteccao extends VBox {
     public ToggleButton getDeteccao() {
 	return deteccao;
     }
-    
-    public boolean isDeteccao(){
+
+    public boolean isDeteccao() {
 	return deteccao.isArmed();
     }
-    
-    public boolean isSelecao(){
+
+    public boolean isSelecao() {
 	return selecao.isArmed();
     }
 

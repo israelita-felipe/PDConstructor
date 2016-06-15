@@ -10,6 +10,7 @@ import org.kairos.core.Activity;
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.UsuarioController;
+import br.edu.ufrpe.uag.projetao.control.configuracao.ConfiguracaoController;
 import br.edu.ufrpe.uag.projetao.control.principal.PrincipalEscravoController;
 import br.edu.ufrpe.uag.projetao.control.principal.PrincipalSupervisorController;
 import br.edu.ufrpe.uag.projetao.model.Perfil;
@@ -38,6 +39,11 @@ public class LoginController extends Activity {
     @FXML
     public void cadastrar() {
 	startActivity(CadastroUsuarioController.class);
+    }
+    
+    @FXML
+    public void configuracoes(){
+	startActivity(ConfiguracaoController.class);
     }
 
     @Override

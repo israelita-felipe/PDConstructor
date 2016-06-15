@@ -15,7 +15,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceFacade;
  * @author israel
  * @param <T>
  */
-public abstract class AbstractController<T extends InterfaceEntity> implements InterfaceController<T>, Serializable {
+public abstract class AbstractController<T extends InterfaceEntity> implements InterfaceController<T> {
 
     private final InterfaceFacade<T> ejbFacade;
     private T current;
@@ -47,7 +47,8 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
 
 	return current;
     }
-@Override
+
+    @Override
     public T prepareView(T entity) {
 	current = entity;
 	return current;
@@ -67,7 +68,8 @@ public abstract class AbstractController<T extends InterfaceEntity> implements I
 	current = getItems().get(selectedItemIndex);
 	return current;
     }
-@Override
+
+    @Override
     public T prepareEdit(T entity) {
 	current = entity;
 	return current;

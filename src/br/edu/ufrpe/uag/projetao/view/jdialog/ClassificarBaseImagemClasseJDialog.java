@@ -15,9 +15,9 @@ import br.edu.ufrpe.uag.projetao.view.scrollPanel.ClassificarImagemClasseJScroll
  * @author Juan Augusto
  *
  */
-public class ClassificarBaseImagemClasseJDialog 
-extends AbstractClassificarBaseJDialog<ClassificarImagemClasseJScrollPane, EscolhaImagemClasse> {
-	private ClassificarImagemClasseJScrollPane classificaImagemClasseScrollPane;
+public class ClassificarBaseImagemClasseJDialog
+	extends AbstractClassificarBaseJDialog<ClassificarImagemClasseJScrollPane, EscolhaImagemClasse> {
+    private ClassificarImagemClasseJScrollPane classificaImagemClasseScrollPane;
 
     /**
      * 

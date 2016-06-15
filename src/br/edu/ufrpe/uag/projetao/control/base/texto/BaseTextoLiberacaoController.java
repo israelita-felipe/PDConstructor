@@ -4,6 +4,8 @@
 package br.edu.ufrpe.uag.projetao.control.base.texto;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -269,11 +271,21 @@ public class BaseTextoLiberacaoController extends Fragment {
 	pagination.setCurrentPageIndex(buscaPrimeiraClassificacaoEfetivada(classificacoes));
     }
 
+    /**
+     * Ordena as alocações de forma que as com menos detecções fiquem primeiro
+     */
+    public void sortAlocacoes(List<ClassificacaoTexto> alocacoes) {
+	Collections.sort(alocacoes, new Comparator<ClassificacaoTexto>() {
+	    @Override
+	    public int compare(ClassificacaoTexto o1, ClassificacaoTexto o2) {
+		return o1.getAlocacaoTexto().getClassificacaoTextos().size()
+			- o2.getAlocacaoTexto().getClassificacaoTextos().size();
+	    }
+	});
+    }
+
     public int buscaPrimeiraClassificacaoEfetivada(List<ClassificacaoTexto> lista) {
-	int i = 0;
-	while (i < lista.size() && lista.get(i).getEscolhaClasseTexto() != null) {
-	    i++;
-	}
-	return i == 0 ? 0 : i - 1;
+	sortAlocacoes(lista);
+	return 0;
     }
 }

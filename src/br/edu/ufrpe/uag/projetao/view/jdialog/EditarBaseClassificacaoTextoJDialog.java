@@ -57,5 +57,4 @@ public class EditarBaseClassificacaoTextoJDialog extends AbstractCriaEAtualizaBa
 	getMediaComponent().getListaArquivos().getArquivosList().setEnabled(false);
     }
 
-    
 }

@@ -8,7 +8,6 @@ import javafx.beans.Observable;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ScrollEvent;
@@ -34,9 +33,9 @@ public class ZoomnableImageView extends SimpleDoubleProperty {
     }
 
     private void init() {
-	
+
 	this.scroll.setContent(this.imageView);
-	
+
 	this.controles = new ZoomControles();
 
 	addListener(new InvalidationListener() {

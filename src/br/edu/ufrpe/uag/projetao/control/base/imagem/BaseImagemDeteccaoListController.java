@@ -113,10 +113,10 @@ public class BaseImagemDeteccaoListController extends Fragment {
 
 		TransactionManager.begin();
 		imagemDeteccaoController.prepareCreate();
-		
+
 		imagemDeteccaoController.getSelected().setObjeto(ImagemDigital
 			.toByte(ImagemDigital.carregarImagemCor(listaDeImagens.getItems().get(i).getAbsolutePath())));
-		
+
 		imagemDeteccaoController.getSelected().setUsuario(UsuarioController.currrentSupervisor);
 		imagemDeteccaoController.create();
 
@@ -306,8 +306,8 @@ public class BaseImagemDeteccaoListController extends Fragment {
 		this.tabelaEscravos.setItems(FXCollections.observableList(ControllerFactory.getUsuarioController()
 			.getItemsFromCriteria(DetachedCriteriaFactory.getTodosEscravos())));
 
-		this.tabelaLiberacoes.setItems(FXCollections
-			.observableList(ControllerFactory.getLiberacaoBaseImagemDeteccaoController().getItemsFromCriteria(
+		this.tabelaLiberacoes.setItems(FXCollections.observableList(
+			ControllerFactory.getLiberacaoBaseImagemDeteccaoController().getItemsFromCriteria(
 				DetachedCriteriaFactory.getLiberacoesPorBaseDeImagemDeteccao(base))));
 
 		// removendo os usuários já liberados

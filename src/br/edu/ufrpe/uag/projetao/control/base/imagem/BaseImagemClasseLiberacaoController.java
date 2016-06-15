@@ -4,6 +4,8 @@
 package br.edu.ufrpe.uag.projetao.control.base.imagem;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.kairos.components.TextInputLayout;
@@ -167,7 +169,9 @@ public class BaseImagemClasseLiberacaoController extends Fragment {
 			.getClassificacaoImagemClasseController()
 			.getItemsFromCriteria(DetachedCriteriaFactory.getClassificacaoImagemClassePorEscravoEAlocacao(
 				UsuarioController.currentEscravo, alocacoes.get(pageIndex)))) {
-		    if (classificacaoEfetivada.getEscolhaImagemClasse().equals(old_toggle.getUserData())) {
+		    if (classificacaoEfetivada.getEscolhaImagemClasse() != null
+			    && classificacaoEfetivada.getEscolhaImagemClasse().getDescricao()
+				    .equals(((EscolhaImagemClasse) old_toggle.getUserData()).getDescricao())) {
 			classificacaoAtual = classificacaoEfetivada;
 			break;
 		    }
@@ -262,12 +266,21 @@ public class BaseImagemClasseLiberacaoController extends Fragment {
 			this.tabelaLiberacoesImagemClasse.getSelectionModel().getSelectedItem()));
     }
 
+    /**
+     * Ordena as alocações de forma que as com menos detecções fiquem primeiro
+     */
+    public void sortAlocacoes() {
+	Collections.sort(alocacoes, new Comparator<AlocacaoImagemClasse>() {
+	    @Override
+	    public int compare(AlocacaoImagemClasse o1, AlocacaoImagemClasse o2) {
+		return o1.getClasssificacaoImagemClasses().size() - o2.getClasssificacaoImagemClasses().size();
+	    }
+	});
+    }
+
     public int buscaPrimeiraAlocacaoSemDeteccao() {
-	int i = 0;
-	while (i < alocacoes.size() && !alocacoes.get(i).getClasssificacaoImagemClasses().isEmpty()) {
-	    i++;
-	}
-	return i == 0 ? 0 : i - 1;
+	sortAlocacoes();
+	return 0;
     }
 
 }

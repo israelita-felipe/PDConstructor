@@ -19,7 +19,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 @Tabela
 @Entity
 @Table(name = "liberacao_base_imagem_classe", schema = "public")
-public class LiberacaoBaseImagemClasse implements java.io.Serializable, InterfaceEntity {
+public class LiberacaoBaseImagemClasse implements InterfaceEntity {
 
     @Coluna(colunaNome = "Base de Imagem", colunaPosicao = 0)
     private BaseImagemClasse baseImagemClasse;

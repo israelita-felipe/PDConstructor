@@ -34,7 +34,8 @@ public class BaseTextoJPanel extends JPanel {
      */
     public BaseTextoJPanel() {
 	init();
-    }    
+    }
+
     private void init() {
 
 	JLabel lblNomeDabase = new JLabel("Título da base:");

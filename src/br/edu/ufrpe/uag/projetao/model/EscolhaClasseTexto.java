@@ -26,7 +26,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 @Tabela
 @Entity
 @Table(name = "escolha_classe_texto", schema = "public")
-public class EscolhaClasseTexto implements java.io.Serializable, InterfaceEntity {
+public class EscolhaClasseTexto implements InterfaceEntity {
 
     private int id;
 

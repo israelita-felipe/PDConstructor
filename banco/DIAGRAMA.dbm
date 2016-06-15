@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.1" last-position="0,270" last-zoom="0.8"
+<dbmodel pgmodeler-ver="0.8.1" last-position="3,540" last-zoom="0.8"
 	 default-schema="public" default-owner="postgres">
 <database name="PDCONSTRUCTOR" template="pdconstructor">
 </database>
@@ -275,7 +275,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="BASE_IMAGEM_DETECCAO">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="535" y="645"/>
+	<position x="156.25" y="953.75"/>
 	<column name="ID" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -296,7 +296,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="LIBERACAO_BASE_IMAGEM_DETECCAO">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="922.5" y="703.75"/>
+	<position x="922.5" y="706.25"/>
 	<column name="ESCRAVO" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -377,6 +377,117 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<constraint name="DETECCAO_IMAGEM_PK" type="pk-constr" table="public.&quot;DETECCAO_IMAGEM&quot;">
 		<columns names="X1,Y1,X2,Y2,ALOCACAO_IMAGEM_DETECCCAO,ESCRAVO" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="VIDEO_DETECCAO">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="156.25" y="1158.75"/>
+	<column name="ID" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="OBJETO" not-null="true">
+		<type name="bytea"/>
+	</column>
+	<column name="SUPERVISOR" not-null="true">
+		<type name="integer"/>
+	</column>
+	<constraint name="VIDEO_DETECCAO_PK" type="pk-constr" table="public.&quot;VIDEO_DETECCAO&quot;">
+		<columns names="ID" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="BASE_VIDEO_DETECCAO">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="162.5" y="1057.5"/>
+	<column name="ID" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="TITULO" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="DESCRICAO" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="SUPERVISOR" not-null="true">
+		<type name="integer"/>
+	</column>
+	<constraint name="BASE_VIDEO_DETECCAO_PK" type="pk-constr" table="public.&quot;BASE_VIDEO_DETECCAO&quot;">
+		<columns names="ID" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="ALOCACAO_VIDEO_DETECCAO">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="768.75" y="1096.25"/>
+	<column name="ID" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="BASE_VIDEO_DETECCAO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="VIDEO_DETECCAO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="SUPERVISOR" not-null="true">
+		<type name="integer"/>
+	</column>
+	<constraint name="ALOCACAO_VIDEO_DETECCAO_PK" type="pk-constr" table="public.&quot;ALOCACAO_VIDEO_DETECCAO&quot;">
+		<columns names="ID" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="LIBERACAO_BASE_VIDEO_DETECCAO">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="731.25" y="1203.75"/>
+	<column name="ESCRAVO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="SUPERVISOR" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="BASE_VIDEO_DETECCAO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="STATUS" not-null="true">
+		<type name="char"/>
+	</column>
+	<constraint name="LIBERACAO_BASE_VIDEO_DETECCAO_PK" type="pk-constr" table="public.&quot;LIBERACAO_BASE_VIDEO_DETECCAO&quot;">
+		<columns names="ESCRAVO,SUPERVISOR,BASE_VIDEO_DETECCAO" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="DETECCAO_VIDEO">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="672.5" y="1303.75"/>
+	<column name="X1" not-null="true">
+		<type name="double precision"/>
+	</column>
+	<column name="X2" not-null="true">
+		<type name="double precision"/>
+	</column>
+	<column name="Y1" not-null="true">
+		<type name="double precision"/>
+	</column>
+	<column name="Y2" not-null="true">
+		<type name="double precision"/>
+	</column>
+	<column name="ALOCACAO_VIDEO_DETECCAO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="ESCRAVO" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="TEMPO" not-null="true">
+		<type name="double precision"/>
+	</column>
+	<constraint name="DETECCAO_VIDEO_PK" type="pk-constr" table="public.&quot;DETECCAO_VIDEO&quot;">
+		<columns names="X1,X2,Y1,Y2,ALOCACAO_VIDEO_DETECCAO,ESCRAVO,TEMPO" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -525,7 +636,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </constraint>
 
 <constraint name="LIBERACAO_BASE_IMAGEM_DETECCAO_BASE_IMAGEM_DETECCAO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
-	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.&quot;BASE_IMAGEM_DETECCAO&quot;" table="public.&quot;LIBERACAO_BASE_IMAGEM_DETECCAO&quot;">
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.&quot;BASE_IMAGEM_DETECCAO&quot;" table="public.&quot;LIBERACAO_BASE_IMAGEM_DETECCAO&quot;">
 	<columns names="BASE_IMAGEM_DETECCAO" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>
@@ -574,6 +685,66 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <constraint name="DETECCAO_IMAGEM_ESCRAVO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
 	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;DETECCAO_IMAGEM&quot;">
+	<columns names="ESCRAVO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="VIDEO_DETECCAO_SUPERVISOR_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;VIDEO_DETECCAO&quot;">
+	<columns names="SUPERVISOR" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="BASE_VIDEO_DETECCAO_SUPERVISOR_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;BASE_VIDEO_DETECCAO&quot;">
+	<columns names="SUPERVISOR" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="ALOCACAO_VIDEO_DETECCAO_BASE_VIDEO_DETECCAO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.&quot;BASE_VIDEO_DETECCAO&quot;" table="public.&quot;ALOCACAO_VIDEO_DETECCAO&quot;">
+	<columns names="BASE_VIDEO_DETECCAO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="ALOCACAO_VIDEO_DETECCAO_VIDEO_DETECCAO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.&quot;VIDEO_DETECCAO&quot;" table="public.&quot;ALOCACAO_VIDEO_DETECCAO&quot;">
+	<columns names="VIDEO_DETECCAO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="ALOCACAO_VIDEO_DETECCAO_SUPERVISOR_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="RESTRICT" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;ALOCACAO_VIDEO_DETECCAO&quot;">
+	<columns names="SUPERVISOR" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="LIBERACAO_BASE_VIDEO_DETECCAO_ESCRAVO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;LIBERACAO_BASE_VIDEO_DETECCAO&quot;">
+	<columns names="ESCRAVO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="LIBERACAO_BASE_VIDEO_DETECCAO_SUPERVISOR_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;LIBERACAO_BASE_VIDEO_DETECCAO&quot;">
+	<columns names="SUPERVISOR" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="LIBERACAO_BASE_VIDEO_DETECCAO_BASE_VIDEO_DETECCAO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.&quot;BASE_VIDEO_DETECCAO&quot;" table="public.&quot;LIBERACAO_BASE_VIDEO_DETECCAO&quot;">
+	<columns names="BASE_VIDEO_DETECCAO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="DETECCAO_VIDEO_ALOCACAO_VIDEO_DETECCAO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.&quot;ALOCACAO_VIDEO_DETECCAO&quot;" table="public.&quot;DETECCAO_VIDEO&quot;">
+	<columns names="ALOCACAO_VIDEO_DETECCAO" ref-type="src-columns"/>
+	<columns names="ID" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="DETECCAO_VIDEO_ESCRAVO_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;USUARIO&quot;" table="public.&quot;DETECCAO_VIDEO&quot;">
 	<columns names="ESCRAVO" ref-type="src-columns"/>
 	<columns names="ID" ref-type="dst-columns"/>
 </constraint>
@@ -771,14 +942,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.&quot;USUARIO&quot;"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_LIBERACAO_BASE_IMAGEM_DETECCAO_BASE_IMAGEM_DETECCAO" type="relfk"
+<relationship name="&quot;rel_LIBERACAO_BASE_IMAGEM_DETECCAO_BASE_IMAGEM_DETECCAO&quot;" type="relfk"
 	 src-table="public.&quot;LIBERACAO_BASE_IMAGEM_DETECCAO&quot;"
 	 dst-table="public.&quot;BASE_IMAGEM_DETECCAO&quot;"
-	 src-required="false" dst-required="false">
-	<line>
-		<position x="754.128" y="763.85"/>
-	</line>
-</relationship>
+	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_LIBERACAO_BASE_IMAGEM_DETECCAO_USUARIO" type="relfk"
 	 src-table="public.&quot;LIBERACAO_BASE_IMAGEM_DETECCAO&quot;"
@@ -797,15 +964,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.&quot;USUARIO&quot;"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_ALOCACAO_IMAGEM_DETECCAO_BASE_IMAGEM_DETECCAO" type="relfk"
+<relationship name="&quot;rel_ALOCACAO_IMAGEM_DETECCAO_BASE_IMAGEM_DETECCAO&quot;" type="relfk"
 	 src-table="public.&quot;ALOCACAO_IMAGEM_DETECCAO&quot;"
 	 dst-table="public.&quot;BASE_IMAGEM_DETECCAO&quot;"
-	 src-required="false" dst-required="false">
-	<line>
-		<position x="860" y="870"/>
-	<position x="858.75" y="677.5"/>
-	</line>
-</relationship>
+	 src-required="false" dst-required="false"/>
 
 <relationship name="&quot;rel_ALOCACAO_IMAGEM_DETECCAO_IMAGEM_DETECCAO&quot;" type="relfk"
 	 src-table="public.&quot;ALOCACAO_IMAGEM_DETECCAO&quot;"
@@ -836,5 +998,50 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<position x="779.928" y="459.1"/>
 	</line>
 </relationship>
+
+<relationship name="&quot;rel_VIDEO_DETECCAO_USUARIO&quot;" type="relfk"
+	 src-table="public.&quot;VIDEO_DETECCAO&quot;"
+	 dst-table="public.&quot;USUARIO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_BASE_VIDEO_DETECCAO_USUARIO&quot;" type="relfk"
+	 src-table="public.&quot;BASE_VIDEO_DETECCAO&quot;"
+	 dst-table="public.&quot;USUARIO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_ALOCACAO_VIDEO_DETECCAO_BASE_VIDEO_DETECCAO&quot;" type="relfk"
+	 src-table="public.&quot;ALOCACAO_VIDEO_DETECCAO&quot;"
+	 dst-table="public.&quot;BASE_VIDEO_DETECCAO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_ALOCACAO_VIDEO_DETECCAO_VIDEO_DETECCAO&quot;" type="relfk"
+	 src-table="public.&quot;ALOCACAO_VIDEO_DETECCAO&quot;"
+	 dst-table="public.&quot;VIDEO_DETECCAO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_ALOCACAO_VIDEO_DETECCAO_USUARIO&quot;" type="relfk"
+	 src-table="public.&quot;ALOCACAO_VIDEO_DETECCAO&quot;"
+	 dst-table="public.&quot;USUARIO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_LIBERACAO_BASE_VIDEO_DETECCAO_USUARIO&quot;" type="relfk"
+	 src-table="public.&quot;LIBERACAO_BASE_VIDEO_DETECCAO&quot;"
+	 dst-table="public.&quot;USUARIO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_LIBERACAO_BASE_VIDEO_DETECCAO_BASE_VIDEO_DETECCAO&quot;" type="relfk"
+	 src-table="public.&quot;LIBERACAO_BASE_VIDEO_DETECCAO&quot;"
+	 dst-table="public.&quot;BASE_VIDEO_DETECCAO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_DETECCAO_VIDEO_ALOCACAO_VIDEO_DETECCAO&quot;" type="relfk"
+	 src-table="public.&quot;DETECCAO_VIDEO&quot;"
+	 dst-table="public.&quot;ALOCACAO_VIDEO_DETECCAO&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_DETECCAO_VIDEO_USUARIO&quot;" type="relfk"
+	 src-table="public.&quot;DETECCAO_VIDEO&quot;"
+	 dst-table="public.&quot;USUARIO&quot;"
+	 src-required="false" dst-required="false"/>
 
 </dbmodel>
