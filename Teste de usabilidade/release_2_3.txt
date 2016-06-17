@@ -1,0 +1,13 @@
+Funcionalidades desejadas
+	Visualização parcial da classificação anterior [classificação de texto e imagem]
+	Zoom [classificação de imagem]
+	Atalhos e/ou botões de zoom [classificação de imagem]
+	Relatórios
+		Itens marcados como "Não encontrei" [todas as mídias]
+
+Funcionalidades necessárias
+	Item menos avaliádos primeiro [todas as mídias]
+	Relatórios
+		Itens não avaliádos [todas as mídias]
+		Avaliações por item
+

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import org.kairos.layouts.DrawerLayout?>
+<?import org.kairos.core.Fragment?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import org.kairos.components.MaterialButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Label?>
+<?import org.kairos.components.TextInputLayout?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
+
+<fx:root xmlns:fx="http://javafx.com/fxml/1" type="Fragment"
+	stylesheets="/br/edu/ufrpe/uag/projetao/view/css/controls.css">
+
+	<BorderPane AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0"
+		AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" style=" -fx-padding:16px">
+		<center>
+			<ScrollPane fitToHeight="true" fitToWidth="true"
+				BorderPane.alignment="CENTER">
+				<content>
+					<VBox style="-fx-padding: 16px">
+						<VBox style="-fx-padding: 0 0 16 0">
+							<TextInputLayout>
+								<TextField fx:id="titulo" promptText="Título" />
+							</TextInputLayout>
+							<TextInputLayout>
+								<TextArea prefHeight="200" minHeight="200" fx:id="descricao"
+									promptText="Descrição da base" />
+							</TextInputLayout>
+						</VBox>
+						<VBox prefHeight="200" minHeight="200" style="-fx-padding: 0 0 16 0">
+							<BorderPane style="-fx-padding: 0 0 16 0">
+								<center>
+									<Label text="Buscar vídeos" />
+								</center>
+								<right>
+									<MaterialButton text="..." onAction="#selecionaArquivos" />
+								</right>
+							</BorderPane>
+							<ListView fx:id="videos">
+								<contextMenu>
+									<ContextMenu>
+										<items>
+											<MenuItem mnemonicParsing="false" text="Remover"
+												onAction="#removeArquivo" />
+										</items>
+									</ContextMenu>
+								</contextMenu>
+							</ListView>
+						</VBox>
+					</VBox>
+				</content>
+			</ScrollPane>
+		</center>
+		<bottom>
+			<BorderPane style="-fx-padding: 16 16 16 16">
+				<left>
+					<MaterialButton text="Cancelar" onAction="#cancela" />
+				</left>
+				<right>
+					<MaterialButton text="Gravar" onAction="#gravar" />
+				</right>
+			</BorderPane>
+		</bottom>
+	</BorderPane>
+</fx:root>
+
