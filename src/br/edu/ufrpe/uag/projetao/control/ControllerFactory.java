@@ -3,13 +3,16 @@
  */
 package br.edu.ufrpe.uag.projetao.control;
 
+import br.edu.ufrpe.uag.projetao.annotations.BaseVideoDeteccaoController;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemDeteccao;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
+import br.edu.ufrpe.uag.projetao.model.AlocacaoVideoDeteccao;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemDeteccao;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
+import br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccao;
 import br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.ClasssificacaoImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.DeteccaoImagem;
@@ -22,6 +25,7 @@ import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemDeteccao;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto;
 import br.edu.ufrpe.uag.projetao.model.Perfil;
 import br.edu.ufrpe.uag.projetao.model.Usuario;
+import br.edu.ufrpe.uag.projetao.model.VideoDeteccao;
 
 /**
  * @author israel
@@ -48,6 +52,9 @@ public class ControllerFactory {
     private static InterfaceController alocacaoImagemDeteccaoController;
     private static InterfaceController imagemDeteccaoController;
     private static InterfaceController liberacaoBaseImagemDeteccaoController;
+	private static InterfaceController baseVideoDeteccaoController;
+	private static InterfaceController alocacaoVideoDeteccaoController;
+	private static InterfaceController videoDeteccaoController;
 
     public static InterfaceController<Usuario> getUsuarioController() {
 	if (usuarioController == null) {
@@ -174,4 +181,25 @@ public class ControllerFactory {
 	}
 	return liberacaoBaseImagemDeteccaoController;
     }
+
+	public static InterfaceController<BaseVideoDeteccao> getBaseVideoDeteccaoController() {
+		if (baseVideoDeteccaoController == null) {
+			baseVideoDeteccaoController = new BaseVideoDeteccaoController();
+		}
+		return baseVideoDeteccaoController;	
+	}
+
+	public static InterfaceController<AlocacaoVideoDeteccao> getAlocacaoVideoDeteccaoController() {
+		if (alocacaoVideoDeteccaoController == null) {
+			alocacaoVideoDeteccaoController = new AlocacaoVideoDeteccaoController();
+		}
+		return alocacaoVideoDeteccaoController;	
+	}
+
+	public static InterfaceController<VideoDeteccao> getVideoDeteccaoController() {
+		if (videoDeteccaoController == null) {
+			videoDeteccaoController = new VideoDeteccaoController();
+		}
+		return videoDeteccaoController;
+	}
 }

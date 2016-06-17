@@ -13,6 +13,7 @@ import br.edu.ufrpe.uag.projetao.control.UsuarioController;
 import br.edu.ufrpe.uag.projetao.control.base.imagem.BaseImagemClasseListController;
 import br.edu.ufrpe.uag.projetao.control.base.imagem.BaseImagemDeteccaoListController;
 import br.edu.ufrpe.uag.projetao.control.base.texto.BaseTextoListController;
+import br.edu.ufrpe.uag.projetao.control.base.video.BaseVideoDetaccaoListController;
 import br.edu.ufrpe.uag.projetao.control.principal.util.CustomDrawerLayout;
 import br.edu.ufrpe.uag.projetao.control.principal.util.Tab;
 import br.edu.ufrpe.uag.projetao.control.principal.util.ViewPagerAdapter;
@@ -56,6 +57,7 @@ public class PrincipalSupervisorController extends Activity {
 	pagerAdapter.addTab(new Tab("Base de Texto", new BaseTextoListController()));
 	pagerAdapter.addTab(new Tab("Base de Imagem", new BaseImagemClasseListController()));
 	pagerAdapter.addTab(new Tab("Base de Detecção", new BaseImagemDeteccaoListController()));
+	pagerAdapter.addTab(new Tab("Base de Vídeos", new BaseVideoDetaccaoListController()));
 	tabLayout.setViewPager(viewPager);
 
 	usuarioNome.setText(UsuarioController.currrentSupervisor.getNome());

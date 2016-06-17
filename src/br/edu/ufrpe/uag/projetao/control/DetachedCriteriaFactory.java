@@ -15,6 +15,7 @@ import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemDeteccao;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
+import br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccao;
 import br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.ClasssificacaoImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.DeteccaoImagem;
@@ -267,5 +268,11 @@ public class DetachedCriteriaFactory {
 		.add(Restrictions.eq("alocacaoImagemClasse.id", alocacao.getId())).forClass(EscolhaImagemClasse.class)
 		.add(Restrictions.eq("alocacaoImagemClasse.id", alocacao.getId()));
     }
+
+	public static DetachedCriteria getBasesVideoDeteccaoDoUsuario(Usuario usuario) {
+		DetachedCriteria basesVideoClasseDoUsuario = getDetachedCriteriaBase(BaseVideoDeteccao.class, usuario);
+
+		return basesVideoClasseDoUsuario;
+	}
 
 }
