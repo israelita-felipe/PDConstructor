@@ -138,8 +138,8 @@ public class LiberacaoBaseVideoDeteccao implements InterfaceEntity {
      */
     @Override
     public String toString() {
-	return "LiberacaoBaseVideoDeteccao [baseVideoDeteccao=" + baseVideoDeteccao + ", usuarioBySupervisor="
-		+ usuarioBySupervisor + ", usuarioByEscravo=" + usuarioByEscravo + ", status=" + status + "]";
+	return baseVideoDeteccao.getId() + "."
+		+ usuarioBySupervisor.getId() + "." + usuarioByEscravo.getId() + "." + status;
     }
 
 }

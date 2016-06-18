@@ -24,6 +24,7 @@ import br.edu.ufrpe.uag.projetao.model.EscolhaImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemDeteccao;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto;
+import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseVideoDeteccao;
 import br.edu.ufrpe.uag.projetao.model.Perfil;
 import br.edu.ufrpe.uag.projetao.model.Usuario;
 import br.edu.ufrpe.uag.projetao.view.util.SHA256;
@@ -73,7 +74,7 @@ public class DetachedCriteriaFactory {
 
     public static DetachedCriteria getTodosEscravos() {
 	if (todosEscravos == null) {
-	    todosEscravos = getDetachedCriteriaUsuarioPorPerfil("ESCRAVO");
+	    todosEscravos = getDetachedCriteriaUsuarioPorPerfil("CLASSIFICADOR");
 	}
 	return todosEscravos;
     }
@@ -273,6 +274,21 @@ public class DetachedCriteriaFactory {
 		DetachedCriteria basesVideoClasseDoUsuario = getDetachedCriteriaBase(BaseVideoDeteccao.class, usuario);
 
 		return basesVideoClasseDoUsuario;
+	}
+
+	public static DetachedCriteria getLiberacoesBaseVideoDeteccaoDoEscravo(Usuario usuario) {
+		DetachedCriteria liberacaoBasesVideoDeteccaoDoEscravo = getDetachedCriteriaLiberacaoBasePorEscravo(
+				LiberacaoBaseVideoDeteccao.class, usuario);
+
+			return liberacaoBasesVideoDeteccaoDoEscravo;
+	}
+
+	public static DetachedCriteria getLiberacoesPorBaseDeVideoDeteccao(BaseVideoDeteccao base) {
+		DetachedCriteria usuariosComLiberacoesPorBaseDeVideoDeteccao = DetachedCriteria
+				.forClass(LiberacaoBaseVideoDeteccao.class)
+				.add(Restrictions.eq("baseVideoDeteccao.id", base.getId()));
+
+			return usuariosComLiberacoesPorBaseDeVideoDeteccao;
 	}
 
 }

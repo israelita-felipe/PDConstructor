@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import org.kairos.components.MaterialButton?>
+<?import org.kairos.core.Fragment?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import org.kairos.components.TextInputLayout?>
+<?import javafx.scene.control.Label?>
+
+<fx:root type="Fragment" xmlns:fx="http://javafx.com/fxml/1"
+	xmlns="http://javafx.com/javafx/8.0.65" stylesheets="/br/edu/ufrpe/uag/projetao/view/css/controls.css">
+
+	<VBox alignment="TOP_CENTER" AnchorPane.topAnchor="0"
+		AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"
+		AnchorPane.leftAnchor="0" style=" -fx-padding:16px" VBox.vgrow="ALWAYS">
+		<children>
+			<HBox spacing="8" style="-fx-padding: 0 0 16 0">
+				<MaterialButton text="Cancelar" onAction="#cancela" />
+				<MaterialButton text="Salvar" onAction="#gravarLiberacao" />
+			</HBox>
+			<HBox spacing="8">
+				<VBox HBox.hgrow="ALWAYS">
+					<children>
+						<Label styleClass="paper-input" text="Usuários para liberar" />
+						<TableView fx:id="tabelaEscravos" VBox.vgrow="ALWAYS">
+							<columns>
+								<TableColumn text="Nome">
+									<cellValueFactory>
+										<PropertyValueFactory property="nome" />
+									</cellValueFactory>
+								</TableColumn>
+								<TableColumn text="E-mail">
+									<cellValueFactory>
+										<PropertyValueFactory property="email" />
+									</cellValueFactory>
+								</TableColumn>
+							</columns>
+						</TableView>
+					</children>
+				</VBox>
+				<VBox HBox.hgrow="ALWAYS">
+					<children>
+						<TextInputLayout style="-fx-padding: 16 0 16 0"
+							VBox.vgrow="ALWAYS">
+							<TextField fx:id="baseTitulo" disable="true"
+								promptText="Título da base" />
+						</TextInputLayout>
+						<Label styleClass="paper-input" text="Liberações efetivadas" />
+						<TableView fx:id="tabelaLiberacoes" VBox.vgrow="ALWAYS">
+							<columns>
+								<TableColumn text="Base">
+									<cellValueFactory>
+										<PropertyValueFactory property="baseVideoDeteccao" />
+									</cellValueFactory>
+								</TableColumn>
+								<TableColumn text="Usuário">
+									<cellValueFactory>
+										<PropertyValueFactory property="usuarioByEscravo" />
+									</cellValueFactory>
+								</TableColumn>
+								<TableColumn text="Supervisor">
+									<cellValueFactory>
+										<PropertyValueFactory property="usuarioBySupervisor" />
+									</cellValueFactory>
+								</TableColumn>
+							</columns>
+						</TableView>
+					</children>
+				</VBox>
+			</HBox>
+		</children>
+	</VBox>
+</fx:root>

@@ -17,7 +17,11 @@ import br.edu.ufrpe.uag.projetao.control.util.video.VideoDigital;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoVideoDeteccao;
 import br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccao;
+import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemDeteccao;
+import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseVideoDeteccao;
+import br.edu.ufrpe.uag.projetao.model.Usuario;
 import br.edu.ufrpe.uag.projetao.model.VideoDeteccao;
+import br.edu.ufrpe.uag.projetao.model.enumerate.StatusDeLiberacao;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,6 +48,13 @@ public class BaseVideoDetaccaoListController extends Fragment {
 	private ListView<File> videos;
 	@FXML
 	private TableView<BaseVideoDeteccao> baseVideoDeteccao;
+	@FXML
+	private TableView<Usuario> tabelaEscravos;
+	@FXML
+	private TableView<LiberacaoBaseVideoDeteccao> tabelaLiberacoes;
+	@FXML
+	private TextField baseTitulo;
+	
 
 	@Override
 	public void onCreateView(FXMLLoader fxmlLoader) {
@@ -95,6 +106,7 @@ public class BaseVideoDetaccaoListController extends Fragment {
 	
 	 @FXML
 	 private void gravar() {
+		 
 		 try {
 
 			    validar();
@@ -105,7 +117,9 @@ public class BaseVideoDetaccaoListController extends Fragment {
 				    .getAlocacaoVideoDeteccaoController();
 			    InterfaceController<VideoDeteccao> videoDeteccaoController = ControllerFactory
 				    .getVideoDeteccaoController();
-
+			    
+			   
+			    
 			    TransactionManager.begin();
 			    // criação da base
 			    base.prepareCreate();
@@ -192,7 +206,29 @@ public class BaseVideoDetaccaoListController extends Fragment {
 	 
 	 @FXML
 	 private void gravarLiberacao() {
-		 
+		 if (this.tabelaEscravos.getSelectionModel().getSelectedItem() != null) {
+			    InterfaceController<LiberacaoBaseVideoDeteccao> liberacoesController = ControllerFactory
+				    .getLiberacaoBaseVideoDeteccaoController();
+
+			    TransactionManager.begin();
+			    liberacoesController.prepareCreate();
+			    liberacoesController.getSelected()
+				    .setUsuarioByEscravo(this.tabelaEscravos.getSelectionModel().getSelectedItem());
+			    liberacoesController.getSelected()
+				    .setBaseVideoDeteccao(ControllerFactory.getBaseVideoDeteccaoController().getSelected());
+			    liberacoesController.getSelected().setUsuarioBySupervisor(UsuarioController.currrentSupervisor);
+			    liberacoesController.getSelected().setStatus(StatusDeLiberacao.LIBERADO);
+			    liberacoesController.create();
+			    TransactionManager.end();
+
+			    Alert dialogoErro = new Alert(Alert.AlertType.INFORMATION);
+			    dialogoErro.setTitle("Informação");
+			    dialogoErro.setHeaderText("Liberação de base");
+			    dialogoErro.setContentText(
+				    "Liberado para: " + this.tabelaEscravos.getSelectionModel().getSelectedItem().getNome());
+			    dialogoErro.showAndWait();
+			}
+			list();
 	 }
 	 
 
@@ -242,6 +278,42 @@ public class BaseVideoDetaccaoListController extends Fragment {
 
 	@FXML
 	private void liberar() {
+		if (baseVideoDeteccao.getSelectionModel().getSelectedItem() != null) {
+
+		    BaseVideoDeteccao base = baseVideoDeteccao.getSelectionModel().getSelectedItem();
+		    ControllerFactory.getBaseVideoDeteccaoController()
+			    .prepareView(ControllerFactory.getBaseVideoDeteccaoController().prepareList().indexOf(base));
+
+		    getChildren().clear();
+		    this.loader.setLocation(getClass().getResource(
+			    "/br/edu/ufrpe/uag/projetao/view/base/video/liberacao/BaseVodeoDeteccaoLiberaUsuarioView.fxml"));
+		    try {
+			this.loader.load();
+
+			this.baseTitulo.setText(base.getTitulo());
+
+			this.tabelaEscravos.setItems(FXCollections.observableList(ControllerFactory.getUsuarioController()
+				.getItemsFromCriteria(DetachedCriteriaFactory.getTodosEscravos())));
+
+			this.tabelaLiberacoes.setItems(FXCollections.observableList(
+				ControllerFactory.getLiberacaoBaseVideoDeteccaoController().getItemsFromCriteria(
+					DetachedCriteriaFactory.getLiberacoesPorBaseDeVideoDeteccao(base))));
+
+			// removendo os usuários já liberados
+			for (LiberacaoBaseVideoDeteccao liberacao : this.tabelaLiberacoes.getItems()) {
+			    this.tabelaEscravos.getItems().remove(liberacao.getUsuarioByEscravo());
+			}
+
+		    } catch (IOException e) {
+			e.printStackTrace();
+		    }
+		} else {
+		    Alert dialogoErro = new Alert(Alert.AlertType.INFORMATION);
+		    dialogoErro.setTitle("Informação");
+		    dialogoErro.setHeaderText("Liberação de base");
+		    dialogoErro.setContentText("Selecione primeiro uma base");
+		    dialogoErro.showAndWait();
+		}
 
 	}
 
