@@ -457,11 +457,6 @@ public class BaseVideoDeteccaoLiberacaoController extends Fragment {
 
     public int buscaPrimeiraAlocacaoSemDeteccao() {
 	sortAlocacoes();
-	/*
-	 * int i = 0; while (i < alocacoes.size() &&
-	 * !alocacoes.get(i).getDeteccaoImagems().isEmpty()) { i++; } return i
-	 * == 0 ? 0 : i - 1;
-	 */
 	return 0;
     }
 

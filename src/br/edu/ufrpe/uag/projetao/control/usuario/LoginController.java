@@ -48,7 +48,7 @@ public class LoginController extends Activity {
 
     @Override
     public void onCreate() {
-	super.onCreate();
+	super.onCreate();	
 	setContentView(getClass().getResource("/br/edu/ufrpe/uag/projetao/view/usuario/LoginView.fxml"));
 	perfil.setItems(FXCollections.observableList(ControllerFactory.getPerfilController().prepareList()));
     }

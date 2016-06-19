@@ -19,7 +19,7 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" prefWidth="800"
 	prefHeight="600" spacing="8" alignment="center"
-	stylesheets="@../css/controls.css">
+	stylesheets="/br/edu/ufrpe/uag/projetao/view/css/controls.css">
 
 	<VBox styleClass="paper-material"
 		style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.16), 5, 0, 0, 2);"
