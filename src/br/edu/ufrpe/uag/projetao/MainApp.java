@@ -1,3 +1,4 @@
+package br.edu.ufrpe.uag.projetao;
 
 import org.kairos.core.ActivityFactory;
 

@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Israel Araújo
  */
-public interface InterfaceEntity extends Serializable{
+public interface InterfaceEntity extends Serializable {
 
     @Override
     public boolean equals(Object obj);

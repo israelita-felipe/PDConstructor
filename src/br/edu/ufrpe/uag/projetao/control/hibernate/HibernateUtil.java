@@ -46,7 +46,7 @@ public class HibernateUtil {
 	} catch (Exception ex) {
 	    throw new ExceptionInInitializerError(ex);
 	}
-	
+
 	return sessionFactory;
     }
 }

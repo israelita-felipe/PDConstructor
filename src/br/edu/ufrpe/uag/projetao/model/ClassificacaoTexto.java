@@ -20,7 +20,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 @Tabela
 @Entity
 @Table(name = "classificacao_texto", schema = "public")
-public class ClassificacaoTexto implements  InterfaceEntity {
+public class ClassificacaoTexto implements InterfaceEntity {
 
     @Coluna(colunaNome = "Alocação de Texto", colunaPosicao = 0)
     private AlocacaoTexto alocacaoTexto;

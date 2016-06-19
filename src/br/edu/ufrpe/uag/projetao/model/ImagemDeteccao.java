@@ -1,7 +1,6 @@
 package br.edu.ufrpe.uag.projetao.model;
 // Generated 27/05/2016 19:57:54 by Hibernate Tools 4.3.1
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;

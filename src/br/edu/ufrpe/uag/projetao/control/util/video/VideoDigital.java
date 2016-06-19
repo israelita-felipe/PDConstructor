@@ -46,7 +46,7 @@ public class VideoDigital {
      * @throws IOException
      */
     public static File toVideo(byte[] video, String nome) throws IOException {
-	File arquivo = new File(nome);
+	File arquivo = new File("media/" + nome + ".pdc");
 	FileOutputStream fos = new FileOutputStream(arquivo);
 	fos.write(video);
 	fos.flush();

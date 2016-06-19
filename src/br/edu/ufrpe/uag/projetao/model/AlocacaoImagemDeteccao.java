@@ -1,7 +1,6 @@
 package br.edu.ufrpe.uag.projetao.model;
 // Generated 27/05/2016 19:57:54 by Hibernate Tools 4.3.1
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,7 +22,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
  */
 @Entity
 @Table(name = "alocacao_imagem_deteccao", schema = "public")
-public class AlocacaoImagemDeteccao implements InterfaceEntity{
+public class AlocacaoImagemDeteccao implements InterfaceEntity {
 
     private int id;
     private BaseImagemDeteccao baseImagemDeteccao;

@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.1" last-position="3,540" last-zoom="0.8"
+<dbmodel pgmodeler-ver="0.8.1" last-position="2,0" last-zoom="0.8"
 	 default-schema="public" default-owner="postgres">
 <database name="PDCONSTRUCTOR" template="pdconstructor">
 </database>
@@ -47,6 +47,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<constraint name="USUARIO_PK" type="pk-constr" table="public.&quot;USUARIO&quot;">
 		<columns names="ID" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="USUARIO_UK" type="uq-constr" table="public.&quot;USUARIO&quot;">
+		<columns names="EMAIL,PERFIL" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -492,7 +495,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </table>
 
 <constraint name="USUARIO_PERFIL_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
-	 upd-action="NO ACTION" del-action="RESTRICT" ref-table="public.&quot;PERFIL&quot;" table="public.&quot;USUARIO&quot;">
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="public.&quot;PERFIL&quot;" table="public.&quot;USUARIO&quot;">
 	<columns names="PERFIL" ref-type="src-columns"/>
 	<columns names="NOME" ref-type="dst-columns"/>
 </constraint>

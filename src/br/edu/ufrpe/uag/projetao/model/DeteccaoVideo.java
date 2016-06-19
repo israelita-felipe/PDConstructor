@@ -1,6 +1,7 @@
 package br.edu.ufrpe.uag.projetao.model;
 // Generated 15/06/2016 11:29:14 by Hibernate Tools 4.3.1
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -8,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDeteccao;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 
 /**
@@ -15,12 +17,83 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
  */
 @Entity
 @Table(name = "deteccao_video", schema = "public")
-public class DeteccaoVideo implements InterfaceEntity {
+public class DeteccaoVideo implements InterfaceEntity, InterfaceDeteccao {
 
+    private double x1;
+    private double y1;
+    private double x2;
+    private double y2;
     private AlocacaoVideoDeteccao alocacaoVideoDeteccao;
     private Usuario usuario;
+    private double tempo;
 
     public DeteccaoVideo() {
+    }
+
+    @Id
+    @Column(name = "x1", unique = true, nullable = false)
+    public double getX1() {
+	return x1;
+    }
+
+    /**
+     * @param x1
+     *            the x1 to set
+     */
+    public void setX1(double x1) {
+	this.x1 = x1;
+    }
+
+    @Id
+    @Column(name = "y1", unique = true, nullable = false)
+    public double getY1() {
+	return y1;
+    }
+
+    /**
+     * @param y1
+     *            the y1 to set
+     */
+    public void setY1(double y1) {
+	this.y1 = y1;
+    }
+
+    @Id
+    @Column(name = "x2", unique = true, nullable = false)
+    public double getX2() {
+	return x2;
+    }
+
+    /**
+     * @param x2
+     *            the x2 to set
+     */
+    public void setX2(double x2) {
+	this.x2 = x2;
+    }
+
+    @Id
+    @Column(name = "y2", unique = true, nullable = false)
+    public double getY2() {
+	return y2;
+    }
+
+    /**
+     * @param y2
+     *            the y2 to set
+     */
+    public void setY2(double y2) {
+	this.y2 = y2;
+    }
+
+    @Id
+    @Column(name = "tempo", unique = true, nullable = false)
+    public double getTempo() {
+	return tempo;
+    }
+
+    public void setTempo(double tempo) {
+	this.tempo = tempo;
     }
 
     @Id
@@ -55,7 +128,18 @@ public class DeteccaoVideo implements InterfaceEntity {
 	final int prime = 31;
 	int result = 1;
 	result = prime * result + ((alocacaoVideoDeteccao == null) ? 0 : alocacaoVideoDeteccao.hashCode());
+	long temp;
+	temp = Double.doubleToLongBits(tempo);
+	result = prime * result + (int) (temp ^ (temp >>> 32));
 	result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
+	temp = Double.doubleToLongBits(x1);
+	result = prime * result + (int) (temp ^ (temp >>> 32));
+	temp = Double.doubleToLongBits(x2);
+	result = prime * result + (int) (temp ^ (temp >>> 32));
+	temp = Double.doubleToLongBits(y1);
+	result = prime * result + (int) (temp ^ (temp >>> 32));
+	temp = Double.doubleToLongBits(y2);
+	result = prime * result + (int) (temp ^ (temp >>> 32));
 	return result;
     }
 
@@ -83,11 +167,26 @@ public class DeteccaoVideo implements InterfaceEntity {
 	} else if (!alocacaoVideoDeteccao.equals(other.alocacaoVideoDeteccao)) {
 	    return false;
 	}
+	if (Double.doubleToLongBits(tempo) != Double.doubleToLongBits(other.tempo)) {
+	    return false;
+	}
 	if (usuario == null) {
 	    if (other.usuario != null) {
 		return false;
 	    }
 	} else if (!usuario.equals(other.usuario)) {
+	    return false;
+	}
+	if (Double.doubleToLongBits(x1) != Double.doubleToLongBits(other.x1)) {
+	    return false;
+	}
+	if (Double.doubleToLongBits(x2) != Double.doubleToLongBits(other.x2)) {
+	    return false;
+	}
+	if (Double.doubleToLongBits(y1) != Double.doubleToLongBits(other.y1)) {
+	    return false;
+	}
+	if (Double.doubleToLongBits(y2) != Double.doubleToLongBits(other.y2)) {
 	    return false;
 	}
 	return true;
@@ -100,7 +199,7 @@ public class DeteccaoVideo implements InterfaceEntity {
      */
     @Override
     public String toString() {
-	return "DeteccaoVideo [alocacaoVideoDeteccao=" + alocacaoVideoDeteccao + ", usuario=" + usuario + "]";
+	return tempo + " (" + x1 + ", " + y1 + "),(" + x2 + "," + y2 + ")";
     }
 
 }

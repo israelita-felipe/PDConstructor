@@ -3,7 +3,6 @@
  */
 package br.edu.ufrpe.uag.projetao.control;
 
-import br.edu.ufrpe.uag.projetao.abstracts.AbstractController;
 import br.edu.ufrpe.uag.projetao.annotations.BaseVideoDeteccaoController;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemClasse;
@@ -55,11 +54,11 @@ public class ControllerFactory {
     private static InterfaceController alocacaoImagemDeteccaoController;
     private static InterfaceController imagemDeteccaoController;
     private static InterfaceController liberacaoBaseImagemDeteccaoController;
-	private static InterfaceController baseVideoDeteccaoController;
-	private static InterfaceController alocacaoVideoDeteccaoController;
-	private static InterfaceController videoDeteccaoController;
-	private static InterfaceController deteccaoVideoController;
-	private static InterfaceController liberacaoBaseVideoDeteccaoController;
+    private static InterfaceController baseVideoDeteccaoController;
+    private static InterfaceController alocacaoVideoDeteccaoController;
+    private static InterfaceController videoDeteccaoController;
+    private static InterfaceController deteccaoVideoController;
+    private static InterfaceController liberacaoBaseVideoDeteccaoController;
 
     public static InterfaceController<Usuario> getUsuarioController() {
 	if (usuarioController == null) {
@@ -187,39 +186,39 @@ public class ControllerFactory {
 	return liberacaoBaseImagemDeteccaoController;
     }
 
-	public static InterfaceController<BaseVideoDeteccao> getBaseVideoDeteccaoController() {
-		if (baseVideoDeteccaoController == null) {
-			baseVideoDeteccaoController = new BaseVideoDeteccaoController();
-		}
-		return baseVideoDeteccaoController;	
+    public static InterfaceController<BaseVideoDeteccao> getBaseVideoDeteccaoController() {
+	if (baseVideoDeteccaoController == null) {
+	    baseVideoDeteccaoController = new BaseVideoDeteccaoController();
 	}
+	return baseVideoDeteccaoController;
+    }
 
-	public static InterfaceController<AlocacaoVideoDeteccao> getAlocacaoVideoDeteccaoController() {
-		if (alocacaoVideoDeteccaoController == null) {
-			alocacaoVideoDeteccaoController = new AlocacaoVideoDeteccaoController();
-		}
-		return alocacaoVideoDeteccaoController;	
+    public static InterfaceController<AlocacaoVideoDeteccao> getAlocacaoVideoDeteccaoController() {
+	if (alocacaoVideoDeteccaoController == null) {
+	    alocacaoVideoDeteccaoController = new AlocacaoVideoDeteccaoController();
 	}
+	return alocacaoVideoDeteccaoController;
+    }
 
-	public static InterfaceController<VideoDeteccao> getVideoDeteccaoController() {
-		if (videoDeteccaoController == null) {
-			videoDeteccaoController = new VideoDeteccaoController();
-		}
-		return videoDeteccaoController;
+    public static InterfaceController<VideoDeteccao> getVideoDeteccaoController() {
+	if (videoDeteccaoController == null) {
+	    videoDeteccaoController = new VideoDeteccaoController();
 	}
+	return videoDeteccaoController;
+    }
 
-	public static InterfaceController<DeteccaoVideo> getDeteccaoVideoController() {
-		if (deteccaoVideoController == null) {
-		    deteccaoVideoController = new DeteccaoVideoController();
-		}
-		return deteccaoVideoController;
+    public static InterfaceController<DeteccaoVideo> getDeteccaoVideoController() {
+	if (deteccaoVideoController == null) {
+	    deteccaoVideoController = new DeteccaoVideoController();
 	}
+	return deteccaoVideoController;
+    }
 
-	public static InterfaceController<LiberacaoBaseVideoDeteccao> getLiberacaoBaseVideoDeteccaoController() {
-		if (liberacaoBaseVideoDeteccaoController == null) {
-		    liberacaoBaseVideoDeteccaoController = new LiberacaoBaseVideoDeteccaoController();
-		}
-		return liberacaoBaseVideoDeteccaoController;
-	    
+    public static InterfaceController<LiberacaoBaseVideoDeteccao> getLiberacaoBaseVideoDeteccaoController() {
+	if (liberacaoBaseVideoDeteccaoController == null) {
+	    liberacaoBaseVideoDeteccaoController = new LiberacaoBaseVideoDeteccaoController();
 	}
+	return liberacaoBaseVideoDeteccaoController;
+
+    }
 }

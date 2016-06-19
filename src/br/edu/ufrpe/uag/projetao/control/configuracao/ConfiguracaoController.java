@@ -7,16 +7,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Date;
 import java.util.Properties;
 
 import org.kairos.core.Activity;
 
-import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
-import br.edu.ufrpe.uag.projetao.control.hibernate.HibernateUtil;
-import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.control.usuario.LoginController;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -37,7 +32,6 @@ public class ConfiguracaoController extends Activity {
     @FXML
     private Button salvarButton;
 
-        
     @Override
     public void onCreate() {
 	super.onCreate();
@@ -57,7 +51,7 @@ public class ConfiguracaoController extends Activity {
 	    resources.setProperty("hibernate.connection.url.port", portaTextField.getText());
 
 	    resources.store(new FileOutputStream("config_pt_BR.properties"), null);
-	    
+
 	    startActivity(LoginController.class);
 
 	} catch (FileNotFoundException e) {
@@ -72,7 +66,7 @@ public class ConfiguracaoController extends Activity {
 	    dialogoErro.setHeaderText("Arquivo de configurações");
 	    dialogoErro.setContentText("O arquivo de configurações não pode ser escrito");
 	    dialogoErro.showAndWait();
-	}	
+	}
     }
 
     private void carregar() {
@@ -99,9 +93,9 @@ public class ConfiguracaoController extends Activity {
 	}
 
     }
-    
+
     @FXML
-    public void cancelar(){
+    public void cancelar() {
 	startActivity(LoginController.class);
     }
 

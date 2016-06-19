@@ -1,10 +1,7 @@
 package br.edu.ufrpe.uag.projetao.model;
 // Generated 15/06/2016 11:29:14 by Hibernate Tools 4.3.1
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -138,8 +135,8 @@ public class LiberacaoBaseVideoDeteccao implements InterfaceEntity {
      */
     @Override
     public String toString() {
-	return baseVideoDeteccao.getId() + "."
-		+ usuarioBySupervisor.getId() + "." + usuarioByEscravo.getId() + "." + status;
+	return baseVideoDeteccao.getId() + "." + usuarioBySupervisor.getId() + "." + usuarioByEscravo.getId() + "."
+		+ status;
     }
 
 }

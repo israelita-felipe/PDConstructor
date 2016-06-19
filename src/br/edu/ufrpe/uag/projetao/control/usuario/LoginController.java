@@ -40,9 +40,9 @@ public class LoginController extends Activity {
     public void cadastrar() {
 	startActivity(CadastroUsuarioController.class);
     }
-    
+
     @FXML
-    public void configuracoes(){
+    public void configuracoes() {
 	startActivity(ConfiguracaoController.class);
     }
 

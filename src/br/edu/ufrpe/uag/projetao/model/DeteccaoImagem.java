@@ -1,8 +1,6 @@
 package br.edu.ufrpe.uag.projetao.model;
 // Generated 27/05/2016 19:57:54 by Hibernate Tools 4.3.1
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDeteccao;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 
 /**
@@ -18,7 +17,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
  */
 @Entity
 @Table(name = "deteccao_imagem", schema = "public")
-public class DeteccaoImagem implements InterfaceEntity{
+public class DeteccaoImagem implements InterfaceEntity,InterfaceDeteccao {
 
     private double x1;
     private double y1;

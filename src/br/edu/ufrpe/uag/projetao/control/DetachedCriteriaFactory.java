@@ -12,6 +12,7 @@ import org.hibernate.criterion.Restrictions;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemDeteccao;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
+import br.edu.ufrpe.uag.projetao.model.AlocacaoVideoDeteccao;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemDeteccao;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
@@ -19,6 +20,7 @@ import br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccao;
 import br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.ClasssificacaoImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.DeteccaoImagem;
+import br.edu.ufrpe.uag.projetao.model.DeteccaoVideo;
 import br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto;
 import br.edu.ufrpe.uag.projetao.model.EscolhaImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemClasse;
@@ -270,25 +272,43 @@ public class DetachedCriteriaFactory {
 		.add(Restrictions.eq("alocacaoImagemClasse.id", alocacao.getId()));
     }
 
-	public static DetachedCriteria getBasesVideoDeteccaoDoUsuario(Usuario usuario) {
-		DetachedCriteria basesVideoClasseDoUsuario = getDetachedCriteriaBase(BaseVideoDeteccao.class, usuario);
+    public static DetachedCriteria getBasesVideoDeteccaoDoUsuario(Usuario usuario) {
+	DetachedCriteria basesVideoClasseDoUsuario = getDetachedCriteriaBase(BaseVideoDeteccao.class, usuario);
 
-		return basesVideoClasseDoUsuario;
-	}
+	return basesVideoClasseDoUsuario;
+    }
 
-	public static DetachedCriteria getLiberacoesBaseVideoDeteccaoDoEscravo(Usuario usuario) {
-		DetachedCriteria liberacaoBasesVideoDeteccaoDoEscravo = getDetachedCriteriaLiberacaoBasePorEscravo(
-				LiberacaoBaseVideoDeteccao.class, usuario);
+    public static DetachedCriteria getLiberacoesBaseVideoDeteccaoDoEscravo(Usuario usuario) {
+	DetachedCriteria liberacaoBasesVideoDeteccaoDoEscravo = getDetachedCriteriaLiberacaoBasePorEscravo(
+		LiberacaoBaseVideoDeteccao.class, usuario);
 
-			return liberacaoBasesVideoDeteccaoDoEscravo;
-	}
+	return liberacaoBasesVideoDeteccaoDoEscravo;
+    }
 
-	public static DetachedCriteria getLiberacoesPorBaseDeVideoDeteccao(BaseVideoDeteccao base) {
-		DetachedCriteria usuariosComLiberacoesPorBaseDeVideoDeteccao = DetachedCriteria
-				.forClass(LiberacaoBaseVideoDeteccao.class)
-				.add(Restrictions.eq("baseVideoDeteccao.id", base.getId()));
+    public static DetachedCriteria getLiberacoesPorBaseDeVideoDeteccao(BaseVideoDeteccao base) {
+	DetachedCriteria usuariosComLiberacoesPorBaseDeVideoDeteccao = DetachedCriteria
+		.forClass(LiberacaoBaseVideoDeteccao.class).add(Restrictions.eq("baseVideoDeteccao.id", base.getId()));
 
-			return usuariosComLiberacoesPorBaseDeVideoDeteccao;
-	}
+	return usuariosComLiberacoesPorBaseDeVideoDeteccao;
+    }
+
+    public static DetachedCriteria getDeteccaoVideoPorEscravoEAlocacao(Usuario escravo,
+	    AlocacaoVideoDeteccao alocacao) {
+	DetachedCriteria deteccaoVideoClassePorEscravoEAlocacao = DetachedCriteria.forClass(DeteccaoVideo.class)
+		.add(Restrictions.eq("usuario.id", escravo.getId()))
+		.add(Restrictions.eq("alocacaoVideoDeteccao.id", alocacao.getId()));
+
+	return deteccaoVideoClassePorEscravoEAlocacao;
+    }
+
+    public static DetachedCriteria getAlocacoesVideoDeteccaoPorLiberacao(LiberacaoBaseVideoDeteccao liberacao) {
+	DetachedCriteria alocacoesVideoDeteccaoPorLiberacao = DetachedCriteria
+		.forClass(LiberacaoBaseVideoDeteccao.class)
+		.add(Restrictions.eq("usuarioByEscravo.id", liberacao.getUsuarioByEscravo().getId()))
+		.forClass(AlocacaoVideoDeteccao.class)
+		.add(Restrictions.eq("baseVideoDeteccao.id", liberacao.getBaseVideoDeteccao().getId()));
+
+	return alocacoesVideoDeteccaoPorLiberacao;
+    }
 
 }

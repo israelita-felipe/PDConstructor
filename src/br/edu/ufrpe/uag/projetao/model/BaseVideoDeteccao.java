@@ -3,6 +3,7 @@ package br.edu.ufrpe.uag.projetao.model;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,7 +22,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
  */
 @Entity
 @Table(name = "base_video_deteccao", schema = "public")
-public class BaseVideoDeteccao implements InterfaceEntity{
+public class BaseVideoDeteccao implements InterfaceEntity {
 
     private int id;
     private Usuario usuario;

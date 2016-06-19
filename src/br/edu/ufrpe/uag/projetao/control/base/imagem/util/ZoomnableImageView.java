@@ -20,7 +20,7 @@ public class ZoomnableImageView extends SimpleDoubleProperty {
 
     private final ImageView imageView;
     private final ScrollPane scroll;
-    private ZoomControles controles;
+    private Controles controles;
 
     /**
      * 
@@ -36,7 +36,7 @@ public class ZoomnableImageView extends SimpleDoubleProperty {
 
 	this.scroll.setContent(this.imageView);
 
-	this.controles = new ZoomControles();
+	this.controles = new Controles();
 
 	addListener(new InvalidationListener() {
 	    @Override
@@ -72,7 +72,7 @@ public class ZoomnableImageView extends SimpleDoubleProperty {
 	});
     }
 
-    public ZoomControles getControles() {
+    public Controles getControles() {
 	return controles;
     }
 }

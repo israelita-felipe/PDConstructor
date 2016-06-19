@@ -2,36 +2,36 @@ package br.edu.ufrpe.uag.projetao.control;
 
 import br.edu.ufrpe.uag.projetao.abstracts.AbstractController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoVideoDeteccao;
+
 /**
  * 
  * @author bruno
  *
  */
-public class AlocacaoVideoDeteccaoController extends AbstractController<AlocacaoVideoDeteccao>{
+public class AlocacaoVideoDeteccaoController extends AbstractController<AlocacaoVideoDeteccao> {
 
-	public AlocacaoVideoDeteccaoController( ) {
-		super(AlocacaoVideoDeteccao.class);
+    public AlocacaoVideoDeteccaoController() {
+	super(AlocacaoVideoDeteccao.class);
+    }
+
+    @Override
+    public AlocacaoVideoDeteccao getSelected() {
+	if (getCurrent() == null) {
+	    setCurrent(new AlocacaoVideoDeteccao());
+
+	    setSelectedItemIndex(-1);
 	}
+	return getCurrent();
 
-	@Override
-	public AlocacaoVideoDeteccao getSelected() {
-		if (getCurrent() == null) {
-		    setCurrent(new AlocacaoVideoDeteccao());
+    }
 
-		    setSelectedItemIndex(-1);
-		}
-		return getCurrent();
-	   
-	}
+    @Override
+    public AlocacaoVideoDeteccao prepareCreate() {
 
-	@Override
-	public AlocacaoVideoDeteccao prepareCreate() {
+	setCurrent(new AlocacaoVideoDeteccao());
 
-		setCurrent(new AlocacaoVideoDeteccao());
-
-		setSelectedItemIndex(-1);
-		return getCurrent();
-	}
-	
+	setSelectedItemIndex(-1);
+	return getCurrent();
+    }
 
 }

@@ -3,7 +3,7 @@
  */
 package br.edu.ufrpe.uag.projetao.control.base.imagem.util;
 
-import br.edu.ufrpe.uag.projetao.model.DeteccaoImagem;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDeteccao;
 import javafx.scene.shape.Rectangle;
 
 /**
@@ -12,24 +12,24 @@ import javafx.scene.shape.Rectangle;
  */
 public class CustomRectangle extends Rectangle {
 
-    private DeteccaoImagem coordenada;
+    private InterfaceDeteccao coordenada;
 
     /**
      * 
      * @param coordenada
      */
-    public CustomRectangle(DeteccaoImagem coordenada) {
+    public CustomRectangle(InterfaceDeteccao coordenada) {
 	super(coordenada.getX1(), coordenada.getY1(),
 		(coordenada.getX2() - coordenada.getX1()) < 3 ? 3 : coordenada.getX2() - coordenada.getX1(),
 		(coordenada.getY2() - coordenada.getY1()) < 3 ? 3 : coordenada.getY2() - coordenada.getY1());
 	this.coordenada = coordenada;
     }
 
-    public DeteccaoImagem getCoordenada() {
+    public InterfaceDeteccao getCoordenada() {
 	return coordenada;
     }
 
-    public void setCoordenada(DeteccaoImagem coordenada) {
+    public void setCoordenada(InterfaceDeteccao coordenada) {
 	this.coordenada = coordenada;
     }
 }

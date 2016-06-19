@@ -10,7 +10,7 @@ import org.hibernate.criterion.DetachedCriteria;
  * @author Israel Araújo
  * @param <T>
  */
-public interface InterfaceController<T extends InterfaceEntity> extends Serializable{
+public interface InterfaceController<T extends InterfaceEntity> extends Serializable {
 
     /**
      *
