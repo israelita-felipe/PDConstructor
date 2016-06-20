@@ -35,7 +35,7 @@
 			<bottom>
 				<VBox prefWidth="256" spacing="8" alignment="TOP_CENTER" style="-fx-padding:16px">
 					<MaterialButton text="Sair" styleClass="floating-button"
-						prefWidth="224" />
+						prefWidth="224" onAction="#sair"/>
 				</VBox>
 			</bottom>
 		</BorderPane>

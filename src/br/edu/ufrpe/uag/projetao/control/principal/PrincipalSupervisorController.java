@@ -14,9 +14,11 @@ import br.edu.ufrpe.uag.projetao.control.base.imagem.BaseImagemClasseListControl
 import br.edu.ufrpe.uag.projetao.control.base.imagem.BaseImagemDeteccaoListController;
 import br.edu.ufrpe.uag.projetao.control.base.texto.BaseTextoListController;
 import br.edu.ufrpe.uag.projetao.control.base.video.BaseVideoDetaccaoListController;
+import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.control.principal.util.CustomDrawerLayout;
 import br.edu.ufrpe.uag.projetao.control.principal.util.Tab;
 import br.edu.ufrpe.uag.projetao.control.principal.util.ViewPagerAdapter;
+import br.edu.ufrpe.uag.projetao.control.usuario.LoginController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -65,6 +67,14 @@ public class PrincipalSupervisorController extends Activity {
 
 	viewPager.setCurrentItem(0);
 
+    }
+    
+    @FXML
+    private void sair(){
+    	TransactionManager.setRequestSession(null);
+    	UsuarioController.currrentSupervisor = null;
+    	startActivity(LoginController.class);
+  
     }
 
 }

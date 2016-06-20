@@ -14,9 +14,11 @@ import br.edu.ufrpe.uag.projetao.control.base.imagem.BaseImagemClasseLiberacaoCo
 import br.edu.ufrpe.uag.projetao.control.base.imagem.BaseImagemDeteccaoLiberacaoController;
 import br.edu.ufrpe.uag.projetao.control.base.texto.BaseTextoLiberacaoController;
 import br.edu.ufrpe.uag.projetao.control.base.video.BaseVideoDeteccaoLiberacaoController;
+import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.control.principal.util.CustomDrawerLayout;
 import br.edu.ufrpe.uag.projetao.control.principal.util.Tab;
 import br.edu.ufrpe.uag.projetao.control.principal.util.ViewPagerAdapter;
+import br.edu.ufrpe.uag.projetao.control.usuario.LoginController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -64,5 +66,14 @@ public class PrincipalEscravoController extends Activity {
 
 	viewPager.setCurrentItem(0);
 
+    }
+    
+    
+    @FXML
+    private void sair(){
+    	TransactionManager.setRequestSession(null);
+    	UsuarioController.currentEscravo = null;
+    	startActivity(LoginController.class);
+  
     }
 }
