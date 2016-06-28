@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.1" last-position="2,0" last-zoom="0.8"
+<dbmodel pgmodeler-ver="0.8.1" last-position="1,0" last-zoom="0.8"
 	 default-schema="public" default-owner="postgres">
 <database name="PDCONSTRUCTOR" template="pdconstructor">
 </database>
@@ -493,6 +493,49 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="X1,X2,Y1,Y2,ALOCACAO_VIDEO_DETECCAO,ESCRAVO,TEMPO" ref-type="src-columns"/>
 	</constraint>
 </table>
+
+<view name="BASE_TEXTO_HISTOGRAMA">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1261.25" y="236.25"/>
+	<reference>
+		<expression><![CDATA[BASE_TEXTO.ID,BASE_TEXTO.TITULO,BASE_TEXTO.DESCRICAO,(SELECT count(*) AS TOTAL
+FROM  (
+    SELECT distinct ALOCACAO_TEXTO.ID,BASE_TEXTO.ID
+    FROM   ALOCACAO_TEXTO, ESCOLHA_CLASSE_TEXTO
+    WHERE BASE_TEXTO.ID = ALOCACAO_TEXTO.BASE_TEXTO AND ESCOLHA_CLASSE_TEXTO.ALOCACAO_TEXTO = ALOCACAO_TEXTO.ID
+    ORDER  BY BASE_TEXTO.ID
+    ) x )]]></expression>
+	</reference>
+	<reference>
+		<expression><![CDATA[BASE_TEXTO]]></expression>
+	</reference>
+	<expression type="select-exp">0</expression>
+	<expression type="from-exp">1</expression>
+</view>
+
+<view name="base_imagem_classe_histograma">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1261.25" y="315"/>
+	<reference>
+		<expression><![CDATA[ distinct BASE_IMAGEM_CLASSE.ID as ID,
+BASE_IMAGEM_CLASSE.TITULO as TITULO, 
+BASE_IMAGEM_CLASSE.DESCRICAO as DESCRICAO,
+(SELECT count(*) AS TOTAL
+ FROM  (
+     SELECT distinct ALOCACAO_IMAGEM_CLASSE.ID,BASE_IMAGEM_CLASSE.ID,escolha_imagem_classe.id
+     FROM   ALOCACAO_IMAGEM_CLASSE, ESCOLHA_IMAGEM_CLASSE  
+     WHERE BASE_IMAGEM_CLASSE.ID = ALOCACAO_IMAGEM_CLASSE.BASE_IMAGEM_CLASSE AND ESCOLHA_IMAGEM_CLASSE.ALOCACAO_IMAGEM_CLASSE = ALOCACAO_IMAGEM_CLASSE.ID
+     ORDER BY BASE_IMAGEM_CLASSE.ID
+     ) x )]]></expression>
+	</reference>
+	<reference>
+		<expression><![CDATA[BASE_IMAGEM_CLASSE]]></expression>
+	</reference>
+	<expression type="select-exp">0</expression>
+	<expression type="from-exp">1</expression>
+</view>
 
 <constraint name="USUARIO_PERFIL_FK" type="fk-constr" comparison-type="MATCH SIMPLE"
 	 upd-action="CASCADE" del-action="RESTRICT" ref-table="public.&quot;PERFIL&quot;" table="public.&quot;USUARIO&quot;">

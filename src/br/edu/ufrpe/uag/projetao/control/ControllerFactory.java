@@ -3,15 +3,19 @@
  */
 package br.edu.ufrpe.uag.projetao.control;
 
+import br.edu.ufrpe.uag.projetao.abstracts.AbstractViewController;
 import br.edu.ufrpe.uag.projetao.annotations.BaseVideoDeteccaoController;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceViewController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemDeteccao;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoVideoDeteccao;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemClasse;
+import br.edu.ufrpe.uag.projetao.model.BaseImagemClasseHistograma;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemDeteccao;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
+import br.edu.ufrpe.uag.projetao.model.BaseTextoHistograma;
 import br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccao;
 import br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.ClasssificacaoImagemClasse;
@@ -59,6 +63,8 @@ public class ControllerFactory {
     private static InterfaceController videoDeteccaoController;
     private static InterfaceController deteccaoVideoController;
     private static InterfaceController liberacaoBaseVideoDeteccaoController;
+    private static InterfaceViewController baseTextoHistograma;
+    private static InterfaceViewController baseImagemClasseHistograma;
 
     public static InterfaceController<Usuario> getUsuarioController() {
 	if (usuarioController == null) {
@@ -220,5 +226,21 @@ public class ControllerFactory {
 	}
 	return liberacaoBaseVideoDeteccaoController;
 
+    }
+
+    public static InterfaceViewController<BaseTextoHistograma> getBaseTextoHistogramaController() {
+	if (baseTextoHistograma == null) {
+	    baseTextoHistograma = new AbstractViewController("totalClassificacaoPorBaseTexto") {
+	    };
+	}
+	return baseTextoHistograma;
+    }
+
+    public static InterfaceViewController<BaseImagemClasseHistograma> getBaseImagemClasseHistogramaController() {
+	if (baseImagemClasseHistograma == null) {
+	    baseImagemClasseHistograma = new AbstractViewController("totalClassificacaoPorBaseImagemClasse") {
+	    };
+	}
+	return baseImagemClasseHistograma;
     }
 }

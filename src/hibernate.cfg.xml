@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-	<session-factory>
-		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/pdconstructor</property>
-		<property name="hibernate.connection.username">postgres</property>
-		<property name="hibernate.connection.password">si1056la</property>
-
-		<property name="hibernate.hbm2ddl.auto">update</property>
-		<property name="show_sql">true</property>
-		<property name="format_sql">true</property>
-		<property name="hibernate.current_session_context_class">thread</property>
-
-		<mapping class="br.edu.ufrpe.uag.projetao.model.Perfil" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.AlocacaoImagemClasse" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.ClasssificacaoImagemClasse" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.ImagemClasse" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemClasse" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.BaseTexto" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.AlocacaoVideoDeteccao" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.BaseImagemClasse" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.LiberacaoBaseVideoDeteccao" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.EscolhaImagemClasse" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.BaseImagemDeteccao" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.AlocacaoTexto" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.VideoDeteccao" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.ImagemDeteccao" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.DeteccaoImagem" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemDeteccao" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.Usuario" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccao" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.DeteccaoVideo" />
-		<mapping class="br.edu.ufrpe.uag.projetao.model.AlocacaoImagemDeteccao" />
-
-	</session-factory>
+ <session-factory name="">
+  <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+  <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+  <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/pdconstructor</property>
+  <property name="hibernate.connection.username">postgres</property>
+  <property name="hibernate.connection.password">si1056la</property>
+  <property name="hibernate.hbm2ddl.auto">update</property>
+  <property name="show_sql">true</property>
+  <property name="format_sql">true</property>
+  <property name="hibernate.current_session_context_class">thread</property>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.Perfil"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.AlocacaoImagemClasse"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.ClasssificacaoImagemClasse"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.ImagemClasse"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemClasse"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.BaseTexto"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.AlocacaoVideoDeteccao"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.BaseImagemClasse"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.LiberacaoBaseVideoDeteccao"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.EscolhaImagemClasse"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.BaseImagemDeteccao"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.AlocacaoTexto"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.VideoDeteccao"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.ImagemDeteccao"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.DeteccaoImagem"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemDeteccao"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.Usuario"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccao"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.DeteccaoVideo"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.AlocacaoImagemDeteccao"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.BaseTextoHistograma"/>
+  <mapping class="br.edu.ufrpe.uag.projetao.model.BaseImagemClasseHistograma"/>
+ </session-factory>
 </hibernate-configuration>
