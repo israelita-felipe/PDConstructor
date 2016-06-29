@@ -7,7 +7,8 @@ package br.edu.ufrpe.uag.projetao.abstracts;
 
 import java.util.List;
 
-import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
+import org.hibernate.Query;
+
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceViewController;
 
 /**
@@ -17,15 +18,9 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceViewController;
  */
 public abstract class AbstractViewController<T> implements InterfaceViewController<T> {
 
-    private final String namedQuery;
-
-    public AbstractViewController(String namedQuery) {
-	this.namedQuery = namedQuery;
-    }
-
     @Override
-    public List<T> getItems() {
-	return TransactionManager.getRequestSession().getNamedQuery(this.namedQuery).list();
+    public List<T> getItems(Query query) {
+	return query.list();
     }
 
 }

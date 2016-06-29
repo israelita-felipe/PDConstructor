@@ -63,8 +63,8 @@ public class ControllerFactory {
     private static InterfaceController videoDeteccaoController;
     private static InterfaceController deteccaoVideoController;
     private static InterfaceController liberacaoBaseVideoDeteccaoController;
-    private static InterfaceViewController baseTextoHistograma;
     private static InterfaceViewController baseImagemClasseHistograma;
+    private static InterfaceViewController baseTextoHistograma;
 
     public static InterfaceController<Usuario> getUsuarioController() {
 	if (usuarioController == null) {
@@ -228,19 +228,19 @@ public class ControllerFactory {
 
     }
 
-    public static InterfaceViewController<BaseTextoHistograma> getBaseTextoHistogramaController() {
-	if (baseTextoHistograma == null) {
-	    baseTextoHistograma = new AbstractViewController("totalClassificacaoPorBaseTexto") {
-	    };
-	}
-	return baseTextoHistograma;
-    }
-
     public static InterfaceViewController<BaseImagemClasseHistograma> getBaseImagemClasseHistogramaController() {
 	if (baseImagemClasseHistograma == null) {
-	    baseImagemClasseHistograma = new AbstractViewController("totalClassificacaoPorBaseImagemClasse") {
+	    baseImagemClasseHistograma = new AbstractViewController() {
 	    };
 	}
 	return baseImagemClasseHistograma;
+    }
+
+    public static InterfaceViewController<BaseTextoHistograma> getBaseTextoHistogramaController() {
+	if (baseTextoHistograma == null) {
+	    baseTextoHistograma = new AbstractViewController() {
+	    };
+	}
+	return baseTextoHistograma;
     }
 }

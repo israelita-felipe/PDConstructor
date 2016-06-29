@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.Test;
 
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
+import br.edu.ufrpe.uag.projetao.control.QueryFactory;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemClasseHistograma;
 import br.edu.ufrpe.uag.projetao.model.BaseTextoHistograma;
 
@@ -20,16 +21,16 @@ import br.edu.ufrpe.uag.projetao.model.BaseTextoHistograma;
 public class ViewControllerTest {
 
     @Test
-    public void buscaTotalDeVotacoesPorBaseTexto(){
-	List<BaseTextoHistograma> histograma = ControllerFactory.getBaseTextoHistogramaController().getItems();
-	System.out.println(histograma);
+    public void buscaTotalDeVotacoesPorBaseImagemClasse() {
+	List<BaseImagemClasseHistograma> histograma = ControllerFactory.getBaseImagemClasseHistogramaController()
+		.getItems(QueryFactory.getTodasBasesImagemClasseHistograma());
 	assertNotEquals(histograma, null);
     }
-    
+
     @Test
-    public void buscaTotalDeVotacoesPorBaseImagemClasse(){
-	List<BaseImagemClasseHistograma> histograma = ControllerFactory.getBaseImagemClasseHistogramaController().getItems();
-	System.out.println(histograma);
+    public void buscaTotalDeVotacoesPorBaseTexto() {
+	List<BaseTextoHistograma> histograma = ControllerFactory.getBaseTextoHistogramaController()
+		.getItems(QueryFactory.getTodasBasesTextoHistograma());
 	assertNotEquals(histograma, null);
     }
 }

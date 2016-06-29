@@ -310,5 +310,4 @@ public class DetachedCriteriaFactory {
 
 	return alocacoesVideoDeteccaoPorLiberacao;
     }
-
 }

@@ -7,6 +7,8 @@ package br.edu.ufrpe.uag.projetao.interfaces;
 
 import java.util.List;
 
+import org.hibernate.Query;
+
 /**
  *
  * @author israel
@@ -14,5 +16,5 @@ import java.util.List;
  */
 public interface InterfaceViewController<T> {
 
-    List<T> getItems();
+    List<T> getItems(Query query);
 }

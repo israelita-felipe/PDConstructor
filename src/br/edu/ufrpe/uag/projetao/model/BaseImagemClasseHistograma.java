@@ -5,6 +5,7 @@ package br.edu.ufrpe.uag.projetao.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
@@ -14,32 +15,20 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
  *
  */
 @Entity
-@NamedNativeQuery(name = "totalClassificacaoPorBaseImagemClasse", query = "select * from BASE_IMAGEM_CLASSE_HISTOGRAMA", resultClass = BaseImagemClasseHistograma.class)
+@NamedNativeQueries(value = {
+	@NamedNativeQuery(query = "select * from base_imagem_classe_histograma", name = "baseImagemClasseHistograma", resultClass = BaseImagemClasseHistograma.class),
+	@NamedNativeQuery(query = "select * from base_imagem_classe_histograma where id = :base", name = "baseImagemClasseHistogramaPorBase", resultClass = BaseImagemClasseHistograma.class) })
 public class BaseImagemClasseHistograma implements InterfaceEntity {
 
     private int id;
     private String titulo;
     private String descricao;
+    private String classe;
     private int total;
+    private int supervisor;
 
     public BaseImagemClasseHistograma() {
 
-    }
-
-    /**
-     * @return the id
-     */
-    @Id
-    public int getId() {
-	return id;
-    }
-
-    /**
-     * @param id
-     *            the id to set
-     */
-    public void setId(int id) {
-	this.id = id;
     }
 
     /**
@@ -87,6 +76,53 @@ public class BaseImagemClasseHistograma implements InterfaceEntity {
 	this.total = total;
     }
 
+    /**
+     * @return the base
+     */
+    @Id
+    public int getId() {
+	return id;
+    }
+
+    /**
+     * @param base
+     *            the base to set
+     */
+    public void setId(int id) {
+	this.id = id;
+    }
+
+    /**
+     * @return the classe
+     */
+    @Id
+    public String getClasse() {
+	return classe;
+    }
+
+    /**
+     * @param classe
+     *            the classe to set
+     */
+    public void setClasse(String classe) {
+	this.classe = classe;
+    }
+
+    /**
+     * @return the supervisor
+     */
+    public int getSupervisor() {
+	return supervisor;
+    }
+
+    /**
+     * @param supervisor
+     *            the supervisor to set
+     */
+    public void setSupervisor(int supervisor) {
+	this.supervisor = supervisor;
+    }
+
     /*
      * (non-Javadoc)
      * 
@@ -96,8 +132,10 @@ public class BaseImagemClasseHistograma implements InterfaceEntity {
     public int hashCode() {
 	final int prime = 31;
 	int result = 1;
+	result = prime * result + ((classe == null) ? 0 : classe.hashCode());
 	result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 	result = prime * result + id;
+	result = prime * result + supervisor;
 	result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
 	result = prime * result + total;
 	return result;
@@ -120,6 +158,13 @@ public class BaseImagemClasseHistograma implements InterfaceEntity {
 	    return false;
 	}
 	BaseImagemClasseHistograma other = (BaseImagemClasseHistograma) obj;
+	if (classe == null) {
+	    if (other.classe != null) {
+		return false;
+	    }
+	} else if (!classe.equals(other.classe)) {
+	    return false;
+	}
 	if (descricao == null) {
 	    if (other.descricao != null) {
 		return false;
@@ -128,6 +173,9 @@ public class BaseImagemClasseHistograma implements InterfaceEntity {
 	    return false;
 	}
 	if (id != other.id) {
+	    return false;
+	}
+	if (supervisor != other.supervisor) {
 	    return false;
 	}
 	if (titulo == null) {
@@ -150,8 +198,8 @@ public class BaseImagemClasseHistograma implements InterfaceEntity {
      */
     @Override
     public String toString() {
-	return "BaseImagemClasseHistograma [id=" + id + ", titulo=" + titulo + ", descricao=" + descricao + ", total="
-		+ total + "]";
+	return "BaseImagemClasseHistograma [id=" + id + ", titulo=" + titulo + ", descricao=" + descricao + ", classe="
+		+ classe + ", total=" + total + ", supervisor=" + supervisor + "]";
     }
 
 }

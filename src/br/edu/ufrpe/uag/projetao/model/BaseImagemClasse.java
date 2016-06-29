@@ -36,6 +36,7 @@ public class BaseImagemClasse implements InterfaceEntity {
     private String descricao;
     private Set<LiberacaoBaseImagemClasse> liberacaoBaseImagemClasses = new HashSet<>(0);
     private Set<AlocacaoImagemClasse> alocacaoImagemClasses = new HashSet<>(0);
+    private Set<BaseImagemClasseHistograma> baseImagemClasseHistogramas = new HashSet<>(0);
 
     public BaseImagemClasse() {
     }
