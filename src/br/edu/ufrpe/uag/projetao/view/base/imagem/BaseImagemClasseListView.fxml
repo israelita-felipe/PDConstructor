@@ -45,6 +45,7 @@
 						<items>
 							<MenuItem text="Excluir" onAction="#excluir" />
 							<MenuItem text="Liberar para" onAction="#liberar" />
+							<MenuItem text="Relatório" onAction="#relatorio" />
 						</items>
 					</ContextMenu>
 				</contextMenu>

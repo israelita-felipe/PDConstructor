@@ -29,6 +29,7 @@ import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -40,6 +41,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  * @author israel
@@ -361,4 +363,17 @@ public class BaseImagemClasseListController extends Fragment {
 	}
     }
 
+    @FXML
+    private void relatorio() {
+	if (basesImagemClasse.getSelectionModel().getSelectedItem() != null) {
+	    Stage dialogStage = new Stage();
+	    dialogStage.setTitle("Bases de imagens");
+
+	    Scene scene = new Scene(BaseGraficosFactory
+		    .getBaseImagemClasseHistograma(basesImagemClasse.getSelectionModel().getSelectedItem()));
+	    dialogStage.setScene(scene);
+
+	    dialogStage.show();
+	}
+    }
 }
