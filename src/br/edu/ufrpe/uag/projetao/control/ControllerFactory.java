@@ -4,7 +4,6 @@
 package br.edu.ufrpe.uag.projetao.control;
 
 import br.edu.ufrpe.uag.projetao.abstracts.AbstractViewController;
-import br.edu.ufrpe.uag.projetao.annotations.BaseVideoDeteccaoController;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceViewController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemClasse;

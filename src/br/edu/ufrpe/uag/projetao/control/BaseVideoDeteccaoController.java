@@ -1,4 +1,4 @@
-package br.edu.ufrpe.uag.projetao.annotations;
+package br.edu.ufrpe.uag.projetao.control;
 
 import br.edu.ufrpe.uag.projetao.abstracts.AbstractController;
 import br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccao;

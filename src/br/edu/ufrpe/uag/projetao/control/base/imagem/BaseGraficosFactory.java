@@ -99,42 +99,5 @@ public class BaseGraficosFactory {
 
 		return histograma;
 	}
-
-	/**
-	 * 
-	 * @param base
-	 * @return
-	 */
-	public static BarChart getBaseImagemDeteccaoHistograma(BaseImagemDeteccao base) {
-
-		// criando os componentes do gráfico
-		CategoryAxis xAxis = new CategoryAxis();
-		NumberAxis yAxis = new NumberAxis();
-		BarChart<String, Number> histograma = new BarChart<>(xAxis, yAxis);
-		
-		
-		
-		// buscando os dados no banco
-		ObservableList<BaseImagemDeteccao> listagem = FXCollections
-				.observableList(ControllerFactory.getBaseImagemDeteccaoController()
-						.getItemsFromCriteria(DetachedCriteriaFactory));
-
-		// criando uma série de dados
-		XYChart.Series<String, Number> series = new XYChart.Series<>();
-		series.setName(base.getTitulo());
-
-		// preenchendo a série com as informações do banco
-		for (BaseImagemClasseHistograma bich : listagem) {
-			series.getData().add(new XYChart.Data<>(bich.getClasse(), bich.getTotal()));
-		}
-
-		// colocando os títulos
-		xAxis.setLabel("Classes");
-		yAxis.setLabel("Nº de Classificações");
-
-		// atribuindo a série ao gráfico
-		histograma.getData().add(series);
-
-		return histograma;
-	}
+	
 }
