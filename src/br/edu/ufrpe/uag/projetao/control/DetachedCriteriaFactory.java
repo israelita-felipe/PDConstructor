@@ -3,20 +3,33 @@
  */
 package br.edu.ufrpe.uag.projetao.control;
 
-import org.hibernate.Criteria;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
 import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemClasse;
+import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemDeteccao;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
+import br.edu.ufrpe.uag.projetao.model.AlocacaoVideoDeteccao;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemClasse;
+import br.edu.ufrpe.uag.projetao.model.BaseImagemDeteccao;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
+import br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccao;
 import br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.ClasssificacaoImagemClasse;
+import br.edu.ufrpe.uag.projetao.model.DeteccaoImagem;
+import br.edu.ufrpe.uag.projetao.model.DeteccaoVideo;
 import br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto;
+import br.edu.ufrpe.uag.projetao.model.EscolhaImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemClasse;
+import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemDeteccao;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto;
+import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseVideoDeteccao;
+import br.edu.ufrpe.uag.projetao.model.Perfil;
 import br.edu.ufrpe.uag.projetao.model.Usuario;
+import br.edu.ufrpe.uag.projetao.view.util.SHA256;
 
 /**
  * @author israel
@@ -63,7 +76,7 @@ public class DetachedCriteriaFactory {
 
     public static DetachedCriteria getTodosEscravos() {
 	if (todosEscravos == null) {
-	    todosEscravos = getDetachedCriteriaUsuarioPorPerfil("ESCRAVO");
+	    todosEscravos = getDetachedCriteriaUsuarioPorPerfil("CLASSIFICADOR");
 	}
 	return todosEscravos;
     }
@@ -175,16 +188,126 @@ public class DetachedCriteriaFactory {
      * @param senha
      * @return lista de usuários com senha e email passados como parâmetro
      */
-    public static DetachedCriteria getUsuario(String email, String senha) {
-	return DetachedCriteria.forClass(Usuario.class).add(Restrictions.eq("email", email))
-		.add(Restrictions.eq("senha", senha));
+    public static DetachedCriteria getUsuario(String email, String senha, Perfil perfil) {
+	try {
+	    return DetachedCriteria.forClass(Usuario.class).add(Restrictions.eq("email", email))
+		    .add(Restrictions.eq("senha", SHA256.encode(senha)))
+		    .add(Restrictions.eq("perfil.nome", perfil.getNome()));
+	} catch (NoSuchAlgorithmException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	} catch (UnsupportedEncodingException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+	return null;
     }
 
     public static DetachedCriteria getLiberacoesPorBaseDeImagemClasse(BaseImagemClasse base) {
-	DetachedCriteria usuariosComLiberacoesPorBaseDeTexto = DetachedCriteria
+	DetachedCriteria usuariosComLiberacoesPorBaseDeImagemClasse = DetachedCriteria
 		.forClass(LiberacaoBaseImagemClasse.class).add(Restrictions.eq("baseImagemClasse.id", base.getId()));
 
-	return usuariosComLiberacoesPorBaseDeTexto;
+	return usuariosComLiberacoesPorBaseDeImagemClasse;
     }
 
+    public static DetachedCriteria getBasesImagemDeteccaoDoUsuario(Usuario usuario) {
+	DetachedCriteria basesImagemClasseDoUsuario = getDetachedCriteriaBase(BaseImagemDeteccao.class, usuario);
+
+	return basesImagemClasseDoUsuario;
+    }
+
+    public static DetachedCriteria getLiberacoesPorBaseDeImagemDeteccao(BaseImagemDeteccao base) {
+	DetachedCriteria usuariosComLiberacoesPorBaseDeImagemDeteccao = DetachedCriteria
+		.forClass(LiberacaoBaseImagemDeteccao.class)
+		.add(Restrictions.eq("baseImagemDeteccao.id", base.getId()));
+
+	return usuariosComLiberacoesPorBaseDeImagemDeteccao;
+    }
+
+    public static DetachedCriteria getLiberacoesBaseImagemDeteccaoDoEscravo(Usuario usuario) {
+	DetachedCriteria liberacaoBasesImagemDeteccaoDoEscravo = getDetachedCriteriaLiberacaoBasePorEscravo(
+		LiberacaoBaseImagemDeteccao.class, usuario);
+
+	return liberacaoBasesImagemDeteccaoDoEscravo;
+    }
+
+    public static DetachedCriteria getAlocacoesImagemDeteccaoPorLiberacao(LiberacaoBaseImagemDeteccao liberacao) {
+	DetachedCriteria alocacoesImagemDeteccaoPorLiberacao = DetachedCriteria
+		.forClass(LiberacaoBaseImagemDeteccao.class)
+		.add(Restrictions.eq("usuarioByEscravo.id", liberacao.getUsuarioByEscravo().getId()))
+		.forClass(AlocacaoImagemDeteccao.class)
+		.add(Restrictions.eq("baseImagemDeteccao.id", liberacao.getBaseImagemDeteccao().getId()));
+
+	return alocacoesImagemDeteccaoPorLiberacao;
+    }
+
+    public static DetachedCriteria getDeteccaoImagemPorEscravoEAlocacao(Usuario escravo,
+	    AlocacaoImagemDeteccao alocacao) {
+	DetachedCriteria deteccaoImagemClassePorEscravoEAlocacao = DetachedCriteria.forClass(DeteccaoImagem.class)
+		.add(Restrictions.eq("usuario.id", escravo.getId()))
+		.add(Restrictions.eq("alocacaoImagemDeteccao.id", alocacao.getId()));
+
+	return deteccaoImagemClassePorEscravoEAlocacao;
+    }
+
+    public static DetachedCriteria getDeteccaoImagemPorAlocacao(AlocacaoImagemDeteccao alocacaoImagemDeteccao) {
+	DetachedCriteria deteccaoImagemPorAlocacao = DetachedCriteria.forClass(DeteccaoImagem.class)
+		.add(Restrictions.eq("alocacaoImagemDeteccao.id", alocacaoImagemDeteccao.getId()));
+	return deteccaoImagemPorAlocacao;
+    }
+
+    public static DetachedCriteria getEscolhaImagemClassePorLiberacaoEAlocacao(LiberacaoBaseImagemClasse liberacao,
+	    AlocacaoImagemClasse alocacao) {
+	return DetachedCriteria.forClass(LiberacaoBaseImagemClasse.class)
+		.add(Restrictions.eq("usuarioByEscravo.id", liberacao.getUsuarioByEscravo().getId()))
+		.add(Restrictions.eq("baseImagemClasse.id", alocacao.getBaseImagemClasse().getId()))
+		.forClass(EscolhaImagemClasse.class).add(Restrictions.eq("alocacaoImagemClasse.id", alocacao.getId()));
+    }
+
+    public static DetachedCriteria getEscolhaImagemClassePorUsuarioEAlocacao(Usuario usuario,
+	    AlocacaoImagemClasse alocacao) {
+	return DetachedCriteria.forClass(ClasssificacaoImagemClasse.class)
+		.add(Restrictions.eq("usuario.id", usuario.getId()))
+		.add(Restrictions.eq("alocacaoImagemClasse.id", alocacao.getId())).forClass(EscolhaImagemClasse.class)
+		.add(Restrictions.eq("alocacaoImagemClasse.id", alocacao.getId()));
+    }
+
+    public static DetachedCriteria getBasesVideoDeteccaoDoUsuario(Usuario usuario) {
+	DetachedCriteria basesVideoClasseDoUsuario = getDetachedCriteriaBase(BaseVideoDeteccao.class, usuario);
+
+	return basesVideoClasseDoUsuario;
+    }
+
+    public static DetachedCriteria getLiberacoesBaseVideoDeteccaoDoEscravo(Usuario usuario) {
+	DetachedCriteria liberacaoBasesVideoDeteccaoDoEscravo = getDetachedCriteriaLiberacaoBasePorEscravo(
+		LiberacaoBaseVideoDeteccao.class, usuario);
+
+	return liberacaoBasesVideoDeteccaoDoEscravo;
+    }
+
+    public static DetachedCriteria getLiberacoesPorBaseDeVideoDeteccao(BaseVideoDeteccao base) {
+	DetachedCriteria usuariosComLiberacoesPorBaseDeVideoDeteccao = DetachedCriteria
+		.forClass(LiberacaoBaseVideoDeteccao.class).add(Restrictions.eq("baseVideoDeteccao.id", base.getId()));
+
+	return usuariosComLiberacoesPorBaseDeVideoDeteccao;
+    }
+
+    public static DetachedCriteria getDeteccaoVideoPorEscravoEAlocacao(Usuario escravo,
+	    AlocacaoVideoDeteccao alocacao) {
+	DetachedCriteria deteccaoVideoClassePorEscravoEAlocacao = DetachedCriteria.forClass(DeteccaoVideo.class)
+		.add(Restrictions.eq("usuario.id", escravo.getId()))
+		.add(Restrictions.eq("alocacaoVideoDeteccao.id", alocacao.getId()));
+
+	return deteccaoVideoClassePorEscravoEAlocacao;
+    }
+
+    public static DetachedCriteria getAlocacoesVideoDeteccaoPorLiberacao(LiberacaoBaseVideoDeteccao liberacao) {
+	DetachedCriteria alocacoesVideoDeteccaoPorLiberacao = DetachedCriteria
+		.forClass(LiberacaoBaseVideoDeteccao.class)
+		.add(Restrictions.eq("usuarioByEscravo.id", liberacao.getUsuarioByEscravo().getId()))
+		.forClass(AlocacaoVideoDeteccao.class)
+		.add(Restrictions.eq("baseVideoDeteccao.id", liberacao.getBaseVideoDeteccao().getId()));
+
+	return alocacoesVideoDeteccaoPorLiberacao;
+    }
 }

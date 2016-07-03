@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+
+<?import org.kairos.components.TextInputLayout?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import org.kairos.components.MaterialButton?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Hyperlink?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" prefWidth="800"
+	prefHeight="600" spacing="8" alignment="center"
+	stylesheets="/br/edu/ufrpe/uag/projetao/view/css/controls.css">
+
+	<VBox styleClass="paper-material"
+		style="-fx-padding:16px;-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.16), 5, 0, 0, 2);"
+		prefHeight="450" prefWidth="400" maxHeight="450" maxWidth="400">
+
+		<Label text="Cadastrar-se" styleClass="title" />
+		<VBox styleClass="paper-content" spacing="8">
+
+			<ComboBox fx:id="perfil" promptText="Perfil de usuário"
+				prefWidth="368" />
+
+			<TextInputLayout>
+				<TextField fx:id="nome" promptText="Nome" />
+			</TextInputLayout>
+
+			<TextInputLayout>
+				<TextField fx:id="email" promptText="E-mail" />
+			</TextInputLayout>
+
+			<TextInputLayout>
+				<PasswordField fx:id="senha" promptText="Senha" />
+			</TextInputLayout>
+
+			<TextInputLayout>
+				<PasswordField fx:id="confirmaSenha" promptText="Confirme sua senha" />
+			</TextInputLayout>
+			<BorderPane>
+				<right>
+					<MaterialButton text="Salvar" onAction="#cadastrar" />
+				</right>
+				<left>
+					<Hyperlink text="Cancelar" onAction="#login" />
+				</left>
+			</BorderPane>
+
+		</VBox>
+	</VBox>
+</VBox>
+

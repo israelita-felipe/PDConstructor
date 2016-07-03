@@ -1,8 +1,6 @@
 package br.edu.ufrpe.uag.projetao.model;
 // Generated 27/05/2016 19:57:54 by Hibernate Tools 4.3.1
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,7 +16,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
  */
 @Entity
 @Table(name = "liberacao_base_imagem_deteccao", schema = "public")
-public class LiberacaoBaseImagemDeteccao implements InterfaceEntity, Serializable {
+public class LiberacaoBaseImagemDeteccao implements InterfaceEntity {
 
     private BaseImagemDeteccao baseImagemDeteccao;
     private Usuario usuarioBySupervisor;
@@ -137,8 +135,8 @@ public class LiberacaoBaseImagemDeteccao implements InterfaceEntity, Serializabl
      */
     @Override
     public String toString() {
-	return "LiberacaoBaseImagemDeteccao [baseImagemDeteccao=" + baseImagemDeteccao + ", usuarioBySupervisor="
-		+ usuarioBySupervisor + ", usuarioByEscravo=" + usuarioByEscravo + ", status=" + status + "]";
+	return "Base: " + baseImagemDeteccao + ", Supervisor: " + usuarioBySupervisor + ", Escravo: " + usuarioByEscravo
+		+ "]";
     }
 
 }

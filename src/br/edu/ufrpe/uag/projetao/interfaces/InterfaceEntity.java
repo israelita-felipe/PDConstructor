@@ -1,5 +1,7 @@
 package br.edu.ufrpe.uag.projetao.interfaces;
 
+import java.io.Serializable;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,7 +11,7 @@ package br.edu.ufrpe.uag.projetao.interfaces;
  *
  * @author Israel Araújo
  */
-public interface InterfaceEntity {
+public interface InterfaceEntity extends Serializable {
 
     @Override
     public boolean equals(Object obj);

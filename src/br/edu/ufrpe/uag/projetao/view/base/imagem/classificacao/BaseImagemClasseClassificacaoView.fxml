@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import org.kairos.core.Fragment?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kairos.components.MaterialButton?>
+
+<fx:root type="Fragment" xmlns:fx="http://javafx.com/fxml/1"
+	xmlns="http://javafx.com/javafx/8.0.65" stylesheets="/br/edu/ufrpe/uag/projetao/view/css/controls.css">
+
+	<VBox AnchorPane.topAnchor="16" AnchorPane.rightAnchor="16"
+		AnchorPane.bottomAnchor="16" AnchorPane.leftAnchor="16" spacing="8">
+		<children>
+			<HBox spacing="8" style="-fx-padding:0 0 16 0">
+				<children>
+					<MaterialButton text="Voltar" onAction="#list" />
+				</children>
+			</HBox>
+			<Pagination fx:id="pagination" VBox.vgrow="ALWAYS"
+				AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0"
+				AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" />
+		</children>
+	</VBox>
+</fx:root>
+

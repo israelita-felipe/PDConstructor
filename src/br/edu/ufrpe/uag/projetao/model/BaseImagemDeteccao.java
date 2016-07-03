@@ -1,19 +1,21 @@
 package br.edu.ufrpe.uag.projetao.model;
 // Generated 27/05/2016 19:57:54 by Hibernate Tools 4.3.1
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceBase;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 
 /**
@@ -21,7 +23,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
  */
 @Entity
 @Table(name = "base_imagem_deteccao", schema = "public")
-public class BaseImagemDeteccao implements InterfaceEntity, Serializable {
+public class BaseImagemDeteccao implements InterfaceEntity ,InterfaceBase{
 
     private int id;
     private Usuario usuario;
@@ -52,7 +54,7 @@ public class BaseImagemDeteccao implements InterfaceEntity, Serializable {
     }
 
     @Id
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     public int getId() {
 	return this.id;
@@ -175,8 +177,7 @@ public class BaseImagemDeteccao implements InterfaceEntity, Serializable {
      */
     @Override
     public String toString() {
-	return "BaseImagemDeteccao [id=" + id + ", usuario=" + usuario + ", titulo=" + titulo + ", descricao="
-		+ descricao + "]";
+	return this.titulo;
     }
 
 }

@@ -21,26 +21,30 @@ import br.edu.ufrpe.uag.projetao.view.jdialog.CriarBaseClassificacaoImagemClasse
  */
 public class NovaBaseImagemClasseActionListener implements ActionListener {
 
-	private GenericTable<BaseImagemClasse> table;
+    private GenericTable<BaseImagemClasse> table;
 
-	/**
-	 * @param genericTable 
-	 * 
-	 */
-	public NovaBaseImagemClasseActionListener(GenericTable<BaseImagemClasse> table) {
-		this.table = table;
-	}
+    /**
+     * @param genericTable
+     * 
+     */
+    public NovaBaseImagemClasseActionListener(GenericTable<BaseImagemClasse> table) {
+	this.table = table;
+    }
 
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		new CriarBaseClassificacaoImagemClasseJDialog().setVisible(true);
-		table.clear();
-		table.addAll(new LinkedList<>(
-			((InterfaceController<BaseImagemClasse>) ControllerFactory.getBaseImagemClasseController()).getItemsFromCriteria(
-				DetachedCriteriaFactory.getBasesImagemClasseDoUsuario(UsuarioController.currrentSupervisor))));
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+	new CriarBaseClassificacaoImagemClasseJDialog().setVisible(true);
+	table.clear();
+	table.addAll(new LinkedList<>(
+		((InterfaceController<BaseImagemClasse>) ControllerFactory.getBaseImagemClasseController())
+			.getItemsFromCriteria(DetachedCriteriaFactory
+				.getBasesImagemClasseDoUsuario(UsuarioController.currrentSupervisor))));
+    }
 
 }

@@ -18,35 +18,35 @@ import br.edu.ufrpe.uag.projetao.view.filter.ImagemFileFilter;
  *
  */
 public class AdicionaImagemActionListener implements ActionListener {
-	private JFileChooser chooser;
-	private JList<File> listaDeArquivos;
+    private JFileChooser chooser;
+    private JList<File> listaDeArquivos;
 
-	/**
-	 * 
-	 */
-	public AdicionaImagemActionListener(JList<File> listaDeArquivos) {
+    /**
+     * 
+     */
+    public AdicionaImagemActionListener(JList<File> listaDeArquivos) {
 
-		this.listaDeArquivos = listaDeArquivos;
+	this.listaDeArquivos = listaDeArquivos;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+	this.chooser = new JFileChooser();
+	this.chooser.setMultiSelectionEnabled(true);
+	this.chooser.setAcceptAllFileFilterUsed(false);
+	this.chooser.addChoosableFileFilter(new ImagemFileFilter());
+
+	this.chooser.showOpenDialog(null);
+	for (File f : this.chooser.getSelectedFiles()) {
+	    ((DefaultListModel<File>) this.listaDeArquivos.getModel()).addElement(f);
+
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		this.chooser = new JFileChooser();
-		this.chooser.setMultiSelectionEnabled(true);
-		this.chooser.setAcceptAllFileFilterUsed(false);
-		this.chooser.addChoosableFileFilter(new ImagemFileFilter());
-
-		this.chooser.showOpenDialog(null);
-		for (File f : this.chooser.getSelectedFiles()) {
-			((DefaultListModel<File>) this.listaDeArquivos.getModel()).addElement(f);
-
-		}
-	}
+    }
 
 }

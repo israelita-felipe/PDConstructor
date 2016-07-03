@@ -1,0 +1,43 @@
+
+<?import javafx.scene.layout.VBox?>
+<?import org.kairos.layouts.SlidingTabLayout?>
+<?import org.kairos.layouts.ViewPager?>
+<?import org.kairos.Toolbar?>
+<?import org.kairos.layouts.DrawerLayout?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import org.kairos.components.MaterialButton?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.layout.BorderPane?>
+<?import br.edu.ufrpe.uag.projetao.control.principal.util.CustomDrawerLayout?>
+
+<CustomDrawerLayout xmlns:fx="http://javafx.com/fxml"
+	prefWidth="800" prefHeight="600" fx:id="drawer"
+	stylesheets="/br/edu/ufrpe/uag/projetao/view/css/controls.css">
+	<content>
+		<VBox spacing="8" alignment="TOP_CENTER">
+			<Toolbar fx:id="toolbar">
+				<SlidingTabLayout fx:id="tabLayout" />
+			</Toolbar>
+			<ViewPager fx:id="viewPager" VBox.vgrow="ALWAYS" />
+		</VBox>
+	</content>
+	<nav>
+		<BorderPane styleClass="navigation-drawer">
+			<top>
+				<VBox styleClass="navigation-drawer-header" alignment="BOTTOM_LEFT">
+					<VBox prefHeight="56" prefWidth="224" alignment="BOTTOM_LEFT">
+						<Label fx:id="usuarioNome" prefWidth="224" styleClass="nome" />
+						<Label fx:id="usuarioEmail" prefWidth="224" styleClass="email" />
+					</VBox>
+				</VBox>
+			</top>
+			<bottom>
+				<VBox prefWidth="256" spacing="8" alignment="TOP_CENTER" style="-fx-padding:16px">
+					<MaterialButton text="Sair" styleClass="floating-button"
+						prefWidth="224" onAction="#sair"/>
+				</VBox>
+			</bottom>
+		</BorderPane>
+	</nav>
+</CustomDrawerLayout>

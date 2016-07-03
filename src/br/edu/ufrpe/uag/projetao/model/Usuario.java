@@ -26,7 +26,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 @Tabela
 @Entity
 @Table(name = "usuario", schema = "public")
-public class Usuario implements java.io.Serializable, InterfaceEntity {
+public class Usuario implements InterfaceEntity {
 
     private int id;
     private Perfil perfil;
@@ -56,6 +56,14 @@ public class Usuario implements java.io.Serializable, InterfaceEntity {
 	    0);
     private Set<LiberacaoBaseTexto> liberacaoBaseTextosForSupervisor = new HashSet<LiberacaoBaseTexto>(0);
     private Set<BaseImagemClasse> baseImagemClasses = new HashSet<BaseImagemClasse>(0);
+    private Set<AlocacaoVideoDeteccao> alocacaoVideoDeteccaos = new HashSet<AlocacaoVideoDeteccao>(0);
+    private Set<DeteccaoVideo> deteccaoVideos = new HashSet<DeteccaoVideo>(0);
+    private Set<LiberacaoBaseVideoDeteccao> liberacaoBaseVideoDeteccaosForSupervisor = new HashSet<LiberacaoBaseVideoDeteccao>(
+	    0);
+    private Set<VideoDeteccao> videoDeteccaos = new HashSet<VideoDeteccao>(0);
+    private Set<BaseVideoDeteccao> baseVideoDeteccaos = new HashSet<BaseVideoDeteccao>(0);
+    private Set<LiberacaoBaseVideoDeteccao> liberacaoBaseVideoDeteccaosForEscravo = new HashSet<LiberacaoBaseVideoDeteccao>(
+	    0);
 
     public Usuario() {
     }
@@ -270,6 +278,62 @@ public class Usuario implements java.io.Serializable, InterfaceEntity {
 
     public void setBaseImagemClasses(Set<BaseImagemClasse> baseImagemClasses) {
 	this.baseImagemClasses = baseImagemClasses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    public Set<AlocacaoVideoDeteccao> getAlocacaoVideoDeteccaos() {
+	return this.alocacaoVideoDeteccaos;
+    }
+
+    public void setAlocacaoVideoDeteccaos(Set<AlocacaoVideoDeteccao> alocacaoVideoDeteccaos) {
+	this.alocacaoVideoDeteccaos = alocacaoVideoDeteccaos;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    public Set<DeteccaoVideo> getDeteccaoVideos() {
+	return this.deteccaoVideos;
+    }
+
+    public void setDeteccaoVideos(Set<DeteccaoVideo> deteccaoVideos) {
+	this.deteccaoVideos = deteccaoVideos;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioBySupervisor")
+    public Set<LiberacaoBaseVideoDeteccao> getLiberacaoBaseVideoDeteccaosForSupervisor() {
+	return this.liberacaoBaseVideoDeteccaosForSupervisor;
+    }
+
+    public void setLiberacaoBaseVideoDeteccaosForSupervisor(
+	    Set<LiberacaoBaseVideoDeteccao> liberacaoBaseVideoDeteccaosForSupervisor) {
+	this.liberacaoBaseVideoDeteccaosForSupervisor = liberacaoBaseVideoDeteccaosForSupervisor;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    public Set<VideoDeteccao> getVideoDeteccaos() {
+	return this.videoDeteccaos;
+    }
+
+    public void setVideoDeteccaos(Set<VideoDeteccao> videoDeteccaos) {
+	this.videoDeteccaos = videoDeteccaos;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    public Set<BaseVideoDeteccao> getBaseVideoDeteccaos() {
+	return this.baseVideoDeteccaos;
+    }
+
+    public void setBaseVideoDeteccaos(Set<BaseVideoDeteccao> baseVideoDeteccaos) {
+	this.baseVideoDeteccaos = baseVideoDeteccaos;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioByEscravo")
+    public Set<LiberacaoBaseVideoDeteccao> getLiberacaoBaseVideoDeteccaosForEscravo() {
+	return this.liberacaoBaseVideoDeteccaosForEscravo;
+    }
+
+    public void setLiberacaoBaseVideoDeteccaosForEscravo(
+	    Set<LiberacaoBaseVideoDeteccao> liberacaoBaseVideoDeteccaosForEscravo) {
+	this.liberacaoBaseVideoDeteccaosForEscravo = liberacaoBaseVideoDeteccaosForEscravo;
     }
 
     @Override

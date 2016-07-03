@@ -71,7 +71,7 @@ public class NovaClassificacaoImagemClasseActionListener implements ActionListen
 		BufferedImage imagem = ImagemDigital
 			.toImage(paginador.getAlocacaoAtual().getImagemClasse().getObjeto());
 		if (imagem != null) {
-		  
+
 		    imagem = ImagemDigital.resize(imagem, ImagemDigital.getWidth(), ImagemDigital.getHeight());
 		    classificacaoBaseImagemClasseDialog.getMediaComponet().getImagemLabel()
 			    .setIcon(new ImageIcon(imagem));

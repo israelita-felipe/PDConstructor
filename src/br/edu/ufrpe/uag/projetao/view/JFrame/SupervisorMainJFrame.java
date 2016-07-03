@@ -92,7 +92,7 @@ public class SupervisorMainJFrame {
 
 	mntmTexto = new JMenuItem("Texto");
 	mnCriar.add(mntmTexto);
-	
+
 	mntmClassificaoDeImagem = new JMenuItem("Classifica\u00E7\u00E3o de Imagem");
 	mnCriar.add(mntmClassificaoDeImagem);
 
@@ -139,39 +139,40 @@ public class SupervisorMainJFrame {
 	scrollPane.setViewportView(baseTextoJTable);
 
 	GerenciadorDePopUp.addPopup(baseTextoJTable, popupMenu);
-	
+
 	panel_2 = new JPanel();
 	tabbedPane.addTab("Bases de Imagens", null, panel_2, null);
 	panel_2.setLayout(new BorderLayout(0, 0));
-	
+
 	scrollPane_1 = new JScrollPane();
 	panel_2.add(scrollPane_1);
-	
-	baseImagemClasseJTable = new GenericTable<BaseImagemClasse>(ControllerFactory.getBaseImagemClasseController().getItemsFromCriteria(
+
+	baseImagemClasseJTable = new GenericTable<BaseImagemClasse>(
+		ControllerFactory.getBaseImagemClasseController().getItemsFromCriteria(
 			DetachedCriteriaFactory.getBasesImagemClasseDoUsuario(UsuarioController.currrentSupervisor)));
-		scrollPane.setViewportView(baseTextoJTable);
+	scrollPane.setViewportView(baseTextoJTable);
 	scrollPane_1.setViewportView(baseImagemClasseJTable);
-	
+
 	popupMenu_1 = new JPopupMenu();
 	GerenciadorDePopUp.addPopup(baseImagemClasseJTable, popupMenu_1);
-	
+
 	mntmEditar_1 = new JMenuItem("Editar");
 	popupMenu_1.add(mntmEditar_1);
-	
+
 	mntmExcluir_1 = new JMenuItem("Excluir");
 	popupMenu_1.add(mntmExcluir_1);
-	
+
 	mntmLiberarPara_1 = new JMenuItem("Liberar Para");
 	popupMenu_1.add(mntmLiberarPara_1);
 
     }
 
     private void addListeners() {
-    	
-    	//Atribuição na base de Texto
+
+	// Atribuição na base de Texto
 
 	getCriarBaseTextoMenuItem().addActionListener(new NovaBaseTextoActionListener(getBaseTextoTable()));
-	
+
 	getEditarPopMenuItem().addActionListener(new EditarBaseTextoActionListener(getBaseTextoTable()));
 
 	getExcluirPopMenuItem().addActionListener(new ExcluirBaseTextoActionListener(getBaseTextoTable()));
@@ -180,17 +181,15 @@ public class SupervisorMainJFrame {
 
 	getLiberarBaseParaPopMenuItem()
 		.addActionListener(new NovaLiberacaoBaseTextoActionListener(getBaseTextoTable()));
-	
-	 //Atribuição na base de imagem classe
-	
-	getCriarBaseClassificacaoDeImagemMenuItem().addActionListener(new NovaBaseImagemClasseActionListener(getBaseImagemClasseJTable()));
-	
-	getLiberarBaseImagemClasseMenuItem()
-	.addActionListener(new NovaLiberacaoBaseImagemClasseActionListener(getBaseImagemClasseJTable()));
-	
-	
 
-	
+	// Atribuição na base de imagem classe
+
+	getCriarBaseClassificacaoDeImagemMenuItem()
+		.addActionListener(new NovaBaseImagemClasseActionListener(getBaseImagemClasseJTable()));
+
+	getLiberarBaseImagemClasseMenuItem()
+		.addActionListener(new NovaLiberacaoBaseImagemClasseActionListener(getBaseImagemClasseJTable()));
+
     }
 
     public JMenuItem getCriarBaseTextoMenuItem() {
@@ -224,23 +223,28 @@ public class SupervisorMainJFrame {
     public JMenuItem getLiberarBaseParaPopMenuItem() {
 	return mntmLiberarPara;
     }
-	public JMenuItem getCriarBaseClassificacaoDeImagemMenuItem() {
-		return mntmClassificaoDeImagem;
-	}
-	public GenericTable getBaseImagemClasseJTable() {
-		return baseImagemClasseJTable;
-	}
 
-	public JPopupMenu getPopupImagemClasse() {
-		return popupMenu_1;
-	}
-	public JMenuItem getEditarBaseImagemClasseMenuItem() {
-		return mntmEditar_1;
-	}
-	public JMenuItem getExcluirBaseImagemClasseMenuItem() {
-		return mntmExcluir_1;
-	}
-	public JMenuItem getLiberarBaseImagemClasseMenuItem() {
-		return mntmLiberarPara_1;
-	}
+    public JMenuItem getCriarBaseClassificacaoDeImagemMenuItem() {
+	return mntmClassificaoDeImagem;
+    }
+
+    public GenericTable getBaseImagemClasseJTable() {
+	return baseImagemClasseJTable;
+    }
+
+    public JPopupMenu getPopupImagemClasse() {
+	return popupMenu_1;
+    }
+
+    public JMenuItem getEditarBaseImagemClasseMenuItem() {
+	return mntmEditar_1;
+    }
+
+    public JMenuItem getExcluirBaseImagemClasseMenuItem() {
+	return mntmExcluir_1;
+    }
+
+    public JMenuItem getLiberarBaseImagemClasseMenuItem() {
+	return mntmLiberarPara_1;
+    }
 }

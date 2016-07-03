@@ -16,10 +16,11 @@ import br.edu.ufrpe.uag.projetao.view.listeners.CriarBaseImagemClasseActionListe
  */
 public class CriarBaseClassificacaoImagemClasseJDialog extends AbstractCriaEAtualizaBase<BaseImagemClasseJPanel> {
 
-	public CriarBaseClassificacaoImagemClasseJDialog() {
-		super(null, "Criar Base de Imagem sem fuleragem", true);
-	}
-	@Override
+    public CriarBaseClassificacaoImagemClasseJDialog() {
+	super(null, "Criar Base de Imagem sem fuleragem", true);
+    }
+
+    @Override
     public void init() {
 	// TODO Auto-generated method stub
 	super.init();
@@ -35,10 +36,11 @@ public class CriarBaseClassificacaoImagemClasseJDialog extends AbstractCriaEAtua
 	getMediaComponent().getArquivosList().getBuscarArquivoButton().addActionListener(
 		new AdicionaImagemActionListener(getMediaComponent().getArquivosList().getArquivosList()));
     }
-	@Override
-	public void preencheCampos() {
-		// TODO Auto-generated method stub
-		
-	}
+
+    @Override
+    public void preencheCampos() {
+	// TODO Auto-generated method stub
+
+    }
 
 }

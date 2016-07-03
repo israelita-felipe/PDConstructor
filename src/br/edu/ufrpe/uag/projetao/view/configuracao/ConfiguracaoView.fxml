@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kairos.components.MaterialButton?>
+<?import org.kairos.components.TextInputLayout?>
+<?import javafx.scene.control.Label?>
+
+
+<BorderPane prefHeight="600" prefWidth="800" stylesheets="/br/edu/ufrpe/uag/projetao/view/css/controls.css"
+	xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+	<center>
+		<BorderPane prefHeight="300.0" prefWidth="400" maxHeight="300.0"
+			maxWidth="400" minHeight="300.0" minWidth="400" styleClass="paper-material"
+			style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.16), 5, 0, 0, 2);">
+			<center>
+				<VBox alignment="center" spacing="8">
+					<children>
+						<Label text="Configurações" styleClass="title" />
+						<TextInputLayout>
+							<children>
+								<TextField fx:id="hostTextField" promptText="Host (IP)" />
+							</children>
+						</TextInputLayout>
+						<TextInputLayout>
+							<children>
+								<TextField fx:id="portaTextField" promptText="Porta" />
+							</children>
+						</TextInputLayout>
+					</children>
+					<padding>
+						<Insets left="16.0" right="16.0" />
+					</padding>
+				</VBox>
+			</center>
+			<bottom>
+				<BorderPane prefHeight="58.0" prefWidth="600.0"
+					BorderPane.alignment="CENTER">
+					<left>
+						<MaterialButton fx:id="cancelarButton"
+							cancelButton="true" text="Cancelar" BorderPane.alignment="CENTER"
+							onAction="#cancelar" />
+					</left>
+					<right>
+						<MaterialButton fx:id="salvarButton" text="Salvar"
+							BorderPane.alignment="CENTER" onAction="#salvar" />
+					</right>
+					<padding>
+						<Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+					</padding>
+				</BorderPane>
+			</bottom>
+		</BorderPane>
+	</center>
+</BorderPane>

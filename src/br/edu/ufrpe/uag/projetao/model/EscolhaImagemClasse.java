@@ -25,7 +25,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 @Tabela
 @Entity
 @Table(name = "escolha_imagem_classe", schema = "public")
-public class EscolhaImagemClasse implements java.io.Serializable, InterfaceEntity {
+public class EscolhaImagemClasse implements InterfaceEntity {
 
     private int id;
     @Coluna(colunaNome = "Alocação de imagem", colunaPosicao = 0)
@@ -91,9 +91,9 @@ public class EscolhaImagemClasse implements java.io.Serializable, InterfaceEntit
 	this.classsificacaoImagemClasses = classsificacaoImagemClasses;
     }
 
-   
-
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Object#hashCode()
      */
     @Override
@@ -104,7 +104,9 @@ public class EscolhaImagemClasse implements java.io.Serializable, InterfaceEntit
 	return result;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override

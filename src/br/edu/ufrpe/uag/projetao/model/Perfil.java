@@ -22,7 +22,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 @Tabela
 @Entity
 @Table(name = "perfil", schema = "public")
-public class Perfil implements java.io.Serializable, InterfaceEntity {
+public class Perfil implements InterfaceEntity {
 
     @Coluna(colunaNome = "Perfil")
     private String nome;

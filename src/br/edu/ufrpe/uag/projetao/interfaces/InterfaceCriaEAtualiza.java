@@ -17,7 +17,7 @@ import javax.swing.JButton;
 public interface InterfaceCriaEAtualiza<C extends Component> extends InterfaceWindow {
 
     C getMediaComponent();
-    
+
     void setMediaComponent(C component);
 
     JButton getSalvarButton();

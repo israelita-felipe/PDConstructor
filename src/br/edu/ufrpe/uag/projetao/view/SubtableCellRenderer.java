@@ -40,7 +40,7 @@ public class SubtableCellRenderer extends DefaultTableCellRenderer {
 		embedded.setForeground(table.getSelectionForeground());
 	    }
 	    setPreferredSize(new Dimension(embedded.getPreferredSize().width, embedded.getPreferredSize().height
-		    + (embedded.getPreferredSize().height / embedded.getRowCount())+4));
+		    + (embedded.getPreferredSize().height / embedded.getRowCount()) + 4));
 	    // setPreferredSize(embedded.getPreferredSize());
 
 	    if (getPreferredSize().height > table.getRowHeight(row)) {

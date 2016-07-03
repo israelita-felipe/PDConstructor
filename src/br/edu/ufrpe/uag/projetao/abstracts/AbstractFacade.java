@@ -14,7 +14,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceFacade;
  * @author Israel Araújo
  * @param <T>
  */
-public abstract class AbstractFacade<T extends InterfaceEntity> implements Serializable, InterfaceFacade<T> {
+public abstract class AbstractFacade<T extends InterfaceEntity> implements InterfaceFacade<T> {
 
     private final Class<T> entityClass;
 

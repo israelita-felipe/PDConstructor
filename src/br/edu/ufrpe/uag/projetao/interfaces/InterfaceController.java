@@ -10,7 +10,7 @@ import org.hibernate.criterion.DetachedCriteria;
  * @author Israel Araújo
  * @param <T>
  */
-public interface InterfaceController<T extends InterfaceEntity> {
+public interface InterfaceController<T extends InterfaceEntity> extends Serializable {
 
     /**
      *
@@ -152,5 +152,13 @@ public interface InterfaceController<T extends InterfaceEntity> {
      *         <code>null</code>
      */
     T get(Serializable id);
+
+    T prepareView(T entity);
+
+    T prepareEdit(T entity);
+
+    T destroy(T entity);
+
+    T destroyAndView(T entity);
 
 }

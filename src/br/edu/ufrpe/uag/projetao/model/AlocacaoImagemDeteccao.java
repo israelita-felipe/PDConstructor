@@ -1,13 +1,14 @@
 package br.edu.ufrpe.uag.projetao.model;
 // Generated 27/05/2016 19:57:54 by Hibernate Tools 4.3.1
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,7 +22,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
  */
 @Entity
 @Table(name = "alocacao_imagem_deteccao", schema = "public")
-public class AlocacaoImagemDeteccao implements InterfaceEntity, Serializable {
+public class AlocacaoImagemDeteccao implements InterfaceEntity {
 
     private int id;
     private BaseImagemDeteccao baseImagemDeteccao;
@@ -50,7 +51,7 @@ public class AlocacaoImagemDeteccao implements InterfaceEntity, Serializable {
     }
 
     @Id
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     public int getId() {
 	return this.id;
@@ -166,8 +167,7 @@ public class AlocacaoImagemDeteccao implements InterfaceEntity, Serializable {
      */
     @Override
     public String toString() {
-	return "AlocacaoImagemDeteccao [id=" + id + ", baseImagemDeteccao=" + baseImagemDeteccao + ", imagemDeteccao="
-		+ imagemDeteccao + ", usuario=" + usuario + "]";
+	return "Base: " + baseImagemDeteccao + ", Imagem: " + imagemDeteccao.getId() + "]";
     }
 
 }
