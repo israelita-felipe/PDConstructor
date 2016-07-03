@@ -36,13 +36,27 @@ public class QueryFactory {
 	query.setInteger("base", base.getId());
 	return query;
     }
-
+    /**
+     * 
+     * @return
+     */    
+    public static Query getTodasBasesImagemDeteccaoHistograma() {
+    	return TransactionManager.getRequestSession().getNamedQuery("baseImagemDeteccaoHistograma");
+        }
+    
     public static Query getBaseImagemDeteccaoHistogramaPorBase(BaseImagemDeteccao base) {
 	Query query = TransactionManager.getRequestSession().getNamedQuery("baseImagemDeteccaoHistogramaPorBase");
 	query.setInteger("base", base.getId());
 	return query;
     }
-
+    /**
+     * 
+     * @return
+     */
+    public static Query getTodasBasesVideoDeteccaoHistograma() {
+    	return TransactionManager.getRequestSession().getNamedQuery("baseVideoDeteccaoHistograma");
+        }
+    
     public static Query getBaseVideoDeteccaoHistogramaPorBase(BaseVideoDeteccao base) {
 	Query query = TransactionManager.getRequestSession().getNamedQuery("baseVideoDeteccaoHistogramaPorBase");
 	query.setInteger("base", base.getId());

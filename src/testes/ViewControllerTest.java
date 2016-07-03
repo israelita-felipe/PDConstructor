@@ -12,7 +12,9 @@ import org.junit.Test;
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.QueryFactory;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemClasseHistograma;
+import br.edu.ufrpe.uag.projetao.model.BaseImagemDeteccaoHistograma;
 import br.edu.ufrpe.uag.projetao.model.BaseTextoHistograma;
+import br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccaoHistograma;
 
 /**
  * @author israel
@@ -33,4 +35,19 @@ public class ViewControllerTest {
 		.getItems(QueryFactory.getTodasBasesTextoHistograma());
 	assertNotEquals(histograma, null);
     }
+    
+    
+    public void buscaTotalDeVotacoesPorBaseImagemDeteccao() {
+	List<BaseImagemDeteccaoHistograma> histograma = ControllerFactory.getBaseImagemDeteccaoHistogramaController()
+		.getItems(QueryFactory.getTodasBasesImagemDeteccaoHistograma());
+	assertNotEquals(histograma, null);
+    }
+    
+    public void buscaTotalDeVotacoesPorBaseVideoDeteccao() {
+    	List<BaseVideoDeteccaoHistograma> histograma = ControllerFactory.getBaseVideoDeteccaoHistogramaController()
+    		.getItems(QueryFactory.getTodasBasesVideoDeteccaoHistograma());
+    	assertNotEquals(histograma, null);
+        }
+    
+    
 }
