@@ -35,24 +35,6 @@ public class BaseVideoDeteccao implements InterfaceEntity, InterfaceBase {
     public BaseVideoDeteccao() {
     }
 
-    public BaseVideoDeteccao(int id, Usuario usuario, String titulo, String descricao) {
-	this.id = id;
-	this.usuario = usuario;
-	this.titulo = titulo;
-	this.descricao = descricao;
-    }
-
-    public BaseVideoDeteccao(int id, Usuario usuario, String titulo, String descricao,
-	    Set<LiberacaoBaseVideoDeteccao> liberacaoBaseVideoDeteccaos,
-	    Set<AlocacaoVideoDeteccao> alocacaoVideoDeteccaos) {
-	this.id = id;
-	this.usuario = usuario;
-	this.titulo = titulo;
-	this.descricao = descricao;
-	this.liberacaoBaseVideoDeteccaos = liberacaoBaseVideoDeteccaos;
-	this.alocacaoVideoDeteccaos = alocacaoVideoDeteccaos;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)

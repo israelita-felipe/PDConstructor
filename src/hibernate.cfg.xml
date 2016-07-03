@@ -38,5 +38,6 @@
 		<mapping class="br.edu.ufrpe.uag.projetao.model.BaseTextoHistograma" />
 		<mapping
 			class="br.edu.ufrpe.uag.projetao.model.BaseImagemDeteccaoHistograma" />
+		<mapping class="br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccaoHistograma" />
 	</session-factory>
 </hibernate-configuration>

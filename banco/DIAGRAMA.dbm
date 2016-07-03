@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.1" last-position="0,0" last-zoom="0.8"
+<dbmodel pgmodeler-ver="0.8.1" last-position="0,180" last-zoom="0.8"
 	 default-schema="public" default-owner="postgres">
 <database name="PDCONSTRUCTOR" template="pdconstructor">
 </database>
@@ -568,6 +568,55 @@ ORDER BY
 	<expression type="select-exp">0</expression>
 	<expression type="from-exp">1</expression>
 	<expression type="simple-exp">2</expression>
+</view>
+
+<view name="base_imagem_deteccao_histograma">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1257.5" y="387.5"/>
+	<reference>
+		<expression><![CDATA[select distinct imagem_deteccao.id,imagem_deteccao.objeto,base_imagem_deteccao.id as base,
+(select count(*)
+
+from	
+	alocacao_imagem_deteccao,
+	deteccao_imagem
+where
+	deteccao_imagem.alocacao_imagem_detecccao = alocacao_imagem_deteccao.id AND
+	imagem_deteccao.id = alocacao_imagem_deteccao.imagem_deteccao 
+	
+
+) as total
+
+from 
+	imagem_deteccao,deteccao_imagem,base_imagem_deteccao,alocacao_imagem_deteccao
+where 
+	alocacao_imagem_deteccao.base_imagem_deteccao = base_imagem_deteccao.id AND	
+	imagem_deteccao.id = alocacao_imagem_deteccao.imagem_deteccao 
+order by
+	imagem_deteccao.id]]></expression>
+	</reference>
+</view>
+
+<view name="base_video_deteccao_histograma">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1256.25" y="463.75"/>
+	<reference>
+		<expression><![CDATA[SELECT DISTINCT video_deteccao.id,
+    video_deteccao.objeto,
+    base_video_deteccao.id AS base,
+    ( SELECT count(*) AS count
+           FROM alocacao_video_deteccao,
+            deteccao_video
+          WHERE deteccao_video.alocacao_video_deteccao = alocacao_video_deteccao.id AND video_deteccao.id = alocacao_video_deteccao.video_deteccao) AS total
+   FROM video_deteccao,
+    deteccao_video,
+    base_video_deteccao,
+    alocacao_video_deteccao
+  WHERE alocacao_video_deteccao.base_video_deteccao = base_video_deteccao.id AND video_deteccao.id = alocacao_video_deteccao.video_deteccao
+  ORDER BY video_deteccao.id;]]></expression>
+	</reference>
 </view>
 
 <constraint name="USUARIO_PERFIL_FK" type="fk-constr" comparison-type="MATCH SIMPLE"

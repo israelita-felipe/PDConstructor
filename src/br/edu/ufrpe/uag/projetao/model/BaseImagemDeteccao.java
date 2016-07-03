@@ -23,7 +23,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
  */
 @Entity
 @Table(name = "base_imagem_deteccao", schema = "public")
-public class BaseImagemDeteccao implements InterfaceEntity ,InterfaceBase{
+public class BaseImagemDeteccao implements InterfaceEntity, InterfaceBase {
 
     private int id;
     private Usuario usuario;

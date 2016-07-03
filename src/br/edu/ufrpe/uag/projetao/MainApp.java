@@ -25,7 +25,7 @@ public class MainApp extends Application {
 
 	factory.startActivity(LoginController.class);
 	primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-	    
+
 	    @Override
 	    public void handle(WindowEvent event) {
 		Platform.exit();

@@ -45,6 +45,8 @@
 						<items>
 							<MenuItem text="Excluir" onAction="#excluir" />
 							<MenuItem text="Liberar para" onAction="#liberar" />
+							<MenuItem text="Relatório" onAction="#relatorio" />
+							<MenuItem text="Exportar" onAction="#exportar" />
 						</items>
 					</ContextMenu>
 				</contextMenu>
@@ -52,4 +54,3 @@
 		</center>
 	</BorderPane>
 </fx:root>
-

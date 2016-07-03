@@ -42,8 +42,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -53,7 +51,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.SVGPath;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.util.Callback;
 
@@ -154,7 +151,7 @@ public class BaseVideoDeteccaoLiberacaoController extends Fragment {
 	center.setCenter(scroll);
 	borderPane.setCenter(center);
 
-	Controles c = new Controles();	
+	Controles c = new Controles();
 	addControlePlayer(c);
 	center.setRight(c);
 

@@ -1,7 +1,6 @@
 package br.edu.ufrpe.uag.projetao.model;
 // Generated 15/06/2016 11:29:14 by Hibernate Tools 4.3.1
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -94,10 +93,7 @@ public class VideoDeteccao implements InterfaceEntity {
     public int hashCode() {
 	final int prime = 31;
 	int result = 1;
-	result = prime * result + ((alocacaoVideoDeteccaos == null) ? 0 : alocacaoVideoDeteccaos.hashCode());
 	result = prime * result + id;
-	result = prime * result + Arrays.hashCode(objeto);
-	result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 	return result;
     }
 
@@ -118,24 +114,7 @@ public class VideoDeteccao implements InterfaceEntity {
 	    return false;
 	}
 	VideoDeteccao other = (VideoDeteccao) obj;
-	if (alocacaoVideoDeteccaos == null) {
-	    if (other.alocacaoVideoDeteccaos != null) {
-		return false;
-	    }
-	} else if (!alocacaoVideoDeteccaos.equals(other.alocacaoVideoDeteccaos)) {
-	    return false;
-	}
 	if (id != other.id) {
-	    return false;
-	}
-	if (!Arrays.equals(objeto, other.objeto)) {
-	    return false;
-	}
-	if (usuario == null) {
-	    if (other.usuario != null) {
-		return false;
-	    }
-	} else if (!usuario.equals(other.usuario)) {
 	    return false;
 	}
 	return true;
