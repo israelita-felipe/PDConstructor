@@ -24,12 +24,12 @@ import javafx.scene.control.Alert;
  * @author israel
  *
  */
-public class BaseImagemExportarController extends AbstractBaseExportarController<BaseImagemClasse> {
+public class BaseImagemClasseExportarController extends AbstractBaseExportarController<BaseImagemClasse> {
 
     /**
      * @param base
      */
-    public BaseImagemExportarController(BaseImagemClasse base) {
+    public BaseImagemClasseExportarController(BaseImagemClasse base) {
 	super(base);
     }
 

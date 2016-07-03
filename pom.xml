@@ -51,16 +51,5 @@
 			<artifactId>commons-email</artifactId>
 			<version>1.4</version>
 		</dependency>
-		<dependency>
-			<groupId>uk.co.caprica</groupId>
-			<artifactId>vlcj</artifactId>
-			<version>3.10.1</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.jbehave/jbehave-core -->
-		<dependency>
-			<groupId>org.jbehave</groupId>
-			<artifactId>jbehave-core</artifactId>
-			<version>4.0.5</version>
-		</dependency>
 	</dependencies>
 </project>

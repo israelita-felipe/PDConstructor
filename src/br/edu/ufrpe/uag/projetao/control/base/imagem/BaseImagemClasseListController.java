@@ -380,7 +380,7 @@ public class BaseImagemClasseListController extends Fragment {
     @FXML
     private void exportar() {
 	if (basesImagemClasse.getSelectionModel().getSelectedItem() != null) {
-	    new BaseImagemExportarController(basesImagemClasse.getSelectionModel().getSelectedItem()).show();
+	    new BaseImagemClasseExportarController(basesImagemClasse.getSelectionModel().getSelectedItem()).show();
 	}
     }
 }
