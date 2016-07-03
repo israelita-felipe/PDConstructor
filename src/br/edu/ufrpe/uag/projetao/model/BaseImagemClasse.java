@@ -18,6 +18,7 @@ import javax.persistence.Table;
 
 import br.edu.ufrpe.uag.projetao.annotations.Coluna;
 import br.edu.ufrpe.uag.projetao.annotations.Tabela;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceBase;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 
 /**
@@ -26,7 +27,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 @Tabela
 @Entity
 @Table(name = "base_imagem_classe", schema = "public")
-public class BaseImagemClasse implements InterfaceEntity {
+public class BaseImagemClasse implements InterfaceEntity ,InterfaceBase{
 
     private int id;
     private Usuario usuario;
