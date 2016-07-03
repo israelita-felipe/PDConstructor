@@ -376,4 +376,11 @@ public class BaseImagemClasseListController extends Fragment {
 	    dialogStage.show();
 	}
     }
+    
+    @FXML
+    private void exportar() {
+	if (basesImagemClasse.getSelectionModel().getSelectedItem() != null) {
+	    new BaseImagemExportarController(basesImagemClasse.getSelectionModel().getSelectedItem()).show();
+	}
+    }
 }

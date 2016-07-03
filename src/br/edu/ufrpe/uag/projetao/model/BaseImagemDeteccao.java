@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceBase;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 
 /**
@@ -22,7 +23,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
  */
 @Entity
 @Table(name = "base_imagem_deteccao", schema = "public")
-public class BaseImagemDeteccao implements InterfaceEntity {
+public class BaseImagemDeteccao implements InterfaceEntity ,InterfaceBase{
 
     private int id;
     private Usuario usuario;

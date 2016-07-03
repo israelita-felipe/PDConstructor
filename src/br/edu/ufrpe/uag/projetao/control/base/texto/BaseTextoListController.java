@@ -370,4 +370,11 @@ public class BaseTextoListController extends Fragment {
 	    dialogStage.show();
 	}
     }
+
+    @FXML
+    private void exportar() {
+	if (basesTexto.getSelectionModel().getSelectedItem() != null) {
+	    new BaseTextoExportarController(basesTexto.getSelectionModel().getSelectedItem()).show();
+	}
+    }
 }
