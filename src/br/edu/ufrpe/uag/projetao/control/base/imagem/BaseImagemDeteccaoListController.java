@@ -15,6 +15,7 @@ import org.kairos.core.Fragment;
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.UsuarioController;
+import br.edu.ufrpe.uag.projetao.control.base.texto.BaseTextoExportarController;
 import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.control.util.imagem.ImagemDigital;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
@@ -27,6 +28,7 @@ import br.edu.ufrpe.uag.projetao.model.enumerate.StatusDeLiberacao;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -38,6 +40,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  * @author israel
@@ -327,4 +330,24 @@ public class BaseImagemDeteccaoListController extends Fragment {
 	}
     }
 
+    @FXML
+    private void relatorio() {
+	if (basesImagemDeteccao.getSelectionModel().getSelectedItem() != null) {
+	    Stage dialogStage = new Stage();
+	    dialogStage.setTitle("Bases de detecção em imagens");
+
+	    Scene scene = new Scene(BaseGraficosFactory
+		    .getBaseImagemDeteccaoHistograma(basesImagemDeteccao.getSelectionModel().getSelectedItem()));
+	    dialogStage.setScene(scene);
+
+	    dialogStage.show();
+	}
+    }
+
+    @FXML
+    private void exportar() {
+	if (basesImagemDeteccao.getSelectionModel().getSelectedItem() != null) {
+	    new BaseImagemDeteccaoExportarController(basesImagemDeteccao.getSelectionModel().getSelectedItem()).show();
+	}
+    }
 }

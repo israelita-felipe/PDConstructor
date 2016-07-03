@@ -7,6 +7,7 @@ import org.hibernate.Query;
 
 import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemClasse;
+import br.edu.ufrpe.uag.projetao.model.BaseImagemDeteccao;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
 
 /**
@@ -31,6 +32,12 @@ public class QueryFactory {
 
     public static Query getBaseTextoHistogramaPorBase(BaseTexto base) {
 	Query query = TransactionManager.getRequestSession().getNamedQuery("baseTextoHistogramaPorBase");
+	query.setInteger("base", base.getId());
+	return query;
+    }
+
+    public static Query getBaseImagemDeteccaoHistogramaPorBase(BaseImagemDeteccao base) {
+	Query query = TransactionManager.getRequestSession().getNamedQuery("baseImagemDeteccaoHistogramaPorBase");
 	query.setInteger("base", base.getId());
 	return query;
     }
