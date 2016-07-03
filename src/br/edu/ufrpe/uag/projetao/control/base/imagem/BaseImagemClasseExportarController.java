@@ -51,7 +51,7 @@ public class BaseImagemClasseExportarController extends AbstractBaseExportarCont
 		int contador = 0;
 
 		for (AlocacaoImagemClasse at : getBase().getAlocacaoImagemClasses()) {
-		
+
 		    contador++;
 
 		    // capturando o progresso atual

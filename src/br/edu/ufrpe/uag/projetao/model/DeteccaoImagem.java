@@ -17,7 +17,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
  */
 @Entity
 @Table(name = "deteccao_imagem", schema = "public")
-public class DeteccaoImagem implements InterfaceEntity,InterfaceDeteccao {
+public class DeteccaoImagem implements InterfaceEntity, InterfaceDeteccao {
 
     private double x1;
     private double y1;

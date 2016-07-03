@@ -17,7 +17,7 @@ import javafx.stage.Stage;
  *
  */
 public class BaseImagemClasseHistogramaControllerTest extends Application {
-    
+
     public static void main(String[] args) {
 	launch(args);
     }

@@ -199,7 +199,7 @@ public class DeteccaoVideo implements InterfaceEntity, InterfaceDeteccao {
      */
     @Override
     public String toString() {
-	return tempo + " (" + x1 + ", " + y1 + "),(" + x2 + "," + y2 + ")";
+	return "[" + tempo + " (" + x1 + ", " + y1 + "),(" + x2 + "," + y2 + ")]";
     }
 
 }

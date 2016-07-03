@@ -67,13 +67,12 @@ public class PrincipalEscravoController extends Activity {
 	viewPager.setCurrentItem(0);
 
     }
-    
-    
+
     @FXML
-    private void sair(){
-    	TransactionManager.setRequestSession(null);
-    	UsuarioController.currentEscravo = null;
-    	startActivity(LoginController.class);
-  
+    private void sair() {
+	TransactionManager.setRequestSession(null);
+	UsuarioController.currentEscravo = null;
+	startActivity(LoginController.class);
+
     }
 }

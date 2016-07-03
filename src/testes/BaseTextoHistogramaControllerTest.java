@@ -17,7 +17,6 @@ import javafx.stage.Stage;
  *
  */
 public class BaseTextoHistogramaControllerTest extends Application {
-   
 
     public static void main(String[] args) {
 	launch(args);

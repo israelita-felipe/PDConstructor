@@ -24,7 +24,8 @@ import javafx.stage.Stage;
  * @author israel
  *
  */
-public abstract class AbstractBaseExportarController<T extends InterfaceBase> implements InterfaceBaseExportarController {
+public abstract class AbstractBaseExportarController<T extends InterfaceBase>
+	implements InterfaceBaseExportarController {
 
     @FXML
     private TextField caminhoPasta;
@@ -50,7 +51,7 @@ public abstract class AbstractBaseExportarController<T extends InterfaceBase> im
     private final String view;
 
     private Stage dialogStage;
-    
+
     private T base;
 
     /**
@@ -232,14 +233,15 @@ public abstract class AbstractBaseExportarController<T extends InterfaceBase> im
      * @return the base
      */
     public T getBase() {
-        return base;
+	return base;
     }
 
     /**
-     * @param base the base to set
+     * @param base
+     *            the base to set
      */
     public void setBase(T base) {
-        this.base = base;
+	this.base = base;
     }
 
 }

@@ -9,6 +9,7 @@ import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemDeteccao;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
+import br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccao;
 
 /**
  * @author israel
@@ -38,6 +39,12 @@ public class QueryFactory {
 
     public static Query getBaseImagemDeteccaoHistogramaPorBase(BaseImagemDeteccao base) {
 	Query query = TransactionManager.getRequestSession().getNamedQuery("baseImagemDeteccaoHistogramaPorBase");
+	query.setInteger("base", base.getId());
+	return query;
+    }
+
+    public static Query getBaseVideoDeteccaoHistogramaPorBase(BaseVideoDeteccao base) {
+	Query query = TransactionManager.getRequestSession().getNamedQuery("baseVideoDeteccaoHistogramaPorBase");
 	query.setInteger("base", base.getId());
 	return query;
     }

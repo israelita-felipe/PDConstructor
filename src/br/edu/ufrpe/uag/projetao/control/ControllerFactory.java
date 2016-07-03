@@ -17,6 +17,7 @@ import br.edu.ufrpe.uag.projetao.model.BaseImagemDeteccaoHistograma;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
 import br.edu.ufrpe.uag.projetao.model.BaseTextoHistograma;
 import br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccao;
+import br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccaoHistograma;
 import br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.ClasssificacaoImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.DeteccaoImagem;
@@ -66,6 +67,7 @@ public class ControllerFactory {
     private static InterfaceViewController baseImagemClasseHistograma;
     private static InterfaceViewController baseTextoHistograma;
     private static InterfaceViewController baseImagemDeteccaoHistograma;
+    private static InterfaceViewController baseVideoDeteccaoHistograma;
 
     public static InterfaceController<Usuario> getUsuarioController() {
 	if (usuarioController == null) {
@@ -251,5 +253,13 @@ public class ControllerFactory {
 	    };
 	}
 	return baseImagemDeteccaoHistograma;
+    }
+
+    public static InterfaceViewController<BaseVideoDeteccaoHistograma> getBaseVideoDeteccaoHistogramaController() {
+	if (baseVideoDeteccaoHistograma == null) {
+	    baseVideoDeteccaoHistograma = new AbstractViewController() {
+	    };
+	}
+	return baseVideoDeteccaoHistograma;
     }
 }

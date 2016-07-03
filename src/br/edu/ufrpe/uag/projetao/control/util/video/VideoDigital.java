@@ -54,6 +54,14 @@ public class VideoDigital {
 	return arquivo;
     }
 
+    public static void writeFileTo(byte[] video, String path) throws IOException {
+	File arquivo = new File(path);
+	FileOutputStream fos = new FileOutputStream(arquivo);
+	fos.write(video);
+	fos.flush();
+	fos.close();
+    }
+
     public static void main(String[] args) {
 	try {
 	    byte[] b = toByte(new File("/media/israel/Backup/Arquivos/Vídeos/SERIES/ce01.avi"));

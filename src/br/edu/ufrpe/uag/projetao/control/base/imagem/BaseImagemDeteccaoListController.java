@@ -15,7 +15,6 @@ import org.kairos.core.Fragment;
 import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.UsuarioController;
-import br.edu.ufrpe.uag.projetao.control.base.texto.BaseTextoExportarController;
 import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.control.util.imagem.ImagemDigital;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
