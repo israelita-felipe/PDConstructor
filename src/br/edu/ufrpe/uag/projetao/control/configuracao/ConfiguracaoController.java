@@ -35,7 +35,7 @@ public class ConfiguracaoController extends Activity {
     @Override
     public void onCreate() {
 	super.onCreate();
-	setContentView(getClass().getResource("/br/edu/ufrpe/uag/projetao/view/configuracao/ConfiguracaoView.fxml"));
+	setContentView(getClass().getResource("ConfiguracaoView.fxml"));
 	carregar();
     }
 

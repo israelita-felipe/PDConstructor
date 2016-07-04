@@ -13,11 +13,11 @@ import java.util.Optional;
 
 import org.kairos.core.Fragment;
 
-import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
-import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
-import br.edu.ufrpe.uag.projetao.control.UsuarioController;
-import br.edu.ufrpe.uag.projetao.control.base.imagem.BaseGraficosFactory;
+import br.edu.ufrpe.uag.projetao.control.base.graficos.BaseGraficosFactory;
 import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
+import br.edu.ufrpe.uag.projetao.control.usuario.UsuarioController;
+import br.edu.ufrpe.uag.projetao.control.util.ControllerFactory;
+import br.edu.ufrpe.uag.projetao.control.util.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.util.FileManager;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
@@ -80,8 +80,7 @@ public class BaseTextoListController extends Fragment {
     @FXML
     private void novo() {
 	getChildren().clear();
-	this.loader.setLocation(
-		getClass().getResource("/br/edu/ufrpe/uag/projetao/view/base/texto/BaseTextoCriarView.fxml"));
+	this.loader.setLocation(getClass().getResource("BaseTextoCriarView.fxml"));
 	try {
 	    this.loader.load();
 	} catch (IOException e) {
@@ -200,8 +199,7 @@ public class BaseTextoListController extends Fragment {
 
     private void list() {
 	getChildren().clear();
-	this.loader.setLocation(
-		getClass().getResource("/br/edu/ufrpe/uag/projetao/view/base/texto/BaseTextoListView.fxml"));
+	this.loader.setLocation(getClass().getResource("BaseTextoListView.fxml"));
 	try {
 	    this.loader.load();
 	    this.basesTexto.setItems(
@@ -326,8 +324,7 @@ public class BaseTextoListController extends Fragment {
 		    .prepareView(ControllerFactory.getBaseTextoController().prepareList().indexOf(base));
 
 	    getChildren().clear();
-	    this.loader.setLocation(getClass().getResource(
-		    "/br/edu/ufrpe/uag/projetao/view/base/texto/liberacao/BaseTextoLiberaUsuarioView.fxml"));
+	    this.loader.setLocation(getClass().getResource("BaseTextoLiberaUsuarioView.fxml"));
 	    try {
 		this.loader.load();
 

@@ -9,12 +9,12 @@ import java.util.Optional;
 
 import org.kairos.core.Fragment;
 
-import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
-import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
-import br.edu.ufrpe.uag.projetao.control.UsuarioController;
-import br.edu.ufrpe.uag.projetao.control.base.imagem.BaseGraficosFactory;
+import br.edu.ufrpe.uag.projetao.control.base.graficos.BaseGraficosFactory;
 import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
-import br.edu.ufrpe.uag.projetao.control.util.video.VideoDigital;
+import br.edu.ufrpe.uag.projetao.control.usuario.UsuarioController;
+import br.edu.ufrpe.uag.projetao.control.util.ControllerFactory;
+import br.edu.ufrpe.uag.projetao.control.util.DetachedCriteriaFactory;
+import br.edu.ufrpe.uag.projetao.control.util.VideoDigital;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoVideoDeteccao;
 import br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccao;
@@ -61,11 +61,6 @@ public class BaseVideoDetaccaoListController extends Fragment {
     public void onCreateView(FXMLLoader fxmlLoader) {
 	this.loader = fxmlLoader;
 	list();
-
-    }
-
-    @FXML
-    private void salvar() {
 
     }
 
@@ -260,8 +255,7 @@ public class BaseVideoDetaccaoListController extends Fragment {
     @FXML
     private void novo() {
 	getChildren().clear();
-	this.loader.setLocation(
-		getClass().getResource("/br/edu/ufrpe/uag/projetao/view/base/video/BaseVideoDeteccaoCriarView.fxml"));
+	this.loader.setLocation(getClass().getResource("BaseVideoDeteccaoCriarView.fxml"));
 	try {
 	    this.loader.load();
 	} catch (IOException e) {
@@ -280,8 +274,7 @@ public class BaseVideoDetaccaoListController extends Fragment {
 		    .prepareView(ControllerFactory.getBaseVideoDeteccaoController().prepareList().indexOf(base));
 
 	    getChildren().clear();
-	    this.loader.setLocation(getClass().getResource(
-		    "/br/edu/ufrpe/uag/projetao/view/base/video/liberacao/BaseVideoDeteccaoLiberaUsuarioView.fxml"));
+	    this.loader.setLocation(getClass().getResource("BaseVideoDeteccaoLiberaUsuarioView.fxml"));
 	    try {
 		this.loader.load();
 
@@ -314,8 +307,7 @@ public class BaseVideoDetaccaoListController extends Fragment {
 
     private void list() {
 	getChildren().clear();
-	this.loader.setLocation(
-		getClass().getResource("/br/edu/ufrpe/uag/projetao/view/base/video/BaseVideoDeteccaoListView.fxml"));
+	this.loader.setLocation(getClass().getResource("BaseVideoDeteccaoListView.fxml"));
 	try {
 	    this.loader.load();
 	    this.baseVideoDeteccao.setItems(FXCollections.observableList(

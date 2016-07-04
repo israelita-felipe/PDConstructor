@@ -7,12 +7,11 @@ import java.util.List;
 
 import org.kairos.core.Activity;
 
-import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
-import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
-import br.edu.ufrpe.uag.projetao.control.UsuarioController;
 import br.edu.ufrpe.uag.projetao.control.configuracao.ConfiguracaoController;
 import br.edu.ufrpe.uag.projetao.control.principal.PrincipalEscravoController;
 import br.edu.ufrpe.uag.projetao.control.principal.PrincipalSupervisorController;
+import br.edu.ufrpe.uag.projetao.control.util.ControllerFactory;
+import br.edu.ufrpe.uag.projetao.control.util.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.model.Perfil;
 import br.edu.ufrpe.uag.projetao.model.Usuario;
 import javafx.collections.FXCollections;
@@ -49,7 +48,7 @@ public class LoginController extends Activity {
     @Override
     public void onCreate() {
 	super.onCreate();
-	setContentView(getClass().getResource("/br/edu/ufrpe/uag/projetao/view/usuario/LoginView.fxml"));
+	setContentView(getClass().getResource("LoginView.fxml"));
 	perfil.setItems(FXCollections.observableList(ControllerFactory.getPerfilController().prepareList()));
     }
 

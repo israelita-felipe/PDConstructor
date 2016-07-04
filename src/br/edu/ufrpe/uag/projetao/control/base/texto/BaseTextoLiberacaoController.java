@@ -12,10 +12,10 @@ import java.util.List;
 import org.kairos.components.TextInputLayout;
 import org.kairos.core.Fragment;
 
-import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
-import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
-import br.edu.ufrpe.uag.projetao.control.UsuarioController;
 import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
+import br.edu.ufrpe.uag.projetao.control.usuario.UsuarioController;
+import br.edu.ufrpe.uag.projetao.control.util.ControllerFactory;
+import br.edu.ufrpe.uag.projetao.control.util.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto;
@@ -71,8 +71,7 @@ public class BaseTextoLiberacaoController extends Fragment {
     @FXML
     private void list() {
 	getChildren().clear();
-	this.loader.setLocation(
-		getClass().getResource("/br/edu/ufrpe/uag/projetao/view/base/texto/BaseTextoLiberacaoView.fxml"));
+	this.loader.setLocation(getClass().getResource("BaseTextoLiberacaoView.fxml"));
 	try {
 	    this.loader.load();
 	    this.tabelaLiberacoesTexto.setItems(FXCollections.observableList(
@@ -204,8 +203,7 @@ public class BaseTextoLiberacaoController extends Fragment {
 	if (liberacao != null) {
 	    getChildren().clear();
 
-	    this.loader.setLocation(getClass().getResource(
-		    "/br/edu/ufrpe/uag/projetao/view/base/texto/classificacao/BaseTextoClassificacaoView.fxml"));
+	    this.loader.setLocation(getClass().getResource("BaseTextoClassificacaoView.fxml"));
 
 	    try {
 		this.loader.load();
