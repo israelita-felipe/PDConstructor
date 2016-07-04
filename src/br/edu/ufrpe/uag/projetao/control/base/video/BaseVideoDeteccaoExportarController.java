@@ -6,7 +6,7 @@ package br.edu.ufrpe.uag.projetao.control.base.video;
 import java.io.FileWriter;
 
 import br.edu.ufrpe.uag.projetao.abstracts.AbstractBaseExportarController;
-import br.edu.ufrpe.uag.projetao.control.util.video.VideoDigital;
+import br.edu.ufrpe.uag.projetao.control.util.VideoDigital;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoVideoDeteccao;
 import br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccao;
 import javafx.concurrent.Task;

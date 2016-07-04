@@ -9,9 +9,8 @@ import org.kairos.core.Activity;
 import org.kairos.layouts.SlidingTabLayout;
 import org.kairos.layouts.ViewPager;
 
-import br.edu.ufrpe.uag.projetao.control.UsuarioController;
-import br.edu.ufrpe.uag.projetao.control.base.imagem.BaseImagemClasseLiberacaoController;
-import br.edu.ufrpe.uag.projetao.control.base.imagem.BaseImagemDeteccaoLiberacaoController;
+import br.edu.ufrpe.uag.projetao.control.base.imagem.classificacao.BaseImagemClasseLiberacaoController;
+import br.edu.ufrpe.uag.projetao.control.base.imagem.deteccao.BaseImagemDeteccaoLiberacaoController;
 import br.edu.ufrpe.uag.projetao.control.base.texto.BaseTextoLiberacaoController;
 import br.edu.ufrpe.uag.projetao.control.base.video.BaseVideoDeteccaoLiberacaoController;
 import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
@@ -19,6 +18,7 @@ import br.edu.ufrpe.uag.projetao.control.principal.util.CustomDrawerLayout;
 import br.edu.ufrpe.uag.projetao.control.principal.util.Tab;
 import br.edu.ufrpe.uag.projetao.control.principal.util.ViewPagerAdapter;
 import br.edu.ufrpe.uag.projetao.control.usuario.LoginController;
+import br.edu.ufrpe.uag.projetao.control.usuario.UsuarioController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -44,7 +44,7 @@ public class PrincipalEscravoController extends Activity {
     @Override
     public void onCreate() {
 	super.onCreate();
-	setContentView(getClass().getResource("/br/edu/ufrpe/uag/projetao/view/principal/PrincipalEscravoView.fxml"));
+	setContentView(getClass().getResource("PrincipalEscravoView.fxml"));
 
 	toolbar.setTitle("PDConstructor");
 	toolbar.setDisplayShowHomeEnabled(true);

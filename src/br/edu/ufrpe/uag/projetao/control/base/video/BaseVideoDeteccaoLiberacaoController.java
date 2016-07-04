@@ -12,13 +12,13 @@ import java.util.List;
 import org.kairos.components.TextInputLayout;
 import org.kairos.core.Fragment;
 
-import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
-import br.edu.ufrpe.uag.projetao.control.DetachedCriteriaFactory;
-import br.edu.ufrpe.uag.projetao.control.UsuarioController;
-import br.edu.ufrpe.uag.projetao.control.base.imagem.util.Controles;
-import br.edu.ufrpe.uag.projetao.control.base.imagem.util.CustomRectangle;
 import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
-import br.edu.ufrpe.uag.projetao.control.util.video.VideoDigital;
+import br.edu.ufrpe.uag.projetao.control.usuario.UsuarioController;
+import br.edu.ufrpe.uag.projetao.control.util.Controles;
+import br.edu.ufrpe.uag.projetao.control.util.ControllerFactory;
+import br.edu.ufrpe.uag.projetao.control.util.CustomRectangle;
+import br.edu.ufrpe.uag.projetao.control.util.DetachedCriteriaFactory;
+import br.edu.ufrpe.uag.projetao.control.util.VideoDigital;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoVideoDeteccao;
 import br.edu.ufrpe.uag.projetao.model.DeteccaoVideo;
@@ -83,8 +83,7 @@ public class BaseVideoDeteccaoLiberacaoController extends Fragment {
     @FXML
     private void list() {
 	getChildren().clear();
-	this.loader.setLocation(getClass()
-		.getResource("/br/edu/ufrpe/uag/projetao/view/base/video/BaseVideoDeteccaoLiberacaoView.fxml"));
+	this.loader.setLocation(getClass().getResource("BaseVideoDeteccaoLiberacaoView.fxml"));
 	try {
 	    this.loader.load();
 	    this.tabelaLiberacoesVideoDeteccao.setItems(FXCollections.observableList(ControllerFactory
@@ -372,8 +371,7 @@ public class BaseVideoDeteccaoLiberacaoController extends Fragment {
 	if (liberacao != null) {
 	    getChildren().clear();
 
-	    this.loader.setLocation(getClass().getResource(
-		    "/br/edu/ufrpe/uag/projetao/view/base/video/classificacao/BaseVideoDeteccaoView.fxml"));
+	    this.loader.setLocation(getClass().getResource("BaseVideoDeteccaoView.fxml"));
 
 	    try {
 		this.loader.load();
@@ -460,8 +458,4 @@ public class BaseVideoDeteccaoLiberacaoController extends Fragment {
 	return 0;
     }
 
-    public DeteccaoVideo selecionaDeteccao() {
-
-	return null;
-    }
 }

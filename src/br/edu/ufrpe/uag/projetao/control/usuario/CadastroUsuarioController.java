@@ -6,12 +6,12 @@ import java.io.StringWriter;
 import org.hibernate.exception.ConstraintViolationException;
 import org.kairos.core.Activity;
 
-import br.edu.ufrpe.uag.projetao.control.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
+import br.edu.ufrpe.uag.projetao.control.util.ControllerFactory;
+import br.edu.ufrpe.uag.projetao.control.util.SHA256;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
 import br.edu.ufrpe.uag.projetao.model.Perfil;
 import br.edu.ufrpe.uag.projetao.model.Usuario;
-import br.edu.ufrpe.uag.projetao.view.util.SHA256;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -50,7 +50,7 @@ public class CadastroUsuarioController extends Activity {
     @Override
     public void onCreate() {
 	super.onCreate();
-	setContentView(getClass().getResource("/br/edu/ufrpe/uag/projetao/view/usuario/CadastroUsuarioView.fxml"));
+	setContentView(getClass().getResource("CadastroUsuarioView.fxml"));
 	perfil.setItems(FXCollections.observableList(ControllerFactory.getPerfilController().prepareList()));
     }
 

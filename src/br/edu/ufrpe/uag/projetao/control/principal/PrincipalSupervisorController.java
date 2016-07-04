@@ -9,9 +9,8 @@ import org.kairos.core.Activity;
 import org.kairos.layouts.SlidingTabLayout;
 import org.kairos.layouts.ViewPager;
 
-import br.edu.ufrpe.uag.projetao.control.UsuarioController;
-import br.edu.ufrpe.uag.projetao.control.base.imagem.BaseImagemClasseListController;
-import br.edu.ufrpe.uag.projetao.control.base.imagem.BaseImagemDeteccaoListController;
+import br.edu.ufrpe.uag.projetao.control.base.imagem.classificacao.BaseImagemClasseListController;
+import br.edu.ufrpe.uag.projetao.control.base.imagem.deteccao.BaseImagemDeteccaoListController;
 import br.edu.ufrpe.uag.projetao.control.base.texto.BaseTextoListController;
 import br.edu.ufrpe.uag.projetao.control.base.video.BaseVideoDetaccaoListController;
 import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
@@ -19,6 +18,7 @@ import br.edu.ufrpe.uag.projetao.control.principal.util.CustomDrawerLayout;
 import br.edu.ufrpe.uag.projetao.control.principal.util.Tab;
 import br.edu.ufrpe.uag.projetao.control.principal.util.ViewPagerAdapter;
 import br.edu.ufrpe.uag.projetao.control.usuario.LoginController;
+import br.edu.ufrpe.uag.projetao.control.usuario.UsuarioController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -44,8 +44,7 @@ public class PrincipalSupervisorController extends Activity {
     @Override
     public void onCreate() {
 	super.onCreate();
-	setContentView(
-		getClass().getResource("/br/edu/ufrpe/uag/projetao/view/principal/PrincipalSupervisorView.fxml"));
+	setContentView(getClass().getResource("PrincipalSupervisorView.fxml"));
 
 	toolbar.setTitle("PDConstructor");
 	toolbar.setDisplayShowHomeEnabled(true);
