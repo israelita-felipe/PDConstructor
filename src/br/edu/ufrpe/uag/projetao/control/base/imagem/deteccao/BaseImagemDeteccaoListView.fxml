@@ -25,7 +25,6 @@
 		<top>
 			<HBox spacing="8" style="-fx-padding: 0 0 16 0">
 				<MaterialButton text="Criar" onAction="#novo" />
-				<MaterialButton text="Relatórios" />
 			</HBox>
 		</top>
 		<center>
@@ -45,7 +44,7 @@
 						<items>
 							<MenuItem text="Excluir" onAction="#excluir" />
 							<MenuItem text="Liberar para" onAction="#liberar" />
-							<MenuItem text="Relatório" onAction="#relatorio" />
+							<MenuItem text="Gráficos" onAction="#relatorio" />
 							<MenuItem text="Exportar" onAction="#exportar" />
 						</items>
 					</ContextMenu>
