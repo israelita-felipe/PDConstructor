@@ -3,14 +3,14 @@
  */
 package br.edu.ufrpe.uag.projetao.control.base.imagem.classificacao;
 
-import br.edu.ufrpe.uag.projetao.abstracts.AbstractController;
+import br.edu.ufrpe.uag.projetao.abstracts.AbstractDBController;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemClasse;
 
 /**
  * @author Juan Augusto
  *
  */
-public class BaseImagemClasseController extends AbstractController<BaseImagemClasse> {
+public class BaseImagemClasseController extends AbstractDBController<BaseImagemClasse> {
 
     public BaseImagemClasseController() {
 	super(BaseImagemClasse.class);

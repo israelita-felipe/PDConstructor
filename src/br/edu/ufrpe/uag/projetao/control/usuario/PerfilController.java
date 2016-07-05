@@ -3,14 +3,14 @@
  */
 package br.edu.ufrpe.uag.projetao.control.usuario;
 
-import br.edu.ufrpe.uag.projetao.abstracts.AbstractController;
+import br.edu.ufrpe.uag.projetao.abstracts.AbstractDBController;
 import br.edu.ufrpe.uag.projetao.model.Perfil;
 
 /**
  * @author israel
  *
  */
-public class PerfilController extends AbstractController<Perfil> {
+public class PerfilController extends AbstractDBController<Perfil> {
 
     public PerfilController() {
 	super(Perfil.class);

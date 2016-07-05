@@ -16,7 +16,7 @@ import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.control.usuario.UsuarioController;
 import br.edu.ufrpe.uag.projetao.control.util.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.util.DetachedCriteriaFactory;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDBController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto;
@@ -152,7 +152,7 @@ public class BaseTextoLiberacaoController extends Fragment {
 
 	    public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 
-		InterfaceController<ClassificacaoTexto> controller = ControllerFactory
+		InterfaceDBController<ClassificacaoTexto> controller = ControllerFactory
 			.getClassificacaoTextoController();
 
 		// se já tem classificação atualiza
@@ -233,9 +233,9 @@ public class BaseTextoLiberacaoController extends Fragment {
 
     private void prepareClassificacoes(LiberacaoBaseTexto liberacao) {
 	// criando controladores
-	InterfaceController<ClassificacaoTexto> classificacaoTextoController = ControllerFactory
+	InterfaceDBController<ClassificacaoTexto> classificacaoTextoController = ControllerFactory
 		.getClassificacaoTextoController();
-	InterfaceController<AlocacaoTexto> alocacaoTextoController = ControllerFactory.getAlocacaoTextoController();
+	InterfaceDBController<AlocacaoTexto> alocacaoTextoController = ControllerFactory.getAlocacaoTextoController();
 
 	// criação de lista de classificação
 	classificacoes = new LinkedList<>();

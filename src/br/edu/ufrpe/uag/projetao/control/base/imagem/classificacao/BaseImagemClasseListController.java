@@ -18,7 +18,7 @@ import br.edu.ufrpe.uag.projetao.control.usuario.UsuarioController;
 import br.edu.ufrpe.uag.projetao.control.util.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.util.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.util.ImagemDigital;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDBController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.BaseImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.EscolhaImagemClasse;
@@ -100,12 +100,12 @@ public class BaseImagemClasseListController extends Fragment {
 
 	    validar();
 
-	    InterfaceController<BaseImagemClasse> base = ControllerFactory.getBaseImagemClasseController();
-	    InterfaceController<EscolhaImagemClasse> escolhaClasseImagem = ControllerFactory
+	    InterfaceDBController<BaseImagemClasse> base = ControllerFactory.getBaseImagemClasseController();
+	    InterfaceDBController<EscolhaImagemClasse> escolhaClasseImagem = ControllerFactory
 		    .getEscolhaClasseImagemClasseController();
-	    InterfaceController<AlocacaoImagemClasse> alocacaoImagem = ControllerFactory
+	    InterfaceDBController<AlocacaoImagemClasse> alocacaoImagem = ControllerFactory
 		    .getAlocacaoImagemClasseController();
-	    InterfaceController<ImagemClasse> imagemClasseController = ControllerFactory.getImagemClasseController();
+	    InterfaceDBController<ImagemClasse> imagemClasseController = ControllerFactory.getImagemClasseController();
 
 	    TransactionManager.begin();
 	    // criação da base
@@ -227,7 +227,7 @@ public class BaseImagemClasseListController extends Fragment {
 	    Optional<ButtonType> result = alert.showAndWait();
 	    if (result.get() == ButtonType.OK) {
 		TransactionManager.begin();
-		InterfaceController<BaseImagemClasse> base = ControllerFactory.getBaseImagemClasseController();
+		InterfaceDBController<BaseImagemClasse> base = ControllerFactory.getBaseImagemClasseController();
 		base.destroy(base.prepareList().indexOf(basesImagemClasse.getSelectionModel().getSelectedItem()));
 		TransactionManager.end();
 		list();
@@ -298,7 +298,7 @@ public class BaseImagemClasseListController extends Fragment {
     @FXML
     private void gravarLiberacao() {
 	if (this.tabelaEscravos.getSelectionModel().getSelectedItem() != null) {
-	    InterfaceController<LiberacaoBaseImagemClasse> liberacoesController = ControllerFactory
+	    InterfaceDBController<LiberacaoBaseImagemClasse> liberacoesController = ControllerFactory
 		    .getLiberacaoBaseImagemClasseController();
 
 	    TransactionManager.begin();

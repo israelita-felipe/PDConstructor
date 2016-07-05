@@ -5,14 +5,14 @@
  */
 package br.edu.ufrpe.uag.projetao.control.usuario;
 
-import br.edu.ufrpe.uag.projetao.abstracts.AbstractController;
+import br.edu.ufrpe.uag.projetao.abstracts.AbstractDBController;
 import br.edu.ufrpe.uag.projetao.model.Usuario;
 
 /**
  *
  * @author israel
  */
-public class UsuarioController extends AbstractController<Usuario> {
+public class UsuarioController extends AbstractDBController<Usuario> {
 
     public static Usuario currrentSupervisor;
 

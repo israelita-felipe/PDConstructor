@@ -11,7 +11,7 @@ import org.hibernate.criterion.DetachedCriteria;
  * @author Israel Araújo
  * @param <T>
  */
-public interface InterfaceFacade<T extends InterfaceEntity> extends Serializable {
+public interface InterfaceDBFacade<T extends InterfaceEntity> extends Serializable {
 
     /**
      * Recupera a sessao

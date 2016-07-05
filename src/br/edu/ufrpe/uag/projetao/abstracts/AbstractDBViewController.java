@@ -9,14 +9,14 @@ import java.util.List;
 
 import org.hibernate.Query;
 
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceViewController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDBViewController;
 
 /**
  *
  * @author israel
  * @param <T>
  */
-public abstract class AbstractViewController<T> implements InterfaceViewController<T> {
+public abstract class AbstractDBViewController<T> implements InterfaceDBViewController<T> {
 
     @Override
     public List<T> getItems(Query query) {

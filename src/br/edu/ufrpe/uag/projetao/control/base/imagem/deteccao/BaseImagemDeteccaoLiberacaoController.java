@@ -21,7 +21,7 @@ import br.edu.ufrpe.uag.projetao.control.util.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.util.CustomRectangle;
 import br.edu.ufrpe.uag.projetao.control.util.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.util.ImagemDigital;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDBController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemDeteccao;
 import br.edu.ufrpe.uag.projetao.model.DeteccaoImagem;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseImagemDeteccao;
@@ -74,7 +74,7 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
 
     private AlocacaoImagemDeteccao alocacaoAtual;
 
-    private InterfaceController<DeteccaoImagem> deteccaoController = ControllerFactory.getDeteccaoImagemController();
+    private InterfaceDBController<DeteccaoImagem> deteccaoController = ControllerFactory.getDeteccaoImagemController();
 
     private Group group = new Group();
 
@@ -314,7 +314,7 @@ public class BaseImagemDeteccaoLiberacaoController extends Fragment {
     private void removeDeteccao(DeteccaoImagem deteccao) {
 
 	group.getChildren().clear();
-	InterfaceController<DeteccaoImagem> deteccaoImagemController = ControllerFactory.getDeteccaoImagemController();
+	InterfaceDBController<DeteccaoImagem> deteccaoImagemController = ControllerFactory.getDeteccaoImagemController();
 
 	TransactionManager.begin();
 	deteccaoImagemController.destroy(deteccao);

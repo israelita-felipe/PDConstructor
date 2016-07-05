@@ -3,14 +3,14 @@
  */
 package br.edu.ufrpe.uag.projetao.control.base.imagem.deteccao;
 
-import br.edu.ufrpe.uag.projetao.abstracts.AbstractController;
+import br.edu.ufrpe.uag.projetao.abstracts.AbstractDBController;
 import br.edu.ufrpe.uag.projetao.model.ImagemDeteccao;
 
 /**
  * @author israel
  *
  */
-public class ImagemDeteccaoController extends AbstractController<ImagemDeteccao> {
+public class ImagemDeteccaoController extends AbstractDBController<ImagemDeteccao> {
 
     public ImagemDeteccaoController() {
 	super(ImagemDeteccao.class);

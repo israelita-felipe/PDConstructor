@@ -8,12 +8,12 @@ import org.junit.Test;
 
 import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.control.util.ControllerFactory;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDBController;
 import br.edu.ufrpe.uag.projetao.model.Perfil;
 
 public class PerfilTest {
 
-    private InterfaceController<Perfil> controller = ControllerFactory.getPerfilController();
+    private InterfaceDBController<Perfil> controller = ControllerFactory.getPerfilController();
     private Perfil perfil;
     private int i = 0;
 

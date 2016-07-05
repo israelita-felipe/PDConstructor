@@ -3,7 +3,7 @@
  */
 package br.edu.ufrpe.uag.projetao.control.util;
 
-import br.edu.ufrpe.uag.projetao.abstracts.AbstractViewController;
+import br.edu.ufrpe.uag.projetao.abstracts.AbstractDBViewController;
 import br.edu.ufrpe.uag.projetao.control.base.imagem.classificacao.AlocacaoImagemClasseController;
 import br.edu.ufrpe.uag.projetao.control.base.imagem.classificacao.BaseImagemClasseController;
 import br.edu.ufrpe.uag.projetao.control.base.imagem.classificacao.ClassificacaoImagemClasseController;
@@ -27,8 +27,8 @@ import br.edu.ufrpe.uag.projetao.control.base.video.LiberacaoBaseVideoDeteccaoCo
 import br.edu.ufrpe.uag.projetao.control.base.video.VideoDeteccaoController;
 import br.edu.ufrpe.uag.projetao.control.usuario.PerfilController;
 import br.edu.ufrpe.uag.projetao.control.usuario.UsuarioController;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceViewController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDBController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDBViewController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemDeteccao;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
@@ -64,189 +64,189 @@ import br.edu.ufrpe.uag.projetao.model.VideoDeteccao;
 
 public class ControllerFactory {
 
-    private static InterfaceController usuarioController;
-    private static InterfaceController perfilController;
-    private static InterfaceController baseTextoController;
-    private static InterfaceController alocacaoTextoController;
-    private static InterfaceController classificacaoTextoController;
-    private static InterfaceController escolhaClasseTextoController;
-    private static InterfaceController liberacaoBaseTextoController;
-    private static InterfaceController liberacaoBaseImagemClasseController;
-    private static InterfaceController alocacaoImagemClasseController;
-    private static InterfaceController classificacaoImagemClasseController;
-    private static InterfaceController baseImagemClasseController;
-    private static InterfaceController escolhaImagemClasseController;
-    private static InterfaceController imagemClasseController;
-    private static InterfaceController baseImagemDeteccaoController;
-    private static InterfaceController deteccaoImagemController;
-    private static InterfaceController alocacaoImagemDeteccaoController;
-    private static InterfaceController imagemDeteccaoController;
-    private static InterfaceController liberacaoBaseImagemDeteccaoController;
-    private static InterfaceController baseVideoDeteccaoController;
-    private static InterfaceController alocacaoVideoDeteccaoController;
-    private static InterfaceController videoDeteccaoController;
-    private static InterfaceController deteccaoVideoController;
-    private static InterfaceController liberacaoBaseVideoDeteccaoController;
-    private static InterfaceViewController baseImagemClasseHistograma;
-    private static InterfaceViewController baseTextoHistograma;
-    private static InterfaceViewController baseImagemDeteccaoHistograma;
-    private static InterfaceViewController baseVideoDeteccaoHistograma;
+    private static InterfaceDBController usuarioController;
+    private static InterfaceDBController perfilController;
+    private static InterfaceDBController baseTextoController;
+    private static InterfaceDBController alocacaoTextoController;
+    private static InterfaceDBController classificacaoTextoController;
+    private static InterfaceDBController escolhaClasseTextoController;
+    private static InterfaceDBController liberacaoBaseTextoController;
+    private static InterfaceDBController liberacaoBaseImagemClasseController;
+    private static InterfaceDBController alocacaoImagemClasseController;
+    private static InterfaceDBController classificacaoImagemClasseController;
+    private static InterfaceDBController baseImagemClasseController;
+    private static InterfaceDBController escolhaImagemClasseController;
+    private static InterfaceDBController imagemClasseController;
+    private static InterfaceDBController baseImagemDeteccaoController;
+    private static InterfaceDBController deteccaoImagemController;
+    private static InterfaceDBController alocacaoImagemDeteccaoController;
+    private static InterfaceDBController imagemDeteccaoController;
+    private static InterfaceDBController liberacaoBaseImagemDeteccaoController;
+    private static InterfaceDBController baseVideoDeteccaoController;
+    private static InterfaceDBController alocacaoVideoDeteccaoController;
+    private static InterfaceDBController videoDeteccaoController;
+    private static InterfaceDBController deteccaoVideoController;
+    private static InterfaceDBController liberacaoBaseVideoDeteccaoController;
+    private static InterfaceDBViewController baseImagemClasseHistograma;
+    private static InterfaceDBViewController baseTextoHistograma;
+    private static InterfaceDBViewController baseImagemDeteccaoHistograma;
+    private static InterfaceDBViewController baseVideoDeteccaoHistograma;
 
-    public static InterfaceController<Usuario> getUsuarioController() {
+    public static InterfaceDBController<Usuario> getUsuarioController() {
 	if (usuarioController == null) {
 	    usuarioController = new UsuarioController();
 	}
 	return usuarioController;
     }
 
-    public static InterfaceController<Perfil> getPerfilController() {
+    public static InterfaceDBController<Perfil> getPerfilController() {
 	if (perfilController == null) {
 	    perfilController = new PerfilController();
 	}
 	return perfilController;
     }
 
-    public static InterfaceController<BaseTexto> getBaseTextoController() {
+    public static InterfaceDBController<BaseTexto> getBaseTextoController() {
 	if (baseTextoController == null) {
 	    baseTextoController = new BaseTextoController();
 	}
 	return baseTextoController;
     }
 
-    public static InterfaceController<AlocacaoTexto> getAlocacaoTextoController() {
+    public static InterfaceDBController<AlocacaoTexto> getAlocacaoTextoController() {
 	if (alocacaoTextoController == null) {
 	    alocacaoTextoController = new AlocacaoTextoController();
 	}
 	return alocacaoTextoController;
     }
 
-    public static InterfaceController<ClassificacaoTexto> getClassificacaoTextoController() {
+    public static InterfaceDBController<ClassificacaoTexto> getClassificacaoTextoController() {
 	if (classificacaoTextoController == null) {
 	    classificacaoTextoController = new ClassificacaoTextoController();
 	}
 	return classificacaoTextoController;
     }
 
-    public static InterfaceController<EscolhaClasseTexto> getEscolhaClasseTextoController() {
+    public static InterfaceDBController<EscolhaClasseTexto> getEscolhaClasseTextoController() {
 	if (escolhaClasseTextoController == null) {
 	    escolhaClasseTextoController = new EscolhaClasseTextoController();
 	}
 	return escolhaClasseTextoController;
     }
 
-    public static InterfaceController<LiberacaoBaseTexto> getLiberacaoBaseTextoController() {
+    public static InterfaceDBController<LiberacaoBaseTexto> getLiberacaoBaseTextoController() {
 	if (liberacaoBaseTextoController == null) {
 	    liberacaoBaseTextoController = new LiberacaoBaseTextoController();
 	}
 	return liberacaoBaseTextoController;
     }
 
-    public static InterfaceController<LiberacaoBaseImagemClasse> getLiberacaoBaseImagemClasseController() {
+    public static InterfaceDBController<LiberacaoBaseImagemClasse> getLiberacaoBaseImagemClasseController() {
 	if (liberacaoBaseImagemClasseController == null) {
 	    liberacaoBaseImagemClasseController = new LiberacaoImagemClasseController();
 	}
 	return liberacaoBaseImagemClasseController;
     }
 
-    public static InterfaceController<AlocacaoImagemClasse> getAlocacaoImagemClasseController() {
+    public static InterfaceDBController<AlocacaoImagemClasse> getAlocacaoImagemClasseController() {
 	if (alocacaoImagemClasseController == null) {
 	    alocacaoImagemClasseController = new AlocacaoImagemClasseController();
 	}
 	return alocacaoImagemClasseController;
     }
 
-    public static InterfaceController<ClasssificacaoImagemClasse> getClassificacaoImagemClasseController() {
+    public static InterfaceDBController<ClasssificacaoImagemClasse> getClassificacaoImagemClasseController() {
 	if (classificacaoImagemClasseController == null) {
 	    classificacaoImagemClasseController = new ClassificacaoImagemClasseController();
 	}
 	return classificacaoImagemClasseController;
     }
 
-    public static InterfaceController<BaseImagemClasse> getBaseImagemClasseController() {
+    public static InterfaceDBController<BaseImagemClasse> getBaseImagemClasseController() {
 	if (baseImagemClasseController == null) {
 	    baseImagemClasseController = new BaseImagemClasseController();
 	}
 	return baseImagemClasseController;
     }
 
-    public static InterfaceController<EscolhaImagemClasse> getEscolhaClasseImagemClasseController() {
+    public static InterfaceDBController<EscolhaImagemClasse> getEscolhaClasseImagemClasseController() {
 	if (escolhaImagemClasseController == null) {
 	    escolhaImagemClasseController = new EscolhaClasseImagemClasseController();
 	}
 	return escolhaImagemClasseController;
     }
 
-    public static InterfaceController<ImagemClasse> getImagemClasseController() {
+    public static InterfaceDBController<ImagemClasse> getImagemClasseController() {
 	if (imagemClasseController == null) {
 	    imagemClasseController = new ImagemClasseController();
 	}
 	return imagemClasseController;
     }
 
-    public static InterfaceController<BaseImagemDeteccao> getBaseImagemDeteccaoController() {
+    public static InterfaceDBController<BaseImagemDeteccao> getBaseImagemDeteccaoController() {
 	if (baseImagemDeteccaoController == null) {
 	    baseImagemDeteccaoController = new BaseImagemDeteccaoController();
 	}
 	return baseImagemDeteccaoController;
     }
 
-    public static InterfaceController<DeteccaoImagem> getDeteccaoImagemController() {
+    public static InterfaceDBController<DeteccaoImagem> getDeteccaoImagemController() {
 	if (deteccaoImagemController == null) {
 	    deteccaoImagemController = new DeteccaoImagemController();
 	}
 	return deteccaoImagemController;
     }
 
-    public static InterfaceController<AlocacaoImagemDeteccao> getAlocacaoImagemDeteccaoController() {
+    public static InterfaceDBController<AlocacaoImagemDeteccao> getAlocacaoImagemDeteccaoController() {
 	if (alocacaoImagemDeteccaoController == null) {
 	    alocacaoImagemDeteccaoController = new AlocacaoImagemDeteccaoController();
 	}
 	return alocacaoImagemDeteccaoController;
     }
 
-    public static InterfaceController<ImagemDeteccao> getImagemDeteccaoController() {
+    public static InterfaceDBController<ImagemDeteccao> getImagemDeteccaoController() {
 	if (imagemDeteccaoController == null) {
 	    imagemDeteccaoController = new ImagemDeteccaoController();
 	}
 	return imagemDeteccaoController;
     }
 
-    public static InterfaceController<LiberacaoBaseImagemDeteccao> getLiberacaoBaseImagemDeteccaoController() {
+    public static InterfaceDBController<LiberacaoBaseImagemDeteccao> getLiberacaoBaseImagemDeteccaoController() {
 	if (liberacaoBaseImagemDeteccaoController == null) {
 	    liberacaoBaseImagemDeteccaoController = new LiberacaoBaseImagemDeteccaoController();
 	}
 	return liberacaoBaseImagemDeteccaoController;
     }
 
-    public static InterfaceController<BaseVideoDeteccao> getBaseVideoDeteccaoController() {
+    public static InterfaceDBController<BaseVideoDeteccao> getBaseVideoDeteccaoController() {
 	if (baseVideoDeteccaoController == null) {
 	    baseVideoDeteccaoController = new BaseVideoDeteccaoController();
 	}
 	return baseVideoDeteccaoController;
     }
 
-    public static InterfaceController<AlocacaoVideoDeteccao> getAlocacaoVideoDeteccaoController() {
+    public static InterfaceDBController<AlocacaoVideoDeteccao> getAlocacaoVideoDeteccaoController() {
 	if (alocacaoVideoDeteccaoController == null) {
 	    alocacaoVideoDeteccaoController = new AlocacaoVideoDeteccaoController();
 	}
 	return alocacaoVideoDeteccaoController;
     }
 
-    public static InterfaceController<VideoDeteccao> getVideoDeteccaoController() {
+    public static InterfaceDBController<VideoDeteccao> getVideoDeteccaoController() {
 	if (videoDeteccaoController == null) {
 	    videoDeteccaoController = new VideoDeteccaoController();
 	}
 	return videoDeteccaoController;
     }
 
-    public static InterfaceController<DeteccaoVideo> getDeteccaoVideoController() {
+    public static InterfaceDBController<DeteccaoVideo> getDeteccaoVideoController() {
 	if (deteccaoVideoController == null) {
 	    deteccaoVideoController = new DeteccaoVideoController();
 	}
 	return deteccaoVideoController;
     }
 
-    public static InterfaceController<LiberacaoBaseVideoDeteccao> getLiberacaoBaseVideoDeteccaoController() {
+    public static InterfaceDBController<LiberacaoBaseVideoDeteccao> getLiberacaoBaseVideoDeteccaoController() {
 	if (liberacaoBaseVideoDeteccaoController == null) {
 	    liberacaoBaseVideoDeteccaoController = new LiberacaoBaseVideoDeteccaoController();
 	}
@@ -254,33 +254,33 @@ public class ControllerFactory {
 
     }
 
-    public static InterfaceViewController<BaseImagemClasseHistograma> getBaseImagemClasseHistogramaController() {
+    public static InterfaceDBViewController<BaseImagemClasseHistograma> getBaseImagemClasseHistogramaController() {
 	if (baseImagemClasseHistograma == null) {
-	    baseImagemClasseHistograma = new AbstractViewController() {
+	    baseImagemClasseHistograma = new AbstractDBViewController() {
 	    };
 	}
 	return baseImagemClasseHistograma;
     }
 
-    public static InterfaceViewController<BaseTextoHistograma> getBaseTextoHistogramaController() {
+    public static InterfaceDBViewController<BaseTextoHistograma> getBaseTextoHistogramaController() {
 	if (baseTextoHistograma == null) {
-	    baseTextoHistograma = new AbstractViewController() {
+	    baseTextoHistograma = new AbstractDBViewController() {
 	    };
 	}
 	return baseTextoHistograma;
     }
 
-    public static InterfaceViewController<BaseImagemDeteccaoHistograma> getBaseImagemDeteccaoHistogramaController() {
+    public static InterfaceDBViewController<BaseImagemDeteccaoHistograma> getBaseImagemDeteccaoHistogramaController() {
 	if (baseImagemDeteccaoHistograma == null) {
-	    baseImagemDeteccaoHistograma = new AbstractViewController() {
+	    baseImagemDeteccaoHistograma = new AbstractDBViewController() {
 	    };
 	}
 	return baseImagemDeteccaoHistograma;
     }
 
-    public static InterfaceViewController<BaseVideoDeteccaoHistograma> getBaseVideoDeteccaoHistogramaController() {
+    public static InterfaceDBViewController<BaseVideoDeteccaoHistograma> getBaseVideoDeteccaoHistogramaController() {
 	if (baseVideoDeteccaoHistograma == null) {
-	    baseVideoDeteccaoHistograma = new AbstractViewController() {
+	    baseVideoDeteccaoHistograma = new AbstractDBViewController() {
 	    };
 	}
 	return baseVideoDeteccaoHistograma;

@@ -17,7 +17,7 @@ import br.edu.ufrpe.uag.projetao.control.util.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.util.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.util.ImagemDigital;
 import br.edu.ufrpe.uag.projetao.control.util.ZoomnableImageView;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDBController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.ClasssificacaoImagemClasse;
 import br.edu.ufrpe.uag.projetao.model.EscolhaImagemClasse;
@@ -160,7 +160,7 @@ public class BaseImagemClasseLiberacaoController extends Fragment {
 
 	    public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 
-		InterfaceController<ClasssificacaoImagemClasse> controller = ControllerFactory
+		InterfaceDBController<ClasssificacaoImagemClasse> controller = ControllerFactory
 			.getClassificacaoImagemClasseController();
 
 		ClasssificacaoImagemClasse classificacaoAtual = null;

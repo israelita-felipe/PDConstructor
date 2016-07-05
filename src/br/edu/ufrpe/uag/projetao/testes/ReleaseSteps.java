@@ -15,7 +15,7 @@ import br.edu.ufrpe.uag.projetao.control.usuario.UsuarioController;
 import br.edu.ufrpe.uag.projetao.control.util.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.util.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.util.VideoDigital;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDBController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoVideoDeteccao;
 import br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccao;
 import br.edu.ufrpe.uag.projetao.model.Perfil;
@@ -24,8 +24,8 @@ import br.edu.ufrpe.uag.projetao.model.VideoDeteccao;
 
 public class ReleaseSteps {
 
-    InterfaceController<Usuario> supervisorControlador;
-    InterfaceController<Perfil> perfilControlador;
+    InterfaceDBController<Usuario> supervisorControlador;
+    InterfaceDBController<Perfil> perfilControlador;
     Usuario supervisor;
     String sucesso = "Base criada com sucesso";
     String resultado = "Base criada com sucesso";
@@ -43,10 +43,10 @@ public class ReleaseSteps {
     public void criaBaseVideo(@Named("titulo") String titulo, @Named("descricao") String descricao,
 	    @Named("arquivo") String arquivo) {
 	try {
-	    InterfaceController<VideoDeteccao> videoDeteccaoController = ControllerFactory.getVideoDeteccaoController();
-	    InterfaceController<AlocacaoVideoDeteccao> alocacaoVideoDeteccao = ControllerFactory
+	    InterfaceDBController<VideoDeteccao> videoDeteccaoController = ControllerFactory.getVideoDeteccaoController();
+	    InterfaceDBController<AlocacaoVideoDeteccao> alocacaoVideoDeteccao = ControllerFactory
 		    .getAlocacaoVideoDeteccaoController();
-	    InterfaceController<BaseVideoDeteccao> controlador = ControllerFactory.getBaseVideoDeteccaoController();
+	    InterfaceDBController<BaseVideoDeteccao> controlador = ControllerFactory.getBaseVideoDeteccaoController();
 
 	    TransactionManager.begin();
 	    controlador.prepareCreate();

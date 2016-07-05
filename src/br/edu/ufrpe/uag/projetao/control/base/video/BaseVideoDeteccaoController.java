@@ -1,6 +1,6 @@
 package br.edu.ufrpe.uag.projetao.control.base.video;
 
-import br.edu.ufrpe.uag.projetao.abstracts.AbstractController;
+import br.edu.ufrpe.uag.projetao.abstracts.AbstractDBController;
 import br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccao;
 
 /**
@@ -8,7 +8,7 @@ import br.edu.ufrpe.uag.projetao.model.BaseVideoDeteccao;
  * @author bruno
  *
  */
-public class BaseVideoDeteccaoController extends AbstractController<BaseVideoDeteccao> {
+public class BaseVideoDeteccaoController extends AbstractDBController<BaseVideoDeteccao> {
 
     public BaseVideoDeteccaoController() {
 	super(BaseVideoDeteccao.class);

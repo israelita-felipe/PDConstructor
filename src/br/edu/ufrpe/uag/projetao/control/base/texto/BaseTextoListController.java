@@ -19,7 +19,7 @@ import br.edu.ufrpe.uag.projetao.control.usuario.UsuarioController;
 import br.edu.ufrpe.uag.projetao.control.util.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.util.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.util.FileManager;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDBController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
 import br.edu.ufrpe.uag.projetao.model.BaseTexto;
 import br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto;
@@ -103,10 +103,10 @@ public class BaseTextoListController extends Fragment {
 
 	    TransactionManager.begin();
 
-	    InterfaceController<BaseTexto> base = ControllerFactory.getBaseTextoController();
-	    InterfaceController<EscolhaClasseTexto> escolhaClasseTexto = ControllerFactory
+	    InterfaceDBController<BaseTexto> base = ControllerFactory.getBaseTextoController();
+	    InterfaceDBController<EscolhaClasseTexto> escolhaClasseTexto = ControllerFactory
 		    .getEscolhaClasseTextoController();
-	    InterfaceController<AlocacaoTexto> alocacaoTexto = ControllerFactory.getAlocacaoTextoController();
+	    InterfaceDBController<AlocacaoTexto> alocacaoTexto = ControllerFactory.getAlocacaoTextoController();
 
 	    // criação da base
 	    base.prepareCreate();
@@ -223,7 +223,7 @@ public class BaseTextoListController extends Fragment {
 	    Optional<ButtonType> result = alert.showAndWait();
 	    if (result.get() == ButtonType.OK) {
 		TransactionManager.begin();
-		InterfaceController<BaseTexto> base = ControllerFactory.getBaseTextoController();
+		InterfaceDBController<BaseTexto> base = ControllerFactory.getBaseTextoController();
 		base.destroy(base.prepareList().indexOf(basesTexto.getSelectionModel().getSelectedItem()));
 		TransactionManager.end();
 		list();
@@ -293,7 +293,7 @@ public class BaseTextoListController extends Fragment {
     @FXML
     private void gravarLiberacao() {
 	if (this.tabelaEscravos.getSelectionModel().getSelectedItem() != null) {
-	    InterfaceController<LiberacaoBaseTexto> liberacoesController = ControllerFactory
+	    InterfaceDBController<LiberacaoBaseTexto> liberacoesController = ControllerFactory
 		    .getLiberacaoBaseTextoController();
 
 	    TransactionManager.begin();
