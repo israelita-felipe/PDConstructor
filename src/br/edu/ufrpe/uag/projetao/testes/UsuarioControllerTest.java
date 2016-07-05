@@ -11,14 +11,14 @@ import org.junit.Test;
 
 import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.control.util.ControllerFactory;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDBController;
 import br.edu.ufrpe.uag.projetao.model.Perfil;
 import br.edu.ufrpe.uag.projetao.model.Usuario;
 
 public class UsuarioControllerTest {
 
-    InterfaceController<Usuario> uc = ControllerFactory.getUsuarioController();
-    InterfaceController<Perfil> pc = ControllerFactory.getPerfilController();
+    InterfaceDBController<Usuario> uc = ControllerFactory.getUsuarioController();
+    InterfaceDBController<Perfil> pc = ControllerFactory.getPerfilController();
     Usuario us;
 
     List<Usuario> toRemove = new LinkedList<>();

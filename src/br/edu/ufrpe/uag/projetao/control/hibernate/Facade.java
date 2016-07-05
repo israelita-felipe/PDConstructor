@@ -7,7 +7,7 @@ import org.hibernate.Session;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import br.edu.ufrpe.uag.projetao.abstracts.AbstractFacade;
+import br.edu.ufrpe.uag.projetao.abstracts.AbstractDBFacade;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
 
 /**
@@ -15,7 +15,7 @@ import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
  * @author israel
  * @param <T>
  */
-public class Facade<T extends InterfaceEntity> extends AbstractFacade<T> {
+public class Facade<T extends InterfaceEntity> extends AbstractDBFacade<T> {
 
     @Override
     public Session getSession() {

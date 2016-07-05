@@ -3,14 +3,14 @@
  */
 package br.edu.ufrpe.uag.projetao.control.base.texto;
 
-import br.edu.ufrpe.uag.projetao.abstracts.AbstractController;
+import br.edu.ufrpe.uag.projetao.abstracts.AbstractDBController;
 import br.edu.ufrpe.uag.projetao.model.EscolhaClasseTexto;
 
 /**
  * @author israel
  *
  */
-public class EscolhaClasseTextoController extends AbstractController<EscolhaClasseTexto> {
+public class EscolhaClasseTextoController extends AbstractDBController<EscolhaClasseTexto> {
 
     public EscolhaClasseTextoController() {
 	super(EscolhaClasseTexto.class);

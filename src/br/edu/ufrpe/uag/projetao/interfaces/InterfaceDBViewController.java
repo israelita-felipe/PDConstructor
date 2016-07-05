@@ -14,7 +14,7 @@ import org.hibernate.Query;
  * @author israel
  * @param <T>
  */
-public interface InterfaceViewController<T> {
+public interface InterfaceDBViewController<T> {
 
     List<T> getItems(Query query);
 }

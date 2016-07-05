@@ -3,14 +3,14 @@
  */
 package br.edu.ufrpe.uag.projetao.control.base.texto;
 
-import br.edu.ufrpe.uag.projetao.abstracts.AbstractController;
+import br.edu.ufrpe.uag.projetao.abstracts.AbstractDBController;
 import br.edu.ufrpe.uag.projetao.model.ClassificacaoTexto;
 
 /**
  * @author israel
  *
  */
-public class ClassificacaoTextoController extends AbstractController<ClassificacaoTexto> {
+public class ClassificacaoTextoController extends AbstractDBController<ClassificacaoTexto> {
 
     public ClassificacaoTextoController() {
 	super(ClassificacaoTexto.class);

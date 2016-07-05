@@ -3,14 +3,14 @@
  */
 package br.edu.ufrpe.uag.projetao.control.base.texto;
 
-import br.edu.ufrpe.uag.projetao.abstracts.AbstractController;
+import br.edu.ufrpe.uag.projetao.abstracts.AbstractDBController;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseTexto;
 
 /**
  * @author israel
  *
  */
-public class LiberacaoBaseTextoController extends AbstractController<LiberacaoBaseTexto> {
+public class LiberacaoBaseTextoController extends AbstractDBController<LiberacaoBaseTexto> {
 
     public LiberacaoBaseTextoController() {
 	super(LiberacaoBaseTexto.class);

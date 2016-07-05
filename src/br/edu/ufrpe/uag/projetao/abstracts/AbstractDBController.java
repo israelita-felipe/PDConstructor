@@ -6,28 +6,28 @@ import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 
 import br.edu.ufrpe.uag.projetao.control.hibernate.Facade;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDBController;
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceFacade;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDBFacade;
 
 /**
  *
  * @author israel
  * @param <T>
  */
-public abstract class AbstractController<T extends InterfaceEntity> implements InterfaceController<T> {
+public abstract class AbstractDBController<T extends InterfaceEntity> implements InterfaceDBController<T> {
 
-    private final InterfaceFacade<T> ejbFacade;
+    private final InterfaceDBFacade<T> ejbFacade;
     private T current;
     private List<T> items = null;
     private int selectedItemIndex = 0;
 
-    public AbstractController(Class<T> clazz) {
+    public AbstractDBController(Class<T> clazz) {
 	this.ejbFacade = new Facade<>(clazz);
     }
 
     @Override
-    public InterfaceFacade<T> getFacade() {
+    public InterfaceDBFacade<T> getFacade() {
 	return ejbFacade;
     }
 

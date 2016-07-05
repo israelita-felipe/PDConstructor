@@ -3,14 +3,14 @@
  */
 package br.edu.ufrpe.uag.projetao.control.base.texto;
 
-import br.edu.ufrpe.uag.projetao.abstracts.AbstractController;
+import br.edu.ufrpe.uag.projetao.abstracts.AbstractDBController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoTexto;
 
 /**
  * @author israel
  *
  */
-public class AlocacaoTextoController extends AbstractController<AlocacaoTexto> {
+public class AlocacaoTextoController extends AbstractDBController<AlocacaoTexto> {
 
     public AlocacaoTextoController() {
 	super(AlocacaoTexto.class);

@@ -7,18 +7,18 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
 
 import br.edu.ufrpe.uag.projetao.interfaces.InterfaceEntity;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceFacade;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDBFacade;
 
 /**
  *
  * @author Israel Araújo
  * @param <T>
  */
-public abstract class AbstractFacade<T extends InterfaceEntity> implements InterfaceFacade<T> {
+public abstract class AbstractDBFacade<T extends InterfaceEntity> implements InterfaceDBFacade<T> {
 
     private final Class<T> entityClass;
 
-    public AbstractFacade(Class<T> entityClass) {
+    public AbstractDBFacade(Class<T> entityClass) {
 	this.entityClass = entityClass;
     }
 

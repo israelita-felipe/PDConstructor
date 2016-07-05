@@ -9,7 +9,7 @@ import org.kairos.core.Activity;
 import br.edu.ufrpe.uag.projetao.control.hibernate.TransactionManager;
 import br.edu.ufrpe.uag.projetao.control.util.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.util.SHA256;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDBController;
 import br.edu.ufrpe.uag.projetao.model.Perfil;
 import br.edu.ufrpe.uag.projetao.model.Usuario;
 import javafx.collections.FXCollections;
@@ -56,7 +56,7 @@ public class CadastroUsuarioController extends Activity {
 
     @FXML
     private void cadastrar() {
-	InterfaceController<Usuario> controller = ControllerFactory.getUsuarioController();
+	InterfaceDBController<Usuario> controller = ControllerFactory.getUsuarioController();
 
 	try {
 	    validar();

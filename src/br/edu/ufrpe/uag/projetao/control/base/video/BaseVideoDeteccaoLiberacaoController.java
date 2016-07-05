@@ -19,7 +19,7 @@ import br.edu.ufrpe.uag.projetao.control.util.ControllerFactory;
 import br.edu.ufrpe.uag.projetao.control.util.CustomRectangle;
 import br.edu.ufrpe.uag.projetao.control.util.DetachedCriteriaFactory;
 import br.edu.ufrpe.uag.projetao.control.util.VideoDigital;
-import br.edu.ufrpe.uag.projetao.interfaces.InterfaceController;
+import br.edu.ufrpe.uag.projetao.interfaces.InterfaceDBController;
 import br.edu.ufrpe.uag.projetao.model.AlocacaoVideoDeteccao;
 import br.edu.ufrpe.uag.projetao.model.DeteccaoVideo;
 import br.edu.ufrpe.uag.projetao.model.LiberacaoBaseVideoDeteccao;
@@ -70,7 +70,7 @@ public class BaseVideoDeteccaoLiberacaoController extends Fragment {
 
     private AlocacaoVideoDeteccao alocacaoAtual;
 
-    private InterfaceController<DeteccaoVideo> deteccaoController = ControllerFactory.getDeteccaoVideoController();
+    private InterfaceDBController<DeteccaoVideo> deteccaoController = ControllerFactory.getDeteccaoVideoController();
 
     private Group group = new Group();
 
@@ -355,7 +355,7 @@ public class BaseVideoDeteccaoLiberacaoController extends Fragment {
     private void removeDeteccao(DeteccaoVideo deteccao) {
 
 	group.getChildren().clear();
-	InterfaceController<DeteccaoVideo> deteccaoVideoController = ControllerFactory.getDeteccaoVideoController();
+	InterfaceDBController<DeteccaoVideo> deteccaoVideoController = ControllerFactory.getDeteccaoVideoController();
 
 	TransactionManager.begin();
 	deteccaoVideoController.destroy(deteccao);
