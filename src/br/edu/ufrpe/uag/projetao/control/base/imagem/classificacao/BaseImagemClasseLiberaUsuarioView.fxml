@@ -19,10 +19,7 @@
 		AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"
 		AnchorPane.leftAnchor="0" style=" -fx-padding:16px" VBox.vgrow="ALWAYS">
 		<children>
-			<HBox spacing="8" style="-fx-padding: 0 0 16 0">
-				<MaterialButton text="Cancelar" onAction="#cancela" />
-				<MaterialButton text="Salvar" onAction="#gravarLiberacao" />
-			</HBox>
+
 			<HBox spacing="8">
 				<VBox HBox.hgrow="ALWAYS">
 					<children>
@@ -72,6 +69,10 @@
 						</TableView>
 					</children>
 				</VBox>
+			</HBox>
+			<HBox spacing="8" style="-fx-padding: 0 0 16 0">
+				<MaterialButton text="Cancelar" onAction="#cancela" />
+				<MaterialButton text="Salvar" onAction="#gravarLiberacao" />
 			</HBox>
 		</children>
 	</VBox>

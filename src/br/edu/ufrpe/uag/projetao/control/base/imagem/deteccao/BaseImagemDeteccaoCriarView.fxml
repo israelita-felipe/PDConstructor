@@ -22,12 +22,7 @@
 
 	<BorderPane AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0"
 		AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" style=" -fx-padding:16px">
-		<top>
-			<HBox spacing="8" style="-fx-padding: 0 0 16 0">
-				<MaterialButton text="Cancelar" onAction="#cancela" />
-				<MaterialButton text="Gravar" onAction="#gravar" />
-			</HBox>
-		</top>
+
 		<center>
 			<ScrollPane fitToHeight="true" fitToWidth="true"
 				BorderPane.alignment="CENTER">
@@ -66,6 +61,16 @@
 				</content>
 			</ScrollPane>
 		</center>
+		<bottom>
+			<BorderPane style="-fx-padding: 16 16 16 16">
+				<left>
+					<MaterialButton text="Cancelar" onAction="#cancela" />
+				</left>
+				<right>
+					<MaterialButton text="Gravar" onAction="#gravar" />
+				</right>
+			</BorderPane>
+		</bottom>
 	</BorderPane>
 </fx:root>
 

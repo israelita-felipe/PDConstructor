@@ -13,14 +13,14 @@
 	<VBox AnchorPane.topAnchor="16" AnchorPane.rightAnchor="16"
 		AnchorPane.bottomAnchor="16" AnchorPane.leftAnchor="16" spacing="8">
 		<children>
+			<Pagination fx:id="pagination" VBox.vgrow="ALWAYS"
+				AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0"
+				AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" />
 			<HBox spacing="8" style="-fx-padding:0 0 16 0">
 				<children>
 					<MaterialButton text="Voltar" onAction="#list" />
 				</children>
 			</HBox>
-			<Pagination fx:id="pagination" VBox.vgrow="ALWAYS"
-				AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0"
-				AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" />
 		</children>
 	</VBox>
 </fx:root>

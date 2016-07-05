@@ -96,6 +96,7 @@ public class BaseTextoListController extends Fragment {
 
     @FXML
     private void gravar() {
+
 	try {
 
 	    validar();
